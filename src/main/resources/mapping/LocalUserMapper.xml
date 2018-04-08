@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.casic.qhc.dao.LocalUserMapper" >
+  <resultMap id="BaseResultMap" type="com.casic.qhc.bean.LocalUser" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_login_name" property="userLoginName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="user_token" property="userToken" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="user_status" property="userStatus" jdbcType="VARCHAR" />
+    <result column="profile_photo" property="profilePhoto" jdbcType="VARCHAR" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="login_times" property="loginTimes" jdbcType="INTEGER" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="user_score" property="userScore" jdbcType="INTEGER" />
+    <result column="lab_score" property="labScore" jdbcType="INTEGER" />
+    <result column="wallet_amount" property="walletAmount" jdbcType="DECIMAL" />
+    <result column="reservation_id" property="reservationId" jdbcType="BIGINT" />
+    <result column="role_short_name" property="roleShortName" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_login_name, password, user_email, user_phone, real_name, sex, birthday, 
+    address, company_name, user_token, create_time, update_time, user_status, profile_photo, total_amount,
+    login_times,last_login_time,qq
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from qhc_local_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from qhc_local_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.casic.qhc.bean.LocalUser" >
+    insert into qhc_local_user (user_id, user_login_name, password, 
+      user_email, user_phone, real_name, 
+      sex, birthday, address, 
+      company_name, user_token, create_time, update_time, 
+      user_status, profile_photo, total_amount,
+      login_times,last_login_time,qq
+      )
+    values (#{userId,jdbcType=BIGINT}, #{userLoginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{companyName,jdbcType=VARCHAR}, #{userToken,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{userStatus,jdbcType=VARCHAR}, #{profilePhoto,jdbcType=VARCHAR}, #{totalAmount,jdbcType=DECIMAL},
+      #{loginTimes,jdbcType=INTEGER},#{lastLoginTime,jdbcType=TIMESTAMP}, #{qq,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.casic.qhc.bean.LocalUser" >
+    insert into qhc_local_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userLoginName != null" >
+        user_login_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="userToken != null" >
+        user_token,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="profilePhoto != null" >
+        profile_photo,
+      </if>
+      <if test="totalAmount != null" >
+        total_amount,
+      </if>
+      <if test="loginTimes != null" >
+        login_times,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userLoginName != null" >
+        #{userLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="userToken != null" >
+        #{userToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="profilePhoto != null" >
+        #{profilePhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="loginTimes != null" >
+        #{loginTimes,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.casic.qhc.bean.LocalUser" >
+    update qhc_local_user
+    <set >
+      <if test="userLoginName != null" >
+        user_login_name = #{userLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="userToken != null" >
+        user_token = #{userToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userStatus != null" >
+        user_status = #{userStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="profilePhoto != null" >
+        profile_photo = #{profilePhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null" >
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="loginTimes != null" >
+        login_times = #{loginTimes,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.casic.qhc.bean.LocalUser" >
+    update qhc_local_user
+    set user_login_name = #{userLoginName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      user_token = #{userToken,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      user_status = #{userStatus,jdbcType=VARCHAR},
+      profile_photo = #{profilePhoto,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      login_times = #{loginTimes,jdbcType=INTEGER},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      qq = #{qq,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
+    
+  </update>
+  
+  <select id="findUserByLoginName" resultType="com.casic.qhc.bean.LocalUser" parameterType="string">
+  	SELECT 
+	  u.user_id AS userId,
+	  u.user_login_name AS userLoginName,
+	  u.password AS password,
+	  u.user_email AS userEmail,
+	  u.user_phone AS userPhone,
+	  u.real_name AS realName,
+	  u.sex AS sex,
+	  u.birthday AS birthday,
+	  u.address AS address,
+	  u.company_name AS companyName,
+	  u.user_token AS userToken,
+	  u.create_time AS createTime,
+	  u.update_time AS updateTime,
+	  u.user_status AS userStatus,
+	  u.profile_photo AS profilePhoto,
+	  u.total_amount AS totalAmount,
+	  u.login_times AS loginTimes,
+	  u.last_login_time AS lastLoginTime,
+	  r.role_id AS roleId,
+	  r.role_name AS rolName,
+	  r.role_short_name AS roleShortName,
+	  u.qq AS qq
+	FROM
+	  qhc_local_user u 
+	  LEFT JOIN qhc_user_role ur 
+	    ON ur.user_id = u.user_id 
+	  LEFT JOIN qhc_role r 
+	    ON r.role_id = ur.role_id 
+	WHERE 1 = 1 
+  	  <if test="loginName != null" >
+        and u.user_login_name = #{loginName,jdbcType=VARCHAR}
+      </if>
+  </select>
+  
+  <select id="getUserCountByLoginName" resultType="int" parameterType="string">
+  	select count(1) from qhc_local_user
+  	where user_login_name = #{loginName,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getUserCountByEmail" resultType="int" parameterType="string">
+  	select count(1) from qhc_local_user
+  	where user_email = #{email,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getUserCountByPhone" resultType="int" parameterType="string">
+  	select count(1) from qhc_local_user
+  	where user_phone = #{phone,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getUserCountByUserNamePhone" resultType="int" parameterType="java.util.Map">
+  	select count(1) from qhc_local_user
+  	where user_phone = #{mobile,jdbcType=VARCHAR} and user_login_name = #{username,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getUserByPhone" resultMap="BaseResultMap" parameterType="string">
+  	select
+  	<include refid="Base_Column_List" />
+  	from qhc_local_user
+  	where user_phone = #{phone,jdbcType=VARCHAR}
+  </select>
+  <select id="selectList" parameterType="com.casic.qhc.bean.LocalUser" resultMap="BaseResultMap">
+		SELECT
+			lu.*, qs.user_score user_score, qs.lab_score lab_score, qw.wallet_amount wallet_amount, qi.reservation_id
+		FROM
+			qhc_local_user lu
+		left join qhc_score qs on lu.user_id=qs.user_id
+		left join qhc_wallet qw on lu.user_id=qw.user_id
+		left join qhc_invoice_reservation qi on lu.user_id=qi.user_id
+		where 1=1
+		<if test="userLoginName != null and userLoginName != ''">
+			and lu.user_login_name like concat('%',#{userLoginName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="userEmail != null and userEmail != ''">
+			and lu.user_email like concat('%',#{userEmail,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="userPhone != null and userPhone != ''">
+			and lu.user_phone like concat('%',#{userPhone,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="address != null and address != ''">
+			and lu.address like concat('%',#{address,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="companyName != null and companyName != ''">
+			and lu.company_name like concat('%',#{companyName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="userStatus != null and userStatus != ''">
+			and lu.user_status = #{userStatus,jdbcType=VARCHAR}
+		</if>
+		order by lu.create_time desc
+		<if test="offset != null and limit != null ">
+			limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+	
+	<select id="selectCount" parameterType="com.casic.qhc.bean.LocalUser" resultType="int">
+		select
+			count(1)
+		FROM
+			qhc_local_user lu
+		where 1=1
+		<if test="userLoginName != null and userLoginName != ''">
+			and lu.user_login_name like concat('%',#{userLoginName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="userEmail != null and userEmail != ''">
+			and lu.user_email like concat('%',#{userEmail,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="userPhone != null and userPhone != ''">
+			and lu.user_phone like concat('%',#{userPhone,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="address != null and address != ''">
+			and lu.address like concat('%',#{address,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="companyName != null and companyName != ''">
+			and lu.company_name like concat('%',#{companyName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="userStatus != null and userStatus != ''">
+			and lu.user_status = #{userStatus,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	<select id="getUserIdsByType" resultType="java.lang.Long">
+		select
+			user_id
+		FROM
+			qhc_local_user lu
+		where 
+			lu.user_status = 1 
+			<if test="userType != null and userType == 1">
+			and
+			not EXISTS(
+			select user_id from qhc_laboratory la where la.lab_status=1 and lu.user_id=la.user_id 
+			)
+			</if>
+			<if test="userId != null and userId != ''">
+			and lu.user_id != #{userId,jdbcType=BIGINT}
+			</if>
+			
+	</select>
+	
+	<select id="findUserByToken" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+			u.*,
+			r.role_short_name
+		FROM
+			qhc_local_user u
+		LEFT JOIN qhc_user_role ur ON ur.user_id = u.user_id
+		LEFT JOIN qhc_role r ON r.role_id = ur.role_id
+    	where user_token = #{userToken,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getUserInfoApp" parameterType="java.lang.Long" resultType="java.util.Map">
+		SELECT
+		  u.user_login_name AS userLoginName,
+		  u.user_email AS userEmail,
+		  u.user_phone AS userPhone,
+		  u.real_name AS realName,
+		  u.sex AS sex,
+		  u.birthday AS birthday,
+		  u.address AS address,
+		  u.company_name AS companyName,
+		  u.user_token AS userToken,
+		  DATE_FORMAT(u.create_time,'%Y-%m-%d') as createTime,
+		  DATE_FORMAT(u.update_time,'%Y-%m-%d') as updateTime,
+		  u.user_status AS userStatus,
+		  u.profile_photo AS profilePhoto,
+		  CAST(u.total_amount AS CHAR) AS totalAmount,
+		  CAST(u.login_times AS CHAR) AS loginTimes,
+		  DATE_FORMAT(u.last_login_time,'%Y-%m-%d') AS lastLoginTime,
+		  r.role_short_name as roleName,
+		  l.lab_name as labName
+		FROM
+			qhc_local_user u
+		LEFT JOIN qhc_user_role ur ON ur.user_id = u.user_id
+		LEFT JOIN qhc_role r ON r.role_id = ur.role_id
+		LEFT JOIN qhc_laboratory l ON u.user_id = l.user_id
+    	where u.user_id = #{userId,jdbcType=BIGINT}
+	</select>
+</mapper>

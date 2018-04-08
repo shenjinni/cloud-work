@@ -38,6 +38,16 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!-- Druid,监控数据库,以及WEB访问连接信息 -->
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+
     <!-- 字符集过滤器 -->
     <filter>
         <filter-name>encodingFilter</filter-name>
