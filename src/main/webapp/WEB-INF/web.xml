@@ -33,9 +33,15 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>springDispatcherServlet</servlet-name>-->
+        <!--<url-pattern>/</url-pattern>-->
+    <!--</servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>springDispatcherServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <!-- 此处可以可以配置成*.do，对应struts的后缀习惯 -->
+        <url-pattern>*.do</url-pattern>
+        <url-pattern>*.json</url-pattern>
     </servlet-mapping>
 
     <!-- Druid,监控数据库,以及WEB访问连接信息 -->

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.casic.qhc.dao.LocalUserMapper" >
-  <resultMap id="BaseResultMap" type="com.casic.qhc.bean.LocalUser" >
+<mapper namespace="cn.testin.dao.LocalUserMapper" >
+  <resultMap id="BaseResultMap" type="cn.testin.bean.LocalUser" >
     <id column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="user_login_name" property="userLoginName" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
@@ -42,7 +42,7 @@
     delete from qhc_local_user
     where user_id = #{userId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.casic.qhc.bean.LocalUser" >
+  <insert id="insert" parameterType="cn.testin.bean.LocalUser" >
     insert into qhc_local_user (user_id, user_login_name, password, 
       user_email, user_phone, real_name, 
       sex, birthday, address, 
@@ -58,7 +58,7 @@
       #{loginTimes,jdbcType=INTEGER},#{lastLoginTime,jdbcType=TIMESTAMP}, #{qq,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.casic.qhc.bean.LocalUser" >
+  <insert id="insertSelective" parameterType="cn.testin.bean.LocalUser" >
     insert into qhc_local_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -179,7 +179,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.casic.qhc.bean.LocalUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.testin.bean.LocalUser" >
     update qhc_local_user
     <set >
       <if test="userLoginName != null" >
@@ -239,7 +239,7 @@
     </set>
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.casic.qhc.bean.LocalUser" >
+  <update id="updateByPrimaryKey" parameterType="cn.testin.bean.LocalUser" >
     update qhc_local_user
     set user_login_name = #{userLoginName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -263,7 +263,7 @@
     
   </update>
   
-  <select id="findUserByLoginName" resultType="com.casic.qhc.bean.LocalUser" parameterType="string">
+  <select id="findUserByLoginName" resultType="cn.testin.bean.LocalUser" parameterType="string">
   	SELECT 
 	  u.user_id AS userId,
 	  u.user_login_name AS userLoginName,
@@ -325,7 +325,7 @@
   	from qhc_local_user
   	where user_phone = #{phone,jdbcType=VARCHAR}
   </select>
-  <select id="selectList" parameterType="com.casic.qhc.bean.LocalUser" resultMap="BaseResultMap">
+  <select id="selectList" parameterType="cn.testin.bean.LocalUser" resultMap="BaseResultMap">
 		SELECT
 			lu.*, qs.user_score user_score, qs.lab_score lab_score, qw.wallet_amount wallet_amount, qi.reservation_id
 		FROM
@@ -358,7 +358,7 @@
 		</if>
 	</select>
 	
-	<select id="selectCount" parameterType="com.casic.qhc.bean.LocalUser" resultType="int">
+	<select id="selectCount" parameterType="cn.testin.bean.LocalUser" resultType="int">
 		select
 			count(1)
 		FROM
