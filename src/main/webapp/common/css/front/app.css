@@ -1,0 +1,516 @@
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+}
+body {
+	background: rgb(255, 255, 255); color: rgb(86, 86, 86); font-family: "Helvetica Neue","Open Sans","Microsoft YaHei","΢���ź�","Hiragino Sans GB","STHeiti","WenQuanYi Micro Hei",SimSun,sans-serif !important;
+}
+h2 {
+	font-weight: normal;
+}
+h3 {
+	font-weight: normal;
+}
+h4 {
+	font-weight: normal;
+}
+h5 {
+	font-weight: normal;
+}
+h6 {
+	font-weight: normal;
+}
+#body {
+	height: auto !important; position: relative; min-height: 100%;
+}
+#main {
+	padding-bottom: 60px;
+}
+#footer {
+	width: 100%; bottom: 0px; clear: both; margin-bottom: 10px; position: absolute;
+}
+#footer p {
+	color: rgb(120, 120, 120); font-size: 12px; margin-bottom: 0px;
+}
+span.helper {
+	width: 100%; height: 100%; vertical-align: middle; display: inline-block;
+}
+.nav > li > a {
+	padding-right: 0px; padding-left: 0px;
+}
+.navbar-default .navbar-nav > .active > a {
+	background: rgb(214, 38, 49); color: rgb(255, 255, 255);
+}
+.navbar-default .navbar-nav > .active > a:focus {
+	background: rgb(214, 38, 49); color: rgb(255, 255, 255);
+}
+.navbar-default .navbar-nav > .active > a:hover {
+	background: rgb(214, 38, 49); color: rgb(255, 255, 255);
+}
+.btn:focus {
+	
+}
+.btn:active {
+	
+}
+.btn:hover {
+	
+}
+.form-control {
+	border-radius: 2px; box-shadow: none; -webkit-box-shadow: none;
+}
+.form-control:focus {
+	border-color: rgb(214, 38, 49); box-shadow: none; -webkit-box-shadow: none;
+}
+.header {
+	background: rgb(255, 255, 255); left: 0px; top: 0px; right: 0px; position: fixed; z-index: 1083;
+}
+.header .logo-container {
+	padding-right: 60px;
+}
+.header .logo-a {
+	padding: 5px 0px; display: inline-block;
+}
+.header .logo {
+	height: 70px;
+}
+.header .navbar {
+	margin-bottom: 0px !important; border-bottom-color: currentColor; border-bottom-width: medium; border-bottom-style: none; box-shadow: 0px 1px 5px rgba(0,0,0,0.2); -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+.header .navbar ul {
+	width: 100%;
+}
+.header .navbar ul li {
+	width: 12.5%; text-align: center;
+}
+.header .navbar ul.nav-ten li {
+	width: 11.11%;
+}
+.header .navbar ul li:hover .dropdown-menu {
+	margin-top: 0px; display: block;
+}
+.header .dropdown-menu {
+	border-radius: 0px; border: currentColor; border-image: none;
+}
+.header .dropdown-menu li {
+	width: 100% !important;
+}
+.header .dropdown-menu li a {
+	line-height: 2;
+}
+.header .navbar .youth a {
+	padding: 5px 10px;
+}
+.header .navbar .youth a img {
+	height: 40px;
+}
+.header .logos-div {
+	padding: 15px 0px; position: relative;
+}
+.header .logos {
+	height: 50px;
+}
+.header .links {
+	left: 0px; top: 20px; right: 0px; bottom: 20px; position: absolute;
+}
+.header .links .yan {
+	width: 110px; height: 100%; display: inline-block;
+}
+.header .links .psbc {
+	width: 180px; height: 100%; display: inline-block;
+}
+.header .links .youth {
+	width: 80px; height: 100%; display: inline-block;
+}
+.header .button a {
+	padding: 0px 30px; height: 35px; color: rgb(255, 255, 255) !important; line-height: 35px; margin-top: 8px;
+}
+.header .button a:hover {
+	background: rgb(162, 43, 47) !important; border: 1px solid rgb(162, 43, 47) !important; border-image: none !important; color: rgb(255, 255, 255) !important;
+}
+.header .button a:focus {
+	background: rgb(162, 43, 47) !important; border: 1px solid rgb(162, 43, 47) !important; border-image: none !important; color: rgb(255, 255, 255) !important;
+}
+div.index {
+	padding-top: 70px;
+}
+.index .index-title {
+	margin: auto; height: 80px; display: block;
+}
+.index .index-banner {
+	margin: auto; width: 500px; display: block;
+}
+.index .images {
+	padding-top: 150px;
+}
+.index .index-text {
+	margin: auto; display: block;
+}
+.index .index-text-1 {
+	margin-top: 50px;
+}
+.index .index-text-2 {
+	height: 450px;
+}
+.index .section-banner .button {
+	left: 50%; width: 400px; text-align: center; bottom: 100px; margin-left: -200px; display: block; position: absolute;
+}
+.index .section-banner .button img {
+	width: 100%;
+}
+#fp-nav ul li a span {
+	background: rgb(136, 136, 136);
+}
+.fp-slidesNav ul li a span {
+	background: rgb(136, 136, 136);
+}
+.container-fluid {
+	padding: 0px;
+}
+.btn-inverse {
+	border-radius: 2px; border: 1px solid rgb(214, 38, 49); border-image: none; color: rgb(214, 38, 49); font-size: 12px;
+}
+.btn-my {
+	background: rgb(214, 38, 49); border-radius: 2px; border: 1px solid rgb(214, 38, 49); border-image: none; color: rgb(255, 255, 255);
+	width: 120px;
+}
+.btn-my:hover {
+	background: rgb(162, 43, 47); border: 1px solid rgb(162, 43, 47); border-image: none; color: rgb(255, 255, 255);
+}
+.btn-my:focus {
+	background: rgb(162, 43, 47); border: 1px solid rgb(162, 43, 47); border-image: none; color: rgb(255, 255, 255);
+}
+.section-banner .content {
+	background: url("../images/banner.jpg") no-repeat center / cover; width: 100%; height: 100%;
+}
+.section-intro {
+	background: url("../images/text-bg.jpg") no-repeat center / cover;
+}
+.section-org {
+	background: url("../images/text-bg.jpg") no-repeat center / cover;
+}
+.section-time {
+	background: url("../images/text-bg.jpg") no-repeat center / cover;
+}
+.section-intro .container {
+	padding-top: 20px;
+}
+.section-time .container {
+	padding-top: 20px;
+}
+.section-org .container {
+	padding-top: 20px;
+}
+.section-org h5 {
+	margin-top: 40px;
+}
+.section-org .item {
+	margin-top: 30px;
+}
+.section-padding {
+	padding: 0px 200px;
+}
+.section .description p {
+	line-height: 1.8;
+}
+.apply-chose {
+	padding-top: 140px;
+}
+.apply-form {
+	padding-top: 140px;
+}
+.apply-success {
+	padding-top: 140px;
+}
+.article {
+	padding-top: 140px;
+}
+.teacher {
+	padding-top: 140px;
+}
+.apply-chose h3 {
+	margin: 30px 0px;
+}
+.apply-chose .panel {
+	cursor: pointer; min-height: 200px;
+}
+.apply-chose .panel h4 {
+	margin-bottom: 20px;
+}
+.apply-chose .next {
+	width: 140px; margin-top: 50px;
+}
+.apply-form .next {
+	width: 140px; margin-top: 50px;
+}
+.apply-chose p.description {
+	text-align: center; line-height: 1.8;
+}
+.apply-chose p.chose {
+	transition:color 0.3s; right: 20px; bottom: 10px; color: rgb(222, 222, 222); position: absolute; -webkit-transition: color 0.3s ease;
+}
+.apply-chose .active.panel p.chose {
+	color: rgb(214, 38, 49);
+}
+.apply-form .steps {
+	margin: 10px 0px; padding: 10px 0px;
+}
+.apply-form .steps .step {
+	background: rgb(255, 255, 255); padding: 5px 0px; border: 1px solid rgb(222, 222, 222); transition:background 0.1s; border-image: none; margin-right: -1px;
+}
+.apply-form .steps .active.step {
+	background: rgb(214, 38, 49); color: rgb(255, 255, 255);
+}
+.apply-form .steps .step .name {
+	font-size: 18px; margin-bottom: 0px;
+}
+.apply-form .steps .step .description {
+	margin-bottom: 0px;
+}
+.apply-form .sections .section {
+	display: none;
+}
+.apply-form .sections .on.section {
+	display: block;
+}
+.apply-buttons {
+	margin: 30px 0px;
+	float: left;
+    width: 100%;
+}
+.apply-buttons button {
+	width: 120px;
+}
+.apply-form .section-2 .types p {
+	display: none;
+}
+.apply-form .section-2 .types p.on {
+	display: block;
+}
+.apply-form .section-2 .types i {
+	color: rgb(205, 205, 205);
+}
+.apply-form .section-2 .types button.active i {
+	color: rgb(214, 38, 49);
+}
+.type-4 button.active{
+	color: rgb(214, 38, 49);
+}
+.apply-form .form-grouping .type {
+	display: none;
+}
+.apply-form .form-grouping .on.type {
+	display: block;
+}
+.account {
+	padding-top: 80px;
+}
+.account .panel {
+	padding-top: 20px;
+}
+.account .error-tip {
+	text-align: center; color: rgb(214, 38, 49); margin-bottom: 0px;
+}
+.index-2 .section-banner .content {
+	background: none;
+}
+.index-2 .section-intro {
+	background: url("../images/intro-bg.jpg") no-repeat center / cover;
+}
+.index-2 .section-time {
+	background: url("../images/intro-bg.jpg") no-repeat center / cover;
+}
+.index-2 .section-org {
+	background: url("../images/org-bg.jpg") no-repeat center / cover;
+}
+.index-2 .index-title {
+	
+}
+.index-2 .index-text-1 {
+	height: 380px;
+}
+.index-2 .section-banner .content {
+	background: url("../images/banner-4.jpg") no-repeat center / cover; width: 100%; height: 100%;
+}
+.apply-success h3 {
+	margin-top: 50px;
+}
+.article .list-group-item {
+	background: none; border-width: medium medium 1px; border-style: none none dashed; border-color: currentColor currentColor rgb(221, 221, 221); border-radius: 0px; border-image: none;
+}
+.article .list-group-item:hover {
+	background: rgb(246, 246, 246); transition:background 0.1s; -webkit-transition: background .1s ease;
+}
+.article .list-group-item .media-body {
+	padding: 5px;
+}
+.pagination > .active > a {
+	background: rgb(214, 38, 49); border: 1px solid rgb(214, 38, 49); border-image: none;
+}
+.pagination > .active > a:focus {
+	background: rgb(214, 38, 49); border: 1px solid rgb(214, 38, 49); border-image: none;
+}
+.pagination > .active > a:hover {
+	background: rgb(214, 38, 49); border: 1px solid rgb(214, 38, 49); border-image: none;
+}
+.pagination > .active > span {
+	background: rgb(214, 38, 49); border: 1px solid rgb(214, 38, 49); border-image: none;
+}
+.pagination > .active > span:focus {
+	background: rgb(214, 38, 49); border: 1px solid rgb(214, 38, 49); border-image: none;
+}
+.pagination > .active > span:hover {
+	background: rgb(214, 38, 49); border: 1px solid rgb(214, 38, 49); border-image: none;
+}
+.pagination > li > a {
+	color: rgb(214, 38, 49);
+}
+.pagination > li > span {
+	color: rgb(214, 38, 49);
+}
+.pagination > li > a:focus {
+	color: rgb(214, 38, 49);
+}
+.pagination > li > a:hover {
+	color: rgb(214, 38, 49);
+}
+.pagination > li > span:focus {
+	color: rgb(214, 38, 49);
+}
+.pagination > li > span:hover {
+	color: rgb(214, 38, 49);
+}
+table {
+	border: 1px solid rgb(221, 221, 221); border-image: none; width: 100%; margin-bottom: 20px; max-width: 100%;
+}
+table > tbody > tr > td {
+	padding: 8px; border: 1px solid rgb(221, 221, 221); border-image: none; line-height: 1.4285; vertical-align: top;
+}
+table > tbody > tr > th {
+	padding: 8px; border: 1px solid rgb(221, 221, 221); border-image: none; line-height: 1.4285; vertical-align: top;
+}
+table > tfoot > tr > td {
+	padding: 8px; border: 1px solid rgb(221, 221, 221); border-image: none; line-height: 1.4285; vertical-align: top;
+}
+table > tfoot > tr > th {
+	padding: 8px; border: 1px solid rgb(221, 221, 221); border-image: none; line-height: 1.4285; vertical-align: top;
+}
+table > thead > tr > td {
+	padding: 8px; border: 1px solid rgb(221, 221, 221); border-image: none; line-height: 1.4285; vertical-align: top;
+}
+table > thead > tr > th {
+	padding: 8px; border: 1px solid rgb(221, 221, 221); border-image: none; line-height: 1.4285; vertical-align: top;
+}
+table > thead > tr > th {
+	vertical-align: bottom; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 2px; border-bottom-style: solid;
+}
+table > caption + thead > tr:first-child > td {
+	border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+table > caption + thead > tr:first-child > th {
+	border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+table > colgroup + thead > tr:first-child > td {
+	border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+table > colgroup + thead > tr:first-child > th {
+	border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+table > thead:first-child > tr:first-child > td {
+	border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+table > thead:first-child > tr:first-child > th {
+	border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+table > tbody + tbody {
+	border-top-color: rgb(221, 221, 221); border-top-width: 2px; border-top-style: solid;
+}
+table > thead > tr > td {
+	border-bottom-width: 2px;
+}
+table > thead > tr > th {
+	border-bottom-width: 2px;
+}
+.teacher .t {
+	margin: auto; width: 135px;
+}
+.teacher .t .c {
+	height: 135px; position: relative;
+}
+.teacher .t .description {
+	background: rgba(0, 0, 0, 0.7); margin: 0px; padding: 3px 0px; transition:opacity 0.2s; left: 0px; right: 0px; bottom: 0px; color: rgb(255, 255, 255); position: absolute; opacity: 0;
+}
+.teacher .t:hover .description {
+	opacity: 1;
+}
+.intro-container {
+	padding-top: 128px;
+}
+.intro-rule-container {
+	background: url("../images/intro-bg.jpg") fixed; padding-bottom: 0px;
+}
+.intro-rule {
+	width: 700px; margin-top: 30px;
+}
+.intro-rule-container .links .one {
+	top: 310px; width: 460px; height: 100px; margin-left: -230px; position: absolute;
+}
+.intro-rule-container .links .two {
+	top: 410px; width: 460px; height: 80px; margin-left: -230px; position: absolute;
+}
+.intro-rule-container .links .three {
+	top: 510px; width: 460px; height: 80px; margin-left: -230px; position: absolute;
+}
+.article img {
+	max-width: 100%;
+}
+.article p {
+	line-height: 1.8; font-size: 16px;
+}
+.other-industry input.form-control {
+	width: auto; display: inline-block;
+}
+.intro-container img {
+	margin: auto; width: 600px; height: auto !important; display: block;
+}
+.qr-code {
+	left: 50%; width: 160px; text-align: center; bottom: 100px; margin-left: -400px; display: block; position: absolute;
+}
+.types {
+	display: none;
+}
+.on.types {
+	display: inline-block;
+}
+.index-new .list-group-item {
+	padding: 20px 0px;
+}
+.index-new a.a-title {
+	color: rgb(85, 85, 85); font-size: 20px; font-weight: bold; text-decoration: none;
+}
+.index-new p {
+	color: rgb(120, 120, 120); font-size: 14px;
+}
+/* 	分页 */
+.tcdPageCode{padding: 0 0 20px 0;text-align: center;color: #ccc;}
+.tcdPageCode a{display: inline-block;color: #d62631;display: inline-block;height: 25px;	line-height: 25px;	padding: 0 10px;border: 1px solid #ddd;	margin: 0 2px;border-radius: 4px;vertical-align: middle;}
+.tcdPageCode a:hover{text-decoration: none;border: 1px solid #d62631;}
+.tcdPageCode span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;color: #fff;background-color: #d62631;	border: 1px solid #d62631;border-radius: 4px;vertical-align: middle;}
+.tcdPageCode span.disabled{	display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;	color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}
+.news_home img{
+	width:214px;
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		

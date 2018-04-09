@@ -1,0 +1,146 @@
+.login-img{
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.login-img img{
+    width: 253px;
+    height: 116px;
+    float: left;
+}
+.login-Left{
+	overflow: hidden;
+	width: 600px;
+	height: 400px;
+}
+.login-Left img{
+	float: left;
+	width: 600px;
+	height:400px;
+}
+.login-Right{
+	height: 398px;
+	width: 560px;
+    border: 1px solid #d1d1d3;
+}
+.login-item{
+	padding-left: 80px;
+}
+.login-item li{ 
+    height: 38px;
+    line-height: 38px;
+    margin-top: 27px;
+    position: relative;
+}
+.login-item input{
+    border: 1px solid #d1d1d3;
+    border-radius: 5px;
+    height: 36px;
+    padding: 0 10px;
+}
+.input-1{
+    width: 250px;
+}
+.login-itemL{
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+    width: 100px;
+    text-align: right;
+}
+.login-itemR{
+	float: left;	
+    width: 272px;
+}
+.login-password{
+	float: right;
+	width: 82px;
+	height: 38px;
+}
+.login-password img{
+	vertical-align:middle ;
+}
+.login-a1:hover{
+	color: #3a82d4;
+}
+.login-a1,.login-a3{
+    margin-left: 30px;
+    margin-right: 10px;
+}
+.login-a2,.login-a3{
+    color: #3a82d4;
+}
+.login-sub{
+    display: block;
+    width: 352px;
+    line-height: 38px;
+    margin-bottom: 15px;
+    background: #1F63B1;
+    margin-left: 30px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+}
+.login-team{
+	margin-left: 35px;
+    line-height: 30px;
+}
+.login-forget{
+	border: 1px solid #d1d1d3;
+}
+.login-tit{
+    font-weight: bold;
+    font-size: 20px;
+    display: block;
+    text-align: center;
+    margin: 20px 0 15px 20px;
+}
+.register{
+    margin-left: 410px;
+    margin-top: 20px;
+}
+.register label{
+	cursor: pointer;
+}
+.register input[type='checkbox']{
+	margin-right: 2px ;
+}
+.login-deal{
+	color: #3a82d4;
+	margin-left: 7px;
+	text-decoration:underline;
+}
+.login-deal:hover{
+	text-decoration:underline;
+}
+.login-submit{
+    display: block;
+    width: 352px;
+    background: #1F63B1;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    line-height: 38px;
+    margin: 15px 0;
+}
+.imassage{
+    float: left;
+    padding-left: 110px;
+    line-height: 22px;
+    position: absolute;
+    top: 40px;
+    z-index: 1000;
+    color: red;
+}
+.imassage1{
+    float: left;
+    line-height: 22px;
+    padding-left: 110px;
+    position: absolute;
+	top: 10px;
+    left: 289px;
+    z-index: 1000;
+    color: red;
+}

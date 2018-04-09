@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd  
+                        http://www.springframework.org/schema/context  
+                        http://www.springframework.org/schema/context/spring-context-4.2.xsd  
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+    <!-- Root Context: defines shared resources visible to all other web components -->  
+  	
+  		<!-- 引入配置文件 -->
+<!--<bean id="propertyConfigurer1"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:jdbc.properties" />
+	</bean> -->
+    <!-- dataSource -->  
+    <bean id="db" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />  
+        <property name="url" value="${url}" />  
+        <property name="username" value="${username}" />  
+        <property name="password" value="${password}" />  
+    </bean>  
+  
+  	 <!-- Shiro安全管理器 -->  
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
+        <property name="cacheManager" ref="cacheManager1"></property>  
+    	<property name="authenticator" ref="modularRealmAuthenticator"></property> 
+        <property name="realms">
+        	<list>
+        		<ref bean="jdbcRealm" />
+        		<ref bean="thirdLoginRealm" />
+        	</list>
+        </property>  
+    </bean>  
+
+	<!-- 配置使用自定义认证器，可以实现多Realm认证，并且可以指定特定Realm处理特定类型的验证 -->
+    <bean id="modularRealmAuthenticator" class="com.casic.qhc.shiro.CustomizedModularRealmAuthenticator">
+        <!-- 配置认证策略，只要有一个Realm认证成功即可，并且返回所有认证成功信息 -->
+        <property name="authenticationStrategy">
+            <bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>
+        </property>
+    </bean>
+      
+    <!-- 缓存管理 -->  
+    <bean id="cacheManager1" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"></bean>  
+    
+    <!--   
+	      使用Shiro自带的JdbcRealm类  
+	      指定密码匹配所需要用到的加密对象  
+	      指定存储用户、角色、权限许可的数据源及相关查询语句  
+     -->  
+    <bean id="jdbcRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">  
+        <property name="credentialsMatcher" ref="credentialsMatcher"></property>
+        <property name="permissionsLookupEnabled" value="true"></property>  
+        <property name="dataSource" ref="db"></property>  
+        <property name="authenticationQuery"  
+            value="SELECT u.`password` FROM qhc_local_user u WHERE u.user_login_name = ?"></property>  
+     	<property name="userRolesQuery"  
+            value="SELECT ifnull(role_short_name, 'normal') AS role_short_name FROM qhc_local_user u LEFT JOIN qhc_user_role ur ON u.user_id = ur.user_id LEFT JOIN qhc_role r ON r.role_id = ur.role_id WHERE u.user_login_name = ?"></property>  
+        <property name="permissionsQuery"  
+            value="SELECT privilege_url from qhc_privilege p left join qhc_role_privilege rp on rp.privilege_id = p.privilege_id left join qhc_role r on r.role_id = rp.role_id WHERE role_name = ?"></property>
+    </bean>
+    
+    <!--   
+	      使用Shiro自带的JdbcRealm类  
+	      指定密码匹配所需要用到的加密对象  
+	      指定存储用户、角色、权限许可的数据源及相关查询语句  
+     -->  
+    <bean id="thirdLoginRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">  
+        <property name="permissionsLookupEnabled" value="true"></property>  
+        <property name="dataSource" ref="db"></property>  
+        <property name="authenticationQuery"  
+            value="SELECT u.`password` FROM qhc_local_user u WHERE u.user_login_name = ?"></property>  
+     	<property name="userRolesQuery"  
+            value="SELECT ifnull(role_short_name, 'normal') AS role_short_name FROM qhc_local_user u LEFT JOIN qhc_user_role ur ON u.user_id = ur.user_id LEFT JOIN qhc_role r ON r.role_id = ur.role_id WHERE u.user_login_name = ?"></property>  
+        <property name="permissionsQuery"  
+            value="SELECT privilege_url from qhc_privilege p left join qhc_role_privilege rp on rp.privilege_id = p.privilege_id left join qhc_role r on r.role_id = rp.role_id WHERE role_name = ?"></property>
+    </bean>
+    
+    <!-- 配置LifecycleBeanPostProcessor，可以自定义地来调用配置在Spring IOC容器中shiro bean的生命周期方法 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>  
+  
+    <!-- 数据库保存的密码是使用MD5算法加密的，所以这里需要配置一个密码匹配对象 -->  
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.Md5CredentialsMatcher"></bean> 
+  
+    <!--   
+       Shiro主过滤器本身功能十分强大，其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行  
+       Web应用中，Shiro可控制的Web请求必须经过Shiro主过滤器的拦截，Shiro对基于Spring的Web应用提供了完美的支持   
+    -->  
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" depends-on="roleOrFilter">  
+        <!-- Shiro的核心安全接口，这个属性是必须的 -->  
+        <property name="securityManager" ref="securityManager"></property>  
+        <!-- 要求登录时的链接(登录页面地址)，非必须的属性，默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->  
+        <property name="loginUrl" value="/common/home.do"></property> 
+        <!-- 登录成功后要跳转的连接(本例中此属性用不到，因为登录成功后的处理逻辑在LoginController里硬编码) -->  
+        <!-- <property name="successUrl" value="/" ></property> -->  
+        <!-- 用户访问未对其授权的资源时，所显示的连接 -->  
+        <property name="unauthorizedUrl" value="/"></property>  
+        <property name="filters">  
+            <map>  
+                <entry key="roleOrFilter" value-ref="roleOrFilter"/>  
+                <!-- <entry key="logout" value-ref="systemLogoutFilter" /> -->
+            </map>  
+        </property>  
+        <property name="filterChainDefinitions">  
+            <value>  
+               /admin/league/** = authc,roleOrFilter["admin"]
+               /admin/home.do = authc,roleOrFilter["admin"]
+               /admin/advertisement/** = authc,roleOrFilter["admin"]
+               /admin/article/** = authc,roleOrFilter["admin"]
+               /admin/checkAbility/** = authc,roleOrFilter["admin"]
+               /admin/checkProject/** = authc,roleOrFilter["admin"]
+               /admin/checkSpec/** = authc,roleOrFilter["admin"]
+               /admin/checkType/** = authc,roleOrFilter["admin"]
+               /admin/coupon/** = authc,roleOrFilter["admin"]
+               /admin/discount/** = authc,roleOrFilter["admin"]
+               /admin/discountLab/** = authc,roleOrFilter["admin"]
+               /admin/entrustmentOrder/** = authc,roleOrFilter["admin"]
+               /admin/evaluate/** = authc,roleOrFilter["admin"]
+               /admin/labEnter/** = authc,roleOrFilter["admin"]
+               /admin/laboratory/** = authc,roleOrFilter["admin"]
+               /admin/message/** = authc,roleOrFilter["admin"]
+               /admin/navigation/** = authc,roleOrFilter["admin"]
+               /admin/need/** = authc,roleOrFilter["admin"]
+               /admin/score/** = authc,roleOrFilter["admin"]
+               /admin/tradeRecord/** = authc,roleOrFilter["admin"]
+               /admin/invoice/** = authc,roleOrFilter["admin"]
+               /admin/user/** = authc,roleOrFilter["admin"]
+               /admin/banner/** = authc,roleOrFilter["admin"]
+               /admin/appManage/** = authc,roleOrFilter["admin"]
+               /common/user/** = authc
+               /labCenter/** = authc,roleOrFilter["lab"]
+               /userCenter/** = authc,roleOrFilter["lab","normal"]
+            </value>  
+        </property>  
+    </bean>  
+  	
+  	
+  	<bean id="roleOrFilter" class="com.casic.qhc.filter.CustomRolesAuthorizationFilter" />  
+  	
+  	<!-- <bean id="systemLogoutFilter" class="com.casic.qhc.filter.SystemLogoutFilter" /> -->  
+    <!--   
+	       开启Shiro的注解(如@RequiresRoles，@RequiresPermissions)，需借助SpringAOP扫描使用Shiro注解的类，  
+	       并在必要时进行安全逻辑验证  
+    -->  
+    <!--  
+    <bean  
+        class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"></bean>  
+    <bean  
+        class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">  
+        <property name="securityManager" ref="securityManager"></property>  
+    </bean>  
+    -->  
+</beans>  
+

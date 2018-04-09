@@ -32,5 +32,6 @@
     <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>
 
     <import resource="spring-mybatis.xml"/>
-
+    <import resource="spring-redis.xml"/>
+    <import resource="spring-shiro.xml"/>
 </beans>

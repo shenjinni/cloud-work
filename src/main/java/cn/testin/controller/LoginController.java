@@ -3,17 +3,23 @@ package cn.testin.controller;
 import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
 import cn.testin.service.LocalUserService;
+import cn.testin.shiro.CustomizedToken;
+import cn.testin.util.MD5Util;
+import cn.testin.util.RedisUtil;
 import cn.testin.util.SessionUtil;
-import cn.testin.util.StringUtil;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.subject.Subject;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.security.auth.Subject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -30,7 +36,7 @@ import java.util.Map;
 @RequestMapping("/common/")
 public class LoginController {
 
-	private static Loggerer log = LogManager.getLogger(LoginController.class);
+	private static Logger log = LogManager.getLogger(LoginController.class);
 
 	@Resource
 	private LocalUserService luService;
@@ -80,7 +86,7 @@ public class LoginController {
 				sbj.login(ct);
 				if (sbj.isAuthenticated()) {
 					LocalUser lu = luService.findUserByLoginName(username);
-					//第三方关联
+					/*//第三方关联
 					if(!StringUtil.isEmpty(thirdId) && !StringUtil.isEmpty(userType)){
 						ThirdUser tu = new ThirdUser();
 						tu.setUserId(thirdId);
@@ -88,7 +94,7 @@ public class LoginController {
 						tu.setCreateTime(new Date());
 						tu.setUserType(userType);
 						thirdUserService.insert(tu);
-					}
+					}*/
 					SessionUtil.addUserToSession(req, lu);
 					mv.addObject("errCode", Constants.result_success);
 					mv.addObject("errMsg", "登录成功！");
@@ -146,8 +152,8 @@ public class LoginController {
 	@RequestMapping("logout.do")
 	public String logout(HttpServletRequest request) {
 		SessionUtil.addUserToSession(request, null);
-		Subject sbj = SecurityUtils.getSubject();
-		sbj.logout();
+		/*Subject sbj = SecurityUtils.getSubject();
+		sbj.logout();*/
 		return "redirect:/common/localLogin.do";
 	}
 	

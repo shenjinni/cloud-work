@@ -14,33 +14,33 @@ import java.util.List;
 public class UserRoleService {
 
 	@Resource
-	private UserRoleMapper dao;
+	private UserRoleMapper userRoleMapper;
 
 	public List<UserRole> findList(UserRole ur) {
-		return dao.selectList(ur);
+		return userRoleMapper.selectList(ur);
 	}
 
 	public Integer findListCount(UserRole pb) {
-		return dao.selectCount(pb);
+		return userRoleMapper.selectCount(pb);
 	}
 
 	public UserRole findBeanById(Long id) {
-		return dao.selectByPrimaryKey(id);
+		return userRoleMapper.selectByPrimaryKey(id);
 	}
 
 	public Integer insert(UserRole t) {
-		return dao.insertSelective(t);
+		return userRoleMapper.insertSelective(t);
 	}
 
 	public Integer update(UserRole t) {
-		return dao.updateByPrimaryKeySelective(t);
+		return userRoleMapper.updateByPrimaryKeySelective(t);
 	}
 
 	public Integer delete(Long id) {
-		return dao.deleteByPrimaryKey(id);
+		return userRoleMapper.deleteByPrimaryKey(id);
 	}
 	
 	public Integer updateUserRoleByUserId(UserRole ur){
-		return dao.updateUserRoleByUserId(ur);
+		return userRoleMapper.updateUserRoleByUserId(ur);
 	}
 }

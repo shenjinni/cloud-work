@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.testin.controller.cloudWorkPerson.CloudWorkPerson">
+	<resultMap id="CloudWorkPerson" type="com.testin.controller.cloudWorkPerson.CloudWorkPerson">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="workIntent" column="work_intent" jdbcType="VARCHAR"/>
+		<result property="address" column="address" jdbcType="VARCHAR"/>
+		<result property="contactsName" column="contacts_name" jdbcType="VARCHAR"/>
+		<result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+		<result property="salary" column="salary" jdbcType="NUMERIC"/>
+		<result property="status" column="status" jdbcType="NUMERIC"/>
+		<result property="createUser" column="create_user" jdbcType="NUMERIC"/>
+		<result property="createTime" column="create_time" jdbcType="DATE"/>
+		<result property="updateTime" column="update_time" jdbcType="DATE"/>
+		<result property="updateUser" column="update_user" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		id,work_intent,address,contacts_name,mobile,salary,status,create_user,create_time,update_time,update_user
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(workIntent)"> AND work_intent  LIKE #{workIntent}  </if>
+			<if test="@Ognl@isNotEmpty(address)"> AND address  LIKE #{address}  </if>
+			<if test="@Ognl@isNotEmpty(contactsName)"> AND contacts_name  LIKE #{contactsName}  </if>
+			<if test="@Ognl@isNotEmpty(mobile)"> AND mobile  LIKE #{mobile}  </if>
+			<if test="@Ognl@isNotEmpty(salary)"> AND salary  =#{salary} </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND status  =#{status} </if>
+			<if test="@Ognl@isNotEmpty(createUser)"> AND create_user  =#{createUser} </if>
+			<if test="@Ognl@isNotEmpty(createTime)"> AND create_time  =#{createTime} </if>
+			<if test="@Ognl@isNotEmpty(begincreateTime)"> AND create_time  >=#{begincreateTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreateTime)"> AND create_time <![CDATA[ <=#{endcreateTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(updateTime)"> AND update_time  =#{updateTime} </if>
+			<if test="@Ognl@isNotEmpty(beginupdateTime)"> AND update_time  >=#{beginupdateTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endupdateTime)"> AND update_time <![CDATA[ <=#{endupdateTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(updateUser)"> AND update_user  =#{updateUser} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.testin.controller.cloudWorkPerson.CloudWorkPerson">
+		INSERT INTO cloud_work_person
+		(id,work_intent,address,contacts_name,mobile,salary,status,create_user,create_time,update_time,update_user)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{workIntent,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{contactsName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{salary,jdbcType=NUMERIC}, #{status,jdbcType=NUMERIC}, #{createUser,jdbcType=NUMERIC}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{updateUser,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM cloud_work_person 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.testin.controller.cloudWorkPerson.CloudWorkPerson">
+		UPDATE cloud_work_person SET
+		work_intent=#{workIntent,jdbcType=VARCHAR},
+		address=#{address,jdbcType=VARCHAR},
+		contacts_name=#{contactsName,jdbcType=VARCHAR},
+		mobile=#{mobile,jdbcType=VARCHAR},
+		salary=#{salary,jdbcType=NUMERIC},
+		status=#{status,jdbcType=NUMERIC},
+		create_user=#{createUser,jdbcType=NUMERIC},
+		create_time=#{createTime,jdbcType=DATE},
+		update_time=#{updateTime,jdbcType=DATE},
+		update_user=#{updateUser,jdbcType=NUMERIC}
+		WHERE
+		id=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="CloudWorkPerson">
+		SELECT <include refid="columns"/>
+		FROM cloud_work_person
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="CloudWorkPerson">
+		SELECT <include refid="columns"/>
+		FROM cloud_work_person   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,290 @@
+/*body,html{
+	height: 100%;
+	width: 100%;
+}*/
+.bh-index{
+	width: 1100px;
+	min-height:800px;
+	position: relative;
+	overflow: hidden;
+}
+.bh-top{
+	width: 100%;
+	overflow: hidden;
+}
+.bh-top li{
+	float: left;
+	width: 250px;
+	margin-right: 25px;
+	background-color: #C0D9F1;
+	border-radius: 13px;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 25px;
+    color: #FFFFFF;
+    line-height: 75px;
+    text-align: center;
+}
+.bh-bg{
+	width: 75px;
+    height: 75px;
+    float: left;
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+}
+.bh-bg1{
+    background:#169BD5 url(../images/qhc-chengjiao.png) no-repeat center center;
+}
+.bh-bg2{
+    background:#169BD5 url(../images/qhc-shuliang.png) no-repeat center center;
+}
+.bh-bg3{
+    background:#169BD5 url(../images/qhc-yonghu.png) no-repeat center center;
+}
+.bh-bg4{
+    background:#169BD5 url(../images/qhc-xuqiu.png) no-repeat center center;
+}
+.bh-choose{
+	width: 100%;
+	overflow: hidden;
+}
+.bh-choose button{
+	margin-right: 25px;
+	color: white;
+	background: #3a82d4;
+	border: 1px solid #3a82d4;
+	display: inline-block;
+    padding: 6px 12px;
+    border-radius: 5px;
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.bh-bg001{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    background: black;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    z-index: 80;
+}
+.bh-bg002{
+	display: none;
+    position: absolute;
+    top: 130px;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    z-index: 99;
+}
+.list-select{
+    width: 710px;
+    position: relative;
+    overflow: hidden;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    padding: 10px 0;
+    background: white;
+	-webkit-user-select: none; /* Chrome all / Safari all */
+	-moz-user-select: none; /* Firefox all */
+	-ms-user-select: none; /* IE 10+ */</p> <p> /* No support for these yet, use at own risk */
+	-o-user-select: none;
+	user-select: none; 
+}
+/*-------列表主体样式--------*/
+/*.list-select .list-body{
+    padding-left: 193px;
+}*/
+.list-body > div{
+	display: inline-block;
+	height: 250px;
+	overflow: scroll;
+	overflow: auto;
+}
+.list-body .left-box, .list-body .right-box{
+	width: 300px;
+	border: 1px solid #3a82d4;
+	border-radius: 3px;
+	margin: 10px 10px;
+	background: #fff;
+	float: left;
+}
+.list-body .center-box{
+	width: 65px;
+	margin: 10px 0px;
+	float: left;
+}
+
+/*-------列表项样式-------*/
+.list-body .item{
+	display: block;
+	text-align: left;
+	padding-left: 20px;
+    line-height: 28px;
+}
+.list-body .item:hover{
+	background: #e7e7e7;
+	cursor: pointer;
+}
+/*-------被选中的列表项--------*/
+.list-body .item-box .selected-item{
+	background: #e7e7e7;
+}
+
+/*------中间选择按钮样式-------*/
+.list-body .center-box > button{
+	display: block;
+	color: #434343;
+    width: 50px;
+    height: 30px;
+    background: #fff;
+    font-size: 14px;
+    border: 1px solid #dcdcdc;
+    border-radius: 2px;
+    margin: 25px auto;
+}
+.list-body .center-box > button:hover{
+	background: #e7e7e7;
+    border-color: #ccc;
+    cursor: pointer;
+}
+/*------面板底部样式----------*/
+.list-select .list-footer{
+	height: 40px;
+    line-height: 40px;
+    text-align: center;
+    float: left;
+    width: 100%;
+}
+.list-footer > button{
+    display: block;
+    color: white;
+    width: 120px;
+    height: 35px;
+    background: #3a82d4;
+    font-size: 14px;
+    border: 1px solid #3a82d4;
+    border-radius: 5px;
+    margin: 5px auto;
+}
+/*.L-activity-item{
+    padding-left: 193px;
+}*/
+.L-activity-span1{
+	display: inline-block;
+    width: 320px;
+    text-align: center;
+    font-weight: bold;
+}
+.L-activity-span2{
+	display: inline-block;
+    width: 320px;
+    text-align: center;
+    font-weight: bold;
+    margin-left: 62px;
+}
+.bh-title{
+	text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    position: relative;
+}
+.bh-navL{
+	float: left;
+	width: 640px;
+}
+.bh-navR{
+	float: right;
+	width: 410px;
+	margin-right: 25px;
+}
+.bh-action{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-left: 10px solid #3a82d4;
+    padding-left: 12px;
+    font-weight: bold;
+    line-height: 30px;
+}
+.bh-action span{
+    font-size: 18px;
+}
+.bh-close{
+	float: right;
+	cursor: pointer;
+	margin-left: 15px;
+	color: #3a82d4;
+}
+.bh-close1{
+	float: right;
+	cursor: pointer;
+	margin-left: 15px;
+	color: #3a82d4;
+}
+.bh-close2{
+	float: right;
+	cursor: pointer;
+	margin-left: 15px;
+	color: #3a82d4;
+}
+.bh-set{
+	float: right;
+	cursor: pointer;
+	color: #3a82d4;
+}
+.bh-list ul li {
+    width: 120px;
+    text-align: center;
+    padding: 20px 3px 0;
+    float: left;
+}
+.bh-list div {
+    height: 42px;
+    padding: 0px 13px;
+    overflow: hidden;
+}
+.bh-list{
+	overflow: hidden;
+    border: 1px solid #d1d1d1;
+}
+.bh-map{
+    border: 1px solid #d1d1d1;
+    width: 100%;
+    height: 300px;
+}
+.bh-items{
+	border: 1px solid #d1d1d1;
+	min-height: 200px;
+    padding: 10px 15px; 
+}
+.bh-items ul li{
+    overflow: hidden;
+}
+.bh-items p{
+    overflow: hidden;
+}
+.bh-items h3{
+	font-size: 16px;
+    color: #169BD5;
+    font-weight: bold;
+    line-height: 40px;
+}
+.bh-items span{
+    margin-right: 30px;
+    margin-bottom: 12px;
+    float: left;
+}
+.bh-items em{
+	color: #75A798;
+}
+.bh-closeOne{
+    font-size: 14px;
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+}

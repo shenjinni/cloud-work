@@ -1,0 +1,40 @@
+/*分页插件*/
+.WList_pages {
+	margin: 40px 0 60px 0;
+}
+
+.WList_pages .page {
+	list-style: none;
+	display: table;
+	margin: 0 auto;
+}
+
+.WList_pages .page>li {
+	float: left;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+.WList_pages .page .pageItem {
+	border: solid thin #DDDDDD;
+	margin: 5px;
+}
+
+.WList_pages .page .pageItemActive {
+	border: solid thin #3a82d4;
+	margin: 5px;
+	background-color: #3a82d4;
+	color: white;
+}
+
+.WList_pages .page .pageItem:hover {
+	border: solid thin #3a82d4;
+	background-color: #3a82d4;
+	color: white;
+}
+
+.WList_pages .page .pageItemDisable {
+	border: solid thin #ebebeb;
+	margin: 5px;
+	background-color: #efefef;
+}
