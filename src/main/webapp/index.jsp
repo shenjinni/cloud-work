@@ -12,7 +12,7 @@
         if (window != top)
             top.location.href = location.href;
     </script>
-    <title>申金妮平台wow</title>
+    <title>申金妮平台wow1</title>
 </head>
 <body class="qhc-headfoot">
 <!-- 左右广告 -->
