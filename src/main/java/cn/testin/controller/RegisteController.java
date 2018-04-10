@@ -15,8 +15,7 @@ import cn.testin.util.JavaSmsApi;
 import cn.testin.util.RandomUtils;
 import cn.testin.util.RedisUtil;
 import cn.testin.util.StringUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,7 +32,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/common/")
 public class RegisteController {
 
-	private static Logger log = LogManager.getLogger(RegisteController.class);
+	private static Logger log = org.apache.log4j.Logger.getLogger(RegisteController.class);
+
 	@Resource
 	private RegisteService regService;
 	@Resource

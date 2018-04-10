@@ -1,12 +1,11 @@
-registe.jsp
-resetPassword.jsp<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>全汇测 - 登录</title>
+	<title> 登录</title>
 	<link rel="shortcut icon" href="${ctx}/common/image/favicon.ico" type="image/x-icon" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/qhcheaderfooter.css?v=1" />
@@ -47,18 +46,18 @@ resetPassword.jsp<%@ page language="java" contentType="text/html; charset=UTF-8"
 					password : password,
 					flagcode : flagcode
 				},function (data){
-					if(data.model.errCode=="fail"){
-						changeFlagcode();
-						if(data.model.flagcodeFlag==true){
-							$("#flagcodeError").text(data.model.errMsg);
-						}else if(data.model.passwordFlag==true){
-							$("#passwordError").text(data.model.errMsg);
-						}else{
-							$("#usernameError").text(data.model.errMsg);
-						}
-					}else{
-						location.href="${ctx}"+data.model.url;
-					}
+                    if(data.errCode=="fail"){
+                        changeFlagcode();
+                        if(data.flagcodeFlag==true){
+                            $("#flagcodeError").text(data.errMsg);
+                        }else if(data.passwordFlag==true){
+                            $("#passwordError").text(data.errMsg);
+                        }else{
+                            $("#usernameError").text(data.errMsg);
+                        }
+                    }else{
+                        location.href="${ctx}"+data.url;
+                    }
 				},"json");
 			}
 		}
@@ -75,10 +74,7 @@ resetPassword.jsp<%@ page language="java" contentType="text/html; charset=UTF-8"
 		<div class="login-img">
 			<img src="${ctx}/common/images/u0.png" onclick="location.href='${ctx}/index.jsp'" style="cursor: pointer;"/>
 		</div>
-		<div class="login-Left fl">
-			<img src="${ctx}/common/images/loginLogo.jpg" />
-		</div>
-		<div class="login-Right fr">
+		<div class="">
 			<div class="login-item">
 				<ul>
 					<li>
@@ -110,18 +106,18 @@ resetPassword.jsp<%@ page language="java" contentType="text/html; charset=UTF-8"
 						<a href="${ctx}/common/registe.do" class="login-a2">免费注册</a>
 					</li>
 					<a class="login-sub" href="javascript:void(0);" onclick="submits();">登录</a>
-					<div class="login-team">
+					<%--<div class="login-team">
 						合作伙伴登录：</br> 
 						<a href="javascript:void(0);" onclick="loginCas();">
 							<img class="login-img1" src="${ctx}/common/images/login-yw.png"/>
 						</a> 
-						<%-- <a href="javascript:void(0);">
+						&lt;%&ndash; <a href="javascript:void(0);">
 							<img src="${ctx}/common/images/login-qq.png" />
 						</a> 
 						<a href="javascript:void(0);">
 							<img src="${ctx}/common/images/login-wx.png" />
-						</a> --%>
-					</div>
+						</a> &ndash;%&gt;
+					</div>--%>
 				</ul>
 			</div>
 		</div>
@@ -129,9 +125,9 @@ resetPassword.jsp<%@ page language="java" contentType="text/html; charset=UTF-8"
 	<!-- 下广告 -->
 	<%@ include file="/common/bottomAdv.jsp"%>
 	<!-- 工具条 -->
-	<%@ include file="/common/tools.jsp"%>
+	<%--<%@ include file="/common/tools.jsp"%>--%>
 	<!-- 底部 -->
-	<%@ include file="/common/foot.jsp"%>
+	<%--<%@ include file="/common/foot.jsp"%>--%>
 	<script type="text/javascript">
 	function loginCas() {
 		var host = window.location.host;

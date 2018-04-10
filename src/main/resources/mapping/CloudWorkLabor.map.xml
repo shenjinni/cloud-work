@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-<mapper namespace="com.testin.controller.cloudWorkLabor.CloudWorkLabor">
-	<resultMap id="CloudWorkLabor" type="com.testin.controller.cloudWorkLabor.CloudWorkLabor">
+<mapper namespace="cn.testin.dao.CloudWorkLaborMapper">
+	<resultMap id="CloudWorkLabor" type="cn.testin.bean.CloudWorkLabor">
 		<id property="id" column="id" jdbcType="NUMERIC"/>
 		<result property="workNeed" column="work_need" jdbcType="VARCHAR"/>
 		<result property="contactsName" column="contacts_name" jdbcType="VARCHAR"/>
@@ -37,7 +37,7 @@
 		</where>
 	</sql>
 
-	<insert id="add" parameterType="com.testin.controller.cloudWorkLabor.CloudWorkLabor">
+	<insert id="add" parameterType="cn.testin.bean.CloudWorkLabor">
 		INSERT INTO cloud_work_labor
 		(id,work_need,contacts_name,mobile,salary,status,create_user,create_time,update_time,update_user)
 		VALUES
@@ -50,7 +50,7 @@
 		id=#{id}
 	</delete>
 	
-	<update id="update" parameterType="com.testin.controller.cloudWorkLabor.CloudWorkLabor">
+	<update id="update" parameterType="cn.testin.bean.CloudWorkLabor">
 		UPDATE cloud_work_labor SET
 		work_need=#{workNeed,jdbcType=VARCHAR},
 		contacts_name=#{contactsName,jdbcType=VARCHAR},

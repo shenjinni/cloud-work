@@ -299,9 +299,9 @@ function registe(){
 <body>
 	<!--   main    -->
 	<div style="overflow: hidden;" class="qhc-main">
-		<div class="login-img">
+		<%--<div class="login-img">
 			<img src="${ctx}/common/images/u0.png" onclick="location.href='${ctx}/index.jsp'" style="cursor: pointer;"/>
-		</div>
+		</div>--%>
 		<div class="login-forget">
 			<span class="login-tit">注册</span>
 			<div style="padding-left: 380px;" class="login-item">
@@ -333,7 +333,7 @@ function registe(){
 						<div class="imassage1" id="password2_Info" style="color: #CCCCCC">请再次输入密码</div>
 						<div class="imassage1" id="password2_Success" style="color: green;display: none;">√</div>
 					</li>
-					<li>
+					<%--<li>
 						<div class="login-itemL">电子邮箱 ：</div>
 						<div class="login-itemR">
 							<input type="text" id="email" class="input-1" value="" onblur="blurEmail();" onfocus="focusEmail();" />
@@ -341,7 +341,7 @@ function registe(){
 						<div class="imassage1" id="email_Error"></div>
 						<div class="imassage1" id="email_Info" style="color: #CCCCCC">填写真实有效的电子邮箱，不错过任何推送消息</div>
 						<div class="imassage1" id="email_Success" style="color: green;display: none;">√</div>
-					</li>
+					</li>--%>
 					<li>
 						<div class="login-itemL">手&nbsp;&nbsp;&nbsp;机 ：</div>
 						<div class="login-itemR">
@@ -375,10 +375,10 @@ function registe(){
 		</div>
 	</div>
 	<!-- 下广告 -->
-	<%@ include file="/common/bottomAdv.jsp"%>
+	<%--<%@ include file="/common/bottomAdv.jsp"%>
 	<!-- 工具条 -->
 	<%@ include file="/common/tools.jsp"%>
 	<!-- 底部 -->
-	<%@ include file="/common/foot.jsp"%>
+	<%@ include file="/common/foot.jsp"%>--%>
 </body>
 </html>

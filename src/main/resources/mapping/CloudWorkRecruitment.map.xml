@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-<mapper namespace="com.testin.controller.cloudWorkRecruitment.CloudWorkRecruitment">
-	<resultMap id="CloudWorkRecruitment" type="com.testin.controller.cloudWorkRecruitment.CloudWorkRecruitment">
+<mapper namespace="cn.testin.dao.CloudWorkRecruitmentMapper">
+	<resultMap id="CloudWorkRecruitment" type="cn.testin.bean.CloudWorkRecruitment">
 		<id property="id" column="id" jdbcType="NUMERIC"/>
 		<result property="workType" column="work_type" jdbcType="VARCHAR"/>
 		<result property="company" column="company" jdbcType="VARCHAR"/>
@@ -39,7 +39,7 @@
 		</where>
 	</sql>
 
-	<insert id="add" parameterType="com.testin.controller.cloudWorkRecruitment.CloudWorkRecruitment">
+	<insert id="add" parameterType="cn.testin.bean.CloudWorkRecruitment">
 		INSERT INTO cloud_work_recruitment
 		(id,work_type,company,mobile,salary,status,contacts_name,create_user,create_time,update_time,update_user)
 		VALUES
@@ -52,7 +52,7 @@
 		id=#{id}
 	</delete>
 	
-	<update id="update" parameterType="com.testin.controller.cloudWorkRecruitment.CloudWorkRecruitment">
+	<update id="update" parameterType="cn.testin.bean.CloudWorkRecruitment">
 		UPDATE cloud_work_recruitment SET
 		work_type=#{workType,jdbcType=VARCHAR},
 		company=#{company,jdbcType=VARCHAR},

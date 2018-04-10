@@ -7,8 +7,7 @@ import cn.testin.shiro.CustomizedToken;
 import cn.testin.util.MD5Util;
 import cn.testin.util.RedisUtil;
 import cn.testin.util.SessionUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -36,7 +35,7 @@ import java.util.Map;
 @RequestMapping("/common/")
 public class LoginController {
 
-	private static Logger log = LogManager.getLogger(LoginController.class);
+	private static Logger log = Logger.getLogger(LoginController.class);
 
 	@Resource
 	private LocalUserService luService;
@@ -61,15 +60,15 @@ public class LoginController {
 
 	@RequestMapping(value = "login.json")
 	@ResponseBody
-	public ModelAndView login(HttpServletRequest req, HttpSession session) {
+	public Map<String, Object> login(HttpServletRequest req, HttpSession session) {
+		Map<String, Object> result = new HashMap<String, Object>();
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		String flagcode = req.getParameter("flagcode");
 		String thirdId = req.getParameter("thirdId");
 		String userType = req.getParameter("userType");
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("errCode", Constants.result_fail);
-		mv.addObject("errMsg", "登录失败，请稍后再试！");
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", "登录失败，请稍后再试！");
 		if (session.getAttribute("checkCode").equals(flagcode)) {
 			try {
 				Subject sbj = SecurityUtils.getSubject();
@@ -96,64 +95,64 @@ public class LoginController {
 						thirdUserService.insert(tu);
 					}*/
 					SessionUtil.addUserToSession(req, lu);
-					mv.addObject("errCode", Constants.result_success);
-					mv.addObject("errMsg", "登录成功！");
+					result.put("errCode", Constants.result_success);
+					result.put("errMsg", "登录成功！");
 					// 判断用户是否有实验室权限
 					session.setAttribute("isLabFlag", "lab".equals(lu.getRoleShortName()));
 					Object fromUrl = session.getAttribute("fromUrl");
 					if (fromUrl == null || "".equals(fromUrl.toString())) {
-						mv.addObject("url", "/index.jsp");
+						result.put("url", "/index.jsp");
 					} else {
 						session.setAttribute("fromUrl", "");
-						mv.addObject("url", "/" + fromUrl.toString());
+						result.put("url", "/" + fromUrl.toString());
 					}
 					//增加登陆记录
-					LocalUser user1 = new LocalUser();
+					/*LocalUser user1 = new LocalUser();
 					user1.setUserId(u1.getUserId());
 					user1.setLastLoginTime(new Date());
 					int loginTimes = (u1.getLoginTimes() == null? 0 : u1.getLoginTimes()) + 1;
 					user1.setLoginTimes(loginTimes);
-					luService.update(user1);
+					luService.update(user1);*/
 				}
 			} catch (IncorrectCredentialsException e) {
-				mv.addObject("errMsg", "用户名或密码错误，请重新输入！");
-				mv.addObject("passwordFlag", true);
+				result.put("errMsg", "用户名或密码错误，请重新输入！");
+				result.put("passwordFlag", true);
 				log.warn("用户：" + username + "，登录系统失败：登录密码错误！");
 			} catch (ExcessiveAttemptsException e) {
-				mv.addObject("errMsg", "登录失败次数过多！");
+				result.put("errMsg", "登录失败次数过多！");
 				log.warn("用户：" + username + "，登录系统失败：登录失败次数过多！");
 			} catch (LockedAccountException e) {
-				mv.addObject("errMsg", "登录失败，帐号已被锁定！");
+				result.put("errMsg", "登录失败，帐号已被锁定！");
 				log.warn("用户：" + username + "，登录系统失败：帐号已被锁定！");
 			} catch (DisabledAccountException e) {
-				mv.addObject("errMsg", "登录失败，帐号已被禁用！");
+				result.put("errMsg", "登录失败，帐号已被禁用！");
 				log.warn("用户：" + username + "，登录系统失败：帐号已被禁用！");
 			} catch (ExpiredCredentialsException e) {
-				mv.addObject("errMsg", "登录失败，帐号已过期！");
+				result.put("errMsg", "登录失败，帐号已过期！");
 				log.warn("用户：" + username + "，登录系统失败：帐号已过期！");
 			} catch (UnknownAccountException e) {
-				mv.addObject("errMsg", "该用户名不存在，请重新输入！");
+				result.put("errMsg", "该用户名不存在，请重新输入！");
 				log.warn("用户：" + username + "，登录系统失败：账号不存在！");
 			} catch (UnauthorizedException e) {
-				mv.addObject("errMsg", "登录失败，您没有得到相应的授权！");
+				result.put("errMsg", "登录失败，您没有得到相应的授权！");
 				log.warn("用户：" + username + "，登录系统失败：您没有得到相应的授权！");
 			} catch (Exception e) {
-				mv.addObject("errMsg", "登录失败，其他异常！");
+				result.put("errMsg", "登录失败，其他异常！");
 				log.warn("用户：" + username + "，登录系统失败：其他异常！");
 			}
 		} else {
-			mv.addObject("errMsg", "验证码输入有误，请重新输入！");
-			mv.addObject("flagcodeFlag", true);
+			result.put("errMsg", "验证码输入有误，请重新输入！");
+			result.put("flagcodeFlag", true);
 			log.warn("用户：" + username + "，登录系统失败：验证码有误！");
 		}
-		return mv;
+		return result;
 	}
 
 	@RequestMapping("logout.do")
 	public String logout(HttpServletRequest request) {
 		SessionUtil.addUserToSession(request, null);
-		/*Subject sbj = SecurityUtils.getSubject();
-		sbj.logout();*/
+		Subject sbj = SecurityUtils.getSubject();
+		sbj.logout();
 		return "redirect:/common/localLogin.do";
 	}
 	

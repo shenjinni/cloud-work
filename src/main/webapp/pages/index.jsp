@@ -15,7 +15,7 @@ top.location.href = location.href;
 <title>全汇测</title>
 </head>
 <body class="qhc-headfoot">
-	<!-- 左右广告 -->
+	<%--<!-- 左右广告 -->
 	<%@ include file="/common/leftRightAdv.jsp"%>
 	<!-- 上广告 -->
 	<%@ include file="/common/topAdv.jsp"%>
@@ -26,7 +26,7 @@ top.location.href = location.href;
 	<!-- 下广告 -->
 	<%@ include file="/common/bottomAdv.jsp"%>
 	<!-- 工具条 -->
-	<%@ include file="/common/tools.jsp"%>
+	<%@ include file="/common/tools.jsp"%>--%>
 	<!-- 底部 -->
 	<%@ include file="/common/foot.jsp"%>
 </body>

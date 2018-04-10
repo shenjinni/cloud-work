@@ -44,7 +44,7 @@ public class RedisUtil {
             config.setTimeBetweenEvictionRunsMillis(30000);  
             config.setNumTestsPerEvictionRun(-1);  
             config.setMinIdle(0);  
-            jedisPool = new JedisPool(config, "127.0.0.1", 6379);  
+            jedisPool = new JedisPool(config, "182.50.1.8", 12179);
         }  
 		
 		
