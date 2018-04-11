@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *</pre>
  */
 @Controller
-@RequestMapping("/testin/cloudWorkFactory/cloudWorkFactory/CloudWorkFactory/")
+@RequestMapping("/work/")
 public class CloudWorkFactoryController
 {
 	@Resource

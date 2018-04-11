@@ -29,7 +29,7 @@ public class JavaSmsApi {
     // 查账户信息的http地址
     private static String URI_GET_USER_INFO = "http://yunpian.com/v1/user/get.json";
 
-    //通用发送接口的http地址
+    // 通用发送接口的http地址
     private static String URI_SEND_SMS = "http://yunpian.com/v1/sms/send.json";
 
     // 模板发送接口的http地址

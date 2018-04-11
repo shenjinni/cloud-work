@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  *</pre>
  */
 @Controller
-@RequestMapping("/testin/cloudWorkLabor/cloudWorkLabor/CloudWorkLabor/")
+@RequestMapping("/work/")
 public class CloudWorkLaborController
 {
 	@Resource

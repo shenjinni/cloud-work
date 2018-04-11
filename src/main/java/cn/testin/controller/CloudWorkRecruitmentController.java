@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
  *</pre>
  */
 @Controller
-@RequestMapping("/testin/cloudWorkRecruitment/cloudWorkRecruitment/CloudWorkRecruitment/")
+@RequestMapping("/work/")
 public class CloudWorkRecruitmentController
 {
 	@Resource

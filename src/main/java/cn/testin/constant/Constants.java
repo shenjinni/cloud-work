@@ -214,7 +214,7 @@ public class Constants {
 	/**
 	 * 短信模板
 	 */
-	public static final String msg_template = "【航天云网】您的验证码是";
+	public static final String msg_template = "【招工平台】您的验证码是";
 	/**
 	 * 默认检测图片
 	 */
