@@ -26,6 +26,10 @@ public class CloudWorkPerson extends BasicPage
 	protected String  mobile;
 	// 薪资水平
 	protected Double  salary;
+	// 薪资水平
+	protected Double  salaryBegin;
+	// 薪资水平
+	protected Double  salaryEnd;
 	// 状态
 	protected Short  status;
 	// 用户id
@@ -36,7 +40,24 @@ public class CloudWorkPerson extends BasicPage
 	protected java.util.Date  updateTime;
 	// update_user
 	protected Long  updateUser;
-	public void setId(Long id) 
+
+	public Double getSalaryBegin() {
+		return salaryBegin;
+	}
+
+	public void setSalaryBegin(Double salaryBegin) {
+		this.salaryBegin = salaryBegin;
+	}
+
+	public Double getSalaryEnd() {
+		return salaryEnd;
+	}
+
+	public void setSalaryEnd(Double salaryEnd) {
+		this.salaryEnd = salaryEnd;
+	}
+
+	public void setId(Long id)
 	{
 		this.id = id;
 	}

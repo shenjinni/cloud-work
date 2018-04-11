@@ -33,8 +33,8 @@
     <script type="text/javascript" src="${ctx}/common/js/form2js.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/dateFormat.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/json2.js"></script>
-    <script type="text/javascript" src="${ctx}/qiniu/ajaxfileupload.js"></script>
-	<script type="text/javascript" src="${ctx}/qiniu/qiniuupfile.js"></script>
+   <%-- <script type="text/javascript" src="${ctx}/qiniu/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="${ctx}/qiniu/qiniuupfile.js"></script>--%>
 	<script type="text/javascript" src="${ctx}/common/js/casicT_validate.js"></script>
     <style>
     	.hh {
@@ -88,14 +88,29 @@
 							<li class="">
 								<div style="padding: 15px; border-bottom: 1px solid #37B3E8; cursor: pointer;">
 									<a style="padding: 0px;" href="#">
-										<span class="menu-title">基础设置</span><i style="float: right;" class="fa fa-angle-double-down fa-fw"><div class="icon-bg bg-orange"></div></i>
+										<span class="menu-title">平台管理</span><i style="float: right;" class="fa fa-angle-double-down fa-fw"><div class="icon-bg bg-orange"></div></i>
 									</a>
 								</div>
 								<div style="display: none;" class="hh l-list1">
 									<a style="padding: 0px; padding-right: 20px;" href="${ctx}/work/personList.do">
-										<i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">工人信息管理</span>
+										<i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">工人管理</span>
 									</a>
 								</div>
+                                <div style="display: none;" class="hh l-list1">
+                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/work/personList.do">
+                                        <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">招工管理</span>
+                                    </a>
+                                </div>
+                                <div style="display: none;" class="hh l-list1">
+                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/work/personList.do">
+                                        <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">加工活管理</span>
+                                    </a>
+                                </div>
+                                <div style="display: none;" class="hh l-list1">
+                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/work/personList.do">
+                                        <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">加工厂管理</span>
+                                    </a>
+                                </div>
 							</li>
 							</li>
 						<%--</shiro:hasRole>--%>

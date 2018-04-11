@@ -47,9 +47,49 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="person_title" class="control-projectel">工人信息标题：最多20字</projectel>
+															<projectel for="person_title" class="control-projectel">联系人</projectel>
 															<div class="input-icon right">
-																<input type="text" class="form-control" id="person_title"  maxlength="20" name="personTitle" value="${person.workIntent }" placeholder="请输入工人信息名称"/>
+																<input type="text" class="form-control" maxlength="20" name="contactsName" value="${person.contactsName }" placeholder="请输入联系人"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<projectel for="person_title" class="control-projectel">地址</projectel>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="address" value="${person.address}" placeholder="请输入地址"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<projectel for="person_title" class="control-projectel">电话</projectel>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="mobile" value="${person.mobile }" placeholder="请输入电话"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<projectel for="person_title" class="control-projectel">薪资</projectel>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="salary" value="${person.salary }" placeholder="请输入薪资"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<projectel for="person_title" class="control-projectel">工作意向</projectel>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="workIntent" value="${person.workIntent }" placeholder="请输入工作意向"/>
 															</div>
 														</div>
 													</div>
@@ -79,42 +119,36 @@
 		$("#submit").click(function() {
             var obj = $('#form').toObject({mode : 'first'});
 
-            var personTitle = obj.personTitle;
-            if(v_alert_isNull(personTitle, '工人信息标题')){
+            var contactsName = obj.contactsName;
+            if(v_alert_isNull(contactsName, '联系人')){
                 return;
             }
 
-            var personType = obj.personType;
-            if(v_alert_isNull(personType, '工人信息分类')){
+            var address = obj.address;
+            if(v_alert_isNull(address, '地址')){
                 return;
             }
 
-            var personBrief = obj.personBrief;
-            if(v_alert_isNull(personBrief, '工人信息简介')){
+            var mobile = obj.mobile;
+            if(v_alert_isNull(mobile, '电话')){
                 return;
             }
 
-            var personContent = obj.personContent;
-            if(v_alert_isNull(personContent, '工人信息正文')){
+            var salary = obj.salary;
+            if(v_alert_isNull(salary, '薪资')){
                 return;
             }
 
-            var personSort = obj.personSort;
-            if(v_alert_number(personSort, '序号', false)){
+            var workIntent = obj.workIntent;
+            if(v_alert_isNull(workIntent, '工作意向')){
                 return;
             }
-
-            var personUrl = obj.personUrl;
-            if(v_alert_url(personUrl, true)){
-                return;
-            }
-
 
             cfg.data = JSON.stringify(obj);
 
             cfg.success = function ret(data) {
-                alert(data.model.errMsg);
-                if (data.model.errCode == 'success') {
+                alert(data.errMsg);
+                if (data.errCode == 'success') {
                     window.location.href = "personList.do";
                 }
             };

@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *<pre>
@@ -54,12 +56,15 @@ public class CloudWorkPersonController {
 	 */
 	@RequestMapping(value = "personList.json", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView personList(@RequestBody CloudWorkPerson person) {
-		ModelAndView mav = new ModelAndView();
+	public Map<String, Object> personList(@RequestBody CloudWorkPerson person) {
+		Map<String, Object> result = new HashMap<String, Object>();
+
 		List<CloudWorkPerson> personList = cloudWorkPersonService.findList(person);
-		mav.addObject("rows", personList);
-		mav.addObject("total", cloudWorkPersonService.findListCount(person));
-		return mav;
+		result.put("rows", personList);
+		result.put("total", cloudWorkPersonService.findListCount(person));
+		Map<String, Object> resultq = new HashMap<String, Object>();
+		resultq.put("model", result);
+		return resultq;
 	}
 
 	/**
@@ -86,34 +91,38 @@ public class CloudWorkPersonController {
 	 */
 	@RequestMapping(value = "updatePerson.json", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView updateCloudWorkPerson(@RequestBody CloudWorkPerson person, HttpServletRequest req){
-		ModelAndView mv = new ModelAndView();
+	public Map<String, Object> updateCloudWorkPerson(@RequestBody CloudWorkPerson person, HttpServletRequest req){
+		Map<String, Object> result = new HashMap<String, Object>();
 		Long personId = person.getId();
-		mv.addObject("errCode", Constants.result_fail);
-		mv.addObject("errMsg", (personId == null ? "新增" : "修改" ) + "工人信息失败，请稍后再试！");
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", (personId == null ? "新增" : "修改" ) + "工人信息失败，请稍后再试！");
 
 		if (personId == null) {
 			person.setId(RandomUtils.g());
+			person.setStatus((short) 1);
 			person.setCreateTime(new Date());
-
+			person.setCreateUser(1l);
+			person.setUpdateTime(new Date());
+			person.setUpdateUser(1l);
 			int i = cloudWorkPersonService.insert(person);
 			if (i == 1) {
-				mv.addObject("errCode", Constants.result_success);
-				mv.addObject("errMsg", "新增工人信息成功！");
+				result.put("errCode", Constants.result_success);
+				result.put("errMsg", "新增工人信息成功！");
 
 				log.info("新增工人信息成功！personId= " + person.getId());
 			}
 		} else {
+			person.setUpdateTime(new Date());
 			int i = cloudWorkPersonService.update(person);
 			if (i == 1) {
-				mv.addObject("errCode", Constants.result_success);
-				mv.addObject("errMsg", "修改工人信息成功！");
+				result.put("errCode", Constants.result_success);
+				result.put("errMsg", "修改工人信息成功！");
 
 				log.info("修改工人信息成功！personId= " + person.getId());
 			}
 		}
 
-		return mv;
+		return result;
 	}
 
 	/**

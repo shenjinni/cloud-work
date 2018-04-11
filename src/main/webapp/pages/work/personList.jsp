@@ -87,67 +87,68 @@
                 title: '工人ID',
                 align:'center'
             },
-                {
-                    field: 'workIntent',
-                    title: '个人工作意向',
-                    align:'center'
-                },
-                {
-                    field: 'status',
-                    title: '工人分类',
-                    formatter : function(value, row, index) {
-                        if (row.personType == 1) {
-                            return "新闻咨询";
-                        } else if (row.personType == 2) {
-                            return "展会信息";
-                        } else if (row.personType == 3) {
-                            return "政策法规";
-                        } else if (row.personType == 4) {
-                            return "规格介绍";
-                        } else if (row.personType == 5) {
-                            return "帮助文档";
-                        } else if (row.personType == 6) {
-                            return "APP新闻资讯";
-                        } else if (row.personType == 7) {
-                            return "检测助手";
-                        } else if (row.personType == 8) {
-                            return "业务助手";
-                        } else if (row.personType == 9) {
-                            return "检测标准";
-                        } else if (row.personType == 10) {
-                            return "检测方法";
-                        } else if (row.personType == 11) {
-                            return "资质要求";
-                        } else if (row.personType == 12) {
-                            return "平台快讯";
-                        } else {
-                            return "--";
-                        }
-                    },
-                    align:'center'
-                },
-                {
-                    field: 'createTime',
-                    title: '添加时间',
-                    formatter : function(value, row, index) {
-                        var createTime = new Date(
-                            row.createTime);
-                        return createTime.format('yyyy-MM-dd hh:mm:ss');
-                    },
-                    align:'center'
-                },
-                {
-                    field: 'action',
-                    title: '操作',
-                    width: '300',
-                    formatter:function(value,row,index){
-                        var result =
-                            '<a href="personEdit.do?id='+row.id+'">编辑</a>'+
-                            '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="delPerson('+row.personId+')">删除</a>';
-                        return result;
-                    },
-                    align:'center'
-                }]
+			{
+				field: 'contactsName',
+				title: '联系人',
+				align:'center'
+			},
+			{
+				field: 'address',
+				title: '地址',
+				align:'center'
+			},
+			{
+				field: 'mobile',
+				title: '电话',
+				align:'center'
+			},
+			{
+				field: 'salary',
+				title: '薪资',
+				align:'center'
+			},
+			{
+				field: 'workIntent',
+				title: '个人工作意向',
+				align:'center'
+			},
+			{
+				field: 'status',
+				title: '工人分类',
+				formatter : function(value, row, index) {
+					if (row.status == 1) {
+						return "新闻咨询";
+					} else if (row.status == 2) {
+						return "展会信息";
+					} else if (row.status == 3) {
+						return "政策法规";
+					} else {
+						return "--";
+					}
+				},
+				align:'center'
+			},
+			{
+				field: 'createTime',
+				title: '添加时间',
+				formatter : function(value, row, index) {
+					var createTime = new Date(row.createTime);
+					return createTime.format('yyyy-MM-dd hh:mm:ss');
+				},
+				align:'center'
+			},
+			{
+				field: 'action',
+				title: '操作',
+				width: '300',
+				formatter:function(value,row,index){
+					var result =
+						'<a href="personEdit.do?id='+row.id+'">编辑</a>'+
+						'&nbsp;&nbsp;<a href="javascript:void(0);" onclick="delPerson('+row.id+')">删除</a>';
+					return result;
+				},
+				align:'center'
+			}]
             initTable();
 
             $('#button').click(function () {
