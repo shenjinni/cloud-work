@@ -3,8 +3,11 @@ package cn.testin.service;
 
 import javax.annotation.Resource;
 
+import cn.testin.bean.CloudWorkRecruitment;
 import cn.testin.dao.CloudWorkRecruitmentMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  *<pre>
@@ -19,4 +22,28 @@ public class CloudWorkRecruitmentService
 {
 	@Resource
 	private CloudWorkRecruitmentMapper dao;
+
+	public List<CloudWorkRecruitment> findList(CloudWorkRecruitment b) {
+		return dao.selectList(b);
+	}
+
+	public Integer findListCount(CloudWorkRecruitment b) {
+		return dao.selectCount(b);
+	}
+
+	public Integer insert(CloudWorkRecruitment b) {
+		return dao.insertSelective(b);
+	}
+
+	public Integer update(CloudWorkRecruitment b) {
+		return dao.updateByPrimaryKeySelective(b);
+	}
+
+	public Integer delete(Long id) {
+		return dao.deleteByPrimaryKey(id);
+	}
+
+	public CloudWorkRecruitment findBeanById(Long id) {
+		return dao.selectByPrimaryKey(id);
+	}
 }

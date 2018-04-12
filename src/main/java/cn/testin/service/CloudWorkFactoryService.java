@@ -3,8 +3,11 @@ package cn.testin.service;
 
 import javax.annotation.Resource;
 
+import cn.testin.bean.CloudWorkFactory;
 import cn.testin.dao.CloudWorkFactoryMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  *<pre>
@@ -19,8 +22,30 @@ public class CloudWorkFactoryService
 {
 	@Resource
 	private CloudWorkFactoryMapper dao;
-	
 
+	public List<CloudWorkFactory> findList(CloudWorkFactory b) {
+		return dao.selectList(b);
+	}
+
+	public Integer findListCount(CloudWorkFactory b) {
+		return dao.selectCount(b);
+	}
+
+	public Integer insert(CloudWorkFactory b) {
+		return dao.insertSelective(b);
+	}
+
+	public Integer update(CloudWorkFactory b) {
+		return dao.updateByPrimaryKeySelective(b);
+	}
+
+	public Integer delete(Long id) {
+		return dao.deleteByPrimaryKey(id);
+	}
+
+	public CloudWorkFactory findBeanById(Long id) {
+		return dao.selectByPrimaryKey(id);
+	}
 
 	
 	

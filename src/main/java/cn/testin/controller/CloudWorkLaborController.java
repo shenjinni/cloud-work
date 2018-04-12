@@ -1,10 +1,19 @@
 package cn.testin.controller;
 
+import cn.testin.bean.CloudWorkLabor;
+import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkLaborService;
+import cn.testin.util.RandomUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *<pre>
@@ -16,133 +25,120 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("/work/")
-public class CloudWorkLaborController
-{
+public class CloudWorkLaborController {
+
+	private static Logger log = Logger.getLogger(CloudWorkLaborController.class);
+
 	@Resource
 	private CloudWorkLaborService cloudWorkLaborService;
-	
-	
+
+
 	/**
-	 * 添加或更新cloud_work_labor。
-	 * @param request
-	 * @param response
-	 * @param CloudWorkLabor 添加或更新的实体
-	 * @param bindResult
-	 * @param viewName
-	 * @return
-	 * @throws Exception
-	 *//*
-	@RequestMapping("save")
-	@Action(description="添加或更新cloud_work_labor")
-	public void save(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		String resultMsg=null;		
-		CloudWorkLabor CloudWorkLabor=getFormObject(request);
-		try{
-			if(CloudWorkLabor.getId()==null||CloudWorkLabor.getId()==0){
-				CloudWorkLabor.setId(UniqueIdUtil.genId());
-				CloudWorkLaborService.add(CloudWorkLabor);
-				resultMsg=getText("record.added","cloud_work_labor");
-			}else{
-			    CloudWorkLaborService.update(CloudWorkLabor);
-				resultMsg=getText("record.updated","cloud_work_labor");
-			}
-			writeResultMessage(response.getWriter(),resultMsg,ResultMessage.Success);
-		}catch(Exception e){
-			writeResultMessage(response.getWriter(),resultMsg+","+e.getMessage(),ResultMessage.Fail);
-		}
-	}
-	
-	*//**
-	 * 取得 CloudWorkLabor 实体 
-	 * @param request
-	 * @return
-	 * @throws Exception
-	 *//*
-    protected CloudWorkLabor getFormObject(HttpServletRequest request) throws Exception {
-    
-    	JSONUtils.getMorpherRegistry().registerMorpher(new DateMorpher((new String[] { "yyyy-MM-dd" })));
-    
-		String json=RequestUtil.getString(request, "json");
-		JSONObject obj = JSONObject.fromObject(json);
-		
-		CloudWorkLabor CloudWorkLabor = (CloudWorkLabor)JSONObject.toBean(obj, CloudWorkLabor.class);
-		
-		return CloudWorkLabor;
-    }
-	
-	*//**
-	 * 取得cloud_work_labor分页列表
-	 * @param request
-	 * @param response
-	 * @param page
-	 * @return
-	 * @throws Exception
-	 *//*
-	@RequestMapping("list")
-	@Action(description="查看cloud_work_labor分页列表")
-	public ModelAndView list(HttpServletRequest request,HttpServletResponse response) throws Exception
-	{	
-		List<CloudWorkLabor> list=CloudWorkLaborService.getAll(new QueryFilter(request,"CloudWorkLaborItem"));
-		ModelAndView mv=this.getAutoView().addObject("CloudWorkLaborList",list);
-		
-		return mv;
-	}
-	
-	*//**
-	 * 删除cloud_work_labor
-	 * @param request
-	 * @param response
-	 * @throws Exception
-	 *//*
-	@RequestMapping("del")
-	@Action(description="删除cloud_work_labor")
-	public void del(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		String preUrl= RequestUtil.getPrePage(request);
-		ResultMessage message=null;
-		try{
-			Long[] lAryId =RequestUtil.getLongAryByStr(request, "id");
-			CloudWorkLaborService.delByIds(lAryId);
-			message=new ResultMessage(ResultMessage.Success, "删除cloud_work_labor成功!");
-		}catch(Exception ex){
-			message=new ResultMessage(ResultMessage.Fail, "删除失败" + ex.getMessage());
-		}
-		addMessage(message, request);
-		response.sendRedirect(preUrl);
-	}
-	
-	*//**
-	 * 	编辑cloud_work_labor
-	 * @param request
-	 * @param response
-	 * @throws Exception
-	 *//*
-	@RequestMapping("edit")
-	@Action(description="编辑cloud_work_labor")
-	public ModelAndView edit(HttpServletRequest request) throws Exception
-	{
-		Long id=RequestUtil.getLong(request,"id");
-		String returnUrl=RequestUtil.getPrePage(request);
-		CloudWorkLabor CloudWorkLabor=CloudWorkLaborService.getById(id);
-		
-		return getAutoView().addObject("CloudWorkLabor",CloudWorkLabor).addObject("returnUrl", returnUrl);
+	 *
+	 * @Description: 查询加工活列表
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("laborList.do")
+	public ModelAndView laborList() {
+		return new ModelAndView("/work/laborList");
 	}
 
-	*//**
-	 * 取得cloud_work_labor明细
-	 * @param request   
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 *//*
-	@RequestMapping("get")
-	@Action(description="查看cloud_work_labor明细")
-	public ModelAndView get(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		long id=RequestUtil.getLong(request,"id");
-		CloudWorkLabor CloudWorkLabor = CloudWorkLaborService.getById(id);	
-		return getAutoView().addObject("CloudWorkLabor", CloudWorkLabor);
-	}*/
-	
+	/**
+	 *
+	 * @Description: 加工活列表json
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "laborList.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> laborList(@RequestBody CloudWorkLabor labor) {
+		Map<String, Object> result = new HashMap<>();
+
+		List<CloudWorkLabor> laborList = cloudWorkLaborService.findList(labor);
+		result.put("rows", laborList);
+		result.put("total", cloudWorkLaborService.findListCount(labor));
+		Map<String, Object> resultq = new HashMap<>();
+		resultq.put("model", result);
+		return resultq;
+	}
+
+	/**
+	 *
+	 * @Description: 新增/修改加工活信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("laborEdit.do")
+	public ModelAndView laborEdit(@RequestParam(name="id", required = false) Long id){
+		ModelAndView mv = new ModelAndView("/work/laborEdit");
+		if(null != id){
+			CloudWorkLabor labor = cloudWorkLaborService.findBeanById(id);
+			mv.addObject("labor", labor);
+		}
+		return mv;
+	}
+
+	/**
+	 *
+	 * @Description: 新增/修改加工活信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "updateLabor.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateCloudWorkLabor(@RequestBody CloudWorkLabor labor){
+		Map<String, Object> result = new HashMap<>();
+		Long laborId = labor.getId();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", (laborId == null ? "新增" : "修改" ) + "加工活信息失败，请稍后再试！");
+
+		if (laborId == null) {
+			labor.setId(RandomUtils.g());
+			labor.setStatus((short) 1);
+			labor.setCreateTime(new Date());
+			labor.setCreateUser(1L);
+			labor.setUpdateTime(new Date());
+			labor.setUpdateUser(1L);
+			int i = cloudWorkLaborService.insert(labor);
+			if (i == 1) {
+				result.put("errCode", Constants.result_success);
+				result.put("errMsg", "新增加工活信息成功！");
+
+				log.info("新增加工活信息成功！laborId= " + labor.getId());
+			}
+		} else {
+			labor.setUpdateTime(new Date());
+			int i = cloudWorkLaborService.update(labor);
+			if (i == 1) {
+				result.put("errCode", Constants.result_success);
+				result.put("errMsg", "修改加工活信息成功！");
+
+				log.info("修改加工活信息成功！laborId= " + labor.getId());
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 *
+	 * @Description: 删除加工活信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("deleteLabor.json")
+	@ResponseBody
+	public ModelAndView deleteCloudWorkLabor(@RequestBody CloudWorkLabor labor){
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("errCode", Constants.result_fail);
+		mv.addObject("errMsg", "删除加工活信息失败，请稍后再试！");
+		int i = cloudWorkLaborService.delete(labor.getId());
+		if (i == 1) {
+			mv.addObject("errCode", Constants.result_success);
+			mv.addObject("errMsg", "删除加工活信息成功！");
+			log.info("删除加工活信息成功！laborId=" + labor.getId());
+		}
+		return mv;
+	}
 }

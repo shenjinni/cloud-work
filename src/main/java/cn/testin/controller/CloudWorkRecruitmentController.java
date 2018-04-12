@@ -2,13 +2,19 @@ package cn.testin.controller;
 
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import cn.testin.bean.CloudWorkRecruitment;
+import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkRecruitmentService;
+import cn.testin.util.RandomUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *<pre>
@@ -20,133 +26,120 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/work/")
-public class CloudWorkRecruitmentController
-{
+public class CloudWorkRecruitmentController {
+	private static Logger log = Logger.getLogger(CloudWorkRecruitmentController.class);
+
 	@Resource
 	private CloudWorkRecruitmentService cloudWorkRecruitmentService;
-	
-	
+
+
 	/**
-	 * 添加或更新cloud_work_recruitment。
-	 * @param request
-	 * @param response
-	 * @param CloudWorkRecruitment 添加或更新的实体
-	 * @param bindResult
-	 * @param viewName
-	 * @return
-	 * @throws Exception
-	 *//*
-	@RequestMapping("save")
-	@Action(description="添加或更新cloud_work_recruitment")
-	public void save(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		String resultMsg=null;		
-		CloudWorkRecruitment CloudWorkRecruitment=getFormObject(request);
-		try{
-			if(CloudWorkRecruitment.getId()==null||CloudWorkRecruitment.getId()==0){
-				CloudWorkRecruitment.setId(UniqueIdUtil.genId());
-				CloudWorkRecruitmentService.add(CloudWorkRecruitment);
-				resultMsg=getText("record.added","cloud_work_recruitment");
-			}else{
-			    CloudWorkRecruitmentService.update(CloudWorkRecruitment);
-				resultMsg=getText("record.updated","cloud_work_recruitment");
-			}
-			writeResultMessage(response.getWriter(),resultMsg,ResultMessage.Success);
-		}catch(Exception e){
-			writeResultMessage(response.getWriter(),resultMsg+","+e.getMessage(),ResultMessage.Fail);
-		}
-	}
-	
-	*//**
-	 * 取得 CloudWorkRecruitment 实体 
-	 * @param request
-	 * @return
-	 * @throws Exception
-	 *//*
-    protected CloudWorkRecruitment getFormObject(HttpServletRequest request) throws Exception {
-    
-    	JSONUtils.getMorpherRegistry().registerMorpher(new DateMorpher((new String[] { "yyyy-MM-dd" })));
-    
-		String json=RequestUtil.getString(request, "json");
-		JSONObject obj = JSONObject.fromObject(json);
-		
-		CloudWorkRecruitment CloudWorkRecruitment = (CloudWorkRecruitment)JSONObject.toBean(obj, CloudWorkRecruitment.class);
-		
-		return CloudWorkRecruitment;
-    }
-	
-	*//**
-	 * 取得cloud_work_recruitment分页列表
-	 * @param request
-	 * @param response
-	 * @param page
-	 * @return
-	 * @throws Exception
-	 *//*
-	@RequestMapping("list")
-	@Action(description="查看cloud_work_recruitment分页列表")
-	public ModelAndView list(HttpServletRequest request,HttpServletResponse response) throws Exception
-	{	
-		List<CloudWorkRecruitment> list=CloudWorkRecruitmentService.getAll(new QueryFilter(request,"CloudWorkRecruitmentItem"));
-		ModelAndView mv=this.getAutoView().addObject("CloudWorkRecruitmentList",list);
-		
-		return mv;
-	}
-	
-	*//**
-	 * 删除cloud_work_recruitment
-	 * @param request
-	 * @param response
-	 * @throws Exception
-	 *//*
-	@RequestMapping("del")
-	@Action(description="删除cloud_work_recruitment")
-	public void del(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		String preUrl= RequestUtil.getPrePage(request);
-		ResultMessage message=null;
-		try{
-			Long[] lAryId =RequestUtil.getLongAryByStr(request, "id");
-			CloudWorkRecruitmentService.delByIds(lAryId);
-			message=new ResultMessage(ResultMessage.Success, "删除cloud_work_recruitment成功!");
-		}catch(Exception ex){
-			message=new ResultMessage(ResultMessage.Fail, "删除失败" + ex.getMessage());
-		}
-		addMessage(message, request);
-		response.sendRedirect(preUrl);
-	}
-	
-	*//**
-	 * 	编辑cloud_work_recruitment
-	 * @param request
-	 * @param response
-	 * @throws Exception
-	 *//*
-	@RequestMapping("edit")
-	@Action(description="编辑cloud_work_recruitment")
-	public ModelAndView edit(HttpServletRequest request) throws Exception
-	{
-		Long id=RequestUtil.getLong(request,"id");
-		String returnUrl=RequestUtil.getPrePage(request);
-		CloudWorkRecruitment CloudWorkRecruitment=CloudWorkRecruitmentService.getById(id);
-		
-		return getAutoView().addObject("CloudWorkRecruitment",CloudWorkRecruitment).addObject("returnUrl", returnUrl);
+	 *
+	 * @Description: 查询招工信息列表
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("recruitmentList.do")
+	public ModelAndView recruitmentList() {
+		return new ModelAndView("/work/recruitmentList");
 	}
 
-	*//**
-	 * 取得cloud_work_recruitment明细
-	 * @param request   
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 *//*
-	@RequestMapping("get")
-	@Action(description="查看cloud_work_recruitment明细")
-	public ModelAndView get(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		long id=RequestUtil.getLong(request,"id");
-		CloudWorkRecruitment CloudWorkRecruitment = CloudWorkRecruitmentService.getById(id);	
-		return getAutoView().addObject("CloudWorkRecruitment", CloudWorkRecruitment);
-	}*/
+	/**
+	 *
+	 * @Description: 招工信息列表json
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "recruitmentList.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> recruitmentList(@RequestBody CloudWorkRecruitment recruitment) {
+		Map<String, Object> result = new HashMap<>();
+
+		List<CloudWorkRecruitment> recruitmentList = cloudWorkRecruitmentService.findList(recruitment);
+		result.put("rows", recruitmentList);
+		result.put("total", cloudWorkRecruitmentService.findListCount(recruitment));
+		Map<String, Object> resultq = new HashMap<>();
+		resultq.put("model", result);
+		return resultq;
+	}
+
+	/**
+	 *
+	 * @Description: 新增/修改招工信息信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("recruitmentEdit.do")
+	public ModelAndView recruitmentEdit(@RequestParam(name="id", required = false) Long id){
+		ModelAndView mv = new ModelAndView("/work/recruitmentEdit");
+		if(null != id){
+			CloudWorkRecruitment recruitment = cloudWorkRecruitmentService.findBeanById(id);
+			mv.addObject("recruitment", recruitment);
+		}
+		return mv;
+	}
+
+	/**
+	 *
+	 * @Description: 新增/修改招工信息信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "updateRecruitment.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateCloudWorkRecruitment(@RequestBody CloudWorkRecruitment recruitment){
+		Map<String, Object> result = new HashMap<>();
+		Long recruitmentId = recruitment.getId();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", (recruitmentId == null ? "新增" : "修改" ) + "招工信息信息失败，请稍后再试！");
+
+		if (recruitmentId == null) {
+			recruitment.setId(RandomUtils.g());
+			recruitment.setStatus((short) 1);
+			recruitment.setCreateTime(new Date());
+			recruitment.setCreateUser(1L);
+			recruitment.setUpdateTime(new Date());
+			recruitment.setUpdateUser(1L);
+			int i = cloudWorkRecruitmentService.insert(recruitment);
+			if (i == 1) {
+				result.put("errCode", Constants.result_success);
+				result.put("errMsg", "新增招工信息信息成功！");
+
+				log.info("新增招工信息信息成功！recruitmentId= " + recruitment.getId());
+			}
+		} else {
+			recruitment.setUpdateTime(new Date());
+			int i = cloudWorkRecruitmentService.update(recruitment);
+			if (i == 1) {
+				result.put("errCode", Constants.result_success);
+				result.put("errMsg", "修改招工信息信息成功！");
+
+				log.info("修改招工信息信息成功！recruitmentId= " + recruitment.getId());
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 *
+	 * @Description: 删除招工信息信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("deleteRecruitment.json")
+	@ResponseBody
+	public ModelAndView deleteCloudWorkRecruitment(@RequestBody CloudWorkRecruitment recruitment){
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("errCode", Constants.result_fail);
+		mv.addObject("errMsg", "删除招工信息信息失败，请稍后再试！");
+		int i = cloudWorkRecruitmentService.delete(recruitment.getId());
+		if (i == 1) {
+			mv.addObject("errCode", Constants.result_success);
+			mv.addObject("errMsg", "删除招工信息信息成功！");
+			log.info("删除招工信息信息成功！recruitmentId=" + recruitment.getId());
+		}
+		return mv;
+	}
 	
 }

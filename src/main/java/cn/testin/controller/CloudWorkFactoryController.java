@@ -2,10 +2,19 @@ package cn.testin.controller;
 
 
 import javax.annotation.Resource;
-
+import cn.testin.bean.CloudWorkFactory;
+import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkFactoryService;
+import cn.testin.util.RandomUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *<pre>
@@ -17,133 +26,122 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/work/")
-public class CloudWorkFactoryController
-{
+public class CloudWorkFactoryController {
+
+	private static Logger log = Logger.getLogger(CloudWorkFactoryController.class);
+
 	@Resource
 	private CloudWorkFactoryService cloudWorkFactoryService;
-	
-	
+
+
 	/**
-	 * 添加或更新cloud_work_factory。
-	 * @param request
-	 * @param response
-	 * @param CloudWorkFactory 添加或更新的实体
-	 * @param bindResult
-	 * @param viewName
-	 * @return
-	 * @throws Exception
-	 *//*
-	@RequestMapping("save")
-	@Action(description="添加或更新cloud_work_factory")
-	public void save(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		String resultMsg=null;		
-		CloudWorkFactory CloudWorkFactory=getFormObject(request);
-		try{
-			if(CloudWorkFactory.getId()==null||CloudWorkFactory.getId()==0){
-				CloudWorkFactory.setId(UniqueIdUtil.genId());
-				CloudWorkFactoryService.add(CloudWorkFactory);
-				resultMsg=getText("record.added","cloud_work_factory");
-			}else{
-			    CloudWorkFactoryService.update(CloudWorkFactory);
-				resultMsg=getText("record.updated","cloud_work_factory");
-			}
-			writeResultMessage(response.getWriter(),resultMsg,ResultMessage.Success);
-		}catch(Exception e){
-			writeResultMessage(response.getWriter(),resultMsg+","+e.getMessage(),ResultMessage.Fail);
-		}
-	}
-	
-	*//**
-	 * 取得 CloudWorkFactory 实体 
-	 * @param request
-	 * @return
-	 * @throws Exception
-	 *//*
-    protected CloudWorkFactory getFormObject(HttpServletRequest request) throws Exception {
-    
-    	JSONUtils.getMorpherRegistry().registerMorpher(new DateMorpher((new String[] { "yyyy-MM-dd" })));
-    
-		String json=RequestUtil.getString(request, "json");
-		JSONObject obj = JSONObject.fromObject(json);
-		
-		CloudWorkFactory CloudWorkFactory = (CloudWorkFactory)JSONObject.toBean(obj, CloudWorkFactory.class);
-		
-		return CloudWorkFactory;
-    }
-	
-	*//**
-	 * 取得cloud_work_factory分页列表
-	 * @param request
-	 * @param response
-	 * @param page
-	 * @return
-	 * @throws Exception
-	 *//*
-	@RequestMapping("list")
-	@Action(description="查看cloud_work_factory分页列表")
-	public ModelAndView list(HttpServletRequest request,HttpServletResponse response) throws Exception
-	{	
-		List<CloudWorkFactory> list=CloudWorkFactoryService.getAll(new QueryFilter(request,"CloudWorkFactoryItem"));
-		ModelAndView mv=this.getAutoView().addObject("CloudWorkFactoryList",list);
-		
-		return mv;
-	}
-	
-	*//**
-	 * 删除cloud_work_factory
-	 * @param request
-	 * @param response
-	 * @throws Exception
-	 *//*
-	@RequestMapping("del")
-	@Action(description="删除cloud_work_factory")
-	public void del(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		String preUrl= RequestUtil.getPrePage(request);
-		ResultMessage message=null;
-		try{
-			Long[] lAryId =RequestUtil.getLongAryByStr(request, "id");
-			CloudWorkFactoryService.delByIds(lAryId);
-			message=new ResultMessage(ResultMessage.Success, "删除cloud_work_factory成功!");
-		}catch(Exception ex){
-			message=new ResultMessage(ResultMessage.Fail, "删除失败" + ex.getMessage());
-		}
-		addMessage(message, request);
-		response.sendRedirect(preUrl);
-	}
-	
-	*//**
-	 * 	编辑cloud_work_factory
-	 * @param request
-	 * @param response
-	 * @throws Exception
-	 *//*
-	@RequestMapping("edit")
-	@Action(description="编辑cloud_work_factory")
-	public ModelAndView edit(HttpServletRequest request) throws Exception
-	{
-		Long id=RequestUtil.getLong(request,"id");
-		String returnUrl=RequestUtil.getPrePage(request);
-		CloudWorkFactory CloudWorkFactory=CloudWorkFactoryService.getById(id);
-		
-		return getAutoView().addObject("CloudWorkFactory",CloudWorkFactory).addObject("returnUrl", returnUrl);
+	 *
+	 * @Description: 查询加工厂列表
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("factoryList.do")
+	public ModelAndView factoryList() {
+		return new ModelAndView("/work/factoryList");
 	}
 
-	*//**
-	 * 取得cloud_work_factory明细
-	 * @param request   
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 *//*
-	@RequestMapping("get")
-	@Action(description="查看cloud_work_factory明细")
-	public ModelAndView get(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		long id=RequestUtil.getLong(request,"id");
-		CloudWorkFactory CloudWorkFactory = CloudWorkFactoryService.getById(id);	
-		return getAutoView().addObject("CloudWorkFactory", CloudWorkFactory);
-	}*/
-	
+	/**
+	 *
+	 * @Description: 加工厂列表json
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "factoryList.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> factoryList(@RequestBody CloudWorkFactory factory) {
+		Map<String, Object> result = new HashMap<>();
+
+		List<CloudWorkFactory> factoryList = cloudWorkFactoryService.findList(factory);
+		result.put("rows", factoryList);
+		result.put("total", cloudWorkFactoryService.findListCount(factory));
+		Map<String, Object> resultq = new HashMap<>();
+		resultq.put("model", result);
+		return resultq;
+	}
+
+	/**
+	 *
+	 * @Description: 新增/修改加工厂信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("factoryEdit.do")
+	public ModelAndView factoryEdit(@RequestParam(name="id", required = false) Long id){
+		ModelAndView mv = new ModelAndView("/work/factoryEdit");
+		if(null != id){
+			CloudWorkFactory factory = cloudWorkFactoryService.findBeanById(id);
+			mv.addObject("factory", factory);
+		}
+		return mv;
+	}
+
+	/**
+	 *
+	 * @Description: 新增/修改加工厂信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "updateFactory.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateCloudWorkFactory(@RequestBody CloudWorkFactory factory){
+		Map<String, Object> result = new HashMap<>();
+		Long factoryId = factory.getId();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", (factoryId == null ? "新增" : "修改" ) + "加工厂信息失败，请稍后再试！");
+
+		if (factoryId == null) {
+			factory.setId(RandomUtils.g());
+			factory.setStatus((short) 1);
+			factory.setCreateTime(new Date());
+			factory.setCreateUser(1L);
+			factory.setUpdateTime(new Date());
+			factory.setUpdateUser(1L);
+			int i = cloudWorkFactoryService.insert(factory);
+			if (i == 1) {
+				result.put("errCode", Constants.result_success);
+				result.put("errMsg", "新增加工厂信息成功！");
+
+				log.info("新增加工厂信息成功！factoryId= " + factory.getId());
+			}
+		} else {
+			factory.setUpdateTime(new Date());
+			int i = cloudWorkFactoryService.update(factory);
+			if (i == 1) {
+				result.put("errCode", Constants.result_success);
+				result.put("errMsg", "修改加工厂信息成功！");
+
+				log.info("修改加工厂信息成功！factoryId= " + factory.getId());
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 *
+	 * @Description: 删除加工厂信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("deleteFactory.json")
+	@ResponseBody
+	public ModelAndView deleteCloudWorkFactory(@RequestBody CloudWorkFactory factory){
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("errCode", Constants.result_fail);
+		mv.addObject("errMsg", "删除加工厂信息失败，请稍后再试！");
+		int i = cloudWorkFactoryService.delete(factory.getId());
+		if (i == 1) {
+			mv.addObject("errCode", Constants.result_success);
+			mv.addObject("errMsg", "删除加工厂信息成功！");
+			log.info("删除加工厂信息成功！factoryId=" + factory.getId());
+		}
+		return mv;
+	}
+
+
 }

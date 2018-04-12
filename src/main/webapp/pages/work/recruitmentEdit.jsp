@@ -1,117 +1,173 @@
-<%--
-	time:2018-04-09 14:01:52
-	desc:edit the cloud_work_recruitment
---%>
-<%@page language="java" pageEncoding="UTF-8"%>
-<%@include file="/commons/include/html_doctype.html"%>
-<html>
-<head>
-	<title>编辑 cloud_work_recruitment</title>
-	<%@include file="/commons/include/form.jsp" %>
-	<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-	<script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			var options={};
-			if(showResponse){
-				options.success=showResponse;
-			}
-			var frm=$('#CloudWorkRecruitmentForm').form();
-			$("a.save").click(function() {
-				frm.setData();
-				frm.ajaxForm(options);
-				if(frm.valid()){
-					form.submit();
-				}
-			});
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-		});
-		
-		function showResponse(responseText) {
-			var obj = new com.hotent.form.ResultMessage(responseText);
-			if (obj.isSuccess()) {
-				$.ligerMessageBox.confirm("提示信息", obj.getMessage()+",是否继续操作", function(rtn) {
-					if(rtn){
-						this.close();
-					}else{
-						window.location.href = "${ctx}/testin/cloudWorkRecruitment/cloudWorkRecruitment/CloudWorkRecruitment/list.ht";
-					}
-				});
-			} else {
-				parent.layer.alert('提示信息，'+ obj.getMessage(), { skin: 'layui-layer-molv', shift: 1 });
-			}
-		}				
-	</script>
-</head>
-<body>
-<div class="panel">
-	<div class="panel-top">
-		<div class="tbar-title">
-		    <c:choose>
-			    <c:when test="${CloudWorkRecruitment.id !=null}">
-			        <span class="tbar-label">编辑cloud_work_recruitment</span>
-			    </c:when>
-			    <c:otherwise>
-			        <span class="tbar-label">添加cloud_work_recruitment</span>
-			    </c:otherwise>			   
-		    </c:choose>
-		</div>
-		<div class="panel-toolbar">
-			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
-				<div class="l-bar-separator"></div>
-				<div class="group"><a class="link back" href="list.ht">返回</a></div>
+<%@ include file="left.jsp"%>
+<script type="text/javascript" charset="utf-8" src="${ctx}/common/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${ctx}/common/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${ctx}/common/ueditor/lang/zh-cn/zh-cn.js"></script>
+<div>
+	<div id="page-wrapper">
+		<!--BEGIN TITLE & BREADCRUMB PAGE-->
+		<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+			<div class="page-header pull-left">
+				<div class="page-title">新增招工信息</div>
 			</div>
+			<ol class="breadcrumb page-breadcrumb pull-right">
+				<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+				<li class="hidden"><a href="#">Tables</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+				<li class="active">新增招工信息</li>
+			</ol>
+			<div class="clearfix"></div>
 		</div>
-	</div>
-	<div class="panel-body">
-		<form id="CloudWorkRecruitmentForm" method="post" action="save.ht">
-			<table class="table-detail" cellpadding="0" cellspacing="0" border="0" type="main">
-				<tr>
-					<th width="20%">工种:  <span class="required">*</span></th>
-					<td><input type="text" id="workType" name="workType" value="${CloudWorkRecruitment.workType}"  class="inputText" validate="{required:true,maxlength:765}"  /></td>
-				</tr>
-				<tr>
-					<th width="20%">招工单位:  <span class="required">*</span></th>
-					<td><input type="text" id="company" name="company" value="${CloudWorkRecruitment.company}"  class="inputText" validate="{required:true,maxlength:765}"  /></td>
-				</tr>
-				<tr>
-					<th width="20%">电话:  <span class="required">*</span></th>
-					<td><input type="text" id="mobile" name="mobile" value="${CloudWorkRecruitment.mobile}"  class="inputText" validate="{required:true,maxlength:33}"  /></td>
-				</tr>
-				<tr>
-					<th width="20%">薪资水平:  <span class="required">*</span></th>
-					<td><input type="text" id="salary" name="salary" value="${CloudWorkRecruitment.salary}"  class="inputText" validate="{required:true}"  /></td>
-				</tr>
-				<tr>
-					<th width="20%">状态:  <span class="required">*</span></th>
-					<td><input type="text" id="status" name="status" value="${CloudWorkRecruitment.status}"  class="inputText" validate="{required:true}"  /></td>
-				</tr>
-				<tr>
-					<th width="20%">联系人: </th>
-					<td><input type="text" id="contactsName" name="contactsName" value="${CloudWorkRecruitment.contactsName}"  class="inputText" validate="{required:false,maxlength:150}"  /></td>
-				</tr>
-				<tr>
-					<th width="20%">创建人:  <span class="required">*</span></th>
-					<td><input type="text" id="createUser" name="createUser" value="${CloudWorkRecruitment.createUser}"  class="inputText" validate="{required:true,number:true }"  /></td>
-				</tr>
-				<tr>
-					<th width="20%">发布时间:  <span class="required">*</span></th>
-					<td><input type="text" id="createTime" name="createTime" value="<fmt:formatDate value='${CloudWorkRecruitment.createTime}' pattern='yyyy-MM-dd'/>" class="inputText mydate" onclick="laydate({format: 'YYYY-MM-DD hh:mm:ss',istime:true})" validate="{date:true,required:true}" /></td>
-				</tr>
-				<tr>
-					<th width="20%">更新时间:  <span class="required">*</span></th>
-					<td><input type="text" id="updateTime" name="updateTime" value="<fmt:formatDate value='${CloudWorkRecruitment.updateTime}' pattern='yyyy-MM-dd'/>" class="inputText mydate" onclick="laydate({format: 'YYYY-MM-DD hh:mm:ss',istime:true})" validate="{date:true,required:true}" /></td>
-				</tr>
-				<tr>
-					<th width="20%">修改者:  <span class="required">*</span></th>
-					<td><input type="text" id="updateUser" name="updateUser" value="${CloudWorkRecruitment.updateUser}"  class="inputText" validate="{required:true,number:true }"  /></td>
-				</tr>
-			</table>
-			<input type="hidden" name="id" value="${CloudWorkRecruitment.id}" />
+		<!--END TITLE & BREADCRUMB PAGE-->
+		<!--BEGIN CONTENT-->
+		<form id="form">
+			<div class="page-content">
+				<div id="tab-general">
+					<div class="row mbl">
+						<div class="col-lg-12">
+							<div class="col-md-12">
+								<div id="area-chart-spline"
+									 style="width: 100%; height: 300px; display: none;"></div>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="row">
+								<div class="col-lg-4" style="width: 100%">
+									<div class="panel panel-azure">
+										<div class="panel-heading">
+											<c:choose>
+												<c:when test="${not empty recruitment}">修改招工信息</c:when>
+												<c:otherwise>新增招工信息</c:otherwise>
+											</c:choose>
+
+											<a href="${ctx}/work/recruitmentList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
+										</div>
+										<div class="panel-body pan">
+											<div class="form-body pal">
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<projectel for="recruitment_title" class="control-projectel">公司</projectel>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="company" value="${recruitment.company }" placeholder="请输入联系人"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<%--<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<projectel for="recruitment_title" class="control-projectel">联系人</projectel>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="contactsName" value="${recruitment.contactsName }" placeholder="请输入联系人"/>
+															</div>
+														</div>
+													</div>
+												</div>--%>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<projectel for="recruitment_title" class="control-projectel">地址</projectel>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="address" value="${recruitment.address}" placeholder="请输入地址"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<projectel for="recruitment_title" class="control-projectel">电话</projectel>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="mobile" value="${recruitment.mobile }" placeholder="请输入电话"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<projectel for="recruitment_title" class="control-projectel">薪资</projectel>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="salary" value="${recruitment.salary }" placeholder="请输入薪资"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<projectel for="recruitment_title" class="control-projectel">需求</projectel>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="workType" value="${recruitment.workType }" placeholder="请输入需求"/>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-actions text-center pal">
+												<button type="button" class="btn btn-primary" id="submit">保存</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" name="recruitmentId" value="${recruitment.id }"/>
 		</form>
-		
 	</div>
 </div>
+
+<script type="text/javascript">
+    $(".l-list5").show();
+
+    $(document).ready(function(){
+        // 提交操作
+        $("#submit").click(function() {
+            var obj = $('#form').toObject({mode : 'first'});
+
+            var company = obj.company;
+            if(v_alert_isNull(company, '联系人')){
+                return;
+            }
+
+            var address = obj.address;
+            if(v_alert_isNull(address, '地址')){
+                return;
+            }
+
+            var mobile = obj.mobile;
+            if(v_alert_isNull(mobile, '电话')){
+                return;
+            }
+
+            var salary = obj.salary;
+            if(v_alert_isNull(salary, '薪资')){
+                return;
+            }
+
+            var workType = obj.workType;
+            if(v_alert_isNull(workType, '需求')){
+                return;
+            }
+
+            cfg.data = JSON.stringify(obj);
+
+            cfg.success = function ret(data) {
+                alert(data.errMsg);
+                if (data.errCode == 'success') {
+                    window.location.href = "recruitmentList.do";
+                }
+            };
+
+            cfg.url = 'updateRecruitment.json';
+            $.ajax(cfg);
+        });
+    });
+</script>
+
 </body>
 </html>

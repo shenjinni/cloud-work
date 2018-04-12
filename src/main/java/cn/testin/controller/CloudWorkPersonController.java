@@ -2,8 +2,6 @@ package cn.testin.controller;
 
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
 import cn.testin.bean.CloudWorkPerson;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkPersonService;
@@ -44,8 +42,7 @@ public class CloudWorkPersonController {
 	 */
 	@RequestMapping("personList.do")
 	public ModelAndView personList() {
-		ModelAndView personList = new ModelAndView("/work/personList");
-		return personList;
+		return new ModelAndView("/work/personList");
 	}
 
 	/**
@@ -57,12 +54,12 @@ public class CloudWorkPersonController {
 	@RequestMapping(value = "personList.json", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> personList(@RequestBody CloudWorkPerson person) {
-		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<>();
 
 		List<CloudWorkPerson> personList = cloudWorkPersonService.findList(person);
 		result.put("rows", personList);
 		result.put("total", cloudWorkPersonService.findListCount(person));
-		Map<String, Object> resultq = new HashMap<String, Object>();
+		Map<String, Object> resultq = new HashMap<>();
 		resultq.put("model", result);
 		return resultq;
 	}
@@ -91,8 +88,8 @@ public class CloudWorkPersonController {
 	 */
 	@RequestMapping(value = "updatePerson.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateCloudWorkPerson(@RequestBody CloudWorkPerson person, HttpServletRequest req){
-		Map<String, Object> result = new HashMap<String, Object>();
+	public Map<String, Object> updateCloudWorkPerson(@RequestBody CloudWorkPerson person){
+		Map<String, Object> result = new HashMap<>();
 		Long personId = person.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", (personId == null ? "新增" : "修改" ) + "工人信息失败，请稍后再试！");
@@ -101,9 +98,9 @@ public class CloudWorkPersonController {
 			person.setId(RandomUtils.g());
 			person.setStatus((short) 1);
 			person.setCreateTime(new Date());
-			person.setCreateUser(1l);
+			person.setCreateUser(1L);
 			person.setUpdateTime(new Date());
-			person.setUpdateUser(1l);
+			person.setUpdateUser(1L);
 			int i = cloudWorkPersonService.insert(person);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -133,7 +130,7 @@ public class CloudWorkPersonController {
 	 */
 	@RequestMapping("deletePerson.json")
 	@ResponseBody
-	public ModelAndView deleteCloudWorkPerson(@RequestBody CloudWorkPerson person, HttpServletRequest req){
+	public ModelAndView deleteCloudWorkPerson(@RequestBody CloudWorkPerson person){
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("errCode", Constants.result_fail);
 		mv.addObject("errMsg", "删除工人信息失败，请稍后再试！");

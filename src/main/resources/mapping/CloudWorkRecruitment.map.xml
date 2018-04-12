@@ -39,20 +39,20 @@
 		</where>
 	</sql>
 
-	<insert id="add" parameterType="cn.testin.bean.CloudWorkRecruitment">
+	<insert id="insertSelective" parameterType="cn.testin.bean.CloudWorkRecruitment">
 		INSERT INTO cloud_work_recruitment
 		(id,work_type,company,mobile,salary,status,contacts_name,create_user,create_time,update_time,update_user)
 		VALUES
 		(#{id,jdbcType=NUMERIC}, #{workType,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{salary,jdbcType=NUMERIC}, #{status,jdbcType=NUMERIC}, #{contactsName,jdbcType=VARCHAR}, #{createUser,jdbcType=NUMERIC}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{updateUser,jdbcType=NUMERIC})
 	</insert>
 	
-	<delete id="delById" parameterType="java.lang.Long">
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
 		DELETE FROM cloud_work_recruitment 
 		WHERE
 		id=#{id}
 	</delete>
 	
-	<update id="update" parameterType="cn.testin.bean.CloudWorkRecruitment">
+	<update id="updateByPrimaryKeySelective" parameterType="cn.testin.bean.CloudWorkRecruitment">
 		UPDATE cloud_work_recruitment SET
 		work_type=#{workType,jdbcType=VARCHAR},
 		company=#{company,jdbcType=VARCHAR},
@@ -68,22 +68,65 @@
 		id=#{id}
 	</update>
 		    
-	<select id="getById" parameterType="java.lang.Long" resultMap="CloudWorkRecruitment">
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="CloudWorkRecruitment">
 		SELECT <include refid="columns"/>
 		FROM cloud_work_recruitment
 		WHERE
 		id=#{id}
 	</select>
-	
-	<select id="getAll" resultMap="CloudWorkRecruitment">
-		SELECT <include refid="columns"/>
-		FROM cloud_work_recruitment   
-		<include refid="dynamicWhere" />
-		<if test="@Ognl@isNotEmpty(orderField)">
-		order by ${orderField} ${orderSeq}
+
+	<select id="selectList" resultMap="CloudWorkRecruitment" parameterType="cn.testin.bean.CloudWorkRecruitment" >
+		select
+		<include refid="columns" />
+		from cloud_work_recruitment
+		where 1=1
+		<if test="workType != null  and workType != ''" >
+			and work_type like concat('%',#{workType,jdbcType=VARCHAR},'%')
 		</if>
-		<if test="@Ognl@isEmpty(orderField)">
-		order by id  desc
+		<if test="company != null  and company != ''" >
+			and company like concat('%',#{company,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="mobile != null  and mobile != ''" >
+			and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="salaryBegin != null  and salaryBegin != ''" >
+			and salary  &gt;= #{salaryBegin,jdbcType=NUMERIC}
+		</if>
+		<if test="salaryEnd != null  and salaryEnd != ''" >
+			and salary  &lt;= #{salarEnd,jdbcType=NUMERIC}
+		</if>
+		<if test="status != null  and status != ''" >
+			and status = #{status,jdbcType=NUMERIC}
+		</if>
+		order by create_time DESC
+		<if test="offset != null and limit != null ">
+			limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<select id="selectCount" parameterType="cn.testin.bean.CloudWorkRecruitment" resultType="int">
+		SELECT
+		count(*)
+		FROM
+		cloud_work_recruitment
+		where 1=1
+		<if test="workType != null  and workType != ''" >
+			and work_type like concat('%',#{workType,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="company != null  and company != ''" >
+			and company like concat('%',#{company,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="mobile != null  and mobile != ''" >
+			and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="salaryBegin != null  and salaryBegin != ''" >
+			and salary  &gt;= #{salaryBegin,jdbcType=NUMERIC}
+		</if>
+		<if test="salaryEnd != null  and salaryEnd != ''" >
+			and salary  &lt;= #{salarEnd,jdbcType=NUMERIC}
+		</if>
+		<if test="status != null  and status != ''" >
+			and status = #{status,jdbcType=NUMERIC}
 		</if>
 	</select>
 </mapper>

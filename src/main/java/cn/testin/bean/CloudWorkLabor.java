@@ -34,7 +34,28 @@ public class CloudWorkLabor extends BasicPage
 	protected java.util.Date  updateTime;
 	// 修改者
 	protected Long  updateUser;
-	public void setId(Long id) 
+	// 薪资水平
+	protected Double  salaryBegin;
+	// 薪资水平
+	protected Double  salaryEnd;
+
+	public Double getSalaryBegin() {
+		return salaryBegin;
+	}
+
+	public void setSalaryBegin(Double salaryBegin) {
+		this.salaryBegin = salaryBegin;
+	}
+
+	public Double getSalaryEnd() {
+		return salaryEnd;
+	}
+
+	public void setSalaryEnd(Double salaryEnd) {
+		this.salaryEnd = salaryEnd;
+	}
+
+	public void setId(Long id)
 	{
 		this.id = id;
 	}

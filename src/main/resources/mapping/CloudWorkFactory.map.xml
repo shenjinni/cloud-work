@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.testin.dao.CloudWorkFactoryMapper">
 	<resultMap id="CloudWorkFactory" type="cn.testin.bean.CloudWorkFactory">
 		<id property="id" column="id" jdbcType="NUMERIC"/>
@@ -19,7 +19,7 @@
 	<sql id="columns">
 		id,work_need,contacts_name,mobile,address,salary,status,company,create_user,create_time,update_time,update_user
 	</sql>
-	
+
 	<sql id="dynamicWhere">
 		<where>
 			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
@@ -41,20 +41,20 @@
 		</where>
 	</sql>
 
-	<insert id="add" parameterType="cn.testin.bean.CloudWorkFactory">
+	<insert id="insertSelective" parameterType="cn.testin.bean.CloudWorkFactory">
 		INSERT INTO cloud_work_factory
 		(id,work_need,contacts_name,mobile,address,salary,status,company,create_user,create_time,update_time,update_user)
 		VALUES
 		(#{id,jdbcType=NUMERIC}, #{workNeed,jdbcType=VARCHAR}, #{contactsName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{salary,jdbcType=NUMERIC}, #{status,jdbcType=NUMERIC}, #{company,jdbcType=VARCHAR}, #{createUser,jdbcType=NUMERIC}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{updateUser,jdbcType=NUMERIC})
 	</insert>
-	
-	<delete id="delById" parameterType="java.lang.Long">
-		DELETE FROM cloud_work_factory 
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		DELETE FROM cloud_work_factory
 		WHERE
 		id=#{id}
 	</delete>
-	
-	<update id="update" parameterType="cn.testin.bean.CloudWorkFactory">
+
+	<update id="updateByPrimaryKeySelective" parameterType="cn.testin.bean.CloudWorkFactory">
 		UPDATE cloud_work_factory SET
 		work_need=#{workNeed,jdbcType=VARCHAR},
 		contacts_name=#{contactsName,jdbcType=VARCHAR},
@@ -70,23 +70,66 @@
 		WHERE
 		id=#{id}
 	</update>
-		    
-	<select id="getById" parameterType="java.lang.Long" resultMap="CloudWorkFactory">
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="CloudWorkFactory">
 		SELECT <include refid="columns"/>
 		FROM cloud_work_factory
 		WHERE
 		id=#{id}
 	</select>
-	
-	<select id="getAll" resultMap="CloudWorkFactory">
-		SELECT <include refid="columns"/>
-		FROM cloud_work_factory   
-		<include refid="dynamicWhere" />
-		<if test="@Ognl@isNotEmpty(orderField)">
-		order by ${orderField} ${orderSeq}
+
+	<select id="selectList" resultMap="CloudWorkFactory" parameterType="cn.testin.bean.CloudWorkFactory" >
+		select
+		<include refid="columns" />
+		from cloud_work_factory
+		where 1=1
+		<if test="workNeed != null  and workNeed != ''" >
+			and work_need like concat('%',#{workNeed,jdbcType=VARCHAR},'%')
 		</if>
-		<if test="@Ognl@isEmpty(orderField)">
-		order by id  desc
+		<if test="contactsName != null  and contactsName != ''" >
+			and contacts_name like concat('%',#{contactsName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="mobile != null  and mobile != ''" >
+			and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="salaryBegin != null  and salaryBegin != ''" >
+			and salary  &gt;= #{salaryBegin,jdbcType=NUMERIC}
+		</if>
+		<if test="salaryEnd != null  and salaryEnd != ''" >
+			and salary  &lt;= #{salarEnd,jdbcType=NUMERIC}
+		</if>
+		<if test="status != null  and status != ''" >
+			and status = #{status,jdbcType=NUMERIC}
+		</if>
+		order by create_time DESC
+		<if test="offset != null and limit != null ">
+			limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<select id="selectCount" parameterType="cn.testin.bean.CloudWorkFactory" resultType="int">
+		SELECT
+		count(*)
+		FROM
+		cloud_work_factory
+		where 1=1
+		<if test="workNeed != null  and workNeed != ''" >
+			and work_need like concat('%',#{workNeed,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="contactsName != null  and contactsName != ''" >
+			and contacts_name like concat('%',#{contactsName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="mobile != null  and mobile != ''" >
+			and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="salaryBegin != null  and salaryBegin != ''" >
+			and salary  &gt;= #{salaryBegin,jdbcType=NUMERIC}
+		</if>
+		<if test="salaryEnd != null  and salaryEnd != ''" >
+			and salary  &lt;= #{salarEnd,jdbcType=NUMERIC}
+		</if>
+		<if test="status != null  and status != ''" >
+			and status = #{status,jdbcType=NUMERIC}
 		</if>
 	</select>
 </mapper>

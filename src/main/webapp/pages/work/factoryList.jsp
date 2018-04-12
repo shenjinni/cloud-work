@@ -1,82 +1,239 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/commons/include/html_doctype.html" %>
-<html>
-<head>
-<title>cloud_work_factory管理</title>
-<%@include file="/commons/include/get.jsp" %>
 
-</head>
-<body>
-	<div class="panel">
-		<div class="panel-top">
-			<div class="tbar-title">
-				<span class="tbar-label">cloud_work_factory管理列表</span>
-			</div>
-			<div class="panel-toolbar">
-				<div class="toolBar">
-					<div class="group"><a class="link search" id="btnSearch">查询</a></div>
-					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link add" href="edit.ht">添加</a></div>
-					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link update" id="btnUpd" action="edit.ht">修改</a></div>
-					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link del"  action="del.ht">删除</a></div>
-				</div>	
-			</div>
-			<div class="panel-search">
-				<form id="searchForm" method="post" action="list.ht">
+<!DOCTYPE html>
+<html lang="en">
+<%@ include file="left.jsp"%>
+<style>
+	.hidd {
+		display:absolute;
+		left:-200px;
+		bottom:-100px
+	}
+</style>
+<div id="page-wrapper">
+	<!--BEGIN TITLE & BREADCRUMB PAGE-->
+	<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+		<div class="page-header pull-left">
+			<div class="page-title">加工厂管理</div>
+		</div>
+		<ol class="breadcrumb page-breadcrumb pull-right">
+			<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/work/home.do">
+				主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+			<li class="hidden"><a href="#">加工厂管理</a>&nbsp;&nbsp;<i
+					class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+			<li class="active">加工厂管理</li>
+		</ol>
+		<div class="clearfix"></div>
+	</div>
+	<!--END TITLE & BREADCRUMB PAGE-->
+	<!--BEGIN CONTENT-->
+	<div class="page-content">
+
+		<div id="tab-general">
+			<div class="row mbl">
+				<div class="col-lg-12">
 					<div class="row">
-						<span class="label">需求:</span><input type="text" name="Q_workNeed_SL"  class="inputText" />
-						<span class="label">联系人:</span><input type="text" name="Q_contactsName_SL"  class="inputText" />
-						<span class="label">电话:</span><input type="text" name="Q_mobile_SL"  class="inputText" />
-						<span class="label">address:</span><input type="text" name="Q_address_SL"  class="inputText" />
-						<span class="label">薪资水平:</span><input type="text" name="Q_salary_SL"  class="inputText" />
-						<span class="label">状态:</span><input type="text" name="Q_status_SN"  class="inputText" />
-						<span class="label">company:</span><input type="text" name="Q_company_SL"  class="inputText" />
-						<span class="label">创建人:</span><input type="text" name="Q_createUser_SL"  class="inputText" />
-						<span class="label">发布时间 从:</span> <input  name="Q_begincreateTime_DL"  class="inputText mydate" onclick="laydate({format: 'YYYY-MM-DD hh:mm:ss',istime:true})" />
-						<span class="label">至: </span><input  name="Q_endcreateTime_DG" class="inputText mydate" onclick="laydate({format: 'YYYY-MM-DD hh:mm:ss',istime:true})" />
-						<span class="label">更新时间 从:</span> <input  name="Q_beginupdateTime_DL"  class="inputText mydate" onclick="laydate({format: 'YYYY-MM-DD hh:mm:ss',istime:true})" />
-						<span class="label">至: </span><input  name="Q_endupdateTime_DG" class="inputText mydate" onclick="laydate({format: 'YYYY-MM-DD hh:mm:ss',istime:true})" />
-						<span class="label">修改者:</span><input type="text" name="Q_updateUser_SL"  class="inputText" />
+						<div class="col-lg-12">
+							<div class="panel panel-azure">
+								<div class="panel-heading">加工厂管理列表
+									<a href="${ctx}/work/factoryEdit.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">新增</a>
+								</div>
+								<div class="panel-body">
+									<div class="row" style="float:right;padding-bottom: 10px;">
+										<div class="col-xs-12 col-md-12">
+											<form class="form-inline" id="form_sea">
+												<div class="form-group">
+													<label for="factory_title">加工厂名称</label>
+													<input type="text" class="form-control" id="factory_title" name="factoryTitle">
+												</div>
+												<div class="form-group">
+													<label for="factory_type">加工厂类型 </label>
+													<select class="form-control" id="factory_type" name="factoryType">
+														<option value="">--</option>
+														<option value="1">新闻咨询</option>
+														<option value="2">展会信息</option>
+														<option value="3">政策法规</option>
+														<option value="4">规格介绍</option>
+														<option value="5">帮助文档</option>
+														<option value="6">APP新闻资讯</option>
+														<option value="7">检测助手</option>
+														<option value="8">业务助手</option>
+														<option value="9">检测标准</option>
+														<option value="10">检测方法</option>
+														<option value="11">资质要求</option>
+														<option value="12">平台快讯</option>
+													</select>
+												</div>
+												<button type="button" class="btn btn-primary" id="button">搜索</button>
+											</form>
+										</div>
+									</div>
+									<table class="table table-hover" id="factoryTable">
+									</table>
+								</div>
+							</div>
+						</div>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
-		<div class="panel-body">
-	    	<c:set var="checkAll">
-				<input type="checkbox" id="chkall"/>
-			</c:set>
-		    <display:table name="CloudWorkFactoryList" id="CloudWorkFactoryItem" requestURI="list.ht" sort="external" cellpadding="1" cellspacing="1" export="true"  class="table-grid">
-				<display:column title="${checkAll}" media="html" style="width:30px;">
-			  		<input type="checkbox" class="pk" name="id" value="${CloudWorkFactoryItem.id}">
-				</display:column>
-				<display:column property="workNeed" title="需求" sortable="true" sortName="workNeed" maxLength="80"></display:column>
-				<display:column property="contactsName" title="联系人" sortable="true" sortName="contactsName"></display:column>
-				<display:column property="mobile" title="电话" sortable="true" sortName="mobile"></display:column>
-				<display:column property="address" title="address" sortable="true" sortName="address" maxLength="80"></display:column>
-				<display:column property="salary" title="薪资水平" sortable="true" sortName="salary"></display:column>
-				<display:column property="status" title="状态" sortable="true" sortName="status"></display:column>
-				<display:column property="company" title="company" sortable="true" sortName="company" maxLength="80"></display:column>
-				<display:column property="createUser" title="创建人" sortable="true" sortName="createUser"></display:column>
-				<display:column  title="发布时间" sortable="true" sortName="createTime">
-					<fmt:formatDate value="${CloudWorkFactoryItem.createTime}" pattern="yyyy-MM-dd"/>
-				</display:column>
-				<display:column  title="更新时间" sortable="true" sortName="updateTime">
-					<fmt:formatDate value="${CloudWorkFactoryItem.updateTime}" pattern="yyyy-MM-dd"/>
-				</display:column>
-				<display:column property="updateUser" title="修改者" sortable="true" sortName="updateUser"></display:column>
-				<display:column title="管理" media="html" style="width:180px">
-					<a href="del.ht?id=${CloudWorkFactoryItem.id}" class="link del">删除</a>
-					<a href="edit.ht?id=${CloudWorkFactoryItem.id}" class="link edit">编辑</a>
-					<a href="get.ht?id=${CloudWorkFactoryItem.id}" class="link detail">明细</a>
-					
-				</display:column>
-			</display:table>
-			<hotent:paging tableId="CloudWorkFactoryItem"/>
-		</div><!-- end of panel-body -->				
-	</div> <!-- end of panel -->
+	</div>
+
+	<script type="text/javascript">
+        $(".l-list5").show();
+        $(document).ready(function(){
+            cloumn=[{
+                field: 'id',
+                title: '加工厂ID',
+                align:'center'
+            },
+                {
+                    field: 'contactsName',
+                    title: '联系人',
+                    align:'center'
+                },
+                {
+                    field: 'address',
+                    title: '地址',
+                    align:'center'
+                },
+                {
+                    field: 'mobile',
+                    title: '电话',
+                    align:'center'
+                },
+                {
+                    field: 'salary',
+                    title: '薪资',
+                    align:'center'
+                },
+                {
+                    field: 'workNeed',
+                    title: '需求',
+                    align:'center'
+                },
+                {
+                    field: 'status',
+                    title: '加工厂分类',
+                    formatter : function(value, row, index) {
+                        if (row.status == 1) {
+                            return "新闻咨询";
+                        } else if (row.status == 2) {
+                            return "展会信息";
+                        } else if (row.status == 3) {
+                            return "政策法规";
+                        } else {
+                            return "--";
+                        }
+                    },
+                    align:'center'
+                },
+                {
+                    field: 'createTime',
+                    title: '添加时间',
+                    formatter : function(value, row, index) {
+                        var createTime = new Date(row.createTime);
+                        return createTime.format('yyyy-MM-dd hh:mm:ss');
+                    },
+                    align:'center'
+                },
+                {
+                    field: 'action',
+                    title: '操作',
+                    width: '300',
+                    formatter:function(value,row,index){
+                        var result =
+                            '<a href="factoryEdit.do?id='+row.id+'">编辑</a>'+
+                            '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="delFactory('+row.id+')">删除</a>';
+                        return result;
+                    },
+                    align:'center'
+                }]
+            initTable();
+
+            $('#button').click(function () {
+                $("#factoryTable").bootstrapTable('refresh', {url: 'factoryList.json'});
+            });
+        });
+
+        var initTable=function(){
+            $("#factoryTable").bootstrapTable({
+                url: 'factoryList.json',
+                method:"post",
+                striped: true,
+                cache: false,
+                pagination: true,
+                sortable: false,
+                sortOrder: "asc",
+                dataType: "json",
+                sidePagination: "server",
+                pageNumber:1,                       //初始化加载第一页，默认第一页
+                pageSize: 20,                       //每页的记录行数（*）
+                pageList: [20,50],
+                columns:cloumn,
+                search: false,                      //是否显示表格搜索
+                strictSearch: true,
+                queryParams : function (params) {
+                    //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                    var temp = $("#form_sea").serializeJsonObject();
+                    temp["limit"] = params.limit;                        //页面大小
+                    temp["offset"] = params.offset;  //页码
+                    return temp;
+                },
+                responseHandler:function(res) {
+                    return res.model;
+                }
+            })
+        }
+
+        $.fn.serializeJsonObject = function () {
+            var json = {};
+            var form = this.serializeArray();
+            $.each(form, function () {
+                if (json[this.name]) {
+                    if (!json[this.name].push) {
+                        json[this.name] = [json[this.name]];
+                    }
+                    json[this.name].push();
+                } else {
+                    json[this.name] = this.value || '';
+                }
+            });
+            return json;
+        }
+
+        var delFactory = function(id){
+
+            if (window.confirm("确认删除么？")) {
+                dc(id);
+            }
+        }
+
+        // 删除操作
+        function dc(id){
+            $.ajax({
+                type : "POST",
+                url : "deleteFactory.json",
+                dataType : "json",
+                contentType : 'application/json;charset=UTF-8',
+                data : JSON.stringify({"factoryId":id}),
+                success : function(res){
+                    alert(res.model.errMsg);
+                    if("success" == res.model.errCode){
+                        $("#factoryTable").bootstrapTable("destroy");
+                        initTable();
+                    }
+                },
+                error : function(XMLHttpRequest, textStatus,
+                                 errorThrown) {
+                    alert("删除失败！");
+                },
+                complete : function(XMLHttpRequest, textStatus) {
+                }
+            });
+        }
+
+	</script>
+</div>
 </body>
 </html>
-
-
