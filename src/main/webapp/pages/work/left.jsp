@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>全汇测管理系统</title>
+	<title>织里童装设计网</title>
 	<link rel="shortcut icon" href="${ctx}/common/image/favicon.ico" type="image/x-icon" />
     <link type="text/css" rel="stylesheet" href="${ctx}/common/css/admin/jquery-ui-1.10.4.custom.min.css">
     <link type="text/css" rel="stylesheet" href="${ctx}/bootstrap/css/bootstrap.min.css">
@@ -64,7 +64,7 @@
             <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
             <div class="navbar-header">
                 <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a id="logo" href="${ctx }/" class="navbar-brand" ><span class="fa fa-rocket"></span>全汇测管理员</a></div>
+                <a id="logo" href="${ctx }/" class="navbar-brand" ><span class="fa fa-rocket"></span>织里童装管理员</a></div>
             <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"> </a>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
                     <li class="dropdown topbar-user"><a data-hover="dropdown" href="${ctx }/admin/logout.do" class="dropdown-toggle" ><span class="hidden-xs">退出</span>&nbsp;</a>

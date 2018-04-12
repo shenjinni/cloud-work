@@ -12,7 +12,7 @@
         if (window != top)
             top.location.href = location.href;
     </script>
-    <title>申金妮平台wow</title>
+    <title>织里童装设计网</title>
 </head>
 <body class="qhc-headfoot">
 <!-- 左右广告 -->
@@ -28,6 +28,6 @@
 <!-- 工具条 -->
 <%@ include file="/common/tools.jsp"%>--%>
 <!-- 底部 -->
-<%@ include file="/common/foot.jsp"%>
+<%--<%@ include file="/common/foot.jsp"%>--%>
 </body>
 </html>

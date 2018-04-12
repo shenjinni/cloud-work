@@ -76,7 +76,7 @@
 }
 
 .qhc-main {
-	width: 1180px;
+	width: 100%;
 	min-height: 500px;
 	position: relative;
 	margin: 0 auto;
@@ -88,7 +88,7 @@
 }
 /*首页banner轮播  begin */
 .qhc-left {
-	width: 372px;
+	width: 50%;
 	float: left;
 }
 

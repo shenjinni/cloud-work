@@ -43,25 +43,29 @@
 										<div class="col-xs-12 col-md-12">
 											<form class="form-inline" id="form_sea">
 												<div class="form-group">
-													<label for="person_title">工人名称</label>
-													<input type="text" class="form-control" id="person_title" name="personTitle">
+													<label>联系人</label>
+													<input type="text" class="form-control" name="contactsName">
+												</div>
+												<div class="form-group">
+													<label>电话</label>
+													<input type="text" class="form-control" name="mobile">
+												</div>
+												<div class="form-group">
+													<label>工作意向</label>
+													<input type="text" class="form-control" name="workIntent">
+												</div>
+												<div class="form-group">
+													<label>薪资水平</label>
+													<input type="text" class="form-control" name="salaryBegin">-
+													<input type="text" class="form-control" name="salaryEnd">
 												</div>
 												<div class="form-group">
 													<label for="person_type">工人类型 </label>
 													<select class="form-control" id="person_type" name="personType">
 														<option value="">--</option>
-														<option value="1">新闻咨询</option>
-														<option value="2">展会信息</option>
-														<option value="3">政策法规</option>
-														<option value="4">规格介绍</option>
-														<option value="5">帮助文档</option>
-														<option value="6">APP新闻资讯</option>
-														<option value="7">检测助手</option>
-														<option value="8">业务助手</option>
-														<option value="9">检测标准</option>
-														<option value="10">检测方法</option>
-														<option value="11">资质要求</option>
-														<option value="12">平台快讯</option>
+														<option value="1">普通用户</option>
+														<option value="2">付费用户</option>
+														<option value="3">黑名单</option>
 													</select>
 												</div>
 												<button type="button" class="btn btn-primary" id="button">搜索</button>
@@ -84,7 +88,7 @@
         $(document).ready(function(){
             cloumn=[{
                 field: 'id',
-                title: '工人ID',
+                title: 'ID',
                 align:'center'
             },
 			{
@@ -109,19 +113,19 @@
 			},
 			{
 				field: 'workIntent',
-				title: '个人工作意向',
+				title: '工作意向',
 				align:'center'
 			},
 			{
 				field: 'status',
-				title: '工人分类',
+				title: '身份',
 				formatter : function(value, row, index) {
 					if (row.status == 1) {
-						return "新闻咨询";
+						return "普通工人";
 					} else if (row.status == 2) {
-						return "展会信息";
+						return "黑名单";
 					} else if (row.status == 3) {
-						return "政策法规";
+						return "付费用户";
 					} else {
 						return "--";
 					}
@@ -133,7 +137,7 @@
 				title: '添加时间',
 				formatter : function(value, row, index) {
 					var createTime = new Date(row.createTime);
-					return createTime.format('yyyy-MM-dd hh:mm:ss');
+					return createTime.format('yyyy-MM-dd');
 				},
 				align:'center'
 			},

@@ -1,5 +1,5 @@
 /*header*/
-.qhc-headfoot{min-width:1200px;}
+/*.qhc-headfoot{min-width:1200px;}*/
 .qhctop{height:37px;background-color: #3a82d4;line-height: 37px;}
 .qhc-topbanner{width: 100%;height:62px;overflow: hidden;}
 .qhc-topbanner img{float: left;}
@@ -15,12 +15,13 @@
 .qhc-user{background: url(../images/qhc_user.png) no-repeat 5px center;}
 .qhc-admin{background: url(../images/qhc_gotoConsole.png) no-repeat 5px center;}
 .qhc-login{background: url(../images/qhc_login.png) no-repeat 5px center;}
-.qhc-name{float: left;line-height: 109px;font-size: 18px;margin-left: 10px;color: #3a82d4;}
+.qhc-name{line-height: 80px;font-size: 18px;color: #3a82d4;text-align: center}
 .qhchead{height:109px;background-color: #f6f7f9;}
 .qhchead .l{height:109px;float:left;width:170px;}
 .qhchead .l .logo{background:url('../images/qhc_logo.png') no-repeat 0px center;display:block;height:109px;}
-.qhchead .b{float:left;margin-left: 90px;}
-.qhchead .b .search{overflow: hidden;line-height: 37px;width:482px;border:1px solid #d1d1d3;background-color: #fff;margin-top: 35px;}
+.qhchead .b{position: relative;}
+.qhchead .b .search{    position: absolute;
+    margin:0 auto; overflow: hidden;line-height: 37px;border:1px solid #d1d1d3;background-color: #fff;}
 .qhchead .b .search select{float:left;padding:0px 10px 0px 10px;height:39px;}
 .qhchead .b .search input{float:left;height: 37px;line-height: 37px;width:320px;padding-left: 10px;border-left: 1px solid #d1d1d3;}
 .qhchead .b .search .go{display: inline-block;background:url('../images/qhc_searchbttn.png') no-repeat center;float:right;width:40px;height:37px;}

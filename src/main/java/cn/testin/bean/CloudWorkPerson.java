@@ -41,6 +41,16 @@ public class CloudWorkPerson extends BasicPage
 	// update_user
 	protected Long  updateUser;
 
+	protected String searchText;
+
+	public String getSearchText() {
+		return searchText;
+	}
+
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
+
 	public Double getSalaryBegin() {
 		return salaryBegin;
 	}

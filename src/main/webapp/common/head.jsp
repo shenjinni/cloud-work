@@ -83,15 +83,14 @@ $(function (){
 <div class="qhcheader">
 	<div class="qhctop">
 		<div class="qhc-content">
-			<span class="qhc-welcome">欢迎来到全汇测!</span> 
-			<span class="tel">客服电话 : 400-086-2030 &nbsp;&nbsp;&nbsp;服务时间 : 8:00-17:00</span> 
-			<a href="${ctx}/common/about.do?id=1802061441120001" class="qhc-about">关于我们</a> 
-			<!-- <a href="javascript:void(0);" class="qhc-app">获取APP</a> --> 
+			<%--<span class="qhc-welcome">欢迎来到织里童装设计网!</span>--%>
+			<%--<span class="tel">客服电话 : 400-086-2030 &nbsp;&nbsp;&nbsp;服务时间 : 8:00-17:00</span> --%>
+			<a href="${ctx}/common/about.do?id=1802061441120001" class="qhc-about">使用帮助</a>
+			<a href="${ctx}/common/about.do?id=1802061441120001" class="qhc-about">收费标准</a>
 			<c:if test="${empty sessionScope.user}">
-				<a href="${ctx}/admin/adminLogin.do" class="qhc-login">管理员登录</a> 
 				<span class="qhc-login">
-					<a href="${ctx}/common/localLogin.do?fromUrl=index.jsp">登录</a>/
-					<a href="${ctx}/common/registe.do">注册</a>
+					<a href="${ctx}/common/localLogin.do?fromUrl=index.jsp">会员登录</a>
+					<a href="${ctx}/common/registe.do">免费注册</a>
 				</span>
 			</c:if>
 			<c:if test="${not empty sessionScope.user}">
@@ -118,26 +117,23 @@ $(function (){
 	</div>
 	<div class="qhchead">
 		<div class="qhc-content">
-			<div class="l">
+			<%--<div class="l">
 				<a href="${ctx}/index.jsp" class="logo"></a>
-			</div>
-			<div class="qhc-name">全汇测，全都会测</div>
+			</div>--%>
+			<div class="qhc-name">织里童装设计</div>
 			<div class="b">
 				<div class="search">
 					<select name="searchType" id="searchType">
-						<option <c:if test="${param.type==1}">selected="selected"</c:if> value="1">检测项目</option>
-						<option <c:if test="${param.type==2}">selected="selected"</c:if> value="2">新闻</option>
-						<option <c:if test="${param.type==3}">selected="selected"</c:if> value="3">实验室</option>
-						<option <c:if test="${param.type==4}">selected="selected"</c:if> value="4">需求</option>
+						<option <c:if test="${param.type==1}">selected="selected"</c:if> value="1">找工作</option>
+						<option <c:if test="${param.type==2}">selected="selected"</c:if> value="2">招人</option>
+						<option <c:if test="${param.type==3}">selected="selected"</c:if> value="3">找加工厂</option>
+						<option <c:if test="${param.type==4}">selected="selected"</c:if> value="4">找加工活</option>
 					</select> 
 					<input type="text" id="searchText" placeholder="请输入搜索关键字..." value="${requestScope.text}" onkeyup="upEnterKey();" /> 
 					<a href="javascript:void(0);" class="go" onclick="searchs();"></a>
 				</div>
 			</div>
-			<a href="javascript:goPublish();" class="qhc-publish">
-				<img src="${ctx}/common/images/qhc_detection.png" />
-				发布需求
-			</a>
+
 		</div>
 	</div>
 	<div class="qhcnav">

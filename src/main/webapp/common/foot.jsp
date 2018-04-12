@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/common/css/qhcheaderfooter.css" />
 
 <!--   footer    -->
-<div class="qhcfooter">
+<%--<div class="qhcfooter">
 	<div class="qhcfoot">
 		<div class="qhc-content">
 			<dl class="dl">
@@ -43,6 +43,20 @@
 				<span>Copyright@2018全汇测.AllRights Reserved</span> 
 				<span class="r"> 湘公网备 110713805005 网站制作: 北京航天智造科技发展有限公司 </span>
 			</div>
+		</div>
+	</div>
+</div>--%>
+<div class="qhcfooter">
+	<div class="qhcfoot">
+		<div class="qhc-content">
+			<dl class="dl">
+				<dt>温馨提示</dt>
+				<dd>不会用的先点击下面的视频教程先学习下</dd>
+				<dd>老板招工人视频教程 点击查看</dd>
+				<dd>工人找工作视频教程 点击查看</dd>
+				<dd>会员办理热线： </br>0572-3183669、3211091</dd>
+				<dd>手机/微信：15805720573 </dd>
+			</dl>
 		</div>
 	</div>
 </div>
