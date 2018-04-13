@@ -132,7 +132,7 @@ hr {
 @media (min-width: 768px) {
   #page-wrapper {
     position: relative;
-    margin: 0 0 0 250px;
+    margin: 0 0 0 190px;
     padding: 0;
   }
 }
@@ -154,10 +154,10 @@ hr {
 
 #topbar .navbar-header #logo {
   font-size: 20px;
-  line-height: 20px;
+  line-height: 33px;
   color: #ffffff;
   height: 100%;
-  width: 100%;
+  width: 85%;
 }
 #topbar .navbar-header #logo span.fa {
   display: none;
@@ -1020,7 +1020,7 @@ background: #303030; /* Old browsers */
   .navbar-static-side {
     z-index: 1;
     position: absolute;
-    width: 250px;
+    width: 190px;
   }
 }
 .right-sidebar #topbar .navbar-header {

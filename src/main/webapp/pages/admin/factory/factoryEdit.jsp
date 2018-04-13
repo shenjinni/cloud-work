@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="left.jsp"%>
+<%@ include file="../left.jsp"%>
 <div>
 	<div id="page-wrapper">
 		<!--BEGIN TITLE & BREADCRUMB PAGE-->
 		<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 			<div class="page-header pull-left">
-				<div class="page-title">新增加工活信息</div>
+				<div class="page-title">加工厂管理</div>
 			</div>
 			<ol class="breadcrumb page-breadcrumb pull-right">
-				<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-				<li class="hidden"><a href="#">Tables</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-				<li class="active">新增加工活信息</li>
+				<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/admin/home.do">
+					主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+
+				<li class="active">加工厂管理</li>
 			</ol>
 			<div class="clearfix"></div>
 		</div>
@@ -33,20 +34,20 @@
 									<div class="panel panel-azure">
 										<div class="panel-heading">
 											<c:choose>
-												<c:when test="${not empty labor}">修改加工活信息</c:when>
-												<c:otherwise>新增加工活信息</c:otherwise>
+												<c:when test="${not empty factory}">修改加工厂信息</c:when>
+												<c:otherwise>新增加工厂信息</c:otherwise>
 											</c:choose>
 
-											<a href="${ctx}/work/laborList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
+											<a href="${ctx}/admin/factory/factoryList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
 										</div>
 										<div class="panel-body pan">
 											<div class="form-body pal">
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">需要加工种类</label>
+															<projectel for="factory_title" class="control-projectel">承接加工种类</projectel>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="workNeed" value="${labor.workNeed }" placeholder="请输入需要加工种类"/>
+																<input type="text" class="form-control" maxlength="100" name="workNeed" value="${factory.workNeed }" placeholder="请输入承接加工种类"/>
 															</div>
 														</div>
 													</div>
@@ -54,9 +55,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">联系人</label>
+															<projectel for="factory_title" class="control-projectel">联系人</projectel>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="contactsName" value="${labor.contactsName }" placeholder="请输入联系人"/>
+																<input type="text" class="form-control" maxlength="30" name="contactsName" value="${factory.contactsName }" placeholder="请输入联系人"/>
 															</div>
 														</div>
 													</div>
@@ -64,9 +65,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">电话</label>
+															<projectel for="factory_title" class="control-projectel">电话</projectel>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="mobile" value="${labor.mobile }" placeholder="请输入电话"/>
+																<input type="text" class="form-control" maxlength="11" name="mobile" value="${factory.mobile }" placeholder="请输入电话"/>
 															</div>
 														</div>
 													</div>
@@ -74,9 +75,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">地址</label>
+															<projectel for="factory_title" class="control-projectel">地址</projectel>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="address" value="${labor.address}" placeholder="请输入地址"/>
+																<input type="text" class="form-control" maxlength="100" name="address" value="${factory.address}" placeholder="请输入地址"/>
 															</div>
 														</div>
 													</div>
@@ -84,9 +85,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">工厂名</label>
+															<projectel for="factory_title" class="control-projectel">规模人数</projectel>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="factoryName" value="${labor.factoryName }" placeholder="请输入工厂名"/>
+																<input type="text" class="form-control" maxlength="20" name="scale" value="${factory.scale }" placeholder="请输入规模人数"/>
 															</div>
 														</div>
 													</div>
@@ -94,23 +95,14 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">加工数量</label>
+															<projectel for="factory_title" class="control-projectel">补充说明</projectel>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="number" value="${labor.number }" placeholder="请输入加工数量"/>
+																<input type="text" class="form-control" maxlength="200" name="note" value="${factory.note }" placeholder="请输入补充说明"/>
 															</div>
 														</div>
 													</div>
 												</div>
-												<div class="row">
-													<div class="col-md-6" style="width: 50%;">
-														<div class="form-group">
-															<label class="control-label">补充说明</label>
-															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="note" value="${labor.note }" placeholder="请输入补充说明"/>
-															</div>
-														</div>
-													</div>
-												</div>
+
 											</div>
 											<div class="form-actions text-center pal">
 												<button type="button" class="btn btn-primary" id="submit">保存</button>
@@ -123,7 +115,8 @@
 					</div>
 				</div>
 			</div>
-			<input type="hidden" name="laborId" value="${labor.id }"/>
+			<input type="hidden" name="id" value="${factory.id }"/>
+			<input type="hidden" name="status" value="${factory.status}"/>
 		</form>
 	</div>
 </div>
@@ -137,7 +130,7 @@
             var obj = $('#form').toObject({mode : 'first'});
 
             var workNeed = obj.workNeed;
-            if(v_alert_isNull(workNeed, '需要加工种类')){
+            if(v_alert_isNull(workNeed, '承接加工种类')){
                 return;
             }
 
@@ -146,23 +139,21 @@
                 return;
             }
 
-
-            var mobile = obj.mobile;
-            if(v_alert_isNull(mobile, '电话')){
+            var address = obj.address;
+            if(v_alert_isNull(address, '地址')){
                 return;
             }
-
 
             cfg.data = JSON.stringify(obj);
 
             cfg.success = function ret(data) {
                 alert(data.errMsg);
                 if (data.errCode == 'success') {
-                    window.location.href = "laborList.do";
+                    window.location.href = "factoryList.do";
                 }
             };
 
-            cfg.url = 'updateLabor.json';
+            cfg.url = 'updateFactory.json';
             $.ajax(cfg);
         });
     });

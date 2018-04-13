@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="left.jsp"%>
+<%@ include file="../left.jsp"%>
 <div>
 	<div id="page-wrapper">
 		<!--BEGIN TITLE & BREADCRUMB PAGE-->
 		<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 			<div class="page-header pull-left">
-				<div class="page-title">新增招工信息</div>
+				<div class="page-title">招工管理</div>
 			</div>
 			<ol class="breadcrumb page-breadcrumb pull-right">
-				<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-				<li class="hidden"><a href="#">Tables</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-				<li class="active">新增招工信息</li>
+				<li>
+					<i class="fa fa-home"></i>&nbsp;
+					<a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;
+					<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+				</li>
+				<li class="active">招工管理</li>
 			</ol>
 			<div class="clearfix"></div>
 		</div>
@@ -37,7 +40,7 @@
 												<c:otherwise>新增招工信息</c:otherwise>
 											</c:choose>
 
-											<a href="${ctx}/work/recruitmentList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
+											<a href="${ctx}/admin/recruitment/recruitmentList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
 										</div>
 										<div class="panel-body pan">
 											<div class="form-body pal">
@@ -46,7 +49,7 @@
 														<div class="form-group">
 															<label class="control-label">招工工种</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="workType" value="${recruitment.workType }" placeholder="请输入招工工种"/>
+																<input type="text" class="form-control" maxlength="100" name="workType" value="${recruitment.workType }" placeholder="请输入招工工种"/>
 															</div>
 														</div>
 													</div>
@@ -56,7 +59,7 @@
 														<div class="form-group">
 															<label class="control-label">工资待遇</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="salary" value="${recruitment.salary }" placeholder="请输入工资待遇"/>
+																<input type="text" class="form-control" maxlength="100" name="salary" value="${recruitment.salary }" placeholder="请输入工资待遇"/>
 															</div>
 														</div>
 													</div>
@@ -66,7 +69,7 @@
 														<div class="form-group">
 															<label class="control-label">招工单位</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="company" value="${recruitment.company }" placeholder="请输入招工单位"/>
+																<input type="text" class="form-control" maxlength="100" name="company" value="${recruitment.company }" placeholder="请输入招工单位"/>
 															</div>
 														</div>
 													</div>
@@ -76,7 +79,7 @@
 														<div class="form-group">
 															<label class="control-label">地址</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="address" value="${recruitment.address}" placeholder="请输入地址"/>
+																<input type="text" class="form-control" maxlength="100" name="address" value="${recruitment.address}" placeholder="请输入地址"/>
 															</div>
 														</div>
 													</div>
@@ -86,7 +89,7 @@
 														<div class="form-group">
 															<label class="control-label">联系人</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="contactsName" value="${recruitment.contactsName }" placeholder="请输入联系人"/>
+																<input type="text" class="form-control" maxlength="30" name="contactsName" value="${recruitment.contactsName }" placeholder="请输入联系人"/>
 															</div>
 														</div>
 													</div>
@@ -96,7 +99,7 @@
 														<div class="form-group">
 															<label class="control-label">电话</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="mobile" value="${recruitment.mobile }" placeholder="请输入电话"/>
+																<input type="text" class="form-control" maxlength="11" name="mobile" value="${recruitment.mobile }" placeholder="请输入电话"/>
 															</div>
 														</div>
 													</div>
@@ -106,7 +109,7 @@
 														<div class="form-group">
 															<label class="control-label">补充说明</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="note" value="${recruitment.note }" placeholder="请输入补充说明"/>
+																<input type="text" class="form-control" maxlength="200" name="note" value="${recruitment.note }" placeholder="请输入补充说明"/>
 															</div>
 														</div>
 													</div>
@@ -123,7 +126,8 @@
 					</div>
 				</div>
 			</div>
-			<input type="hidden" name="recruitmentId" value="${recruitment.id }"/>
+			<input type="hidden" name="id" value="${recruitment.id }"/>
+			<input type="hidden" name="status" value="${recruitment.status}"/>
 		</form>
 	</div>
 </div>

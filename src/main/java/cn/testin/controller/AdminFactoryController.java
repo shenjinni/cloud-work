@@ -25,10 +25,10 @@ import java.util.Map;
  *</pre>
  */
 @Controller
-@RequestMapping("/work/")
-public class CloudWorkFactoryController {
+@RequestMapping("/admin/factory/")
+public class AdminFactoryController {
 
-	private static Logger log = Logger.getLogger(CloudWorkFactoryController.class);
+	private static Logger log = Logger.getLogger(AdminFactoryController.class);
 
 	@Resource
 	private CloudWorkFactoryService cloudWorkFactoryService;
@@ -42,7 +42,7 @@ public class CloudWorkFactoryController {
 	 */
 	@RequestMapping("factoryList.do")
 	public ModelAndView factoryList() {
-		return new ModelAndView("/work/factoryList");
+		return new ModelAndView("/admin/factory/factoryList");
 	}
 
 	/**
@@ -54,12 +54,12 @@ public class CloudWorkFactoryController {
 	@RequestMapping(value = "factoryList.json", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> factoryList(@RequestBody CloudWorkFactory factory) {
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<String, Object>();
 
 		List<CloudWorkFactory> factoryList = cloudWorkFactoryService.findList(factory);
 		result.put("rows", factoryList);
 		result.put("total", cloudWorkFactoryService.findListCount(factory));
-		Map<String, Object> resultq = new HashMap<>();
+		Map<String, Object> resultq = new HashMap<String, Object>();
 		resultq.put("model", result);
 		return resultq;
 	}
@@ -72,7 +72,7 @@ public class CloudWorkFactoryController {
 	 */
 	@RequestMapping("factoryEdit.do")
 	public ModelAndView factoryEdit(@RequestParam(name="id", required = false) Long id){
-		ModelAndView mv = new ModelAndView("/work/factoryEdit");
+		ModelAndView mv = new ModelAndView("/admin/factory/factoryEdit");
 		if(null != id){
 			CloudWorkFactory factory = cloudWorkFactoryService.findBeanById(id);
 			mv.addObject("factory", factory);
@@ -89,7 +89,7 @@ public class CloudWorkFactoryController {
 	@RequestMapping(value = "updateFactory.json", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> updateCloudWorkFactory(@RequestBody CloudWorkFactory factory){
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<String, Object>();
 		Long factoryId = factory.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", (factoryId == null ? "新增" : "修改" ) + "加工厂信息失败，请稍后再试！");
@@ -110,6 +110,7 @@ public class CloudWorkFactoryController {
 			}
 		} else {
 			factory.setUpdateTime(new Date());
+			factory.setUpdateUser(1L);
 			int i = cloudWorkFactoryService.update(factory);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -119,6 +120,60 @@ public class CloudWorkFactoryController {
 			}
 		}
 
+		return result;
+	}
+
+	/**
+	 *
+	 * @Description: 加工厂信息详情
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("factoryGet.do")
+	public ModelAndView factoryGet(@RequestParam(name="id", required = false) Long id){
+		ModelAndView mv = new ModelAndView("/admin/factory/factoryGet");
+		if(null != id){
+			CloudWorkFactory factory = cloudWorkFactoryService.findBeanById(id);
+			mv.addObject("factory", factory);
+		}
+		return mv;
+	}
+
+	/**
+	 *
+	 * @Description: 修改加工厂信息状态
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "changeStatus.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> changeStatus(@RequestBody CloudWorkFactory factory){
+		Map<String, Object> result = new HashMap<>();
+		Long factoryId = factory.getId();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", "操作失败，请稍后再试！");
+
+		Integer status = factory.getStatus();
+		if (status == null) {
+			log.info("修改加工厂信息状态，获取状态值失败！ factoryId" + factoryId);
+			return result;
+		}
+
+		factory = cloudWorkFactoryService.findBeanById(factoryId);
+		if (factory == null) {
+			log.info("修改加工厂信息状态！获取信息失败！factoryId=" + factoryId);
+			return result;
+		}
+
+		factory.setStatus(status);
+		factory.setUpdateTime(new Date());
+		factory.setUpdateUser(1L);
+		int i = cloudWorkFactoryService.update(factory);
+		if (i == 1) {
+			result.put("errCode", Constants.result_success);
+			result.put("errMsg", "操作成功！");
+			log.info("修改加工厂信息状态成功！factoryId=" + factoryId + ", status = " + status);
+		}
 		return result;
 	}
 

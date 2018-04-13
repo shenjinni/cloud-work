@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file="left.jsp"%>
+<%@ include file="../left.jsp"%>
 <div id="page-wrapper">
 	<!--BEGIN TITLE & BREADCRUMB PAGE-->
 	<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
@@ -10,10 +10,11 @@
 			<div class="page-title">工人管理</div>
 		</div>
 		<ol class="breadcrumb page-breadcrumb pull-right">
-			<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/work/home.do">
-				主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-			<li class="hidden"><a href="#">工人管理</a>&nbsp;&nbsp;<i
-					class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+			<li>
+				<i class="fa fa-home"></i>&nbsp;
+				<a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;
+				<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+			</li>
 			<li class="active">工人管理</li>
 		</ol>
 		<div class="clearfix"></div>
@@ -29,7 +30,7 @@
 						<div class="col-lg-12">
 							<div class="panel panel-azure">
 								<div class="panel-heading">工人管理列表
-									<a href="${ctx}/work/personEdit.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">新增</a>
+									<a href="${ctx}/admin/person/personEdit.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">新增</a>
 								</div>
 								<div class="panel-body">
 									<div class="row" style="float:right;padding-bottom: 10px;">
@@ -111,7 +112,10 @@
 			{
 				field: 'workIntent',
 				title: '工种',
-				align:'center'
+				align:'center',
+				formatter : function(value, row, index) {
+					return '<a href="personGet.do?id='+row.id+'">'+row.workIntent+'</a>';
+				},
 			},
 			{
 				field: 'salary',
@@ -128,11 +132,11 @@
 				title: '电话',
 				align:'center'
 			},
-			{
-				field: 'address',
-				title: '地址',
-				align:'center'
-			},
+//			{
+//				field: 'address',
+//				title: '地址',
+//				align:'center'
+//			},
 			{
 				field: 'status',
 				title: '状态',
@@ -140,7 +144,7 @@
                     if (row.status == 1) {
                         return "正常";
                     } else if (row.status >= 2) {
-                        return "置顶，优先级：" + row.status;
+                        return "置顶";
                     } else if (row.status == -1) {
                         return "关闭";
                     } else {
@@ -176,13 +180,11 @@
 					if (row.status > 0) {
                         result =
                             '<a href="personEdit.do?id='+row.id+'">编辑</a>'+
-                            '&nbsp;&nbsp;<a href="personGet.do?id='+row.id+'">查看</a>'+
                             '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="closeInfo('+row.id+')">关闭</a>'+
-                            '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="setPriority('+row.id+','+row.status+' )">优先级设置</a>';
+                            '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="setPriority('+row.id+','+row.status+' )">vip设置</a>';
 					} else {
                         result =
                             '<a href="personEdit.do?id='+row.id+'">编辑</a>'+
-                            '&nbsp;&nbsp;<a href="personGet.do?id='+row.id+'">查看</a>'+
                             '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="openInfo('+row.id+')">开启</a>';
 					}
 					return result;

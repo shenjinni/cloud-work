@@ -31,7 +31,7 @@ public class CustomizedModularRealmAuthenticator extends ModularRealmAuthenticat
 	        // 所有Realm
 	        Collection<Realm> realms = getRealms();
 	        // 登录类型对应的所有Realm
-	        Collection<Realm> typeRealms = new ArrayList<>();
+	        Collection<Realm> typeRealms = new ArrayList<Realm>();
 	        int i = 0;
 	        for (Realm realm : realms) {
 	        	if("localLogin".equals(loginType) && i == 0){

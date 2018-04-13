@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="left.jsp"%>
+<%@ include file="../left.jsp"%>
 <style type="text/css">
 	label{
 		font-weight:bold;
@@ -11,12 +11,15 @@
 		<!--BEGIN TITLE & BREADCRUMB PAGE-->
 		<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 			<div class="page-header pull-left">
-				<div class="page-title">工人信息详情</div>
+				<div class="page-title">招工管理</div>
 			</div>
 			<ol class="breadcrumb page-breadcrumb pull-right">
-				<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-				<li class="hidden"><a href="#">Tables</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-				<li class="active">工人信息详情</li>
+				<li>
+					<i class="fa fa-home"></i>&nbsp;
+					<a href="${ctx}/work/home.do">主页</a>&nbsp;&nbsp;
+					<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+				</li>
+				<li class="active">招工管理</li>
 			</ol>
 			<div class="clearfix"></div>
 		</div>
@@ -37,7 +40,7 @@
 								<div class="panel panel-azure">
 									<div class="panel-heading">
 										工人信息详情
-										<a href="${ctx}/work/personList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
+										<a href="${ctx}/work/recruitmentList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
 									</div>
 									<div class="panel-body pan">
 										<div class="form-body pal">
@@ -46,7 +49,7 @@
 													<div class="form-group">
 														<label class="control-label">ID：</label>
 														<div class="input-icon right">
-															${person.id}
+															${recruitment.id}
 														</div>
 													</div>
 												</div>
@@ -56,7 +59,7 @@
 													<div class="form-group">
 														<label class="control-label">工种：</label>
 														<div class="input-icon right">
-															${person.workIntent }
+															${recruitment.workIntent }
 														</div>
 													</div>
 												</div>
@@ -66,7 +69,7 @@
 													<div class="form-group">
 														<label class="control-label">薪资要求：</label>
 														<div class="input-icon right">
-															${person.salary }
+															${recruitment.salary }
 														</div>
 													</div>
 												</div>
@@ -76,7 +79,7 @@
 													<div class="form-group">
 														<label class="control-label">姓名：</label>
 														<div class="input-icon right">
-															${person.contactsName }
+															${recruitment.contactsName }
 														</div>
 													</div>
 												</div>
@@ -86,7 +89,7 @@
 													<div class="form-group">
 														<label class="control-label">电话：</label>
 														<div class="input-icon right">
-															${person.mobile }
+															${recruitment.mobile }
 														</div>
 													</div>
 												</div>
@@ -96,7 +99,7 @@
 													<div class="form-group">
 														<label class="control-label">年龄：</label>
 														<div class="input-icon right">
-															${person.age}
+															${recruitment.age}
 														</div>
 													</div>
 												</div>
@@ -106,7 +109,7 @@
 													<div class="form-group">
 														<label class="control-label">生肖：</label>
 														<div class="input-icon right">
-															${person.zodiac}
+															${recruitment.zodiac}
 														</div>
 													</div>
 												</div>
@@ -116,8 +119,8 @@
 													<div class="form-group">
 														<label class="control-label">性别：</label>
 														<div class="input-icon right">
-															<c:if test="${person.sex == 1}">男</c:if>
-															<c:if test="${person.sex == 2}">女</c:if>
+															<c:if test="${recruitment.sex == 1}">男</c:if>
+															<c:if test="${recruitment.sex == 2}">女</c:if>
 														</div>
 													</div>
 												</div>
@@ -127,7 +130,7 @@
 													<div class="form-group">
 														<label class="control-label">哪里人：</label>
 														<div class="input-icon right">
-															${person.address}
+															${recruitment.address}
 														</div>
 													</div>
 												</div>
@@ -137,7 +140,7 @@
 													<div class="form-group">
 														<label class="control-label">补充说明：</label>
 														<div class="input-icon right">
-															${person.note}
+															${recruitment.note}
 														</div>
 													</div>
 												</div>
@@ -147,7 +150,7 @@
 													<div class="form-group">
 														<label class="control-label">创建时间：</label>
 														<div class="input-icon right">
-															<fmt:formatDate value="${person.createTime}" pattern="yyyy-MM-dd"/>
+															<fmt:formatDate value="${recruitment.createTime}" pattern="yyyy-MM-dd"/>
 														</div>
 													</div>
 												</div>
@@ -157,7 +160,7 @@
 													<div class="form-group">
 														<label class="control-label">最后更新时间：</label>
 														<div class="input-icon right">
-															<fmt:formatDate value="${person.updateTime}" pattern="yyyy-MM-dd"/>
+															<fmt:formatDate value="${recruitment.updateTime}" pattern="yyyy-MM-dd"/>
 														</div>
 													</div>
 												</div>
@@ -167,7 +170,7 @@
 													<div class="form-group">
 														<label class="control-label">更新操作人：</label>
 														<div class="input-icon right">
-															${person.updateUser}
+															${recruitment.updateUser}
 														</div>
 													</div>
 												</div>

@@ -24,10 +24,10 @@ import java.util.Map;
  *</pre>
  */
 @Controller
-@RequestMapping("/work/")
-public class CloudWorkLaborController {
+@RequestMapping("/admin/labor/")
+public class AdminLaborController {
 
-	private static Logger log = Logger.getLogger(CloudWorkLaborController.class);
+	private static Logger log = Logger.getLogger(AdminLaborController.class);
 
 	@Resource
 	private CloudWorkLaborService cloudWorkLaborService;
@@ -41,7 +41,7 @@ public class CloudWorkLaborController {
 	 */
 	@RequestMapping("laborList.do")
 	public ModelAndView laborList() {
-		return new ModelAndView("/work/laborList");
+		return new ModelAndView("/admin/labor/laborList");
 	}
 
 	/**
@@ -53,12 +53,12 @@ public class CloudWorkLaborController {
 	@RequestMapping(value = "laborList.json", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> laborList(@RequestBody CloudWorkLabor labor) {
-		Map<String, Object> result = new HashMap<>();
+		HashMap<String, Object> result = new HashMap<String, Object>();
 
 		List<CloudWorkLabor> laborList = cloudWorkLaborService.findList(labor);
 		result.put("rows", laborList);
 		result.put("total", cloudWorkLaborService.findListCount(labor));
-		Map<String, Object> resultq = new HashMap<>();
+		Map<String, Object> resultq = new HashMap<String, Object>();
 		resultq.put("model", result);
 		return resultq;
 	}
@@ -71,7 +71,7 @@ public class CloudWorkLaborController {
 	 */
 	@RequestMapping("laborEdit.do")
 	public ModelAndView laborEdit(@RequestParam(name="id", required = false) Long id){
-		ModelAndView mv = new ModelAndView("/work/laborEdit");
+		ModelAndView mv = new ModelAndView("/admin/labor/laborEdit");
 		if(null != id){
 			CloudWorkLabor labor = cloudWorkLaborService.findBeanById(id);
 			mv.addObject("labor", labor);
@@ -88,7 +88,7 @@ public class CloudWorkLaborController {
 	@RequestMapping(value = "updateLabor.json", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> updateCloudWorkLabor(@RequestBody CloudWorkLabor labor){
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<String, Object>();
 		Long laborId = labor.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", (laborId == null ? "新增" : "修改" ) + "加工活信息失败，请稍后再试！");
@@ -109,6 +109,7 @@ public class CloudWorkLaborController {
 			}
 		} else {
 			labor.setUpdateTime(new Date());
+			labor.setUpdateUser(1L);
 			int i = cloudWorkLaborService.update(labor);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -118,6 +119,60 @@ public class CloudWorkLaborController {
 			}
 		}
 
+		return result;
+	}
+
+	/**
+	 *
+	 * @Description: 加工活信息详情
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("laborGet.do")
+	public ModelAndView laborGet(@RequestParam(name="id", required = false) Long id){
+		ModelAndView mv = new ModelAndView("/admin/labor/laborGet");
+		if(null != id){
+			CloudWorkLabor labor = cloudWorkLaborService.findBeanById(id);
+			mv.addObject("labor", labor);
+		}
+		return mv;
+	}
+
+	/**
+	 *
+	 * @Description: 修改加工活信息状态
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "changeStatus.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> changeStatus(@RequestBody CloudWorkLabor labor){
+		Map<String, Object> result = new HashMap<>();
+		Long laborId = labor.getId();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", "操作失败，请稍后再试！");
+
+		Integer status = labor.getStatus();
+		if (status == null) {
+			log.info("修改加工活信息状态，获取状态值失败！ laborId" + laborId);
+			return result;
+		}
+
+		labor = cloudWorkLaborService.findBeanById(laborId);
+		if (labor == null) {
+			log.info("修改加工活信息状态！获取信息失败！laborId=" + laborId);
+			return result;
+		}
+
+		labor.setStatus(status);
+		labor.setUpdateTime(new Date());
+		labor.setUpdateUser(1L);
+		int i = cloudWorkLaborService.update(labor);
+		if (i == 1) {
+			result.put("errCode", Constants.result_success);
+			result.put("errMsg", "操作成功！");
+			log.info("修改加工活信息状态成功！laborId=" + laborId + ", status = " + status);
+		}
 		return result;
 	}
 

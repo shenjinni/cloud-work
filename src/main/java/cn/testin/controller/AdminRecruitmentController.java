@@ -25,9 +25,9 @@ import java.util.Map;
  *</pre>
  */
 @Controller
-@RequestMapping("/work/")
-public class CloudWorkRecruitmentController {
-	private static Logger log = Logger.getLogger(CloudWorkRecruitmentController.class);
+@RequestMapping("/admin/recruitment/")
+public class AdminRecruitmentController {
+	private static Logger log = Logger.getLogger(AdminRecruitmentController.class);
 
 	@Resource
 	private CloudWorkRecruitmentService cloudWorkRecruitmentService;
@@ -41,7 +41,7 @@ public class CloudWorkRecruitmentController {
 	 */
 	@RequestMapping("recruitmentList.do")
 	public ModelAndView recruitmentList() {
-		return new ModelAndView("/work/recruitmentList");
+		return new ModelAndView("/admin/recruitment/recruitmentList");
 	}
 
 	/**
@@ -53,12 +53,12 @@ public class CloudWorkRecruitmentController {
 	@RequestMapping(value = "recruitmentList.json", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> recruitmentList(@RequestBody CloudWorkRecruitment recruitment) {
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<String, Object>();
 
 		List<CloudWorkRecruitment> recruitmentList = cloudWorkRecruitmentService.findList(recruitment);
 		result.put("rows", recruitmentList);
 		result.put("total", cloudWorkRecruitmentService.findListCount(recruitment));
-		Map<String, Object> resultq = new HashMap<>();
+		Map<String, Object> resultq = new HashMap<String, Object>();
 		resultq.put("model", result);
 		return resultq;
 	}
@@ -71,7 +71,7 @@ public class CloudWorkRecruitmentController {
 	 */
 	@RequestMapping("recruitmentEdit.do")
 	public ModelAndView recruitmentEdit(@RequestParam(name="id", required = false) Long id){
-		ModelAndView mv = new ModelAndView("/work/recruitmentEdit");
+		ModelAndView mv = new ModelAndView("/admin/recruitment/recruitmentEdit");
 		if(null != id){
 			CloudWorkRecruitment recruitment = cloudWorkRecruitmentService.findBeanById(id);
 			mv.addObject("recruitment", recruitment);
@@ -88,7 +88,7 @@ public class CloudWorkRecruitmentController {
 	@RequestMapping(value = "updateRecruitment.json", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> updateCloudWorkRecruitment(@RequestBody CloudWorkRecruitment recruitment){
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<String, Object>();
 		Long recruitmentId = recruitment.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", (recruitmentId == null ? "新增" : "修改" ) + "招工信息信息失败，请稍后再试！");
@@ -109,6 +109,7 @@ public class CloudWorkRecruitmentController {
 			}
 		} else {
 			recruitment.setUpdateTime(new Date());
+			recruitment.setUpdateUser(1L);
 			int i = cloudWorkRecruitmentService.update(recruitment);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -118,6 +119,60 @@ public class CloudWorkRecruitmentController {
 			}
 		}
 
+		return result;
+	}
+
+	/**
+	 *
+	 * @Description: 招工信息详情
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("recruitmentGet.do")
+	public ModelAndView recruitmentGet(@RequestParam(name="id", required = false) Long id){
+		ModelAndView mv = new ModelAndView("/admin/recruitment/recruitmentGet");
+		if(null != id){
+			CloudWorkRecruitment recruitment = cloudWorkRecruitmentService.findBeanById(id);
+			mv.addObject("recruitment", recruitment);
+		}
+		return mv;
+	}
+
+	/**
+	 *
+	 * @Description: 修改招工信息状态
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "changeStatus.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> changeStatus(@RequestBody CloudWorkRecruitment recruitment){
+		Map<String, Object> result = new HashMap<>();
+		Long recruitmentId = recruitment.getId();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", "操作失败，请稍后再试！");
+
+		Integer status = recruitment.getStatus();
+		if (status == null) {
+			log.info("修改招工信息状态，获取状态值失败！ recruitmentId" + recruitmentId);
+			return result;
+		}
+
+		recruitment = cloudWorkRecruitmentService.findBeanById(recruitmentId);
+		if (recruitment == null) {
+			log.info("修改招工信息状态！获取信息失败！recruitmentId=" + recruitmentId);
+			return result;
+		}
+
+		recruitment.setStatus(status);
+		recruitment.setUpdateTime(new Date());
+		recruitment.setUpdateUser(1L);
+		int i = cloudWorkRecruitmentService.update(recruitment);
+		if (i == 1) {
+			result.put("errCode", Constants.result_success);
+			result.put("errMsg", "操作成功！");
+			log.info("修改招工信息状态成功！recruitmentId=" + recruitmentId + ", status = " + status);
+		}
 		return result;
 	}
 

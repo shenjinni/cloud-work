@@ -2,13 +2,11 @@ package cn.testin.controller;
 
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import cn.testin.bean.CloudWorkPerson;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkPersonService;
 import cn.testin.util.RandomUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -28,10 +26,10 @@ import java.util.Map;
  *</pre>
  */
 @Controller
-@RequestMapping("/work/")
-public class CloudWorkPersonController {
+@RequestMapping("/admin/person/")
+public class AdminPersonController {
 
-	private static Logger log = Logger.getLogger(CloudWorkPersonController.class);
+	private static Logger log = Logger.getLogger(AdminPersonController.class);
 
 	@Resource
 	private CloudWorkPersonService cloudWorkPersonService;
@@ -45,7 +43,7 @@ public class CloudWorkPersonController {
 	 */
 	@RequestMapping("personList.do")
 	public ModelAndView personList() {
-		return new ModelAndView("/work/personList");
+		return new ModelAndView("/admin/person/personList");
 	}
 
 	/**
@@ -57,12 +55,12 @@ public class CloudWorkPersonController {
 	@RequestMapping(value = "personList.json", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> personList(@RequestBody CloudWorkPerson person) {
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<String, Object>();
 
 		List<CloudWorkPerson> personList = cloudWorkPersonService.findList(person);
 		result.put("rows", personList);
 		result.put("total", cloudWorkPersonService.findListCount(person));
-		Map<String, Object> resultq = new HashMap<>();
+		Map<String, Object> resultq = new HashMap<String, Object>();
 		resultq.put("model", result);
 		return resultq;
 	}
@@ -75,7 +73,7 @@ public class CloudWorkPersonController {
 	 */
 	@RequestMapping("personEdit.do")
 	public ModelAndView personEdit(@RequestParam(name="id", required = false) Long id){
-		ModelAndView mv = new ModelAndView("/work/personEdit");
+		ModelAndView mv = new ModelAndView("/admin/person/personEdit");
 		if(null != id){
 			CloudWorkPerson person = cloudWorkPersonService.findBeanById(id);
 			mv.addObject("person", person);
@@ -92,7 +90,7 @@ public class CloudWorkPersonController {
 	@RequestMapping(value = "updatePerson.json", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> updateCloudWorkPerson(@RequestBody CloudWorkPerson person){
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<String, Object>();
 		Long personId = person.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", (personId == null ? "新增" : "修改" ) + "工人信息失败，请稍后再试！");
@@ -128,13 +126,13 @@ public class CloudWorkPersonController {
 
 	/**
 	 *
-	 * @Description: 新增/修改工人信息
+	 * @Description: 工人信息详情
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
 	@RequestMapping("personGet.do")
 	public ModelAndView personGet(@RequestParam(name="id", required = false) Long id){
-		ModelAndView mv = new ModelAndView("/work/personGet");
+		ModelAndView mv = new ModelAndView("/admin/person/personGet");
 		if(null != id){
 			CloudWorkPerson person = cloudWorkPersonService.findBeanById(id);
 			mv.addObject("person", person);
@@ -168,7 +166,6 @@ public class CloudWorkPersonController {
 			return result;
 		}
 
-		// 修改订单状态
 		person.setStatus(status);
 		person.setUpdateTime(new Date());
 		person.setUpdateUser(1L);

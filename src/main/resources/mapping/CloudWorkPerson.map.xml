@@ -75,11 +75,8 @@
 		<if test="mobile != null  and mobile != ''" >
 			and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
 		</if>
-		<if test="status != null  and status &lt; 2" >
+		<if test="status != null  and status != ''" >
 			and status = #{status,jdbcType=NUMERIC}
-		</if>
-		<if test="status != null  and status &gt;= 2" >
-			and status &gt;= 2
 		</if>
 		order by create_time DESC
 		<if test="offset != null and limit != null ">
@@ -102,11 +99,8 @@
 		<if test="mobile != null  and mobile != ''" >
 			and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
 		</if>
-		<if test="status != null  and status &lt; 2" >
+		<if test="status != null  and status != ''" >
 			and status = #{status,jdbcType=NUMERIC}
-		</if>
-		<if test="status != null  and status &gt;= 2" >
-			and status &gt;= 2
 		</if>
 	</select>
 </mapper>

@@ -64,7 +64,7 @@
             <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
             <div class="navbar-header">
                 <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a id="logo" href="${ctx }/" class="navbar-brand" ><span class="fa fa-rocket"></span>织里童装管理员</a></div>
+                <a id="logo" href="${ctx }/" class="navbar-brand" ><span class="fa fa-rocket"></span>织里童装管理后台</a></div>
             <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"> </a>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
                     <li class="dropdown topbar-user"><a data-hover="dropdown" href="${ctx }/admin/logout.do" class="dropdown-toggle" ><span class="hidden-xs">退出</span>&nbsp;</a>
@@ -92,22 +92,22 @@
 									</a>
 								</div>
 								<div style="display: none;" class="hh l-list1">
-									<a style="padding: 0px; padding-right: 20px;" href="${ctx}/work/personList.do">
+									<a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/person/personList.do">
 										<i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">工人管理</span>
 									</a>
 								</div>
                                 <div style="display: none;" class="hh l-list1">
-                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/work/recruitmentList.do">
+                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/recruitment/recruitmentList.do">
                                         <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">招工管理</span>
                                     </a>
                                 </div>
                                 <div style="display: none;" class="hh l-list1">
-                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/work/laborList.do">
+                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/labor/laborList.do">
                                         <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">加工活管理</span>
                                     </a>
                                 </div>
                                 <div style="display: none;" class="hh l-list1">
-                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/work/factoryList.do">
+                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/factory/factoryList.do">
                                         <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">加工厂管理</span>
                                     </a>
                                 </div>
@@ -120,7 +120,7 @@
                                     </a>
                                 </div>
                                 <div style="display: none;" class="hh l-list2">
-                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/work/personList.do">
+                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/personList.do">
                                         <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">用户管理</span>
                                     </a>
                                 </div>
@@ -133,7 +133,7 @@
                                     </a>
                                 </div>
                                 <div style="display: none;" class="hh l-list3">
-                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/work/personList.do">
+                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/vip/vipList.do">
                                         <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">平台收支</span>
                                     </a>
                                 </div>

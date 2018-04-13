@@ -2,22 +2,23 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file="left.jsp"%>
+<%@ include file="../left.jsp"%>
 <div id="page-wrapper">
 	<!--BEGIN TITLE & BREADCRUMB PAGE-->
-	<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
-		<div class="page-header pull-left">
-			<div class="page-title">工人管理</div>
-		</div>
-		<ol class="breadcrumb page-breadcrumb pull-right">
-			<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/work/home.do">
-				主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-			<li class="hidden"><a href="#">工人管理</a>&nbsp;&nbsp;<i
-					class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-			<li class="active">工人管理</li>
-		</ol>
-		<div class="clearfix"></div>
-	</div>
+    <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+        <div class="page-header pull-left">
+            <div class="page-title">招工管理</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li>
+                <i class="fa fa-home"></i>&nbsp;
+                <a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;
+                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="active">招工管理</li>
+        </ol>
+        <div class="clearfix"></div>
+    </div>
 	<!--END TITLE & BREADCRUMB PAGE-->
 	<!--BEGIN CONTENT-->
 	<div class="page-content">
@@ -28,19 +29,23 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="panel panel-azure">
-								<div class="panel-heading">工人管理列表
-									<a href="${ctx}/work/personEdit.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">新增</a>
+								<div class="panel-heading">招工管理列表
+									<a href="${ctx}/admin/recruitment/recruitmentEdit.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">新增</a>
 								</div>
 								<div class="panel-body">
 									<div class="row" style="float:right;padding-bottom: 10px;">
 										<div class="col-xs-12 col-md-12">
 											<form class="form-inline" id="form_sea">
 												<div class="form-group">
-													<label>工种</label>
-													<input type="text" class="form-control" name="workIntent">
+													<label>招工工种</label>
+													<input type="text" class="form-control" name="workType">
 												</div>
+                                                <div class="form-group">
+                                                    <label>招工单位</label>
+                                                    <input type="text" class="form-control" name="company">
+                                                </div>
 												<div class="form-group">
-													<label>姓名</label>
+													<label>联系人</label>
 													<input type="text" class="form-control" name="contactsName">
 												</div>
 												<div class="form-group">
@@ -60,7 +65,7 @@
 											</form>
 										</div>
 									</div>
-									<table class="table table-hover" id="personTable">
+									<table class="table table-hover" id="recruitmentTable">
 									</table>
 								</div>
 							</div>
@@ -70,36 +75,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 设置优先级弹层 -->
-	<div class="modal fade" id="upload_modal" style="padding-top:200px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
-		<div class="modal-dialog" style="width:1000px;" role="document" aria-hidden="true">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title"style="text-align: left;">设置优先级</h4>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<input type="hidden" id="beanId"/>
-						<div class="row">
-							<div class="col-md-6" style="width: 50%;">
-								<div class="form-group">
-									<label class="control-label">优先级：（数字2-999，数字越大，优先级越高）</label>
-									<div class="input-icon right">
-										<input type="text" class="form-control" maxlength="100" id="status" placeholder="请输入数字2-999，数字越大，优先级越高）"/>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" onclick="changePriority();">确定</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div>
-	</div>
+
 	<script type="text/javascript">
         $(".l-list1").show();
         $(document).ready(function(){
@@ -108,97 +84,100 @@
                 title: 'ID',
                 align:'center'
             },
-			{
-				field: 'workIntent',
-				title: '工种',
-				align:'center'
-			},
-			{
-				field: 'salary',
-				title: '薪资要求',
-				align:'center'
-			},
-			{
-				field: 'contactsName',
-				title: '姓名',
-				align:'center'
-			},
-			{
-				field: 'mobile',
-				title: '电话',
-				align:'center'
-			},
-			{
-				field: 'address',
-				title: '地址',
-				align:'center'
-			},
-			{
-				field: 'status',
-				title: '状态',
-				formatter : function(value, row, index) {
-                    if (row.status == 1) {
-                        return "正常";
-                    } else if (row.status >= 2) {
-                        return "置顶，优先级：" + row.status;
-                    } else if (row.status == -1) {
-                        return "关闭";
-                    } else {
-                        return "--";
-                    }
-				},
-				align:'center'
-			},
-			{
-				field: 'createTime',
-				title: '添加时间',
-				formatter : function(value, row, index) {
-					var createTime = new Date(row.createTime);
-					return createTime.format('yyyy-MM-dd');
-				},
-				align:'center'
-			},
-			{
-				field: 'updateTime',
-				title: '更新时间',
-				formatter : function(value, row, index) {
-					var updateTime = new Date(row.updateTime);
-					return updateTime.format('yyyy-MM-dd');
-				},
-				align:'center'
-			},
-			{
-				field: 'action',
-				title: '操作',
-				width: '300',
-				formatter:function(value,row,index){
-					var result;
-					if (row.status > 0) {
-                        result =
-                            '<a href="personEdit.do?id='+row.id+'">编辑</a>'+
-                            '&nbsp;&nbsp;<a href="personGet.do?id='+row.id+'">查看</a>'+
-                            '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="closeInfo('+row.id+')">关闭</a>'+
-                            '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="setPriority('+row.id+','+row.status+' )">优先级设置</a>';
-					} else {
-                        result =
-                            '<a href="personEdit.do?id='+row.id+'">编辑</a>'+
-                            '&nbsp;&nbsp;<a href="personGet.do?id='+row.id+'">查看</a>'+
-                            '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="openInfo('+row.id+')">开启</a>';
-					}
-					return result;
-				},
-				align:'center'
-			}]
+                {
+                    field: 'workType',
+                    title: '招工工种',
+                    align:'center'
+                },
+                {
+                    field: 'salary',
+                    title: '工资待遇',
+                    align:'center'
+                },
+                {
+                    field: 'company',
+                    title: '招工单位',
+                    align:'center'
+                },
+                {
+                    field: 'address',
+                    title: '地址',
+                    align:'center'
+                },
+                {
+                    field: 'contactsName',
+                    title: '联系人',
+                    align:'center'
+                },
+                {
+                    field: 'mobile',
+                    title: '电话',
+                    align:'center'
+                },
+                {
+                    field: 'status',
+                    title: '状态',
+                    formatter : function(value, row, index) {
+                        if (row.status == 1) {
+                            return "正常";
+                        } else if (row.status >= 2) {
+                            return "置顶，优先级：" + row.status;
+                        } else if (row.status == -1) {
+                            return "关闭";
+                        } else {
+                            return "--";
+                        }
+                    },
+                    align:'center'
+                },
+                {
+                    field: 'createTime',
+                    title: '添加时间',
+                    formatter : function(value, row, index) {
+                        var createTime = new Date(row.createTime);
+                        return createTime.format('yyyy-MM-dd');
+                    },
+                    align:'center'
+                },
+                {
+                    field: 'updateTime',
+                    title: '更新时间',
+                    formatter : function(value, row, index) {
+                        var updateTime = new Date(row.updateTime);
+                        return updateTime.format('yyyy-MM-dd');
+                    },
+                    align:'center'
+                },
+                {
+                    field: 'action',
+                    title: '操作',
+                    width: '300',
+                    formatter:function(value,row,index){
+                        var result;
+                        if (row.status > 0) {
+                            result =
+                                    '<a href="recruitmentEdit.do?id='+row.id+'">编辑</a>'+
+                                    '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="closeInfo('+row.id+')">关闭</a>'+
+                                    '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="setPriority('+row.id+','+row.status+' )">vip设置</a>';
+                        } else {
+                            result =
+                                    '<a href="recruitmentEdit.do?id='+row.id+'">编辑</a>'+
+                                    '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="openInfo('+row.id+')">开启</a>';
+                        }
+                        return result;
+                    },
+                    align:'center'
+                }]
             initTable();
 
             $('#button').click(function () {
-                $("#personTable").bootstrapTable('refresh', {url: 'personList.json'});
+                $("#recruitmentTable").bootstrapTable('refresh', {url: 'recruitmentList.json'});
             });
         });
 
         var initTable=function(){
-            $("#personTable").bootstrapTable({
-                url: 'personList.json',
+            $("#recruitmentTable").bootstrapTable({
+                url: 'recruitmentList.json',
                 method:"post",
                 striped: true,
                 cache: false,
@@ -247,7 +226,7 @@
             $("#beanId").val(beanId);
             $("#status").val(status);
             $('#upload_modal').modal('show');
-		}
+        }
 
         // 修改优先级
         function changePriority(){
@@ -282,7 +261,7 @@
                 success : function(res){
                     if("success" == res.errCode){
                         alert(res.errMsg);
-                        $("#personTable").bootstrapTable("destroy");
+                        $("#recruitmentTable").bootstrapTable("destroy");
                         initTable();
                     }
                 },
@@ -294,7 +273,6 @@
                 }
             });
         }
-
 	</script>
 </div>
 </body>

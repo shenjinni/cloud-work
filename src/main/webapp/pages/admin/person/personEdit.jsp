@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="left.jsp"%>
+<%@ include file="../left.jsp"%>
 <div>
 	<div id="page-wrapper">
 		<!--BEGIN TITLE & BREADCRUMB PAGE-->
 		<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 			<div class="page-header pull-left">
-				<div class="page-title">新增工人信息</div>
+				<div class="page-title">工人管理</div>
 			</div>
 			<ol class="breadcrumb page-breadcrumb pull-right">
-				<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-				<li class="hidden"><a href="#">Tables</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-				<li class="active">新增工人信息</li>
+				<li>
+					<i class="fa fa-home"></i>&nbsp;
+					<a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;
+					<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+				</li>
+				<li class="active">工人管理</li>
 			</ol>
 			<div class="clearfix"></div>
 		</div>
@@ -37,7 +40,7 @@
 												<c:otherwise>新增工人信息</c:otherwise>
 											</c:choose>
 
-											<a href="${ctx}/work/personList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
+											<a href="${ctx}/admin/person/personList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
 										</div>
 										<div class="panel-body pan">
 											<div class="form-body pal">

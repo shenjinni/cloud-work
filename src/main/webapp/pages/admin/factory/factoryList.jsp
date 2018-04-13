@@ -2,26 +2,18 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file="left.jsp"%>
-<style>
-	.hidd {
-		display:absolute;
-		left:-200px;
-		bottom:-100px
-	}
-</style>
+<%@ include file="../left.jsp"%>
 <div id="page-wrapper">
 	<!--BEGIN TITLE & BREADCRUMB PAGE-->
 	<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 		<div class="page-header pull-left">
-			<div class="page-title">加工活管理</div>
+			<div class="page-title">加工厂管理</div>
 		</div>
 		<ol class="breadcrumb page-breadcrumb pull-right">
-			<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/work/home.do">
+			<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/admin/home.do">
 				主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-			<li class="hidden"><a href="#">加工活管理</a>&nbsp;&nbsp;<i
-					class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-			<li class="active">加工活管理</li>
+
+			<li class="active">加工厂管理</li>
 		</ol>
 		<div class="clearfix"></div>
 	</div>
@@ -35,15 +27,15 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="panel panel-azure">
-								<div class="panel-heading">加工活管理列表
-									<a href="${ctx}/work/laborEdit.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">新增</a>
+								<div class="panel-heading">加工厂管理列表
+									<a href="${ctx}/admin/factory/factoryEdit.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">新增</a>
 								</div>
 								<div class="panel-body">
 									<div class="row" style="float:right;padding-bottom: 10px;">
 										<div class="col-xs-12 col-md-12">
 											<form class="form-inline" id="form_sea">
 												<div class="form-group">
-													<label>加工种类</label>
+													<label>承接加工种类</label>
 													<input type="text" class="form-control" name="workNeed">
 												</div>
 												<div class="form-group">
@@ -60,14 +52,14 @@
 														<option value="">--</option>
 														<option value="1">正常</option>
 														<option value="2">置顶</option>
-														<option value="3">关闭</option>
+														<option value="-1">关闭</option>
 													</select>
 												</div>
 												<button type="button" class="btn btn-primary" id="button">搜索</button>
 											</form>
 										</div>
 									</div>
-									<table class="table table-hover" id="laborTable">
+									<table class="table table-hover" id="factoryTable">
 									</table>
 								</div>
 							</div>
@@ -85,12 +77,12 @@
                 field: 'id',
                 title: 'ID',
                 align:'center'
-            },
+            	},
 				{
 					field: 'workNeed',
-					title: '加工种类',
+					title: '承接加工种类',
 					align:'center'
-            	},
+				},
                 {
                     field: 'contactsName',
                     title: '联系人',
@@ -107,13 +99,8 @@
                     align:'center'
                 },
                 {
-                    field: 'factoryName',
-                    title: '工厂名',
-                    align:'center'
-                },
-                {
-                    field: 'number',
-                    title: '加工数量',
+                    field: 'scale',
+                    title: '规模人数',
                     align:'center'
                 },
                 {
@@ -123,7 +110,7 @@
                         if (row.status == 1) {
                             return "正常";
                         } else if (row.status >= 2) {
-                            return "置顶，优先级：" + row.status;
+                            return "置顶";
                         } else if (row.status == -1) {
                             return "关闭";
                         } else {
@@ -137,7 +124,16 @@
                     title: '添加时间',
                     formatter : function(value, row, index) {
                         var createTime = new Date(row.createTime);
-                        return createTime.format('yyyy-MM-dd hh:mm:ss');
+                        return createTime.format('yyyy-MM-dd');
+                    },
+                    align:'center'
+                },
+                {
+                    field: 'updateTime',
+                    title: '更新时间',
+                    formatter : function(value, row, index) {
+                        var updateTime = new Date(row.updateTime);
+                        return updateTime.format('yyyy-MM-dd');
                     },
                     align:'center'
                 },
@@ -146,9 +142,17 @@
                     title: '操作',
                     width: '300',
                     formatter:function(value,row,index){
-                        var result =
-                            '<a href="laborEdit.do?id='+row.id+'">编辑</a>'+
-                            '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="delLabor('+row.id+')">删除</a>';
+                        var result;
+                        if (row.status > 0) {
+                            result =
+                                    '<a href="factoryEdit.do?id='+row.id+'">编辑</a>'+
+                                    '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="closeInfo('+row.id+')">关闭</a>'+
+                                    '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="setPriority('+row.id+','+row.status+' )">vip设置</a>';
+                        } else {
+                            result =
+                                    '<a href="factoryEdit.do?id='+row.id+'">编辑</a>'+
+                                    '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="openInfo('+row.id+')">开启</a>';
+                        }
                         return result;
                     },
                     align:'center'
@@ -156,13 +160,13 @@
             initTable();
 
             $('#button').click(function () {
-                $("#laborTable").bootstrapTable('refresh', {url: 'laborList.json'});
+                $("#factoryTable").bootstrapTable('refresh', {url: 'factoryList.json'});
             });
         });
 
         var initTable=function(){
-            $("#laborTable").bootstrapTable({
-                url: 'laborList.json',
+            $("#factoryTable").bootstrapTable({
+                url: 'factoryList.json',
                 method:"post",
                 striped: true,
                 cache: false,
@@ -206,31 +210,53 @@
             return json;
         }
 
-        var delLabor = function(id){
+        // 修改优先级弹层显示
+        function setPriority(beanId, status) {
+            $("#beanId").val(beanId);
+            $("#status").val(status);
+            $('#upload_modal').modal('show');
+        }
 
-            if (window.confirm("确认删除么？")) {
-                dc(id);
+        // 修改优先级
+        function changePriority(){
+            var beanId = $("#beanId").val();
+            var status = $("#status").val();
+            changeStatus(beanId, status);
+            $('#upload_modal').modal('hide');
+        }
+
+        // 开启此信息
+        function openInfo(beanId){
+            if (window.confirm("开启后将在前台显示，确认开启？")) {
+                changeStatus(beanId, 1);
             }
         }
 
-        // 删除操作
-        function dc(id){
+        // 关闭此信息
+        function closeInfo(beanId){
+            if (window.confirm("关闭后将不在前台显示，确认关闭？")) {
+                changeStatus(beanId, -1);
+            }
+        }
+
+        // 关闭此信息
+        function changeStatus(beanId, status){
             $.ajax({
                 type : "POST",
-                url : "deleteLabor.json",
+                url : "changeStatus.json",
                 dataType : "json",
                 contentType : 'application/json;charset=UTF-8',
-                data : JSON.stringify({"laborId":id}),
+                data : JSON.stringify({"id":beanId,"status":status}),
                 success : function(res){
-                    alert(res.model.errMsg);
-                    if("success" == res.model.errCode){
-                        $("#laborTable").bootstrapTable("destroy");
+                    if("success" == res.errCode){
+                        alert(res.errMsg);
+                        $("#factoryTable").bootstrapTable("destroy");
                         initTable();
                     }
                 },
                 error : function(XMLHttpRequest, textStatus,
                                  errorThrown) {
-                    alert("删除失败！");
+                    alert("操作失败！");
                 },
                 complete : function(XMLHttpRequest, textStatus) {
                 }

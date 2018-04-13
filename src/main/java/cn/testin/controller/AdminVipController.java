@@ -25,10 +25,10 @@ import java.util.Map;
  *</pre>
  */
 @Controller
-@RequestMapping("/work/")
-public class CloudWorkVipController {
+@RequestMapping("/admin/vip/")
+public class AdminVipController {
 
-	private static Logger log = Logger.getLogger(CloudWorkVipController.class);
+	private static Logger log = Logger.getLogger(AdminVipController.class);
 
 	@Resource
 	private CloudWorkVipService cloudWorkVipService;
@@ -42,7 +42,7 @@ public class CloudWorkVipController {
 	 */
 	@RequestMapping("vipList.do")
 	public ModelAndView vipList() {
-		return new ModelAndView("/work/vipList");
+		return new ModelAndView("/admin/vip/vipList");
 	}
 
 	/**
