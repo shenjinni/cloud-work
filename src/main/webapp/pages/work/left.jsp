@@ -88,7 +88,7 @@
 							<li class="">
 								<div style="padding: 15px; border-bottom: 1px solid #37B3E8; cursor: pointer;">
 									<a style="padding: 0px;" href="#">
-										<span class="menu-title">平台管理</span><i style="float: right;" class="fa fa-angle-double-down fa-fw"><div class="icon-bg bg-orange"></div></i>
+										<span class="menu-title">业务管理</span><i style="float: right;" class="fa fa-angle-double-down fa-fw"><div class="icon-bg bg-orange"></div></i>
 									</a>
 								</div>
 								<div style="display: none;" class="hh l-list1">
@@ -112,7 +112,32 @@
                                     </a>
                                 </div>
 							</li>
+                            <div class="clearfix"></div>
+                            <li class="">
+                                <div style="padding: 15px; border-bottom: 1px solid #37B3E8; cursor: pointer;">
+                                    <a style="padding: 0px;" href="#">
+                                        <span class="menu-title">用户管理</span><i style="float: right;" class="fa fa-angle-double-down fa-fw"><div class="icon-bg bg-orange"></div></i>
+                                    </a>
+                                </div>
+                                <div style="display: none;" class="hh l-list2">
+                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/work/personList.do">
+                                        <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">用户管理</span>
+                                    </a>
+                                </div>
 							</li>
+                            <div class="clearfix"></div>
+                            <li class="">
+                                <div style="padding: 15px; border-bottom: 1px solid #37B3E8; cursor: pointer;">
+                                    <a style="padding: 0px;" href="#">
+                                        <span class="menu-title">财务管理</span><i style="float: right;" class="fa fa-angle-double-down fa-fw"><div class="icon-bg bg-orange"></div></i>
+                                    </a>
+                                </div>
+                                <div style="display: none;" class="hh l-list3">
+                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/work/personList.do">
+                                        <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">平台收支</span>
+                                    </a>
+                                </div>
+                            </li>
 						<%--</shiro:hasRole>--%>
                 	</ul>
             	</div>

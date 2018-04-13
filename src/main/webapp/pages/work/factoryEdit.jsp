@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="left.jsp"%>
-<script type="text/javascript" charset="utf-8" src="${ctx}/common/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="${ctx}/common/ueditor/ueditor.all.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="${ctx}/common/ueditor/lang/zh-cn/zh-cn.js"></script>
 <div>
 	<div id="page-wrapper">
 		<!--BEGIN TITLE & BREADCRUMB PAGE-->
@@ -47,9 +44,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="factory_title" class="control-projectel">联系人</projectel>
+															<projectel for="factory_title" class="control-projectel">承接加工种类</projectel>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="contactsName" value="${factory.contactsName }" placeholder="请输入联系人"/>
+																<input type="text" class="form-control" maxlength="20" name="workNeed" value="${factory.workNeed }" placeholder="请输入承接加工种类"/>
 															</div>
 														</div>
 													</div>
@@ -57,9 +54,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="factory_title" class="control-projectel">地址</projectel>
+															<projectel for="factory_title" class="control-projectel">联系人</projectel>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="address" value="${factory.address}" placeholder="请输入地址"/>
+																<input type="text" class="form-control" maxlength="20" name="contactsName" value="${factory.contactsName }" placeholder="请输入联系人"/>
 															</div>
 														</div>
 													</div>
@@ -77,9 +74,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="factory_title" class="control-projectel">薪资</projectel>
+															<projectel for="factory_title" class="control-projectel">地址</projectel>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="salary" value="${factory.salary }" placeholder="请输入薪资"/>
+																<input type="text" class="form-control" maxlength="20" name="address" value="${factory.address}" placeholder="请输入地址"/>
 															</div>
 														</div>
 													</div>
@@ -87,13 +84,24 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="factory_title" class="control-projectel">需求</projectel>
+															<projectel for="factory_title" class="control-projectel">规模人数</projectel>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="workNeed" value="${factory.workNeed }" placeholder="请输入需求"/>
+																<input type="text" class="form-control" maxlength="20" name="scale" value="${factory.scale }" placeholder="请输入规模人数"/>
 															</div>
 														</div>
 													</div>
 												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<projectel for="factory_title" class="control-projectel">补充说明</projectel>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="note" value="${factory.note }" placeholder="请输入补充说明"/>
+															</div>
+														</div>
+													</div>
+												</div>
+
 											</div>
 											<div class="form-actions text-center pal">
 												<button type="button" class="btn btn-primary" id="submit">保存</button>
@@ -119,6 +127,11 @@
         $("#submit").click(function() {
             var obj = $('#form').toObject({mode : 'first'});
 
+            var workNeed = obj.workNeed;
+            if(v_alert_isNull(workNeed, '承接加工种类')){
+                return;
+            }
+
             var contactsName = obj.contactsName;
             if(v_alert_isNull(contactsName, '联系人')){
                 return;
@@ -126,21 +139,6 @@
 
             var address = obj.address;
             if(v_alert_isNull(address, '地址')){
-                return;
-            }
-
-            var mobile = obj.mobile;
-            if(v_alert_isNull(mobile, '电话')){
-                return;
-            }
-
-            var salary = obj.salary;
-            if(v_alert_isNull(salary, '薪资')){
-                return;
-            }
-
-            var workNeed = obj.workNeed;
-            if(v_alert_isNull(workNeed, '需求')){
                 return;
             }
 

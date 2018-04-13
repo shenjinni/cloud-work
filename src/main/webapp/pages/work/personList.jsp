@@ -3,13 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ include file="left.jsp"%>
-<style>
-	.hidd {
-		display:absolute;
-		left:-200px;
-		bottom:-100px
-	}
-</style>
 <div id="page-wrapper">
 	<!--BEGIN TITLE & BREADCRUMB PAGE-->
 	<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
@@ -43,7 +36,11 @@
 										<div class="col-xs-12 col-md-12">
 											<form class="form-inline" id="form_sea">
 												<div class="form-group">
-													<label>联系人</label>
+													<label>工种</label>
+													<input type="text" class="form-control" name="workIntent">
+												</div>
+												<div class="form-group">
+													<label>姓名</label>
 													<input type="text" class="form-control" name="contactsName">
 												</div>
 												<div class="form-group">
@@ -51,21 +48,12 @@
 													<input type="text" class="form-control" name="mobile">
 												</div>
 												<div class="form-group">
-													<label>工作意向</label>
-													<input type="text" class="form-control" name="workIntent">
-												</div>
-												<div class="form-group">
-													<label>薪资水平</label>
-													<input type="text" class="form-control" name="salaryBegin">-
-													<input type="text" class="form-control" name="salaryEnd">
-												</div>
-												<div class="form-group">
-													<label for="person_type">工人类型 </label>
-													<select class="form-control" id="person_type" name="personType">
+													<label>状态</label>
+													<select class="form-control" name="status">
 														<option value="">--</option>
-														<option value="1">普通用户</option>
-														<option value="2">付费用户</option>
-														<option value="3">黑名单</option>
+														<option value="1">正常</option>
+														<option value="2">置顶</option>
+														<option value="-1">关闭</option>
 													</select>
 												</div>
 												<button type="button" class="btn btn-primary" id="button">搜索</button>
@@ -82,9 +70,38 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- 设置优先级弹层 -->
+	<div class="modal fade" id="upload_modal" style="padding-top:200px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+		<div class="modal-dialog" style="width:1000px;" role="document" aria-hidden="true">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title"style="text-align: left;">设置优先级</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<input type="hidden" id="beanId"/>
+						<div class="row">
+							<div class="col-md-6" style="width: 50%;">
+								<div class="form-group">
+									<label class="control-label">优先级：（数字2-999，数字越大，优先级越高）</label>
+									<div class="input-icon right">
+										<input type="text" class="form-control" maxlength="100" id="status" placeholder="请输入数字2-999，数字越大，优先级越高）"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="changePriority();">确定</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div>
+	</div>
 	<script type="text/javascript">
-        $(".l-list5").show();
+        $(".l-list1").show();
         $(document).ready(function(){
             cloumn=[{
                 field: 'id',
@@ -92,13 +109,18 @@
                 align:'center'
             },
 			{
-				field: 'contactsName',
-				title: '联系人',
+				field: 'workIntent',
+				title: '工种',
 				align:'center'
 			},
 			{
-				field: 'address',
-				title: '地址',
+				field: 'salary',
+				title: '薪资要求',
+				align:'center'
+			},
+			{
+				field: 'contactsName',
+				title: '姓名',
 				align:'center'
 			},
 			{
@@ -107,28 +129,23 @@
 				align:'center'
 			},
 			{
-				field: 'salary',
-				title: '薪资',
-				align:'center'
-			},
-			{
-				field: 'workIntent',
-				title: '工作意向',
+				field: 'address',
+				title: '地址',
 				align:'center'
 			},
 			{
 				field: 'status',
-				title: '身份',
+				title: '状态',
 				formatter : function(value, row, index) {
-					if (row.status == 1) {
-						return "普通工人";
-					} else if (row.status == 2) {
-						return "黑名单";
-					} else if (row.status == 3) {
-						return "付费用户";
-					} else {
-						return "--";
-					}
+                    if (row.status == 1) {
+                        return "正常";
+                    } else if (row.status >= 2) {
+                        return "置顶，优先级：" + row.status;
+                    } else if (row.status == -1) {
+                        return "关闭";
+                    } else {
+                        return "--";
+                    }
 				},
 				align:'center'
 			},
@@ -142,13 +159,32 @@
 				align:'center'
 			},
 			{
+				field: 'updateTime',
+				title: '更新时间',
+				formatter : function(value, row, index) {
+					var updateTime = new Date(row.updateTime);
+					return updateTime.format('yyyy-MM-dd');
+				},
+				align:'center'
+			},
+			{
 				field: 'action',
 				title: '操作',
 				width: '300',
 				formatter:function(value,row,index){
-					var result =
-						'<a href="personEdit.do?id='+row.id+'">编辑</a>'+
-						'&nbsp;&nbsp;<a href="javascript:void(0);" onclick="delPerson('+row.id+')">删除</a>';
+					var result;
+					if (row.status > 0) {
+                        result =
+                            '<a href="personEdit.do?id='+row.id+'">编辑</a>'+
+                            '&nbsp;&nbsp;<a href="personGet.do?id='+row.id+'">查看</a>'+
+                            '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="closeInfo('+row.id+')">关闭</a>'+
+                            '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="setPriority('+row.id+','+row.status+' )">优先级设置</a>';
+					} else {
+                        result =
+                            '<a href="personEdit.do?id='+row.id+'">编辑</a>'+
+                            '&nbsp;&nbsp;<a href="personGet.do?id='+row.id+'">查看</a>'+
+                            '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="openInfo('+row.id+')">开启</a>';
+					}
 					return result;
 				},
 				align:'center'
@@ -206,31 +242,53 @@
             return json;
         }
 
-        var delPerson = function(id){
+        // 修改优先级弹层显示
+        function setPriority(beanId, status) {
+            $("#beanId").val(beanId);
+            $("#status").val(status);
+            $('#upload_modal').modal('show');
+		}
 
-            if (window.confirm("确认删除么？")) {
-                dc(id);
+        // 修改优先级
+        function changePriority(){
+            var beanId = $("#beanId").val();
+            var status = $("#status").val();
+            changeStatus(beanId, status);
+            $('#upload_modal').modal('hide');
+        }
+
+        // 开启此信息
+        function openInfo(beanId){
+            if (window.confirm("开启后将在前台显示，确认开启？")) {
+                changeStatus(beanId, 1);
             }
         }
 
-        // 删除操作
-        function dc(id){
+        // 关闭此信息
+        function closeInfo(beanId){
+            if (window.confirm("关闭后将不在前台显示，确认关闭？")) {
+                changeStatus(beanId, -1);
+            }
+        }
+
+        // 关闭此信息
+        function changeStatus(beanId, status){
             $.ajax({
                 type : "POST",
-                url : "deletePerson.json",
+                url : "changeStatus.json",
                 dataType : "json",
                 contentType : 'application/json;charset=UTF-8',
-                data : JSON.stringify({"personId":id}),
+                data : JSON.stringify({"id":beanId,"status":status}),
                 success : function(res){
-                    alert(res.model.errMsg);
-                    if("success" == res.model.errCode){
+                    if("success" == res.errCode){
+                        alert(res.errMsg);
                         $("#personTable").bootstrapTable("destroy");
                         initTable();
                     }
                 },
                 error : function(XMLHttpRequest, textStatus,
                                  errorThrown) {
-                    alert("删除失败！");
+                    alert("操作失败！");
                 },
                 complete : function(XMLHttpRequest, textStatus) {
                 }

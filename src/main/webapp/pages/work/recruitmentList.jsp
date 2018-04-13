@@ -43,25 +43,24 @@
 										<div class="col-xs-12 col-md-12">
 											<form class="form-inline" id="form_sea">
 												<div class="form-group">
-													<label for="recruitment_title">招工名称</label>
-													<input type="text" class="form-control" id="recruitment_title" name="recruitmentTitle">
+													<label>招工工种</label>
+													<input type="text" class="form-control" name="workType">
 												</div>
 												<div class="form-group">
-													<label for="recruitment_type">招工类型 </label>
-													<select class="form-control" id="recruitment_type" name="recruitmentType">
+													<label>联系人</label>
+													<input type="text" class="form-control" name="contactsName">
+												</div>
+												<div class="form-group">
+													<label>电话</label>
+													<input type="text" class="form-control" name="mobile">
+												</div>
+												<div class="form-group">
+													<label>状态</label>
+													<select class="form-control" name="status">
 														<option value="">--</option>
-														<option value="1">新闻咨询</option>
-														<option value="2">展会信息</option>
-														<option value="3">政策法规</option>
-														<option value="4">规格介绍</option>
-														<option value="5">帮助文档</option>
-														<option value="6">APP新闻资讯</option>
-														<option value="7">检测助手</option>
-														<option value="8">业务助手</option>
-														<option value="9">检测标准</option>
-														<option value="10">检测方法</option>
-														<option value="11">资质要求</option>
-														<option value="12">平台快讯</option>
+														<option value="1">正常</option>
+														<option value="2">置顶</option>
+														<option value="3">关闭</option>
 													</select>
 												</div>
 												<button type="button" class="btn btn-primary" id="button">搜索</button>
@@ -80,16 +79,26 @@
 	</div>
 
 	<script type="text/javascript">
-        $(".l-list5").show();
+        $(".l-list1").show();
         $(document).ready(function(){
             cloumn=[{
                 field: 'id',
-                title: '招工ID',
+                title: 'ID',
                 align:'center'
             },
                 {
+                    field: 'workType',
+                    title: '招工工种',
+                    align:'center'
+                },
+                {
+                    field: 'salary',
+                    title: '工资待遇',
+                    align:'center'
+                },
+                {
                     field: 'company',
-                    title: '公司',
+                    title: '招工单位',
                     align:'center'
                 },
                 {
@@ -98,30 +107,25 @@
                     align:'center'
                 },
                 {
+                    field: 'contactsName',
+                    title: '联系人',
+                    align:'center'
+                },
+                {
                     field: 'mobile',
                     title: '电话',
                     align:'center'
                 },
                 {
-                    field: 'salary',
-                    title: '薪资',
-                    align:'center'
-                },
-                {
-                    field: 'workType',
-                    title: '个人工作意向',
-                    align:'center'
-                },
-                {
                     field: 'status',
-                    title: '招工分类',
+                    title: '状态',
                     formatter : function(value, row, index) {
                         if (row.status == 1) {
-                            return "新闻咨询";
-                        } else if (row.status == 2) {
-                            return "展会信息";
-                        } else if (row.status == 3) {
-                            return "政策法规";
+                            return "正常";
+                        } else if (row.status >= 2) {
+                            return "置顶，优先级：" + row.status;
+                        } else if (row.status == -1) {
+                            return "关闭";
                         } else {
                             return "--";
                         }

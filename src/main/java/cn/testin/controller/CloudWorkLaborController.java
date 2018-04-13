@@ -95,7 +95,7 @@ public class CloudWorkLaborController {
 
 		if (laborId == null) {
 			labor.setId(RandomUtils.g());
-			labor.setStatus((short) 1);
+			labor.setStatus(1);
 			labor.setCreateTime(new Date());
 			labor.setCreateUser(1L);
 			labor.setUpdateTime(new Date());

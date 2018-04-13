@@ -43,25 +43,24 @@
 										<div class="col-xs-12 col-md-12">
 											<form class="form-inline" id="form_sea">
 												<div class="form-group">
-													<label for="labor_title">加工活名称</label>
-													<input type="text" class="form-control" id="labor_title" name="laborTitle">
+													<label>加工种类</label>
+													<input type="text" class="form-control" name="workNeed">
 												</div>
 												<div class="form-group">
-													<label for="labor_type">加工活类型 </label>
-													<select class="form-control" id="labor_type" name="laborType">
+													<label>联系人</label>
+													<input type="text" class="form-control" name="contactsName">
+												</div>
+												<div class="form-group">
+													<label>电话</label>
+													<input type="text" class="form-control" name="mobile">
+												</div>
+												<div class="form-group">
+													<label>状态</label>
+													<select class="form-control" name="status">
 														<option value="">--</option>
-														<option value="1">新闻咨询</option>
-														<option value="2">展会信息</option>
-														<option value="3">政策法规</option>
-														<option value="4">规格介绍</option>
-														<option value="5">帮助文档</option>
-														<option value="6">APP新闻资讯</option>
-														<option value="7">检测助手</option>
-														<option value="8">业务助手</option>
-														<option value="9">检测标准</option>
-														<option value="10">检测方法</option>
-														<option value="11">资质要求</option>
-														<option value="12">平台快讯</option>
+														<option value="1">正常</option>
+														<option value="2">置顶</option>
+														<option value="3">关闭</option>
 													</select>
 												</div>
 												<button type="button" class="btn btn-primary" id="button">搜索</button>
@@ -80,21 +79,21 @@
 	</div>
 
 	<script type="text/javascript">
-        $(".l-list5").show();
+        $(".l-list1").show();
         $(document).ready(function(){
             cloumn=[{
                 field: 'id',
-                title: '加工活ID',
+                title: 'ID',
                 align:'center'
             },
+				{
+					field: 'workNeed',
+					title: '加工种类',
+					align:'center'
+            	},
                 {
                     field: 'contactsName',
                     title: '联系人',
-                    align:'center'
-                },
-                {
-                    field: 'address',
-                    title: '地址',
                     align:'center'
                 },
                 {
@@ -103,25 +102,30 @@
                     align:'center'
                 },
                 {
-                    field: 'salary',
-                    title: '薪资',
+                    field: 'address',
+                    title: '地址',
                     align:'center'
                 },
                 {
-                    field: 'workNeed',
-                    title: '需求',
+                    field: 'factoryName',
+                    title: '工厂名',
+                    align:'center'
+                },
+                {
+                    field: 'number',
+                    title: '加工数量',
                     align:'center'
                 },
                 {
                     field: 'status',
-                    title: '加工活分类',
+                    title: '状态',
                     formatter : function(value, row, index) {
                         if (row.status == 1) {
-                            return "新闻咨询";
-                        } else if (row.status == 2) {
-                            return "展会信息";
-                        } else if (row.status == 3) {
-                            return "政策法规";
+                            return "正常";
+                        } else if (row.status >= 2) {
+                            return "置顶，优先级：" + row.status;
+                        } else if (row.status == -1) {
+                            return "关闭";
                         } else {
                             return "--";
                         }

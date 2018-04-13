@@ -14,24 +14,28 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 public class CloudWorkPerson extends BasicPage
 {
-	// id
+	// 主键
 	protected Long  id;
-	// 个人工作意向
+	// 个人工作意向、工种
 	protected String  workIntent;
-	// address
-	protected String  address;
-	// 联系人
+	// 薪资要求
+	protected String  salary;
+	// 姓名
 	protected String  contactsName;
 	// 电话
 	protected String  mobile;
-	// 薪资水平
-	protected Double  salary;
-	// 薪资水平
-	protected Double  salaryBegin;
-	// 薪资水平
-	protected Double  salaryEnd;
-	// 状态
-	protected Short  status;
+	// 年龄
+	protected String  age;
+	// 生肖
+	protected String  zodiac;
+	// 性别 1：男 2：女
+	protected Short  sex;
+	// 哪里人
+	protected String  address;
+	// 备注
+	protected String  note;
+	// 状态 1：普通开启 2：置顶 -1：关闭
+	protected Integer  status;
 	// 用户id
 	protected Long  createUser;
 	// 发布时间
@@ -40,8 +44,48 @@ public class CloudWorkPerson extends BasicPage
 	protected java.util.Date  updateTime;
 	// update_user
 	protected Long  updateUser;
-
+	// 前台模糊查询条件
 	protected String searchText;
+
+	public String getSalary() {
+		return salary;
+	}
+
+	public void setSalary(String salary) {
+		this.salary = salary;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getZodiac() {
+		return zodiac;
+	}
+
+	public void setZodiac(String zodiac) {
+		this.zodiac = zodiac;
+	}
+
+	public Short getSex() {
+		return sex;
+	}
+
+	public void setSex(Short sex) {
+		this.sex = sex;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
 
 	public String getSearchText() {
 		return searchText;
@@ -51,21 +95,7 @@ public class CloudWorkPerson extends BasicPage
 		this.searchText = searchText;
 	}
 
-	public Double getSalaryBegin() {
-		return salaryBegin;
-	}
 
-	public void setSalaryBegin(Double salaryBegin) {
-		this.salaryBegin = salaryBegin;
-	}
-
-	public Double getSalaryEnd() {
-		return salaryEnd;
-	}
-
-	public void setSalaryEnd(Double salaryEnd) {
-		this.salaryEnd = salaryEnd;
-	}
 
 	public void setId(Long id)
 	{
@@ -127,19 +157,8 @@ public class CloudWorkPerson extends BasicPage
 	{
 		return this.mobile;
 	}
-	public void setSalary(Double salary) 
-	{
-		this.salary = salary;
-	}
-	/**
-	 * 返回 薪资水平
-	 * @return
-	 */
-	public Double getSalary() 
-	{
-		return this.salary;
-	}
-	public void setStatus(Short status) 
+
+	public void setStatus(Integer status)
 	{
 		this.status = status;
 	}
@@ -147,7 +166,7 @@ public class CloudWorkPerson extends BasicPage
 	 * 返回 状态
 	 * @return
 	 */
-	public Short getStatus() 
+	public Integer getStatus()
 	{
 		return this.status;
 	}

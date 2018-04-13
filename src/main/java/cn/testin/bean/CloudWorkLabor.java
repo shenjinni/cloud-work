@@ -16,16 +16,24 @@ public class CloudWorkLabor extends BasicPage
 {
 	// 主键
 	protected Long  id;
-	// 需求
+	// 需求、需要加工种类
 	protected String  workNeed;
 	// 联系人
 	protected String  contactsName;
 	// 电话
 	protected String  mobile;
-	// 薪资水平
-	protected Double  salary;
-	// 状态
-	protected Short  status;
+	// 地址
+	protected String  address;
+	// 工厂名
+	protected String  factoryName;
+	// 加工数量
+	protected String  number;
+	// 备注
+	protected String  note;
+	// 薪资水平、目前未启用该字段
+	protected String  salary;
+	// 状态 -1：关闭  1：正常 2及以上：置顶 状态数字越大，优先级越高
+	protected Integer  status;
 	// 创建人
 	protected Long  createUser;
 	// 发布时间
@@ -34,27 +42,6 @@ public class CloudWorkLabor extends BasicPage
 	protected java.util.Date  updateTime;
 	// 修改者
 	protected Long  updateUser;
-	// 薪资水平
-	protected Double  salaryBegin;
-	// 薪资水平
-	protected Double  salaryEnd;
-
-	public Double getSalaryBegin() {
-		return salaryBegin;
-	}
-
-	public void setSalaryBegin(Double salaryBegin) {
-		this.salaryBegin = salaryBegin;
-	}
-
-	public Double getSalaryEnd() {
-		return salaryEnd;
-	}
-
-	public void setSalaryEnd(Double salaryEnd) {
-		this.salaryEnd = salaryEnd;
-	}
-
 	public void setId(Long id)
 	{
 		this.id = id;
@@ -63,23 +50,23 @@ public class CloudWorkLabor extends BasicPage
 	 * 返回 主键
 	 * @return
 	 */
-	public Long getId() 
+	public Long getId()
 	{
 		return this.id;
 	}
-	public void setWorkNeed(String workNeed) 
+	public void setWorkNeed(String workNeed)
 	{
 		this.workNeed = workNeed;
 	}
 	/**
-	 * 返回 需求
+	 * 返回 需求、需要加工种类
 	 * @return
 	 */
-	public String getWorkNeed() 
+	public String getWorkNeed()
 	{
 		return this.workNeed;
 	}
-	public void setContactsName(String contactsName) 
+	public void setContactsName(String contactsName)
 	{
 		this.contactsName = contactsName;
 	}
@@ -87,11 +74,11 @@ public class CloudWorkLabor extends BasicPage
 	 * 返回 联系人
 	 * @return
 	 */
-	public String getContactsName() 
+	public String getContactsName()
 	{
 		return this.contactsName;
 	}
-	public void setMobile(String mobile) 
+	public void setMobile(String mobile)
 	{
 		this.mobile = mobile;
 	}
@@ -99,35 +86,83 @@ public class CloudWorkLabor extends BasicPage
 	 * 返回 电话
 	 * @return
 	 */
-	public String getMobile() 
+	public String getMobile()
 	{
 		return this.mobile;
 	}
-	public void setSalary(Double salary) 
+	public void setAddress(String address)
+	{
+		this.address = address;
+	}
+	/**
+	 * 返回 地址
+	 * @return
+	 */
+	public String getAddress()
+	{
+		return this.address;
+	}
+	public void setFactoryName(String factoryName)
+	{
+		this.factoryName = factoryName;
+	}
+	/**
+	 * 返回 工厂名
+	 * @return
+	 */
+	public String getFactoryName()
+	{
+		return this.factoryName;
+	}
+	public void setNumber(String number)
+	{
+		this.number = number;
+	}
+	/**
+	 * 返回 加工数量
+	 * @return
+	 */
+	public String getNumber()
+	{
+		return this.number;
+	}
+	public void setNote(String note)
+	{
+		this.note = note;
+	}
+	/**
+	 * 返回 备注
+	 * @return
+	 */
+	public String getNote()
+	{
+		return this.note;
+	}
+	public void setSalary(String salary)
 	{
 		this.salary = salary;
 	}
 	/**
-	 * 返回 薪资水平
+	 * 返回 薪资水平、目前未启用该字段
 	 * @return
 	 */
-	public Double getSalary() 
+	public String getSalary()
 	{
 		return this.salary;
 	}
-	public void setStatus(Short status) 
+	public void setStatus(Integer status)
 	{
 		this.status = status;
 	}
 	/**
-	 * 返回 状态
+	 * 返回 状态 -1：关闭  1：正常 2及以上：置顶 状态数字越大，优先级越高
 	 * @return
 	 */
-	public Short getStatus() 
+	public Integer getStatus()
 	{
 		return this.status;
 	}
-	public void setCreateUser(Long createUser) 
+	public void setCreateUser(Long createUser)
 	{
 		this.createUser = createUser;
 	}
@@ -135,11 +170,11 @@ public class CloudWorkLabor extends BasicPage
 	 * 返回 创建人
 	 * @return
 	 */
-	public Long getCreateUser() 
+	public Long getCreateUser()
 	{
 		return this.createUser;
 	}
-	public void setCreateTime(java.util.Date createTime) 
+	public void setCreateTime(java.util.Date createTime)
 	{
 		this.createTime = createTime;
 	}
@@ -147,11 +182,11 @@ public class CloudWorkLabor extends BasicPage
 	 * 返回 发布时间
 	 * @return
 	 */
-	public java.util.Date getCreateTime() 
+	public java.util.Date getCreateTime()
 	{
 		return this.createTime;
 	}
-	public void setUpdateTime(java.util.Date updateTime) 
+	public void setUpdateTime(java.util.Date updateTime)
 	{
 		this.updateTime = updateTime;
 	}
@@ -159,11 +194,11 @@ public class CloudWorkLabor extends BasicPage
 	 * 返回 更新时间
 	 * @return
 	 */
-	public java.util.Date getUpdateTime() 
+	public java.util.Date getUpdateTime()
 	{
 		return this.updateTime;
 	}
-	public void setUpdateUser(Long updateUser) 
+	public void setUpdateUser(Long updateUser)
 	{
 		this.updateUser = updateUser;
 	}
@@ -171,74 +206,84 @@ public class CloudWorkLabor extends BasicPage
 	 * 返回 修改者
 	 * @return
 	 */
-	public Long getUpdateUser() 
+	public Long getUpdateUser()
 	{
 		return this.updateUser;
 	}
 
 
-   	/**
-	 * @see Object#equals(Object)
+	/**
+	 * @see java.lang.Object#equals(Object)
 	 */
-	public boolean equals(Object object) 
+	public boolean equals(Object object)
 	{
-		if (!(object instanceof CloudWorkLabor)) 
+		if (!(object instanceof CloudWorkLabor))
 		{
 			return false;
 		}
 		CloudWorkLabor rhs = (CloudWorkLabor) object;
 		return new EqualsBuilder()
-		.append(this.id, rhs.id)
-		.append(this.workNeed, rhs.workNeed)
-		.append(this.contactsName, rhs.contactsName)
-		.append(this.mobile, rhs.mobile)
-		.append(this.salary, rhs.salary)
-		.append(this.status, rhs.status)
-		.append(this.createUser, rhs.createUser)
-		.append(this.createTime, rhs.createTime)
-		.append(this.updateTime, rhs.updateTime)
-		.append(this.updateUser, rhs.updateUser)
-		.isEquals();
+				.append(this.id, rhs.id)
+				.append(this.workNeed, rhs.workNeed)
+				.append(this.contactsName, rhs.contactsName)
+				.append(this.mobile, rhs.mobile)
+				.append(this.address, rhs.address)
+				.append(this.factoryName, rhs.factoryName)
+				.append(this.number, rhs.number)
+				.append(this.note, rhs.note)
+				.append(this.salary, rhs.salary)
+				.append(this.status, rhs.status)
+				.append(this.createUser, rhs.createUser)
+				.append(this.createTime, rhs.createTime)
+				.append(this.updateTime, rhs.updateTime)
+				.append(this.updateUser, rhs.updateUser)
+				.isEquals();
 	}
 
 	/**
-	 * @see Object#hashCode()
+	 * @see java.lang.Object#hashCode()
 	 */
-	public int hashCode() 
+	public int hashCode()
 	{
 		return new HashCodeBuilder(-82280557, -700257973)
-		.append(this.id) 
-		.append(this.workNeed) 
-		.append(this.contactsName) 
-		.append(this.mobile) 
-		.append(this.salary) 
-		.append(this.status) 
-		.append(this.createUser) 
-		.append(this.createTime) 
-		.append(this.updateTime) 
-		.append(this.updateUser) 
-		.toHashCode();
+				.append(this.id)
+				.append(this.workNeed)
+				.append(this.contactsName)
+				.append(this.mobile)
+				.append(this.address)
+				.append(this.factoryName)
+				.append(this.number)
+				.append(this.note)
+				.append(this.salary)
+				.append(this.status)
+				.append(this.createUser)
+				.append(this.createTime)
+				.append(this.updateTime)
+				.append(this.updateUser)
+				.toHashCode();
 	}
 
 	/**
-	 * @see Object#toString()
+	 * @see java.lang.Object#toString()
 	 */
-	public String toString() 
+	public String toString()
 	{
 		return new ToStringBuilder(this)
-		.append("id", this.id) 
-		.append("workNeed", this.workNeed) 
-		.append("contactsName", this.contactsName) 
-		.append("mobile", this.mobile) 
-		.append("salary", this.salary) 
-		.append("status", this.status) 
-		.append("createUser", this.createUser) 
-		.append("createTime", this.createTime) 
-		.append("updateTime", this.updateTime) 
-		.append("updateUser", this.updateUser) 
-		.toString();
+				.append("id", this.id)
+				.append("workNeed", this.workNeed)
+				.append("contactsName", this.contactsName)
+				.append("mobile", this.mobile)
+				.append("address", this.address)
+				.append("factoryName", this.factoryName)
+				.append("number", this.number)
+				.append("note", this.note)
+				.append("salary", this.salary)
+				.append("status", this.status)
+				.append("createUser", this.createUser)
+				.append("createTime", this.createTime)
+				.append("updateTime", this.updateTime)
+				.append("updateUser", this.updateUser)
+				.toString();
 	}
-   
-  
 
 }

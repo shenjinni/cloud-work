@@ -95,7 +95,7 @@ public class CloudWorkRecruitmentController {
 
 		if (recruitmentId == null) {
 			recruitment.setId(RandomUtils.g());
-			recruitment.setStatus((short) 1);
+			recruitment.setStatus(1);
 			recruitment.setCreateTime(new Date());
 			recruitment.setCreateUser(1L);
 			recruitment.setUpdateTime(new Date());

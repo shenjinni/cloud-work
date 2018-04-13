@@ -2,10 +2,13 @@ package cn.testin.controller;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import cn.testin.bean.CloudWorkPerson;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkPersonService;
 import cn.testin.util.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -96,7 +99,7 @@ public class CloudWorkPersonController {
 
 		if (personId == null) {
 			person.setId(RandomUtils.g());
-			person.setStatus((short) 1);
+			person.setStatus(1);
 			person.setCreateTime(new Date());
 			person.setCreateUser(1L);
 			person.setUpdateTime(new Date());
@@ -110,6 +113,7 @@ public class CloudWorkPersonController {
 			}
 		} else {
 			person.setUpdateTime(new Date());
+			person.setUpdateUser(1L);
 			int i = cloudWorkPersonService.update(person);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -119,6 +123,61 @@ public class CloudWorkPersonController {
 			}
 		}
 
+		return result;
+	}
+
+	/**
+	 *
+	 * @Description: 新增/修改工人信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("personGet.do")
+	public ModelAndView personGet(@RequestParam(name="id", required = false) Long id){
+		ModelAndView mv = new ModelAndView("/work/personGet");
+		if(null != id){
+			CloudWorkPerson person = cloudWorkPersonService.findBeanById(id);
+			mv.addObject("person", person);
+		}
+		return mv;
+	}
+
+	/**
+	 *
+	 * @Description: 修改工人信息状态
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "changeStatus.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> changeStatus(@RequestBody CloudWorkPerson person){
+		Map<String, Object> result = new HashMap<>();
+		Long personId = person.getId();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", "操作失败，请稍后再试！");
+
+		Integer status = person.getStatus();
+		if (status == null) {
+			log.info("修改工人信息状态，获取状态值失败！ personId" + personId);
+			return result;
+		}
+
+		person = cloudWorkPersonService.findBeanById(personId);
+		if (person == null) {
+			log.info("修改工人信息状态！获取信息失败！personId=" + personId);
+			return result;
+		}
+
+		// 修改订单状态
+		person.setStatus(status);
+		person.setUpdateTime(new Date());
+		person.setUpdateUser(1L);
+		int i = cloudWorkPersonService.update(person);
+		if (i == 1) {
+			result.put("errCode", Constants.result_success);
+			result.put("errMsg", "操作成功！");
+			log.info("修改工人信息状态成功！personId=" + personId + ", status = " + status);
+		}
 		return result;
 	}
 

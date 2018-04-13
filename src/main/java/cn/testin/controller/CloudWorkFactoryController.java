@@ -96,7 +96,7 @@ public class CloudWorkFactoryController {
 
 		if (factoryId == null) {
 			factory.setId(RandomUtils.g());
-			factory.setStatus((short) 1);
+			factory.setStatus(1);
 			factory.setCreateTime(new Date());
 			factory.setCreateUser(1L);
 			factory.setUpdateTime(new Date());

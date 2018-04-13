@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="left.jsp"%>
-<script type="text/javascript" charset="utf-8" src="${ctx}/common/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="${ctx}/common/ueditor/ueditor.all.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="${ctx}/common/ueditor/lang/zh-cn/zh-cn.js"></script>
 <div>
 	<div id="page-wrapper">
 		<!--BEGIN TITLE & BREADCRUMB PAGE-->
@@ -47,7 +44,17 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="labor_title" class="control-projectel">联系人</projectel>
+															<label class="control-label">需要加工种类</label>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="workNeed" value="${labor.workNeed }" placeholder="请输入需要加工种类"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<label class="control-label">联系人</label>
 															<div class="input-icon right">
 																<input type="text" class="form-control" maxlength="20" name="contactsName" value="${labor.contactsName }" placeholder="请输入联系人"/>
 															</div>
@@ -57,17 +64,7 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="labor_title" class="control-projectel">地址</projectel>
-															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="address" value="${labor.address}" placeholder="请输入地址"/>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-6" style="width: 50%;">
-														<div class="form-group">
-															<projectel for="labor_title" class="control-projectel">电话</projectel>
+															<label class="control-label">电话</label>
 															<div class="input-icon right">
 																<input type="text" class="form-control" maxlength="20" name="mobile" value="${labor.mobile }" placeholder="请输入电话"/>
 															</div>
@@ -77,9 +74,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="labor_title" class="control-projectel">薪资</projectel>
+															<label class="control-label">地址</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="salary" value="${labor.salary }" placeholder="请输入薪资"/>
+																<input type="text" class="form-control" maxlength="20" name="address" value="${labor.address}" placeholder="请输入地址"/>
 															</div>
 														</div>
 													</div>
@@ -87,9 +84,29 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="labor_title" class="control-projectel">需求</projectel>
+															<label class="control-label">工厂名</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="workNeed" value="${labor.workNeed }" placeholder="请输入需求"/>
+																<input type="text" class="form-control" maxlength="20" name="factoryName" value="${labor.factoryName }" placeholder="请输入工厂名"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<label class="control-label">加工数量</label>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="number" value="${labor.number }" placeholder="请输入加工数量"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<label class="control-label">补充说明</label>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="20" name="note" value="${labor.note }" placeholder="请输入补充说明"/>
 															</div>
 														</div>
 													</div>
@@ -119,30 +136,22 @@
         $("#submit").click(function() {
             var obj = $('#form').toObject({mode : 'first'});
 
+            var workNeed = obj.workNeed;
+            if(v_alert_isNull(workNeed, '需要加工种类')){
+                return;
+            }
+
             var contactsName = obj.contactsName;
             if(v_alert_isNull(contactsName, '联系人')){
                 return;
             }
 
-            var address = obj.address;
-            if(v_alert_isNull(address, '地址')){
-                return;
-            }
 
             var mobile = obj.mobile;
             if(v_alert_isNull(mobile, '电话')){
                 return;
             }
 
-            var salary = obj.salary;
-            if(v_alert_isNull(salary, '薪资')){
-                return;
-            }
-
-            var workNeed = obj.workNeed;
-            if(v_alert_isNull(workNeed, '需求')){
-                return;
-            }
 
             cfg.data = JSON.stringify(obj);
 

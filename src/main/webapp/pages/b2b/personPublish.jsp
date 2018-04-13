@@ -22,27 +22,27 @@
 	<script type="text/javascript">
         function submits(){
             $(".imassage").text("");
-            var username=$("#username").val();
-            var password=$("#password").val();
+            var workIntent=$("#workIntent").val();
+            var contactsName=$("#contactsName").val();
+            var mobile=$("#mobile").val();
             var flagcode=$("#flagcode").val();
             //var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
             var pPattern = /^[a-zA-Z0-9_-]{6,20}$/;
             var fPattern = /^\d{4}$/;
-            if(username==""){
-                $("#usernameError").text("请输入用户名/手机号！");
-            }else if(password==""){
-                $("#passwordError").text("请输入密码！");
+            if(workIntent==""){
+                $("#workIntentError").text("请输入工种！");
+            }else if(contactsName==""){
+                $("#contactsNameError").text("请输入姓名！");
+            }else if(mobile==""){
+                $("#mobileError").text("请输入电话！");
             }else if(flagcode==""){
                 $("#flagcodeError").text("请输入验证码！");
-            }/* else if(!uPattern.test(username)){
-			 $("#usernameError").text("用户名格式输入有误，请重新输入！");
-			 } */else if(!pPattern.test(password)){
-                $("#passwordError").text("密码格式输入有误，请重新输入！");
             }else if(!fPattern.test(flagcode)){
                 $("#flagcodeError").text("验证码格式输入有误，请重新输入！");
                 changeFlagcode();
             }else{
-                $.post("${ctx}/common/login.json",{
+                alert("ok");
+                /*$.post("${ctx}/common/login.json",{
                     username : username,
                     password : password,
                     flagcode : flagcode
@@ -59,7 +59,7 @@
                     }else{
                         location.href="${ctx}"+data.url;
                     }
-                },"json");
+                },"json");*/
             }
         }
 
@@ -116,63 +116,59 @@
 				<li>
 					<div class="login-itemL">工种 ：</div>
 					<div class="login-itemR">
-						<input type="text" class="input-1" id="username" value="" placeholder="登陆用户名/手机号码"/>
+						<input type="text" class="input-1" id="workIntent" value=""/>
 					</div>
+					<div class="imassage" id="workIntentError"></div>
 				</li>
 				<li>
 					<div class="login-itemL">工资要求 ：</div>
 					<div class="login-itemR">
-						<input type="text" class="input-1" id="username" value="" placeholder="登陆用户名/手机号码"/>
+						<input type="text" class="input-1" id="salary" value=""/>
 					</div>
 				</li>
 				<li>
 					<div class="login-itemL">姓名 ：</div>
 					<div class="login-itemR">
-						<input type="text" class="input-1" id="username" value="" placeholder="登陆用户名/手机号码"/>
+						<input type="text" class="input-1" id="contactsName" value=""/>
 					</div>
-					<div class="imassage" id="usernameError"></div>
+					<div class="imassage" id="contactsNameError"></div>
 				</li>
 				<li>
 					<div class="login-itemL">电话 ：</div>
 					<div class="login-itemR">
-						<input type="text" class="input-1" id="username" value="" placeholder="登陆用户名/手机号码"/>
+						<input type="text" class="input-1" id="mobile" value=""/>
 					</div>
-					<div class="imassage" id="usernameError"></div>
+					<div class="imassage" id="mobileError"></div>
 				</li>
 				<li>
 					<div class="login-itemL">年龄 ：</div>
 					<div class="login-itemR">
-						<input type="text" class="input-1" id="username" value="" placeholder="登陆用户名/手机号码"/>
+						<input type="text" class="input-1" id="age" value=""/>
 					</div>
-					<div class="imassage" id="usernameError"></div>
 				</li>
 				<li>
 					<div class="login-itemL">生肖 ：</div>
 					<div class="login-itemR">
-						<input type="text" class="input-1" id="username" value="" placeholder="登陆用户名/手机号码"/>
+						<input type="text" class="input-1" id="zodiac" value=""/>
 					</div>
-					<div class="imassage" id="usernameError"></div>
 				</li>
 				<li>
 					<div class="login-itemL">性别 ：</div>
 					<div class="login-itemR">
-						<input type="text" class="input-1" id="username" value="" placeholder="登陆用户名/手机号码"/>
+						<input type="text" class="input-1" id="sex" value=""/>
 					</div>
-					<div class="imassage" id="usernameError"></div>
 				</li>
 				<li>
 					<div class="login-itemL">哪里人 ：</div>
 					<div class="login-itemR">
-						<input type="text" class="input-1" id="username" value="" placeholder="登陆用户名/手机号码"/>
+						<input type="text" class="input-1" id="address" value=""/>
 					</div>
-					<div class="imassage" id="usernameError"></div>
 				</li>
 				<li>
 					<div class="login-itemL">补充说明 ：</div>
 					<div class="login-itemR">
-						<input type="text" class="input-1" id="username" value="" placeholder="登陆用户名/手机号码"/>
+						<input type="text" class="input-1" id="note" value=""/>
 					</div>
-					<div class="imassage" id="usernameError"></div>
 				</li>
 				<li>
 					<div class="login-itemL">验证码 ：</div>
@@ -190,19 +186,10 @@
 	</div>
 </div>
 <!-- 下广告 -->
-<%@ include file="/common/bottomAdv.jsp"%>
+<%--<%@ include file="/common/bottomAdv.jsp"%>--%>
 <!-- 工具条 -->
 <%--<%@ include file="/common/tools.jsp"%>--%>
 <!-- 底部 -->
-<%--<%@ include file="/common/foot.jsp"%>--%>
-<script type="text/javascript">
-    function loginCas() {
-        var host = window.location.host;
-        var url = "http://" + host + "/casicT/common/loginCas.do?url="
-            + "http://" + host+"/casicT/common/home.do";
-
-        window.location.href = url;
-    }
-</script>
+<%@ include file="/common/foot.jsp"%>
 </body>
 </html>

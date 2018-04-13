@@ -6,7 +6,11 @@
 		<result property="workNeed" column="work_need" jdbcType="VARCHAR"/>
 		<result property="contactsName" column="contacts_name" jdbcType="VARCHAR"/>
 		<result property="mobile" column="mobile" jdbcType="VARCHAR"/>
-		<result property="salary" column="salary" jdbcType="NUMERIC"/>
+		<result property="address" column="address" jdbcType="VARCHAR"/>
+		<result property="factoryName" column="factory_name" jdbcType="VARCHAR"/>
+		<result property="number" column="number" jdbcType="VARCHAR"/>
+		<result property="note" column="note" jdbcType="VARCHAR"/>
+		<result property="salary" column="salary" jdbcType="VARCHAR"/>
 		<result property="status" column="status" jdbcType="NUMERIC"/>
 		<result property="createUser" column="create_user" jdbcType="NUMERIC"/>
 		<result property="createTime" column="create_time" jdbcType="DATE"/>
@@ -15,16 +19,20 @@
 	</resultMap>
 
 	<sql id="columns">
-		id,work_need,contacts_name,mobile,salary,status,create_user,create_time,update_time,update_user
+		id,work_need,contacts_name,mobile,address,factory_name,number,note,salary,status,create_user,create_time,update_time,update_user
 	</sql>
-	
+
 	<sql id="dynamicWhere">
 		<where>
 			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
 			<if test="@Ognl@isNotEmpty(workNeed)"> AND work_need  LIKE #{workNeed}  </if>
 			<if test="@Ognl@isNotEmpty(contactsName)"> AND contacts_name  LIKE #{contactsName}  </if>
 			<if test="@Ognl@isNotEmpty(mobile)"> AND mobile  LIKE #{mobile}  </if>
-			<if test="@Ognl@isNotEmpty(salary)"> AND salary  =#{salary} </if>
+			<if test="@Ognl@isNotEmpty(address)"> AND address  LIKE #{address}  </if>
+			<if test="@Ognl@isNotEmpty(factoryName)"> AND factory_name  LIKE #{factoryName}  </if>
+			<if test="@Ognl@isNotEmpty(number)"> AND number  LIKE #{number}  </if>
+			<if test="@Ognl@isNotEmpty(note)"> AND note  LIKE #{note}  </if>
+			<if test="@Ognl@isNotEmpty(salary)"> AND salary  LIKE #{salary}  </if>
 			<if test="@Ognl@isNotEmpty(status)"> AND status  =#{status} </if>
 			<if test="@Ognl@isNotEmpty(createUser)"> AND create_user  =#{createUser} </if>
 			<if test="@Ognl@isNotEmpty(createTime)"> AND create_time  =#{createTime} </if>
@@ -38,10 +46,10 @@
 	</sql>
 
 	<insert id="insertSelective" parameterType="cn.testin.bean.CloudWorkLabor">
-		INSERT INTO cloud_work_labor
-		(id,work_need,contacts_name,mobile,salary,status,create_user,create_time,update_time,update_user)
+				INSERT INTO cloud_work_labor
+		(id,work_need,contacts_name,mobile,address,factory_name,number,note,salary,status,create_user,create_time,update_time,update_user)
 		VALUES
-		(#{id,jdbcType=NUMERIC}, #{workNeed,jdbcType=VARCHAR}, #{contactsName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{salary,jdbcType=NUMERIC}, #{status,jdbcType=NUMERIC}, #{createUser,jdbcType=NUMERIC}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{updateUser,jdbcType=NUMERIC})
+		(#{id,jdbcType=NUMERIC}, #{workNeed,jdbcType=VARCHAR}, #{contactsName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{factoryName,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{salary,jdbcType=VARCHAR}, #{status,jdbcType=NUMERIC}, #{createUser,jdbcType=NUMERIC}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{updateUser,jdbcType=NUMERIC})
 	</insert>
 	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -55,7 +63,11 @@
 		work_need=#{workNeed,jdbcType=VARCHAR},
 		contacts_name=#{contactsName,jdbcType=VARCHAR},
 		mobile=#{mobile,jdbcType=VARCHAR},
-		salary=#{salary,jdbcType=NUMERIC},
+		address=#{address,jdbcType=VARCHAR},
+		factory_name=#{factoryName,jdbcType=VARCHAR},
+		number=#{number,jdbcType=VARCHAR},
+		note=#{note,jdbcType=VARCHAR},
+		salary=#{salary,jdbcType=VARCHAR},
 		status=#{status,jdbcType=NUMERIC},
 		create_user=#{createUser,jdbcType=NUMERIC},
 		create_time=#{createTime,jdbcType=DATE},
@@ -86,12 +98,6 @@
 		<if test="mobile != null  and mobile != ''" >
 			and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
 		</if>
-		<if test="salaryBegin != null  and salaryBegin != ''" >
-			and salary  &gt;= #{salaryBegin,jdbcType=NUMERIC}
-		</if>
-		<if test="salaryEnd != null  and salaryEnd != ''" >
-			and salary  &lt;= #{salarEnd,jdbcType=NUMERIC}
-		</if>
 		<if test="status != null  and status != ''" >
 			and status = #{status,jdbcType=NUMERIC}
 		</if>
@@ -115,12 +121,6 @@
 		</if>
 		<if test="mobile != null  and mobile != ''" >
 			and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="salaryBegin != null  and salaryBegin != ''" >
-			and salary  &gt;= #{salaryBegin,jdbcType=NUMERIC}
-		</if>
-		<if test="salaryEnd != null  and salaryEnd != ''" >
-			and salary  &lt;= #{salarEnd,jdbcType=NUMERIC}
 		</if>
 		<if test="status != null  and status != ''" >
 			and status = #{status,jdbcType=NUMERIC}

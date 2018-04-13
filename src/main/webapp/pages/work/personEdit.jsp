@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="left.jsp"%>
-
 <div>
 	<div id="page-wrapper">
 		<!--BEGIN TITLE & BREADCRUMB PAGE-->
@@ -45,9 +44,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="person_title" class="control-projectel">联系人</projectel>
+															<label class="control-label">工种</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="contactsName" value="${person.contactsName }" placeholder="请输入联系人"/>
+																<input type="text" class="form-control" maxlength="100" name="workIntent" value="${person.workIntent }" placeholder="请输入工种"/>
 															</div>
 														</div>
 													</div>
@@ -55,9 +54,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="person_title" class="control-projectel">地址</projectel>
+															<label class="control-label">薪资要求</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="address" value="${person.address}" placeholder="请输入地址"/>
+																<input type="text" class="form-control" maxlength="100" name="salary" value="${person.salary }" placeholder="请输入薪资要求"/>
 															</div>
 														</div>
 													</div>
@@ -65,9 +64,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="person_title" class="control-projectel">电话</projectel>
+															<label class="control-label">姓名</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="mobile" value="${person.mobile }" placeholder="请输入电话"/>
+																<input type="text" class="form-control" maxlength="30" name="contactsName" value="${person.contactsName }" placeholder="请输入姓名"/>
 															</div>
 														</div>
 													</div>
@@ -75,9 +74,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="person_title" class="control-projectel">薪资</projectel>
+															<label class="control-label">电话</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="salary" value="${person.salary }" placeholder="请输入薪资"/>
+																<input type="text" class="form-control" maxlength="11" name="mobile" value="${person.mobile }" placeholder="请输入电话"/>
 															</div>
 														</div>
 													</div>
@@ -85,9 +84,52 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="person_title" class="control-projectel">工作意向</projectel>
+															<label class="control-label">年龄</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="20" name="workIntent" value="${person.workIntent }" placeholder="请输入工作意向"/>
+																<input type="text" class="form-control" maxlength="20" name="age" value="${person.age}" placeholder="请输入年龄"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<label class="control-label">生肖</label>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="10" name="zodiac" value="${person.zodiac}" placeholder="请输入生肖"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<label class="control-label">性别</label>
+															<div class="input-icon right">
+																<select class="form-control" name="sex">
+																	<option value="1" <c:if test="${person.sex == 1}">selected</c:if>>男</option>
+																	<option value="2" <c:if test="${person.sex == 2}">selected</c:if>>女</option>
+																</select>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<label class="control-label">哪里人</label>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="100" name="address" value="${person.address}" placeholder="请输入哪里人"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<label class="control-label">补充说明</label>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="200" name="note" value="${person.note}" placeholder="请输入补充说明"/>
 															</div>
 														</div>
 													</div>
@@ -104,7 +146,8 @@
 					</div>
 				</div>
 			</div>
-			<input type="hidden" name="personId" value="${person.id }"/>
+			<input type="hidden" name="id" value="${person.id }"/>
+			<input type="hidden" name="status" value="${person.status}"/>
 		</form>
 	</div>
 </div>
@@ -117,28 +160,18 @@
 		$("#submit").click(function() {
             var obj = $('#form').toObject({mode : 'first'});
 
-            var contactsName = obj.contactsName;
-            if(v_alert_isNull(contactsName, '联系人')){
+            var workIntent = obj.workIntent;
+            if(v_alert_isNull(workIntent, '工种')){
                 return;
             }
 
-            var address = obj.address;
-            if(v_alert_isNull(address, '地址')){
+            var contactsName = obj.contactsName;
+            if(v_alert_isNull(contactsName, '姓名')){
                 return;
             }
 
             var mobile = obj.mobile;
             if(v_alert_isNull(mobile, '电话')){
-                return;
-            }
-
-            var salary = obj.salary;
-            if(v_alert_isNull(salary, '薪资')){
-                return;
-            }
-
-            var workIntent = obj.workIntent;
-            if(v_alert_isNull(workIntent, '工作意向')){
                 return;
             }
 
