@@ -156,6 +156,9 @@
 	</div>
 </div>
 </body>
+<script type="text/javascript">
+    $(".l-list1").show();
+</script>
 </html>
 
 

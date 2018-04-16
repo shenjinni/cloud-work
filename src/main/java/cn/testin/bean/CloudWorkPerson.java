@@ -4,6 +4,9 @@ import cn.testin.basic.BasicPage;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.util.Date;
+
 /**
  * <pre>
  * 对象功能:cloud_work_person Model对象
@@ -46,6 +49,25 @@ public class CloudWorkPerson extends BasicPage
 	protected Long  updateUser;
 	// 前台模糊查询条件
 	protected String searchText;
+	// vip等级
+	protected Integer weights;
+	// 失效时间
+	protected Date validityTime;
+
+	public Date getValidityTime() {
+		return validityTime;
+	}
+
+	public void setValidityTime(Date validityTime) {
+		this.validityTime = validityTime;
+	}
+	public Integer getWeights() {
+		return weights;
+	}
+
+	public void setWeights(Integer weights) {
+		this.weights = weights;
+	}
 
 	public String getSalary() {
 		return salary;

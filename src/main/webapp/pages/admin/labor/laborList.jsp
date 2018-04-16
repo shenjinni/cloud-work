@@ -10,7 +10,7 @@
 			<div class="page-title">加工活管理</div>
 		</div>
 		<ol class="breadcrumb page-breadcrumb pull-right">
-			<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/work/home.do">
+			<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/admin/home.do">
 				主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
 			<li class="active">加工活管理</li>
 		</ol>
@@ -27,7 +27,7 @@
 						<div class="col-lg-12">
 							<div class="panel panel-azure">
 								<div class="panel-heading">加工活管理列表
-									<a href="${ctx}/work/laborEdit.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">新增</a>
+									<a href="${ctx}/admin/labor/laborEdit.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">新增</a>
 								</div>
 								<div class="panel-body">
 									<div class="row" style="float:right;padding-bottom: 10px;">
@@ -51,7 +51,7 @@
 														<option value="">--</option>
 														<option value="1">正常</option>
 														<option value="2">置顶</option>
-														<option value="3">关闭</option>
+														<option value="-1">关闭</option>
 													</select>
 												</div>
 												<button type="button" class="btn btn-primary" id="button">搜索</button>
@@ -80,7 +80,10 @@
 				{
 					field: 'workNeed',
 					title: '加工种类',
-					align:'center'
+					align:'center',
+                    formatter : function(value, row, index) {
+                        return '<a href="laborGet.do?id='+row.id+'">'+row.workNeed+'</a>';
+                    }
             	},
                 {
                     field: 'contactsName',
@@ -113,13 +116,25 @@
                     formatter : function(value, row, index) {
                         if (row.status == 1) {
                             return "正常";
-                        } else if (row.status >= 2) {
-                            return "置顶，优先级：" + row.status;
                         } else if (row.status == -1) {
                             return "关闭";
                         } else {
                             return "--";
                         }
+                    },
+                    align:'center'
+                },
+                {
+                    field: 'weights',
+                    title: '置顶等级',
+                    align:'center'
+                },
+                {
+                    field: 'validityTime',
+                    title: '置顶失效时间',
+                    formatter : function(value, row, index) {
+                        var validityTime = new Date(row.validityTime);
+                        return validityTime.format('yyyy-MM-dd');
                     },
                     align:'center'
                 },
@@ -151,7 +166,7 @@
                             result =
                                     '<a href="laborEdit.do?id='+row.id+'">编辑</a>'+
                                     '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="closeInfo('+row.id+')">关闭</a>'+
-                                    '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="setPriority('+row.id+','+row.status+' )">vip设置</a>';
+                                    '&nbsp;&nbsp;<a href="${ctx}/admin/turnover/turnoverEdit.do?workType=1&workId='+row.id+'">vip设置</a>';
                         } else {
                             result =
                                     '<a href="laborEdit.do?id='+row.id+'">编辑</a>'+
@@ -214,21 +229,6 @@
             return json;
         }
 
-        // 修改优先级弹层显示
-        function setPriority(beanId, status) {
-            $("#beanId").val(beanId);
-            $("#status").val(status);
-            $('#upload_modal').modal('show');
-        }
-
-        // 修改优先级
-        function changePriority(){
-            var beanId = $("#beanId").val();
-            var status = $("#status").val();
-            changeStatus(beanId, status);
-            $('#upload_modal').modal('hide');
-        }
-
         // 开启此信息
         function openInfo(beanId){
             if (window.confirm("开启后将在前台显示，确认开启？")) {
@@ -254,7 +254,7 @@
                 success : function(res){
                     if("success" == res.errCode){
                         alert(res.errMsg);
-                        $("#personTable").bootstrapTable("destroy");
+                        $("#laborTable").bootstrapTable("destroy");
                         initTable();
                     }
                 },

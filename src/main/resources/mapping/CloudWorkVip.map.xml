@@ -5,39 +5,37 @@
 		<id property="id" column="id" jdbcType="NUMERIC"/>
 		<result property="workId" column="work_id" jdbcType="NUMERIC"/>
 		<result property="workType" column="work_type" jdbcType="NUMERIC"/>
-		<result property="money" column="money" jdbcType="VARCHAR"/>
 		<result property="weights" column="weights" jdbcType="NUMERIC"/>
 		<result property="validityTime" column="validity_time" jdbcType="DATE"/>
 		<result property="createTime" column="create_time" jdbcType="DATE"/>
 		<result property="createUser" column="create_user" jdbcType="NUMERIC"/>
+		<result property="updateTime" column="update_time" jdbcType="DATE"/>
+		<result property="updateUser" column="update_user" jdbcType="NUMERIC"/>
 	</resultMap>
 
 	<sql id="columns">
-		id,work_id,work_type,money,weights,validity_time,create_time,create_user
+		id,work_id,work_type,weights,validity_time,create_time,create_user,update_time,update_user
 	</sql>
 
 	<insert id="insertSelective" parameterType="cn.testin.bean.CloudWorkVip">
 		INSERT INTO cloud_work_vip
-		(id,work_id,work_type,money,weights,validity_time,create_time,create_user)
+		(id,work_id,work_type,weights,validity_time,create_time,create_user,update_time,update_user)
 		VALUES
-		(#{id,jdbcType=NUMERIC}, #{workId,jdbcType=NUMERIC}, #{workType,jdbcType=NUMERIC}, #{money,jdbcType=VARCHAR}, #{weights,jdbcType=NUMERIC}, #{validityTime,jdbcType=DATE}, #{createTime,jdbcType=DATE}, #{createUser,jdbcType=NUMERIC})
+		(#{id,jdbcType=NUMERIC}, #{workId,jdbcType=NUMERIC}, #{workType,jdbcType=NUMERIC}, #{weights,jdbcType=NUMERIC}, #{validityTime,jdbcType=DATE}, #{createTime,jdbcType=DATE}, #{createUser,jdbcType=NUMERIC}, #{updateTime,jdbcType=DATE}, #{updateUser,jdbcType=NUMERIC})
 	</insert>
 	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		DELETE FROM cloud_work_vip 
+		DELETE FROM cloud_work_vip
 		WHERE
 		id=#{id}
 	</delete>
 	
 	<update id="updateByPrimaryKeySelective" parameterType="cn.testin.bean.CloudWorkVip">
 		UPDATE cloud_work_vip SET
-		work_id=#{workId,jdbcType=NUMERIC},
-		work_type=#{workType,jdbcType=NUMERIC},
-		money=#{money,jdbcType=VARCHAR},
 		weights=#{weights,jdbcType=NUMERIC},
 		validity_time=#{validityTime,jdbcType=DATE},
-		create_time=#{createTime,jdbcType=DATE},
-		create_user=#{createUser,jdbcType=NUMERIC}
+		update_time=#{updateTime,jdbcType=DATE},
+		update_user=#{updateUser,jdbcType=NUMERIC}
 		WHERE
 		id=#{id}
 	</update>
@@ -49,34 +47,10 @@
 		id=#{id}
 	</select>
 
-	<select id="selectList" resultMap="CloudWorkVip" parameterType="cn.testin.bean.CloudWorkVip" >
-		select
-		<include refid="columns" />
-		from cloud_work_vip
-		where 1=1
-		<if test="workId != null  and workId != ''" >
-			and work_id = #{workId,jdbcType=NUMERIC}
-		</if>
-		<if test="workType != null  and workType != ''" >
-			and work_type = #{workType,jdbcType=NUMERIC}
-		</if>
-		order by create_time DESC
-		<if test="offset != null and limit != null ">
-			limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
-		</if>
-	</select>
-
-	<select id="selectCount" parameterType="cn.testin.bean.CloudWorkVip" resultType="int">
-		SELECT
-		count(*)
-		FROM
-		cloud_work_vip
-		where 1=1
-		<if test="workId != null  and workId != ''" >
-			and work_id = #{workId,jdbcType=NUMERIC}
-		</if>
-		<if test="workType != null  and workType != ''" >
-			and work_type = #{workType,jdbcType=NUMERIC}
-		</if>
+	<select id="findBeanByWork" parameterType="cn.testin.bean.CloudWorkVip" resultMap="CloudWorkVip">
+		SELECT <include refid="columns"/>
+		FROM cloud_work_vip
+		WHERE
+		work_id = #{workId,jdbcType=NUMERIC} and work_type = #{workType,jdbcType=NUMERIC}
 	</select>
 </mapper>

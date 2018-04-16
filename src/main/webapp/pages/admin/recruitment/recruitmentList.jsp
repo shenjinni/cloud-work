@@ -57,7 +57,6 @@
 													<select class="form-control" name="status">
 														<option value="">--</option>
 														<option value="1">正常</option>
-														<option value="2">置顶</option>
 														<option value="-1">关闭</option>
 													</select>
 												</div>
@@ -87,7 +86,10 @@
                 {
                     field: 'workType',
                     title: '招工工种',
-                    align:'center'
+                    align:'center',
+                    formatter : function(value, row, index) {
+                        return '<a href="recruitmentGet.do?id='+row.id+'">'+row.workType+'</a>';
+                    }
                 },
                 {
                     field: 'salary',
@@ -120,13 +122,25 @@
                     formatter : function(value, row, index) {
                         if (row.status == 1) {
                             return "正常";
-                        } else if (row.status >= 2) {
-                            return "置顶，优先级：" + row.status;
                         } else if (row.status == -1) {
                             return "关闭";
                         } else {
                             return "--";
                         }
+                    },
+                    align:'center'
+                },
+                {
+                    field: 'weights',
+                    title: '置顶等级',
+                    align:'center'
+                },
+                {
+                    field: 'validityTime',
+                    title: '置顶失效时间',
+                    formatter : function(value, row, index) {
+                        var validityTime = new Date(row.validityTime);
+                        return validityTime.format('yyyy-MM-dd');
                     },
                     align:'center'
                 },
@@ -158,7 +172,7 @@
                             result =
                                     '<a href="recruitmentEdit.do?id='+row.id+'">编辑</a>'+
                                     '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="closeInfo('+row.id+')">关闭</a>'+
-                                    '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="setPriority('+row.id+','+row.status+' )">vip设置</a>';
+                                    '&nbsp;&nbsp;<a href="${ctx}/admin/turnover/turnoverEdit.do?workType=1&workId='+row.id+'">vip设置</a>';
                         } else {
                             result =
                                     '<a href="recruitmentEdit.do?id='+row.id+'">编辑</a>'+
@@ -221,20 +235,6 @@
             return json;
         }
 
-        // 修改优先级弹层显示
-        function setPriority(beanId, status) {
-            $("#beanId").val(beanId);
-            $("#status").val(status);
-            $('#upload_modal').modal('show');
-        }
-
-        // 修改优先级
-        function changePriority(){
-            var beanId = $("#beanId").val();
-            var status = $("#status").val();
-            changeStatus(beanId, status);
-            $('#upload_modal').modal('hide');
-        }
 
         // 开启此信息
         function openInfo(beanId){

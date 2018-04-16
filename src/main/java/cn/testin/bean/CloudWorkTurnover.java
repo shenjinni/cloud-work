@@ -1,6 +1,7 @@
 package cn.testin.bean;
 
 
+import cn.testin.basic.BasicPage;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -15,42 +16,28 @@ import java.util.Date;
  * 创建时间:2018-04-13 17:03:12
  * </pre>
  */
-public class CloudWorkVip {
+public class CloudWorkTurnover extends BasicPage
+{
 	// 主键
 	protected Long  id;
 	// 业务id，工人信息id等
 	protected Long  workId;
 	// 业务类型 1：工人信息 2：招工信息 3：加工厂信息 4：加工活信息
 	protected Short  workType;
+	// 开通所需金钱
+	protected String  money;
+	// 创建时间
+	protected java.util.Date  createTime;
+	// 创建人
+	protected Long  createUser;
+	// 业务名称
+	protected String workName;
+	// 添加人、操作人
+	protected String createUserName;
 	// vip等级
 	protected Integer weights;
 	// 失效时间
 	protected Date  validityTime;
-	// 创建时间
-	protected Date  createTime;
-	// 创建人
-	protected Long  createUser;
-
-	// 更新时间
-	protected java.util.Date  updateTime;
-	// update_user
-	protected Long  updateUser;
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
-	public Long getUpdateUser() {
-		return updateUser;
-	}
-
-	public void setUpdateUser(Long updateUser) {
-		this.updateUser = updateUser;
-	}
 
 	public Integer getWeights() {
 		return weights;
@@ -66,6 +53,22 @@ public class CloudWorkVip {
 
 	public void setValidityTime(Date validityTime) {
 		this.validityTime = validityTime;
+	}
+
+	public String getWorkName() {
+		return workName;
+	}
+
+	public void setWorkName(String workName) {
+		this.workName = workName;
+	}
+
+	public String getCreateUserName() {
+		return createUserName;
+	}
+
+	public void setCreateUserName(String createUserName) {
+		this.createUserName = createUserName;
 	}
 
 	public Long getId() {
@@ -92,6 +95,14 @@ public class CloudWorkVip {
 		this.workType = workType;
 	}
 
+	public String getMoney() {
+		return money;
+	}
+
+	public void setMoney(String money) {
+		this.money = money;
+	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -113,15 +124,16 @@ public class CloudWorkVip {
 	 */
 	public boolean equals(Object object) 
 	{
-		if (!(object instanceof CloudWorkVip))
+		if (!(object instanceof CloudWorkTurnover))
 		{
 			return false;
 		}
-		CloudWorkVip rhs = (CloudWorkVip) object;
+		CloudWorkTurnover rhs = (CloudWorkTurnover) object;
 		return new EqualsBuilder()
 		.append(this.id, rhs.id)
 		.append(this.workId, rhs.workId)
 		.append(this.workType, rhs.workType)
+		.append(this.money, rhs.money)
 		.append(this.createTime, rhs.createTime)
 		.append(this.createUser, rhs.createUser)
 		.isEquals();
@@ -136,6 +148,7 @@ public class CloudWorkVip {
 		.append(this.id) 
 		.append(this.workId) 
 		.append(this.workType) 
+		.append(this.money) 
 		.append(this.createTime)
 		.append(this.createUser) 
 		.toHashCode();
@@ -150,6 +163,7 @@ public class CloudWorkVip {
 		.append("id", this.id) 
 		.append("workId", this.workId) 
 		.append("workType", this.workType) 
+		.append("money", this.money) 
 		.append("createTime", this.createTime)
 		.append("createUser", this.createUser) 
 		.toString();

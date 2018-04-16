@@ -6,7 +6,6 @@ import cn.testin.dao.CloudWorkVipMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  *<pre>
@@ -22,14 +21,6 @@ public class CloudWorkVipService
 	@Resource
 	private CloudWorkVipMapper dao;
 
-	public List<CloudWorkVip> findList(CloudWorkVip b) {
-		return dao.selectList(b);
-	}
-
-	public Integer findListCount(CloudWorkVip b) {
-		return dao.selectCount(b);
-	}
-
 	public Integer insert(CloudWorkVip b) {
 		return dao.insertSelective(b);
 	}
@@ -38,12 +29,12 @@ public class CloudWorkVipService
 		return dao.updateByPrimaryKeySelective(b);
 	}
 
-	public Integer delete(Long id) {
-		return dao.deleteByPrimaryKey(id);
-	}
-
 	public CloudWorkVip findBeanById(Long id) {
 		return dao.selectByPrimaryKey(id);
+	}
+
+	public CloudWorkVip findBeanByWork(CloudWorkVip b) {
+		return dao.findBeanByWork(b);
 	}
 
 }

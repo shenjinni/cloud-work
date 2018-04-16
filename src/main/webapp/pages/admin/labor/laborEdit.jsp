@@ -9,7 +9,7 @@
 				<div class="page-title">加工活管理</div>
 			</div>
 			<ol class="breadcrumb page-breadcrumb pull-right">
-				<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/work/home.do">
+				<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/admin/home.do">
 					主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
 				<li class="active">加工活管理</li>
 			</ol>
@@ -37,7 +37,7 @@
 												<c:otherwise>新增加工活信息</c:otherwise>
 											</c:choose>
 
-											<a href="${ctx}/work/laborList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
+											<a href="${ctx}/admin/labor/laborList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
 										</div>
 										<div class="panel-body pan">
 											<div class="form-body pal">
@@ -130,7 +130,7 @@
 </div>
 
 <script type="text/javascript">
-    $(".l-list5").show();
+    $(".l-list1").show();
 
     $(document).ready(function(){
         // 提交操作

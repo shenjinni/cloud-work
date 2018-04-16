@@ -1,9 +1,8 @@
 package cn.testin.dao;
 
 import cn.testin.basic.IBaseDao;
-import cn.testin.bean.CloudWorkVip;
+import cn.testin.bean.CloudWorkTurnover;
 import org.springframework.stereotype.Repository;
-
 
 /**
  *<pre>
@@ -14,8 +13,8 @@ import org.springframework.stereotype.Repository;
  *</pre>
  */
 @Repository
-public interface CloudWorkVipMapper extends IBaseDao<CloudWorkVip>
+public interface CloudWorkTurnoverMapper extends IBaseDao<CloudWorkTurnover>
 {
-    public CloudWorkVip findBeanByWork(CloudWorkVip vip);
+
 
 }

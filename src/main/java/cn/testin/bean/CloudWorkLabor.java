@@ -4,6 +4,9 @@ import cn.testin.basic.BasicPage;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.util.Date;
+
 /**
  * <pre>
  * 对象功能:cloud_work_labor Model对象
@@ -42,6 +45,25 @@ public class CloudWorkLabor extends BasicPage
 	protected java.util.Date  updateTime;
 	// 修改者
 	protected Long  updateUser;
+	// vip等级
+	protected Integer weights;
+	// 失效时间
+	protected Date validityTime;
+
+	public Date getValidityTime() {
+		return validityTime;
+	}
+
+	public void setValidityTime(Date validityTime) {
+		this.validityTime = validityTime;
+	}
+	public Integer getWeights() {
+		return weights;
+	}
+
+	public void setWeights(Integer weights) {
+		this.weights = weights;
+	}
 	public void setId(Long id)
 	{
 		this.id = id;

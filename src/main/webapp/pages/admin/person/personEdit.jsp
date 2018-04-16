@@ -156,7 +156,7 @@
 </div>
 
 <script type="text/javascript">
-	$(".l-list5").show();
+	$(".l-list1").show();
 
 	$(document).ready(function(){
 		// 提交操作

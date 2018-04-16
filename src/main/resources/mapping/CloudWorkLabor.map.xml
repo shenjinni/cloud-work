@@ -16,6 +16,8 @@
 		<result property="createTime" column="create_time" jdbcType="DATE"/>
 		<result property="updateTime" column="update_time" jdbcType="DATE"/>
 		<result property="updateUser" column="update_user" jdbcType="NUMERIC"/>
+		<result property="weights" column="weights" jdbcType="NUMERIC"/>
+		<result property="validityTime" column="validity_time" jdbcType="DATE"/>
 	</resultMap>
 
 	<sql id="columns">
@@ -61,8 +63,9 @@
 
 	<select id="selectList" resultMap="CloudWorkLabor" parameterType="cn.testin.bean.CloudWorkLabor" >
 		select
-		<include refid="columns" />
+		cloud_work_labor.*,cloud_work_vip.weights weights,cloud_work_vip.validity_time validity_time
 		from cloud_work_labor
+		left join cloud_work_vip on cloud_work_vip.work_id = cloud_work_labor.id and cloud_work_vip.work_type=3
 		where 1=1
 		<if test="workNeed != null  and workNeed != ''" >
 			and work_need like concat('%',#{workNeed,jdbcType=VARCHAR},'%')
@@ -80,6 +83,7 @@
 		<if test="offset != null and limit != null ">
 			limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
 		</if>
+		order by cloud_work_vip.weights desc, cloud_work_labor.update_time desc
 	</select>
 
 	<select id="selectCount" parameterType="cn.testin.bean.CloudWorkLabor" resultType="int">
@@ -87,7 +91,8 @@
 		count(*)
 		FROM
 		cloud_work_labor
-		where 1=1
+		left join cloud_work_vip on cloud_work_vip.work_id = cloud_work_labor.id
+		where cloud_work_vip.work_type=3
 		<if test="workNeed != null  and workNeed != ''" >
 			and work_need like concat('%',#{workNeed,jdbcType=VARCHAR},'%')
 		</if>

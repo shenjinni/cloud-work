@@ -16,7 +16,7 @@
 			<ol class="breadcrumb page-breadcrumb pull-right">
 				<li>
 					<i class="fa fa-home"></i>&nbsp;
-					<a href="${ctx}/work/home.do">主页</a>&nbsp;&nbsp;
+					<a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;
 					<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
 				</li>
 				<li class="active">招工管理</li>
@@ -40,7 +40,7 @@
 								<div class="panel panel-azure">
 									<div class="panel-heading">
 										工人信息详情
-										<a href="${ctx}/work/recruitmentList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
+										<a href="${ctx}/admin/recruitment/recruitmentList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
 									</div>
 									<div class="panel-body pan">
 										<div class="form-body pal">
@@ -57,9 +57,9 @@
 											<div class="row">
 												<div class="col-md-6" style="width: 50%;">
 													<div class="form-group">
-														<label class="control-label">工种：</label>
+														<label class="control-label">招工工种：</label>
 														<div class="input-icon right">
-															${recruitment.workIntent }
+															${recruitment.workType }
 														</div>
 													</div>
 												</div>
@@ -67,7 +67,7 @@
 											<div class="row">
 												<div class="col-md-6" style="width: 50%;">
 													<div class="form-group">
-														<label class="control-label">薪资要求：</label>
+														<label class="control-label">工资待遇：</label>
 														<div class="input-icon right">
 															${recruitment.salary }
 														</div>
@@ -77,9 +77,29 @@
 											<div class="row">
 												<div class="col-md-6" style="width: 50%;">
 													<div class="form-group">
-														<label class="control-label">姓名：</label>
+														<label class="control-label">招工单位：</label>
 														<div class="input-icon right">
-															${recruitment.contactsName }
+															${recruitment.company }
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6" style="width: 50%;">
+													<div class="form-group">
+														<label class="control-label">地址：</label>
+														<div class="input-icon right">
+															${recruitment.address }
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6" style="width: 50%;">
+													<div class="form-group">
+														<label class="control-label">联系人：</label>
+														<div class="input-icon right">
+															${recruitment.contactsName}
 														</div>
 													</div>
 												</div>
@@ -89,48 +109,7 @@
 													<div class="form-group">
 														<label class="control-label">电话：</label>
 														<div class="input-icon right">
-															${recruitment.mobile }
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6" style="width: 50%;">
-													<div class="form-group">
-														<label class="control-label">年龄：</label>
-														<div class="input-icon right">
-															${recruitment.age}
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6" style="width: 50%;">
-													<div class="form-group">
-														<label class="control-label">生肖：</label>
-														<div class="input-icon right">
-															${recruitment.zodiac}
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6" style="width: 50%;">
-													<div class="form-group">
-														<label class="control-label">性别：</label>
-														<div class="input-icon right">
-															<c:if test="${recruitment.sex == 1}">男</c:if>
-															<c:if test="${recruitment.sex == 2}">女</c:if>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6" style="width: 50%;">
-													<div class="form-group">
-														<label class="control-label">哪里人：</label>
-														<div class="input-icon right">
-															${recruitment.address}
+															${recruitment.mobile}
 														</div>
 													</div>
 												</div>
@@ -188,6 +167,9 @@
 	</div>
 </div>
 </body>
+<script type="text/javascript">
+    $(".l-list1").show();
+</script>
 </html>
 
 
