@@ -120,7 +120,7 @@
                                     </a>
                                 </div>
                                 <div style="display: none;" class="hh l-list2">
-                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/personList.do">
+                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/user/userList.do">
                                         <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">用户管理</span>
                                     </a>
                                 </div>

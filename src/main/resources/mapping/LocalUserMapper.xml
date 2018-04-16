@@ -327,12 +327,9 @@
   </select>
   <select id="selectList" parameterType="cn.testin.bean.LocalUser" resultMap="BaseResultMap">
 		SELECT
-			lu.*, qs.user_score user_score, qs.lab_score lab_score, qw.wallet_amount wallet_amount, qi.reservation_id
+			lu.*
 		FROM
 			qhc_local_user lu
-		left join qhc_score qs on lu.user_id=qs.user_id
-		left join qhc_wallet qw on lu.user_id=qw.user_id
-		left join qhc_invoice_reservation qi on lu.user_id=qi.user_id
 		where 1=1
 		<if test="userLoginName != null and userLoginName != ''">
 			and lu.user_login_name like concat('%',#{userLoginName,jdbcType=VARCHAR},'%')

@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class AdminUserController {
 	 */
 	@RequestMapping("userList.do")
 	public ModelAndView userList(){
-		ModelAndView userList = new ModelAndView("admin/userList");
+		ModelAndView userList = new ModelAndView("admin/user/userList");
 		return userList;
 	}
 	
@@ -71,7 +70,7 @@ public class AdminUserController {
 	 */
 	@RequestMapping("userModify.do")
 	public ModelAndView userModify(@RequestParam(name="id",required=false) Long id){
-		ModelAndView mv = new ModelAndView("/admin/userModify");
+		ModelAndView mv = new ModelAndView("/admin/user/userModify");
 		if(null != id){
 			LocalUser User = userService.findUserById(id);
 			mv.addObject("user", User);
@@ -129,36 +128,5 @@ public class AdminUserController {
 			log.info("删除用户成功！userId=" + user.getUserId());
 		}
 		return mv;
-	}
-	
-	
-	/**
-	 * 
-	 * @Title: ajaxUserList   
-	 * @Description: 异步获取用户列表     
-	 * @param request
-	 * @param response
-	 * @throws Exception void	       
-	 * @throws
-	 */
-	@RequestMapping("ajaxUserList.do")
-	public void ajaxUserList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.getRequestDispatcher("/WEB-INF/jsp/admin/userListModal.jsp").forward(request, response);
-	}
-	
-	/**
-	 * 
-	 * @Description: 弹层用户列表json
-	 * @author Jinni Shen 
-	 * @return ModelAndView
-	 */
-	@RequestMapping(value = "userListModal.json", method = RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView userListModal(HttpServletRequest req, @RequestBody LocalUser lu) {
-		ModelAndView mav = new ModelAndView();
-		List<LocalUser> userList = userService.findList(lu);
-		mav.addObject("rows", userList);
-		mav.addObject("total", userService.findListCount(lu));
-		return mav;
 	}
 }
