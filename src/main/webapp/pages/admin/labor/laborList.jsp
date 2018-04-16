@@ -166,7 +166,7 @@
                             result =
                                     '<a href="laborEdit.do?id='+row.id+'">编辑</a>'+
                                     '&nbsp;&nbsp;<a href="javascript:void(0);" onclick="closeInfo('+row.id+')">关闭</a>'+
-                                    '&nbsp;&nbsp;<a href="${ctx}/admin/turnover/turnoverEdit.do?workType=1&workId='+row.id+'">vip设置</a>';
+                                    '&nbsp;&nbsp;<a href="${ctx}/admin/turnover/turnoverEdit.do?workType=1&workId='+row.id+'&workName='+row.workNeed+'">vip设置</a>';
                         } else {
                             result =
                                     '<a href="laborEdit.do?id='+row.id+'">编辑</a>'+

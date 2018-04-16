@@ -74,39 +74,27 @@
 						    align:'center'
 						},
 						{
-							field: 'userScore',
-						    title: '用户积分',
-						    align:'center'
-						},
-						{
-							field: 'loginTimes',
-						    title: '登录次数',
-						    align:'center'
-						},
-						{
-							field: 'lastLoginTime',
-						    title: '最后登录',
-						    formatter : function(value, row, index) {
-								var lastLoginTime = new Date(
-										row.lastLoginTime);
-								return lastLoginTime.format('yyyy-MM-dd hh:mm:ss');
-							},
-							align:'center'
-						},
-						{
-							field: 'walletAmount',
-						    title: '预存款',
-						    align:'center'
-						},
-						{
 							field: 'userPhone',
 						    title: '联系电话',
 						    align:'center'
 						},
 						{
-							field: 'address',
-						    title: '地址',
-						    align:'center'
+							field: 'createTime',
+							title: '到期时间',
+							formatter : function(value, row, index) {
+								var createTime = new Date(row.createTime);
+								return createTime.format('yyyy-MM-dd hh:mm:ss');
+							},
+							align:'center'
+						},
+						{
+							field: 'createTime',
+							title: '创建时间',
+							formatter : function(value, row, index) {
+								var createTime = new Date(row.createTime);
+								return createTime.format('yyyy-MM-dd hh:mm:ss');
+							},
+							align:'center'
 						},
 						{
 							field: 'action',
@@ -114,19 +102,14 @@
 						    width: '300',
 						    formatter:function(value,row,index){
 						    	var result=
-						    		'<a href="userModify.do?id='+row.userId+'">修改</a>'+
-						    		'&nbsp;&nbsp;<a href="javascript:void(0);" onclick="deleteUser('+row.userId+')">删除</a>';
+						    		'<a href="userModify.do?id='+row.userId+'">设置为会员</a>';
 						    	
 						    	return result;
 						    },
 						    align:'center'
 					}]
 					initTable();
-				
-				$("#sel_sea").change(function(){
-					$("#inp_sea").attr("name", $("#sel_sea").val());
-				});
-				
+
 				$('#button').click(function () {  
 					$("#userTable").bootstrapTable('refresh', {url: 'userList.json'});  
 		        }); 
@@ -177,38 +160,6 @@
 	            });
 	            return json;
 	        }
-			
-			var deleteUser=function(id){
-				
-				if (window.confirm("确认删除用户么？")) {
-					dc(id);
-				}
-			}
-			
-			// 删除操作
-			function dc(id){
-				alert(id);
-				$.ajax({
-					type : "POST",
-					url : "deleteUser.json",
-					dataType : "json",
-					contentType : 'application/json;charset=UTF-8',
-					data : JSON.stringify({"userId":id}),
-					success : function(res){
-						alert(res.model.errMsg);
-						if("success" == res.model.errCode){
-							$("#userTable").bootstrapTable("destroy");
-							initTable();
-						}
-					},
-					error : function(XMLHttpRequest, textStatus,
-							errorThrown) {
-						alert("删除通知失败！");
-					},
-					complete : function(XMLHttpRequest, textStatus) {
-					}
-				});
-			}
 		</script>
 	</div>
 </body>

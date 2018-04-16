@@ -48,10 +48,10 @@
 														</div>
 													</div>
 												</div>
-												<<div class="row">
+												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="turnover_title" class="control-projectel">业务名称</projectel>
+															<projectel for="turnover_title" class="control-projectel">业务名称：</projectel>
 															${workName }
 														</div>
 													</div>

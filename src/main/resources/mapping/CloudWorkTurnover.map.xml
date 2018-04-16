@@ -19,7 +19,7 @@
 		INSERT INTO cloud_work_turnover
 		(id,work_id,work_type,work_name,money,create_time,create_user)
 		VALUES
-		(#{id,jdbcType=NUMERIC}, #{workId,jdbcType=NUMERIC}, #{workType,jdbcType=NUMERIC}, #{work_name,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{createUser,jdbcType=NUMERIC})
+		(#{id,jdbcType=NUMERIC}, #{workId,jdbcType=NUMERIC}, #{workType,jdbcType=NUMERIC}, #{workName,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{createUser,jdbcType=NUMERIC})
 	</insert>
 	
 	<!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">

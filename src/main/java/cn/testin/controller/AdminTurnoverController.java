@@ -79,10 +79,11 @@ public class AdminTurnoverController {
 									 @RequestParam(value="workId",required=true) String workId,
 									 @RequestParam(value="workName",required=true) String workName,
 									 HttpServletRequest request) {
-		request.setAttribute("workId", workId);
-		request.setAttribute("workType", workType);
-		request.setAttribute("workName", workName);
-		return new ModelAndView("/admin/turnover/turnoverEdit");
+		ModelAndView mv = new ModelAndView("/admin/turnover/turnoverEdit");
+		mv.addObject("workId", workId);
+		mv.addObject("workType", workType);
+		mv.addObject("workName", workName);
+		return mv;
 	}
 
 

@@ -13,7 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -52,13 +54,15 @@ public class AdminUserController {
 	 */
 	@RequestMapping(value = "userList.json", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView userList(HttpServletRequest req, @RequestBody LocalUser lu) {
-		ModelAndView mav = new ModelAndView();
+	public Map<String, Object> userList(HttpServletRequest req, @RequestBody LocalUser lu) {
+		Map<String, Object> result = new HashMap<String, Object>();
 		lu.setUserStatus("1");
 		List<LocalUser> userList = userService.findList(lu);
-		mav.addObject("rows", userList);
-		mav.addObject("total", userService.findListCount(lu));
-		return mav;
+		result.put("rows", userList);
+		result.put("total", userService.findListCount(lu));
+		Map<String, Object> resultq = new HashMap<String, Object>();
+		resultq.put("model", result);
+		return resultq;
 	}
 
 

@@ -80,6 +80,19 @@
 			{
 				field: 'workType',
 				title: '业务类型',
+				formatter : function(value, row, index) {
+					if (row.workType == 1) {
+						return "工人信息";
+					} else if (row.workType == 2) {
+						return "招工信息";
+					} else if (row.workType == 3) {
+						return "加工活信息";
+					} else if (row.workType == 4) {
+						return "加工厂信息";
+					} else {
+						return "--";
+					}
+				},
 				align:'center'
 			},
 			{

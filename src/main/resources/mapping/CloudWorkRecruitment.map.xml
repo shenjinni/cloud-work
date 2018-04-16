@@ -80,11 +80,10 @@
 		<if test="status != null  and status != ''" >
 			and status = #{status,jdbcType=NUMERIC}
 		</if>
-		order by create_time DESC
+		order by cloud_work_vip.weights desc, cloud_work_recruitment.update_time desc
 		<if test="offset != null and limit != null ">
 			limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
 		</if>
-		order by cloud_work_vip.weights desc, cloud_work_recruitment.update_time desc
 	</select>
 
 	<select id="selectCount" parameterType="cn.testin.bean.CloudWorkRecruitment" resultType="int">
