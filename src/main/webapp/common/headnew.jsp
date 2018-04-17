@@ -38,49 +38,7 @@
 	</h2>
 </div>
 
-<div class="search">
-	<h3>
-		<a>织里童装设计网</a></h3>
 
-		<div id="SearchPanel" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;btnSearch&#39;)">
-			<input name="TextSearch" type="text" id="TextSearch" value="" />
-			<input type="submit" name="btnSearch" value="找加工厂" id="btnSearch" class="so-btn" />
-			<input type="submit" name="btnSearch2" value="找加工活" id="btnSearch2" class="so-btn" />
-			<%--<div class="qhchead">
-				<div class="qhc-content">
-					</div></div>--%>
-			<%--<select name="searchType" id="searchType">
-				<option <c:if test="${param.type==1}">selected="selected"</c:if> value="1">找工作</option>
-				<option <c:if test="${param.type==2}">selected="selected"</c:if> value="2">招人</option>
-				<option <c:if test="${param.type==3}">selected="selected"</c:if> value="3">找加工厂</option>
-				<option <c:if test="${param.type==4}">selected="selected"</c:if> value="4">找加工活</option>
-			</select>
-			<input type="text" id="searchText" placeholder="请输入搜索关键字..." value="${requestScope.text}" onkeyup="upEnterKey();" />
-			<a href="javascript:void(0);" class="go" onclick="searchs();"></a>--%>
-		</div>
-
-
-	<br />
-	<div class="quickbtn">
-		<a title="加工活登记" href="/jiagong/jiagonghuo.html">加工活登记</a>
-		<a title="加工厂登记" href="/jiagong/jiagongchang.html">加工厂登记</a>
-		<a title="加工活信息" href="/jiagong/list.aspx?typeid=1">加工活信息</a>
-		<a title="加工厂信息" href="/jiagong/list.aspx?typeid=2">加工厂信息</a>
-		<a title="无忧人才市场" href="/" class="yellow">人才市场</a>
-		<a title="无忧加工市场" href="/jiagong" class="yellow">加工市场</a>
-	</div>
-	<%--<div class="quickbtn">
-		<a title="无忧人才市场" href="/" class="yellow">人才市场</a>
-		<a title="无忧加工市场" href="/jiagong" class="yellow">加工市场</a>
-		<a title="加工活登记" href="/jiagong/jiagonghuo.html">加工活登记</a>
-		<a title="加工厂登记" href="/jiagong/jiagongchang.html">加工厂登记</a>
-		<a title="加工活信息" href="/jiagong/list.aspx?typeid=1">加工活信息</a>
-		<a title="加工厂信息" href="/jiagong/list.aspx?typeid=2">加工厂信息</a>
-
-	</div>--%>
-	<br />
-	加工市场电话：0572-3183669、3211091、15805720573
-</div>
 
 </body>
 </html>

@@ -4,10 +4,13 @@ package cn.testin.service;
 import javax.annotation.Resource;
 
 import cn.testin.bean.CloudWorkLabor;
+import cn.testin.bean.CloudWorkLabor;
 import cn.testin.dao.CloudWorkLaborMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *<pre>
@@ -47,6 +50,32 @@ public class CloudWorkLaborService
 		return dao.selectByPrimaryKey(id);
 	}
 
-	
+	/**
+	 * 前台分页
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> getPage(int pageIndex, String text) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		// 每页数据
+		CloudWorkLabor labor = new CloudWorkLabor();
+		//labor.setSearchText(text);
+		labor.setOffset((pageIndex - 1) * 10);
+		labor.setLimit(10);
+		List<CloudWorkLabor> pageList = findList(labor);
+		// 总页数
+		int dataCount = findListCount(labor);
+		int pageSum;
+		if (dataCount % 10 == 0) {
+			pageSum = dataCount / 10;
+		} else {
+			pageSum = dataCount / 10 + 1;
+		}
+		result.put("pageList", pageList);
+		result.put("pageSum", pageSum);
+		result.put("pageIndex", pageIndex);
+		return result;
+	}
 	
 }

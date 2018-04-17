@@ -33,14 +33,30 @@ function subSearch(){
 
 </head>
 <body>
-	<%--<!-- 左右广告 -->
-	<%@ include file="/common/leftRightAdv.jsp"%>
-	<!-- 上广告 -->
-	<%@ include file="/common/topAdv.jsp"%>--%>
 	<!-- 头部 -->
 	<%@ include file="/common/headnew.jsp"%>
+	<div class="search">
+		<h3>
+			<a>织里童装设计网</a></h3>
 
-	<h3 class="infotitle">加工厂信息</h3>
+		<div id="SearchPanel" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;btnSearch&#39;)">
+			<input name="TextSearch" type="text" id="TextSearch" value="" />
+			<input type="submit" name="btnSearch" value="找工作" id="btnSearch" class="so-btn" />
+			<input type="submit" name="btnSearch2" value="找工人" id="btnSearch2" class="so-btn" />
+		</div>
+		<br/>
+		<div class="quickbtn">
+			<a title="免费工人求职登记" href="/qiuzhi.html">工人登记</a>
+			<a title="免费工厂招工登记" href="/zhaogong.html">招工登记</a>
+			<a title="工人信息" href="/gy.aspx">工人信息</a>
+			<a title="招工信息" href="/zg.aspx">招工信息</a>
+			<a title="无忧人才市场" href="/" class="yellow">人才市场</a>
+			<a title="无忧加工市场" href="/jiagong" class="yellow">加工市场</a>
+		</div>
+		<br/>
+		加工市场电话：0572-3183669、3211091、15805720573
+	</div>
+	<h3 class="infotitle">工人信息</h3>
 	<div class="section-cols clearfix">
 		<c:if test="${not empty pageBean.pageList}">
 			<ul>
@@ -71,7 +87,7 @@ function subSearch(){
 			<div class="xspace-page">
 				<div id="AspNetPager" style="text-align:center;white-space:nowrap;">
 					<div class="info" align="center" style="width:40%;float:left;width:100%;float:none">
-						当前  1  页,总计  45  页
+						当前 ${pageBean.pageIndex} 页,总计${pageBean.pageSum} 页
 					</div>
 					<div align="center" style="width:60%;float:left;">
 						<a <c:if test="${pageBean.pageIndex==1}"> disabled="disabled" </c:if> <c:if test="${pageBean.pageIndex!=1}"> onclick="goPage(1)"</c:if> style="margin-right:5px;">首页</a>
