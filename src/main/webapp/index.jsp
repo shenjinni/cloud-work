@@ -9,25 +9,11 @@
     <link rel="shortcut icon" href="${ctx}/common/image/favicon.ico" type="image/x-icon" />
     <script src="${ctx}/common/js/jquery-1.10.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
+        location.href = "${ctx}/b2b/personColumn.do";
         if (window != top)
-            top.location.href = location.href;
+            top.location.href = "${ctx}/b2b/personColumn.do";
     </script>
     <title>织里童装设计网</title>
 </head>
-<body class="qhc-headfoot">
-<!-- 左右广告 -->
-<%--<%@ include file="/common/leftRightAdv.jsp"%>
-<!-- 上广告 -->
-<%@ include file="/common/topAdv.jsp"%>--%>
-<!-- 头部 -->
-<%@ include file="/common/head.jsp"%>
-<!-- main -->
-<%@ include file="/common/main.jsp"%>
-<%--<!-- 下广告 -->
-<%@ include file="/common/bottomAdv.jsp"%>
-<!-- 工具条 -->
-<%@ include file="/common/tools.jsp"%>--%>
-<!-- 底部 -->
-<%--<%@ include file="/common/foot.jsp"%>--%>
-</body>
+
 </html>

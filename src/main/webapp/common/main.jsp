@@ -61,7 +61,7 @@ function loadNeed(){
 	},function (data){
 		if(data.flag==true){
 			var needTop5 = data.needTop5;
-			var ul = document.getElementById("needUl");
+			var ul = document.getElementById("typeUl");
 			for(var i=0;i<needTop5.length;i++){
 				var li = document.createElement("li");
 				var a = document.createElement("a");
@@ -134,6 +134,20 @@ function loadNeed(){
 	<!--滚动新闻-->
 
 	<!--能力大厅-->
+	<h3 class="infotitle">加工厂信息</h3>
+	<div class="section-cols clearfix">
+		<ul>
+			<li>
+				<span class="cate">承接加工</span>
+				<span class="wh">联系人</span>
+				<span class="tel">电话</span>
+				<span class="date">日期</span>
+			</li>
+		</ul>
+	</div>
+	<br />
+	<div class="clear">
+	</div>
 	<div class="qhc-mainThree">
 		<div class="qhc-title">
 			<div class="qhc-midline"></div>
