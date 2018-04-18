@@ -9,10 +9,25 @@
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhiliaccount.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/admin/font-awesome.min.css" />
 	<script src="${ctx}/common/js/jquery-1.10.1.min.js" type="text/javascript" ></script>
+	<script type="text/javascript" src="${ctx}/jquery/jquery.toObject.js"></script>
 	<script src="${ctx}/common/js/jquery.validate.js" type="text/javascript" ></script>
 	<script type="text/javascript">
         $.validator.setDefaults({
-            submitHandler: function () { $("#form1").submit(); }
+            submitHandler: function () {
+                var obj = $('#form1').toObject({mode : 'first'});
+
+                cfg.data = JSON.stringify(obj);
+
+                cfg.success = function ret(data) {
+                    alert(data.errMsg);
+                    if (data.errCode == 'success') {
+                        window.location.href = "${ctx}/b2b/personColumn.do";
+                    }
+                };
+
+                cfg.url = '${ctx}/b2b/personPublish.json';
+                $.ajax(cfg);
+            }
         });
 
         $(function () {
@@ -30,7 +45,6 @@
                     flagcode: "请输入验证码"
                 }
             });
-
         })
 
         function changeFlagcode(){
@@ -39,7 +53,7 @@
 	</script>
 </head>
 <body>
-<form method="post" action="${ctx}/b2b/personPublish.do" id="form1">
+<form method="post" id="form1">
 	<div class="wap-item-header">
 		<a href="${ctx}/b2b/personColumn.do"><i class="fa fa-angle-left"></i></a>
 		<span>免费工人登记</span>
@@ -92,7 +106,7 @@
 				</div>
 			</div>
 			<div class="group">
-				<input type="submit" name="btnSave" value="免费发布" id="btnSave" class="input-button blue-button" />
+				<input type="submit" name="btnSave" value="免费发布" id="submit" class="input-button blue-button" />
 			</div>
 		</div>
 	</div>

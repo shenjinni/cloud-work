@@ -1,7 +1,9 @@
 package cn.testin.controller;
 
 import cn.testin.bean.CloudWorkPerson;
+import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkPersonService;
+import cn.testin.util.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -130,6 +134,35 @@ public class B2bPersonController {
 	@RequestMapping("personPublish.do")
 	public ModelAndView personPublish() {
 		return new ModelAndView("/b2b/personPublish");
+	}
+
+	/**
+	 *
+	 * @Description: 工人信息发布
+	 * @author guwei
+	 * @return ModelAndView
+	 */
+	@RequestMapping("personPublish.json")
+	@ResponseBody
+	public Map<String,Object> personPublish(@RequestBody CloudWorkPerson person) {
+		Map<String,Object> result = new HashMap<>();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", "发布工人信息失败，请稍后再试！");
+
+        person.setId(RandomUtils.g());
+        person.setStatus(1);
+        person.setCreateTime(new Date());
+        person.setCreateUser(1L);
+        person.setUpdateTime(new Date());
+        person.setUpdateUser(1L);
+        int i = cloudWorkPersonService.insert(person);
+        if (i == 1) {
+            result.put("errCode", Constants.result_success);
+            result.put("errMsg", "发布工人信息成功！");
+
+            log.info("发布工人信息成功！personId= " + person.getId());
+        }
+        return result;
 	}
 
 
