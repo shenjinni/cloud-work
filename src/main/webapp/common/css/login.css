@@ -74,13 +74,14 @@
     display: block;
     width: 352px;
     line-height: 38px;
-    margin-bottom: 15px;
-    background: #1F63B1;
+    margin-bottom: 25px;
+    background: #3eaf0e;
     margin-left: 30px;
     border-radius: 5px;
     text-align: center;
     color: white;
     font-size: 16px;
+    margin-top: 40px;
 }
 .login-team{
 	margin-left: 35px;

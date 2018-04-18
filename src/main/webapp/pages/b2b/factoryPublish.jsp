@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>免费工人登记</title>
+	<title>免费加工厂登记</title>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhiliaccount.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/admin/font-awesome.min.css" />
@@ -20,13 +20,13 @@
                 rules: {
                     contactsName: "required",
                     mobile: "required",
-                    workIntent: "required",
+                    workNeed: "required",
                     flagcode: "required"
                 },
                 messages: {
-                    contactsName: "请输入姓名",
-                    mobile: "请输入电话号码",
-                    workIntent: "请输入工种",
+                    contactsName: "请输入联系人",
+                    mobile: "请输入电话",
+                    workNeed: "请输入承接加工种类",
                     flagcode: "请输入验证码"
                 }
             });
@@ -39,24 +39,20 @@
 	</script>
 </head>
 <body>
-<form method="post" action="${ctx}/b2b/personPublish.do" id="form1">
+<form method="post" action="${ctx}/b2b/factoryPublish.do" id="form1">
 	<div class="wap-item-header">
 		<a href="${ctx}/b2b/personColumn.do"><i class="fa fa-angle-left"></i></a>
-		<span>免费工人登记</span>
+		<span>免费加工厂登记</span>
 		<i class="logout"><a href="${ctx}/b2b/personColumn.do">返回</a></i>
 	</div>
 	<div class="login-register">
 		<div class="login">
 			<div class="group">
-				<label>工种</label>
-				<input type="text" name="workIntent" class="text" />
+				<label>承接加工种类</label>
+				<input type="text" name="workNeed" class="text" />
 			</div>
 			<div class="group">
-				<label>工资要求</label>
-				<input type="text" name="salary" class="text" />
-			</div>
-			<div class="group">
-				<label>姓名</label>
+				<label>联系人</label>
 				<input type="text" id="realname" name="contactsName" class="text" value="" />
 			</div>
 			<div class="group">
@@ -64,22 +60,13 @@
 				<input type="text" name="mobile" class="text" value="" />
 			</div>
 			<div class="group">
-				<label>年龄</label>
-				<input type="text" name="age" class="text" value="" />
-			</div>
-			<div class="group">
-				<label>生肖</label>
-				<input type="text" name="zodiac" class="text" value="" />
-			</div>
-			<div class="group">
-				<label>性别</label>
-				<input type="text" name="sex" class="text" value="" />
-			</div>
-			<div class="group">
-				<label>哪里人</label>
+				<label>地址</label>
 				<input type="text" name="address" class="text" value="" />
 			</div>
-
+			<div class="group">
+				<label>规模人数</label>
+				<input type="text" name="scale" class="text" value="" />
+			</div>
 			<div class="group">
 				<label>补充说明</label>
 				<textarea type="text" name="note" class="text" cols="18" rows="3"></textarea>

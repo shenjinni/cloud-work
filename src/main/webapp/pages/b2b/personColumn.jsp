@@ -46,12 +46,14 @@ function subSearch(){
 		</div>
 		<br/>
 		<div class="quickbtn">
+			<a title="无忧人才市场" href="${ctx}/b2b/personColumn.do" class="yellow">人才市场</a>
+			<a title="无忧加工市场" href="${ctx}/b2b/factoryColumn.do" class="yellow">加工市场</a>
+		</div>
+		<div class="quickbtn">
 			<a title="免费工人求职登记" href="${ctx}/b2b/personPublish.do">工人登记</a>
 			<a title="免费工厂招工登记" href="${ctx}/b2b/recruitmentPublish.do">招工登记</a>
 			<a title="工人信息" href="${ctx}/b2b/personColumn.do">工人信息</a>
 			<a title="招工信息" href="${ctx}/b2b/recruitmentColumn.do">招工信息</a>
-			<a title="无忧人才市场" href="${ctx}/b2b/personColumn.do" class="yellow">人才市场</a>
-			<a title="无忧加工市场" href="${ctx}/b2b/factoryColumn.do" class="yellow">加工市场</a>
 		</div>
 		<br/>
 		加工市场电话：0572-3183669、3211091、15805720573

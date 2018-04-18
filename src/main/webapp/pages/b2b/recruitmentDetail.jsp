@@ -8,7 +8,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>工人信息详情页</title>
+<title>招工信息详情页</title>
 <script type="text/javascript">
 
 </script>
@@ -16,10 +16,13 @@
 <body>
 	<!-- 头部 -->
 	<%@ include file="/common/headnew.jsp"%>
-	<div class="m-title"><strong>工人信息详情</strong></div>
+	<div class="m-title"><strong>招工信息详情</strong></div>
 	<div id="view-content">
 		<ul>
-			<li><b>姓名：</b> ${person.contactsName}</li>
+			<span id="Label4"><li><b>招工单位：</b>${recruitment.company}</li></span>
+			<li>
+				<b>联系人：</b> ${recruitment.contactsName}
+			</li>
 			<li>
 				<b>电话：</b>
 				<i id="tel">
@@ -41,24 +44,25 @@
 					</c:if>
 				</i>
 			</li>
-			<span id="Label1">
-				<li><b>年龄：</b> ${person.age}</li>
-				<li><b>生肖：</b>${person.zodiac}</li>
-				<li><b>性别：</b>${person.sex}</li>
-				<li><b>哪里人：</b>${person.address}</li>
-			</span>
-			<li><b>工种：</b>${person.workIntent}</li>
-			<li><b>工资要求：</b>${person.salary}</li>
-			<li><b>补充说明：</b>${person.note}</li>
+			<span id="Label2"><li><b>地址：</b>${recruitment.address}</li></span>
+			<li>
+				<b>招工工种：</b>${recruitment.workType}
+			</li>
+			<li>
+				<b>工资待遇：</b>${recruitment.salary}
+			</li>
+			<li>
+				<b>补充说明：</b>${recruitment.note}
+			</li>
 			<hr />
 			<li>
 				<span class="description">
-					<b>信息编号：</b>${person.id}
+					<b>信息编号：</b>${recruitment.id}
 				</span>
 			</li>
 			<li>
 				<span class="description">
-					<b>发布时间：</b> <fmt:formatDate pattern="yyyy-MM-dd" value="${person.updateTime}" />
+					<b>发布时间：</b> <fmt:formatDate pattern="yyyy-MM-dd" value="${recruitment.updateTime}" />
 				</span>
 			</li>
 		</ul>

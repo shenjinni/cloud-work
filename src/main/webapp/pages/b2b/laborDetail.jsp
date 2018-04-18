@@ -8,7 +8,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>工人信息详情页</title>
+<title>加工活信息详情页</title>
 <script type="text/javascript">
 
 </script>
@@ -16,12 +16,13 @@
 <body>
 	<!-- 头部 -->
 	<%@ include file="/common/headnew.jsp"%>
-	<div class="m-title"><strong>工人信息详情</strong></div>
+	<div class="m-title"><strong>加工活信息详情</strong></div>
 	<div id="view-content">
 		<ul>
-			<li><b>姓名：</b> ${person.contactsName}</li>
+			<li><b>需要加工种类：</b>${labor.workNeed}</li>
+			<li><b>姓名：</b>${labor.contactsName}</li>
 			<li>
-				<b>电话：</b>
+				<b>电话：</b>：
 				<i id="tel">
 					<c:if test="${empty sessionScope.user}">
 						<div class="contact link_lan">
@@ -35,37 +36,27 @@
 					<c:if test="${not empty sessionScope.user}">
 						<c:choose>
 							<c:when test="${sessionScope.user.roleShortName == 'admin'}">
-								<a href="tel://${person.mobile}" style="position:relative">${person.mobile} </a>
+								<a href="tel://${labor.mobile}" style="position:relative">${labor.mobile} </a>
 							</c:when>
 						</c:choose>
 					</c:if>
 				</i>
 			</li>
-			<span id="Label1">
-				<li><b>年龄：</b> ${person.age}</li>
-				<li><b>生肖：</b>${person.zodiac}</li>
-				<li><b>性别：</b>${person.sex}</li>
-				<li><b>哪里人：</b>${person.address}</li>
-			</span>
-			<li><b>工种：</b>${person.workIntent}</li>
-			<li><b>工资要求：</b>${person.salary}</li>
-			<li><b>补充说明：</b>${person.note}</li>
+			<li><b>地址：</b>${labor.address}</li>
+			<li><b>工厂名：</b>${labor.factoryName}</li>
+			<li><b>加工数量：</b>${labor.number}</li>
+			<li><b>补充说明：</b>${labor.note}</li>
 			<hr />
 			<li>
 				<span class="description">
-					<b>信息编号：</b>${person.id}
+					<b>信息编号：</b>${labor.id}
 				</span>
 			</li>
 			<li>
 				<span class="description">
-					<b>发布时间：</b> <fmt:formatDate pattern="yyyy-MM-dd" value="${person.updateTime}" />
+					<b>发布时间：</b> <fmt:formatDate pattern="yyyy-MM-dd" value="${labor.updateTime}" />
 				</span>
 			</li>
-		</ul>
-		<ul>
-			<li>温馨提示：不会用的先点击下面的视频教程先学习下</li>
-			<li><a href="https://v.qq.com/iframe/player.html?vid=a03792nry8z&tiny=0&auto=0" target="_blank" class="m-title"><font color="blue">老板招工人视频教程  点击查看</font></a></li>
-			<li><a href="https://v.qq.com/iframe/player.html?vid=r0379vygwwx&tiny=0&auto=0" target="_blank" class="m-title"><font color="blue">工人找工作视频教程  点击查看</font></a></li>
 		</ul>
 	</div>
 </body>

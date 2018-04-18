@@ -46,12 +46,14 @@
 	</div>
 	<br/>
 	<div class="quickbtn">
-		<a title="加工活登记" href="/jiagong/jiagonghuo.html">加工活登记</a>
-		<a title="加工厂登记" href="/jiagong/jiagongchang.html">加工厂登记</a>
-		<a title="加工活信息" href="/jiagong/list.aspx?typeid=1">加工活信息</a>
-		<a title="加工厂信息" href="/jiagong/list.aspx?typeid=2">加工厂信息</a>
-		<a title="无忧人才市场" href="/" class="yellow">人才市场</a>
-		<a title="无忧加工市场" href="/jiagong" class="yellow">加工市场</a>
+		<a title="无忧人才市场" href="${ctx}/b2b/personColumn.do" class="yellow">人才市场</a>
+		<a title="无忧加工市场" href="${ctx}/b2b/factoryColumn.do" class="yellow">加工市场</a>
+	</div>
+	<div class="quickbtn">
+		<a title="加工活登记" href="${ctx}/b2b/laborPublish.do">加工活登记</a>
+		<a title="加工厂登记" href="${ctx}/b2b/factoryPublish.do">加工厂登记</a>
+		<a title="加工活信息" href="${ctx}/b2b/laborColumn.do">加工活信息</a>
+		<a title="加工厂信息" href="${ctx}/b2b/factoryColumn.do">加工厂信息</a>
 	</div>
 	<br/>
 	加工市场电话：0572-3183669、3211091、15805720573
@@ -70,7 +72,7 @@
 		<c:forEach var="item" items="${pageBean.pageList}">
 			<ul>
 				<li>
-					<span class="cate"><a href="${ctx}/b2b/personDetail.do?id=${item.id}">${item.workNeed}</a></span>
+					<span class="cate"><a href="${ctx}/b2b/laborDetail.do?id=${item.id}">${item.workNeed}</a></span>
 					<span class="wh">${item.address}</span>
 					<span class="tel">${item.mobile}</span>
 					<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
