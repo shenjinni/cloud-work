@@ -11,9 +11,29 @@
 	<script src="${ctx}/common/js/jquery-1.10.1.min.js" type="text/javascript" ></script>
 	<script src="${ctx}/common/js/jquery.validate.js" type="text/javascript" ></script>
 	<script type="text/javascript">
-        $.validator.setDefaults({
-            submitHandler: function () { $("#form1").submit(); }
-        });
+		var cfg = {
+			type : 'POST',
+			dataType : 'json',
+			contentType : 'application/json;charset=UTF-8',
+		};
+		$.validator.setDefaults({
+			submitHandler: function () {
+				var obj = $('#form1').toObject({mode : 'first'});
+
+				cfg.data = JSON.stringify(obj);
+				alert(cfg.data);
+
+				cfg.success = function ret(data) {
+					alert(data.errMsg);
+					if (data.errCode == 'success') {
+						window.location.href = "${ctx}/b2b/factoryColumn.do";
+					}
+				};
+
+				cfg.url = '${ctx}/b2b/factoryPublish.json';
+				$.ajax(cfg);
+			}
+		});
 
         $(function () {
             $("#form1").validate({
@@ -39,7 +59,7 @@
 	</script>
 </head>
 <body>
-<form method="post" action="${ctx}/b2b/factoryPublish.do" id="form1">
+<form method="post" id="form1">
 	<div class="wap-item-header">
 		<a href="${ctx}/b2b/personColumn.do"><i class="fa fa-angle-left"></i></a>
 		<span>免费加工厂登记</span>

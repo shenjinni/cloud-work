@@ -10,13 +10,20 @@
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/admin/font-awesome.min.css" />
 	<script src="${ctx}/common/js/jquery-1.10.1.min.js" type="text/javascript" ></script>
 	<script type="text/javascript" src="${ctx}/jquery/jquery.toObject.js"></script>
+	<script type="text/javascript" src="${ctx}/common/js/form2js.js"></script>
 	<script src="${ctx}/common/js/jquery.validate.js" type="text/javascript" ></script>
 	<script type="text/javascript">
+		var cfg = {
+			type : 'POST',
+			dataType : 'json',
+			contentType : 'application/json;charset=UTF-8',
+		};
         $.validator.setDefaults({
             submitHandler: function () {
                 var obj = $('#form1').toObject({mode : 'first'});
 
                 cfg.data = JSON.stringify(obj);
+				alert(cfg.data);
 
                 cfg.success = function ret(data) {
                     alert(data.errMsg);
