@@ -71,9 +71,8 @@
 <body>
 	<!--   main    -->
 	<div style="overflow: hidden;min-height: 650px;" class="qhc-main">
-		<div class="login-img">
-			<img src="${ctx}/common/images/u0.png" onclick="location.href='${ctx}/index.jsp'" style="cursor: pointer;"/>
-		</div>
+		<h3 style="font-size: 24px;font-weight: bold;color: #8a8a8a;margin: 40px 200px;">
+			<a>织里童装设计网</a></h3>
 		<div class="">
 			<div class="login-item">
 				<ul>

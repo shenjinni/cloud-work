@@ -109,33 +109,14 @@
         </property>  
         <property name="filterChainDefinitions">  
             <value>  
-               <!--/admin/league/** = authc,roleOrFilter["admin"]
+               /admin/factory/** = authc,roleOrFilter["admin"]
                /admin/home.do = authc,roleOrFilter["admin"]
-               /admin/advertisement/** = authc,roleOrFilter["admin"]
-               /admin/article/** = authc,roleOrFilter["admin"]
-               /admin/checkAbility/** = authc,roleOrFilter["admin"]
-               /admin/checkProject/** = authc,roleOrFilter["admin"]
-               /admin/checkSpec/** = authc,roleOrFilter["admin"]
-               /admin/checkType/** = authc,roleOrFilter["admin"]
-               /admin/coupon/** = authc,roleOrFilter["admin"]
-               /admin/discount/** = authc,roleOrFilter["admin"]
-               /admin/discountLab/** = authc,roleOrFilter["admin"]
-               /admin/entrustmentOrder/** = authc,roleOrFilter["admin"]
-               /admin/evaluate/** = authc,roleOrFilter["admin"]
-               /admin/labEnter/** = authc,roleOrFilter["admin"]
-               /admin/laboratory/** = authc,roleOrFilter["admin"]
-               /admin/message/** = authc,roleOrFilter["admin"]
-               /admin/navigation/** = authc,roleOrFilter["admin"]
-               /admin/need/** = authc,roleOrFilter["admin"]
-               /admin/score/** = authc,roleOrFilter["admin"]
-               /admin/tradeRecord/** = authc,roleOrFilter["admin"]
-               /admin/invoice/** = authc,roleOrFilter["admin"]
+               /admin/labor/** = authc,roleOrFilter["admin"]
+               /admin/person/** = authc,roleOrFilter["admin"]
+               /admin/recruitment/** = authc,roleOrFilter["admin"]
+               /admin/turnover/** = authc,roleOrFilter["admin"]
                /admin/user/** = authc,roleOrFilter["admin"]
-               /admin/banner/** = authc,roleOrFilter["admin"]
-               /admin/appManage/** = authc,roleOrFilter["admin"]
-               /common/user/** = authc
-               /labCenter/** = authc,roleOrFilter["lab"]
-               /userCenter/** = authc,roleOrFilter["lab","normal"]-->
+               /b2b/** = authc
             </value>  
         </property>  
     </bean>  
