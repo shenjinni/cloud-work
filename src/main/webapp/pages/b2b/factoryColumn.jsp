@@ -9,26 +9,17 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>织里童装设计网</title>
 	<script type="text/javascript">
-
-
         function goPage(pageIndex){
-            var text = $("#subSearchText").val();
+            var text = $("#TextSearch").val();
             if(text==null || text==undefined){
                 text="";
             }
-            location.href="${ctx}/common/personColumn.do?pageIndex="+pageIndex+"&text="+text;
+            location.href="${ctx}/common/factoryColumn.do?pageIndex="+pageIndex+"&text="+text;
         }
         function navActive(){
             $("#navLi_2").addClass("active");
         }
 
-        function subSearch(){
-            var text = $("#subSearchText").val();
-            if(text==null || text==undefined){
-                text="";
-            }
-            location.href="${ctx}/common/personColumn.do?pageIndex=1&text="+text;
-        }
 	</script>
 
 </head>
@@ -40,9 +31,9 @@
 		<a>织里童装设计网</a></h3>
 
 	<div id="SearchPanel" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;btnSearch&#39;)">
-		<input name="TextSearch" type="text" id="TextSearch" value="" />
-		<input type="submit" name="btnSearch" value="找加工厂" id="btnSearch" class="so-btn" />
-		<input type="submit" name="btnSearch2" value="找加工活" id="btnSearch2" class="so-btn" />
+		<input name="TextSearch" type="text" id="TextSearch" value="${text}" />
+		<input type="submit" name="btnSearch" onclick="subSearch(4);" value="找加工厂" id="btnSearch" class="so-btn" />
+		<input type="submit" name="btnSearch2" onclick="subSearch(3);" value="找加工活" id="btnSearch2" class="so-btn" />
 	</div>
 	<br/>
 	<div class="quickbtn">

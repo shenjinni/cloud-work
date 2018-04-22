@@ -66,19 +66,29 @@
 		cloud_work_factory.*,cloud_work_vip.weights weights,cloud_work_vip.validity_time validity_time
 		from cloud_work_factory
 		left join cloud_work_vip on cloud_work_vip.work_id = cloud_work_factory.id and cloud_work_vip.work_type=4
-		where 1=1
-		<if test="workNeed != null  and workNeed != ''" >
-			and work_need like concat('%',#{workNeed,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="contactsName != null  and contactsName != ''" >
-			and contacts_name like concat('%',#{contactsName,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="mobile != null  and mobile != ''" >
-			and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="status != null  and status != ''" >
-			and status = #{status,jdbcType=NUMERIC}
-		</if>
+		where
+		<choose>
+			<when test="searchText != null  and searchText != ''">
+				cloud_work_factory.work_need like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				or cloud_work_factory.contacts_name like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				or cloud_work_factory.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+			</when>
+			<otherwise>
+				1=1
+				<if test="workNeed != null  and workNeed != ''" >
+					and cloud_work_factory.work_need like concat('%',#{workNeed,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="contactsName != null  and contactsName != ''" >
+					and cloud_work_factory.contacts_name like concat('%',#{contactsName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="mobile != null  and mobile != ''" >
+					and cloud_work_factory.mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="status != null  and status != ''" >
+					and cloud_work_factory.status = #{status,jdbcType=NUMERIC}
+				</if>
+			</otherwise>
+		</choose>
 		order by cloud_work_vip.weights desc, cloud_work_factory.update_time desc
 		<if test="offset != null and limit != null ">
 			limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
@@ -88,21 +98,30 @@
 	<select id="selectCount" parameterType="cn.testin.bean.CloudWorkFactory" resultType="int">
 		SELECT
 		count(*)
-		FROM
-		cloud_work_factory
-		left join cloud_work_vip on cloud_work_vip.work_id = cloud_work_factory.id
-		where cloud_work_vip.work_type=4
-		<if test="workNeed != null  and workNeed != ''" >
-			and work_need like concat('%',#{workNeed,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="contactsName != null  and contactsName != ''" >
-			and contacts_name like concat('%',#{contactsName,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="mobile != null  and mobile != ''" >
-			and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="status != null  and status != ''" >
-			and status = #{status,jdbcType=NUMERIC}
-		</if>
+		from cloud_work_factory
+		left join cloud_work_vip on cloud_work_vip.work_id = cloud_work_factory.id and cloud_work_vip.work_type=4
+		where
+		<choose>
+			<when test="searchText != null  and searchText != ''">
+				cloud_work_factory.work_need like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				or cloud_work_factory.contacts_name like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				or cloud_work_factory.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+			</when>
+			<otherwise>
+				1=1
+				<if test="workNeed != null  and workNeed != ''" >
+					and cloud_work_factory.work_need like concat('%',#{workNeed,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="contactsName != null  and contactsName != ''" >
+					and cloud_work_factory.contacts_name like concat('%',#{contactsName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="mobile != null  and mobile != ''" >
+					and cloud_work_factory.mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="status != null  and status != ''" >
+					and cloud_work_factory.status = #{status,jdbcType=NUMERIC}
+				</if>
+			</otherwise>
+		</choose>
 	</select>
 </mapper>

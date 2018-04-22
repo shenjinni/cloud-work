@@ -68,19 +68,29 @@
 		cloud_work_person.*,cloud_work_vip.weights weights,cloud_work_vip.validity_time validity_time
 		from cloud_work_person
 		left join cloud_work_vip on cloud_work_vip.work_id = cloud_work_person.id and cloud_work_vip.work_type=1
-		where 1=1
-		<if test="workIntent != null  and workIntent != ''" >
-			and work_intent like concat('%',#{workIntent,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="contactsName != null  and contactsName != ''" >
-			and contacts_name like concat('%',#{contactsName,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="mobile != null  and mobile != ''" >
-			and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="status != null  and status != ''" >
-			and status = #{status,jdbcType=NUMERIC}
-		</if>
+		where
+		<choose>
+			<when test="searchText != null  and searchText != ''">
+				cloud_work_person.work_intent like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				or cloud_work_person.contacts_name like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				or cloud_work_person.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+			</when>
+			<otherwise>
+				1=1
+				<if test="workIntent != null  and workIntent != ''" >
+					and cloud_work_person.work_intent like concat('%',#{workIntent,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="contactsName != null  and contactsName != ''" >
+					and cloud_work_person.contacts_name like concat('%',#{contactsName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="mobile != null  and mobile != ''" >
+					and cloud_work_person.mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="status != null  and status != ''" >
+					and cloud_work_person.status = #{status,jdbcType=NUMERIC}
+				</if>
+			</otherwise>
+		</choose>
 		order by cloud_work_vip.weights desc, cloud_work_person.update_time desc
 		<if test="offset != null and limit != null ">
 			limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
@@ -90,21 +100,30 @@
 	<select id="selectCount" parameterType="cn.testin.bean.CloudWorkPerson" resultType="int">
 		SELECT
 		count(*)
-		FROM
-		cloud_work_person
-		left join cloud_work_vip on cloud_work_vip.work_id = cloud_work_person.id
-		where cloud_work_vip.work_type=1
-		<if test="workIntent != null  and workIntent != ''" >
-			and work_intent like concat('%',#{workIntent,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="contactsName != null  and contactsName != ''" >
-			and contacts_name like concat('%',#{contactsName,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="mobile != null  and mobile != ''" >
-			and mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="status != null  and status != ''" >
-			and status = #{status,jdbcType=NUMERIC}
-		</if>
+		from cloud_work_person
+		left join cloud_work_vip on cloud_work_vip.work_id = cloud_work_person.id and cloud_work_vip.work_type=1
+		where
+		<choose>
+			<when test="searchText != null  and searchText != ''">
+				cloud_work_person.work_intent like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				or cloud_work_person.contacts_name like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				or cloud_work_person.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+			</when>
+			<otherwise>
+				1=1
+				<if test="workIntent != null  and workIntent != ''" >
+					and cloud_work_person.work_intent like concat('%',#{workIntent,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="contactsName != null  and contactsName != ''" >
+					and cloud_work_person.contacts_name like concat('%',#{contactsName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="mobile != null  and mobile != ''" >
+					and cloud_work_person.mobile like concat('%',#{mobile,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="status != null  and status != ''" >
+					and cloud_work_person.status = #{status,jdbcType=NUMERIC}
+				</if>
+			</otherwise>
+		</choose>
 	</select>
 </mapper>

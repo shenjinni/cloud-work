@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -82,7 +83,17 @@ public class AdminTurnoverController {
 		ModelAndView mv = new ModelAndView("/admin/turnover/turnoverEdit");
 		mv.addObject("workId", workId);
 		mv.addObject("workType", workType);
-		mv.addObject("workName", workName);
+
+		String str=request.getParameter("workName");
+		try {
+			byte[] bytes= str.getBytes("ISO-8859-1");
+			String name = new String(bytes,"utf-8");
+			mv.addObject("workName", name);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+
 		return mv;
 	}
 

@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
-<c:set var="fileCtx" value="http://p2or9pg0j.bkt.clouddn.com/"></c:set>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,7 +11,7 @@
 
 
 function goPage(pageIndex){
-	var text = $("#subSearchText").val();
+	var text = $("#TextSearch").val();
 	if(text==null || text==undefined){
 		text="";
 	}
@@ -20,14 +19,6 @@ function goPage(pageIndex){
 }
 function navActive(){
 	$("#navLi_2").addClass("active");
-}
-
-function subSearch(){
-	var text = $("#subSearchText").val();
-	if(text==null || text==undefined){
-		text="";
-	}
-	location.href="${ctx}/common/personColumn.do?pageIndex=1&text="+text;
 }
 </script>
 
@@ -39,10 +30,10 @@ function subSearch(){
 		<h3>
 			<a>织里童装设计网</a></h3>
 
-		<div id="SearchPanel" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;btnSearch&#39;)">
-			<input name="TextSearch" type="text" id="TextSearch" value="" />
-			<input type="submit" name="btnSearch" value="找工作" id="btnSearch" class="so-btn" />
-			<input type="submit" name="btnSearch2" value="找工人" id="btnSearch2" class="so-btn" />
+		<div id="SearchPanel">
+			<input name="TextSearch" type="text" id="TextSearch" value="${text}" />
+			<input type="button" onclick="subSearch(1);" name="btnSearch" value="找工作" id="btnSearch" class="so-btn" />
+			<input type="button" onclick="subSearch(2);" name="btnSearch2" value="找工人" id="btnSearch2" class="so-btn" />
 		</div>
 		<br/>
 		<div class="quickbtn">

@@ -13,7 +13,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta http-equiv="Cache-control" content="no-cache" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
+	<script src="${ctx}/common/js/jquery-1.10.1.min.js" type="text/javascript" ></script>
 </head>
+
+<script type="text/javascript">
+	function subSearch(type){
+		var text = $("#TextSearch").val();
+		if(text==null || text==undefined){
+			text="";
+		}
+		if (type == 1) {
+			location.href="${ctx}/b2b/recruitmentColumn.do?pageIndex=1&text="+text;
+		} else if (type == 2) {
+			location.href="${ctx}/b2b/personColumn.do?pageIndex=1&text="+text;
+		} else if (type == 3) {
+			location.href="${ctx}/b2b/laborColumn.do?pageIndex=1&text="+text;
+		} else if (type == 4) {
+			location.href="${ctx}/b2b/factoryColumn.do?pageIndex=1&text="+text;
+		}
+	}
+</script>
 
 
 <div class="mylist">

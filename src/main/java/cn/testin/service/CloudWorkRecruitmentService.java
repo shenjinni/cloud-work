@@ -60,7 +60,7 @@ public class CloudWorkRecruitmentService
 		Map<String, Object> result = new HashMap<>();
 		// 每页数据
 		CloudWorkRecruitment rec = new CloudWorkRecruitment();
-		//rec.setSearchText(text);
+		rec.setSearchText(text);
 		rec.setOffset((pageIndex - 1) * 10);
 		rec.setLimit(10);
 		List<CloudWorkRecruitment> pageList = findList(rec);

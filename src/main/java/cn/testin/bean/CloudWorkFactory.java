@@ -52,6 +52,17 @@ public class CloudWorkFactory extends BasicPage
 	// 失效时间
 	protected Date validityTime;
 
+	// 前台模糊查询条件
+	protected String searchText;
+
+	public String getSearchText() {
+		return searchText;
+	}
+
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
+
 	public Date getValidityTime() {
 		return validityTime;
 	}

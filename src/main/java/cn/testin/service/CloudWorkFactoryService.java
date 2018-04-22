@@ -61,7 +61,7 @@ public class CloudWorkFactoryService
 		Map<String, Object> result = new HashMap<>();
 		// 每页数据
 		CloudWorkFactory factory = new CloudWorkFactory();
-		//factory.setSearchText(text);
+		factory.setSearchText(text);
 		factory.setOffset((pageIndex - 1) * 10);
 		factory.setLimit(10);
 		List<CloudWorkFactory> pageList = findList(factory);

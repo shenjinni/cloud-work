@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,18 +49,25 @@ public class B2bFactoryController {
 		try {
 			String pageIndexStr = req.getParameter("pageIndex");
 			String text = req.getParameter("text");
+			String textsearch = "";
+			if (StringUtils.isNotBlank(text)) {
+				try {
+					byte[] bytes= text.getBytes("ISO-8859-1");
+					textsearch = new String(bytes,"utf-8");
+					req.setAttribute("text", textsearch);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
 			// pageIndex不是数字或为null时，重置为1
 			if (!StringUtils.isNumeric(pageIndexStr)) {
 				pageIndexStr = "1";
 			}
 			int pageIndex = Integer.parseInt(pageIndexStr);
 
-			req.setAttribute("text", text);
-			// 获取总数
-			req.setAttribute("count", 2);
 			// 加工厂信息分页
 			pageIndex = pageIndex == 0 ? 1 : pageIndex;// 默认设置为1
-			Map<String, Object> result = cloudWorkFactoryService.getPage(pageIndex, text);
+			Map<String, Object> result = cloudWorkFactoryService.getPage(pageIndex, textsearch);
 			result.put("pageIndex", pageIndex);
 			req.setAttribute("pageBean", result);
 		} catch (Exception e) {

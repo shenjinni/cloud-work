@@ -60,7 +60,7 @@ public class CloudWorkLaborService
 		Map<String, Object> result = new HashMap<>();
 		// 每页数据
 		CloudWorkLabor labor = new CloudWorkLabor();
-		//labor.setSearchText(text);
+		labor.setSearchText(text);
 		labor.setOffset((pageIndex - 1) * 10);
 		labor.setLimit(10);
 		List<CloudWorkLabor> pageList = findList(labor);
