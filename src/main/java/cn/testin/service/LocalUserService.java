@@ -1,5 +1,6 @@
 package cn.testin.service;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import cn.testin.dao.UserRoleMapper;
 import cn.testin.util.MD5Util;
 import cn.testin.util.RandomUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 
 @Service
@@ -87,6 +89,10 @@ public class LocalUserService {
 			ur.setId(RandomUtils.g());
 			ur.setRoleId(role.getRoleId());
 			ur.setUserId(lu.getUserId());
+			Calendar calendar= Calendar.getInstance();
+			calendar.set(2999, 12, 31);  //年月日  也可以具体到时分秒如calendar.set(2015, 10, 12,11,32,52);
+			Date date = calendar.getTime();//date就是你需要的时间
+			ur.setValidityTime(date);
 			userRoleDao.insert(ur);
 			/*//增加积分记录
 			Score score = new Score();
@@ -110,7 +116,37 @@ public class LocalUserService {
 	
 	// 查询用户列表
 	public List<LocalUser> findList(LocalUser lu) {
-		return dao.selectList(lu);
+
+		List<LocalUser> userlist = dao.selectList(lu);
+		Date now = new Date();
+		if (!CollectionUtils.isEmpty(userlist)) {
+			for (LocalUser user : userlist) {
+				UserRole userRole = userRoleDao.getUserRoleByUserId(user.getUserId());
+				// 过期角色一律改回普通用户
+				if (now.compareTo(userRole.getValidityTime()) == 1) {
+					Role role = roleDao.findRoleByShortName(Constants.role_normal);
+					userRole.setRoleId(role.getRoleId());
+
+					Calendar calendar= Calendar.getInstance();
+					calendar.set(2999, 12, 31);  //年月日  也可以具体到时分秒如calendar.set(2015, 10, 12,11,32,52);
+					Date date = calendar.getTime();//date就是你需要的时间
+					userRole.setValidityTime(date);
+					userRoleDao.updateUserRoleByUserId(userRole);
+
+					user.setRoleName(role.getRoleName());
+					user.setRoleShortName(role.getRoleShortName());
+				} else {
+					user.setRoleName(userRole.getRoleName());
+					user.setRoleShortName(userRole.getRoleShortName());
+				}
+
+				user.setRoleId(userRole.getRoleId());
+				user.setValidityTime(userRole.getValidityTime());
+
+			}
+		}
+
+		return userlist;
 	}
 
 	// 获取用户数

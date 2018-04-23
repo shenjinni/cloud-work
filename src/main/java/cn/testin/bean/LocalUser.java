@@ -67,6 +67,16 @@ public class LocalUser extends BasicPage {
 
 	private String qq;
 
+	protected Date validityTime;
+
+	public Date getValidityTime() {
+		return validityTime;
+	}
+
+	public void setValidityTime(Date validityTime) {
+		this.validityTime = validityTime;
+	}
+
 	public String getQq() {
 		return qq;
 	}

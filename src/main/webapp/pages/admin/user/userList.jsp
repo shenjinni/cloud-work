@@ -79,11 +79,16 @@
 						    align:'center'
 						},
 						{
-							field: 'createTime',
+							field: 'roleName',
+							title: '角色',
+							align:'center'
+						},
+						{
+							field: 'validityTime',
 							title: '到期时间',
 							formatter : function(value, row, index) {
-								var createTime = new Date(row.createTime);
-								return createTime.format('yyyy-MM-dd hh:mm:ss');
+								var validityTime = new Date(row.validityTime);
+								return validityTime.format('yyyy-MM-dd hh:mm:ss');
 							},
 							align:'center'
 						},
@@ -102,7 +107,7 @@
 						    width: '300',
 						    formatter:function(value,row,index){
 						    	var result=
-						    		'<a href="userModify.do?id='+row.userId+'">设置为会员</a>';
+						    		'<a href="userModify.do?id='+row.userId+'">设置角色</a>';
 						    	
 						    	return result;
 						    },

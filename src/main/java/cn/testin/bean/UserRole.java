@@ -1,5 +1,7 @@
 package cn.testin.bean;
 
+import java.util.Date;
+
 public class UserRole {
 	
 	private Long id;
@@ -7,6 +9,37 @@ public class UserRole {
 	private Long roleId;
 	
 	private Long userId;
+
+	// 失效时间
+	protected Date validityTime;
+
+	private String roleName;
+
+	private String roleShortName;
+
+	public String getRoleShortName() {
+		return roleShortName;
+	}
+
+	public void setRoleShortName(String roleShortName) {
+		this.roleShortName = roleShortName;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public Date getValidityTime() {
+		return validityTime;
+	}
+
+	public void setValidityTime(Date validityTime) {
+		this.validityTime = validityTime;
+	}
 
 	public Long getId() {
 		return id;

@@ -25,6 +25,8 @@
     <result column="wallet_amount" property="walletAmount" jdbcType="DECIMAL" />
     <result column="reservation_id" property="reservationId" jdbcType="BIGINT" />
     <result column="role_short_name" property="roleShortName" jdbcType="VARCHAR" />
+      <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+      <result column="role_id" property="roleId" jdbcType="BIGINT" />
     <result column="qq" property="qq" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -293,7 +295,7 @@
 	    ON ur.user_id = u.user_id 
 	  LEFT JOIN qhc_role r 
 	    ON r.role_id = ur.role_id 
-	WHERE 1 = 1 
+	WHERE 1 = 1
   	  <if test="loginName != null" >
         and u.user_login_name = #{loginName,jdbcType=VARCHAR}
       </if>
@@ -330,7 +332,7 @@
 			lu.*
 		FROM
 			qhc_local_user lu
-		where 1=1
+      where 1=1
 		<if test="userLoginName != null and userLoginName != ''">
 			and lu.user_login_name like concat('%',#{userLoginName,jdbcType=VARCHAR},'%')
 		</if>

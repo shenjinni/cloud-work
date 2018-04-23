@@ -5,9 +5,12 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result property="validityTime" column="validity_time" jdbcType="DATE"/>
+    <result column="role_short_name" property="roleShortName" jdbcType="VARCHAR" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_id, role_id
+    id, user_id, role_id,validity_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -20,9 +23,9 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.testin.bean.UserRole" >
-    insert into qhc_user_role (id, user_id, role_id
+    insert into qhc_user_role (id, user_id, role_id,validity_time
       )
-    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{validityTime,jdbcType=DATE}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.testin.bean.UserRole" >
@@ -37,6 +40,9 @@
       <if test="roleId != null" >
         role_id,
       </if>
+      <if test="validityTime != null" >
+        validity_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -47,6 +53,9 @@
       </if>
       <if test="roleId != null" >
         #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="validityTime != null" >
+        #{validityTime,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -59,13 +68,17 @@
       <if test="roleId != null" >
         role_id = #{roleId,jdbcType=BIGINT},
       </if>
+      <if test="validityTime != null" >
+        validity_time = #{validityTime,jdbcType=DATE},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.testin.bean.UserRole" >
     update qhc_user_role
     set user_id = #{userId,jdbcType=BIGINT},
-      role_id = #{roleId,jdbcType=BIGINT}
+      role_id = #{roleId,jdbcType=BIGINT},
+      validity_time = #{validityTime,jdbcType=DATE}
     where id = #{id,jdbcType=BIGINT}
   </update>
   
@@ -84,7 +97,16 @@
 	</select>
 	<update id="updateUserRoleByUserId" parameterType="cn.testin.bean.UserRole">
 		update qhc_user_role
-    	set role_id = #{roleId,jdbcType=BIGINT}
+    	set role_id = #{roleId,jdbcType=BIGINT},
+    	validity_time = #{validityTime,jdbcType=DATE}
     	where user_id = #{userId,jdbcType=BIGINT}
 	</update>
+  <select id="getUserRoleByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    ur.*,r.role_name,r.role_short_name
+    from qhc_user_role ur
+    LEFT JOIN qhc_role r
+    ON r.role_id = ur.role_id
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
 </mapper>
