@@ -37,8 +37,8 @@
 
 <div class="mylist">
 	<h2>
-		<a href="">使用帮助</a>
-		<a href="">收费标准</a>
+		<a href="${pageContext.request.contextPath}/common/help.jsp">使用帮助</a>
+		<a href="${pageContext.request.contextPath}/common/pay.jsp">收费标准</a>
 		<c:if test="${empty sessionScope.user}">
 			<a href="${ctx}/common/localLogin.do?fromUrl=index.jsp">会员登录</a>
 			<a href="${ctx}/common/registe.do">免费注册</a>

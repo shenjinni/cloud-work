@@ -108,5 +108,6 @@
 		</div>
 	</div>
 </form>
+<%@ include file="/common/bottomAdv.jsp"%>
 </body>
 </html>

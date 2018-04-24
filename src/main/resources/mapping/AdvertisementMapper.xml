@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.testin.dao.AdvertisementMapper" >
+  <resultMap id="BaseResultMap" type="cn.testin.bean.Advertisement" >
+    <id column="ad_id" property="adId" jdbcType="BIGINT" />
+    <result column="ad_title" property="adTitle" jdbcType="VARCHAR" />
+    <result column="ad_location" property="adLocation" jdbcType="VARCHAR" />
+    <result column="ad_image" property="adImage" jdbcType="VARCHAR" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    <result column="ad_url" property="adUrl" jdbcType="VARCHAR" />
+    <result column="ad_status" property="adStatus" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ad_id, ad_title, ad_location, ad_image, publish_time, end_time, sort, ad_url, ad_status, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from qhc_advertisement
+    where ad_id = #{adId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from qhc_advertisement
+    where ad_id = #{adId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.testin.bean.Advertisement" >
+    insert into qhc_advertisement (ad_id, ad_title, ad_location, 
+      ad_image, publish_time, end_time, 
+      sort, ad_url, ad_status, 
+      create_time)
+    values (#{adId,jdbcType=BIGINT}, #{adTitle,jdbcType=VARCHAR}, #{adLocation,jdbcType=VARCHAR}, 
+      #{adImage,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{sort,jdbcType=VARCHAR}, #{adUrl,jdbcType=VARCHAR}, #{adStatus,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.testin.bean.Advertisement" >
+    insert into qhc_advertisement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adId != null" >
+        ad_id,
+      </if>
+      <if test="adTitle != null" >
+        ad_title,
+      </if>
+      <if test="adLocation != null" >
+        ad_location,
+      </if>
+      <if test="adImage != null" >
+        ad_image,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="adUrl != null" >
+        ad_url,
+      </if>
+      <if test="adStatus != null" >
+        ad_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adId != null" >
+        #{adId,jdbcType=BIGINT},
+      </if>
+      <if test="adTitle != null" >
+        #{adTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="adLocation != null" >
+        #{adLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="adImage != null" >
+        #{adImage,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="adUrl != null" >
+        #{adUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="adStatus != null" >
+        #{adStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.testin.bean.Advertisement" >
+    update qhc_advertisement
+    <set >
+      <if test="adTitle != null" >
+        ad_title = #{adTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="adLocation != null" >
+        ad_location = #{adLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="adImage != null" >
+        ad_image = #{adImage,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="adUrl != null" >
+        ad_url = #{adUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="adStatus != null" >
+        ad_status = #{adStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ad_id = #{adId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.testin.bean.Advertisement" >
+    update qhc_advertisement
+    set ad_title = #{adTitle,jdbcType=VARCHAR},
+      ad_location = #{adLocation,jdbcType=VARCHAR},
+      ad_image = #{adImage,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      sort = #{sort,jdbcType=VARCHAR},
+      ad_url = #{adUrl,jdbcType=VARCHAR},
+      ad_status = #{adStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where ad_id = #{adId,jdbcType=BIGINT}
+  </update>
+  <!--获取发布状态的广告-->
+  <select id="getList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from qhc_advertisement
+    where ad_status = 1 and end_time>NOW()
+    order by sort ASC
+  </select>
+  
+  <select id="selectList" parameterType="cn.testin.bean.Advertisement" resultMap="BaseResultMap">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			qhc_advertisement
+		where 1=1 
+		<if test="adStatus != null and adStatus != ''" >
+	      and  ad_status = #{adStatus,jdbcType=VARCHAR}
+	    </if>
+	    <if test="adLocation != null and adLocation != ''" >
+	      and  ad_location = #{adLocation,jdbcType=VARCHAR}
+	    </if>
+	    <if test="adTitle != null and adTitle != ''" >
+	       and  ad_title like concat('%',#{adTitle,jdbcType=VARCHAR},'%')
+	    </if>
+		order by  create_time desc
+		<if test="offset != null and limit != null ">
+			limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+	
+	<select id="selectCount" parameterType="cn.testin.bean.Advertisement" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			qhc_advertisement
+		where 1=1 
+		<if test="adStatus != null and adStatus != ''" >
+	      and  ad_status = #{adStatus,jdbcType=VARCHAR}
+	    </if>
+	    <if test="adLocation != null and adLocation != ''" >
+	      and  ad_location = #{adLocation,jdbcType=VARCHAR}
+	    </if>
+	    <if test="adTitle != null and adTitle != ''" >
+	       and  ad_title like concat('%',#{adTitle,jdbcType=VARCHAR},'%')
+	    </if>
+	</select>
+  
+  
+</mapper>

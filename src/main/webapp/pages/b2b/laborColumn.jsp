@@ -120,7 +120,7 @@
 <c:if test="${empty pageBean.pageList}">
 	<div style="width: 100%; height: 300px; text-align: center; line-height: 300px;">暂无数据</div>
 </c:if>
-
+<%@ include file="/common/bottomAdv.jsp"%>
 <%--<!-- 下广告 -->
 <%@ include file="/common/bottomAdv.jsp"%>
 <!-- 工具条 -->

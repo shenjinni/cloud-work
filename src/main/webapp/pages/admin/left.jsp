@@ -137,6 +137,11 @@
                                         <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">平台收支</span>
                                     </a>
                                 </div>
+                                <div style="display: none;" class="hh l-list3">
+                                    <a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/advertisement/advertisementList.do">
+                                        <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">广告管理</span>
+                                    </a>
+                                </div>
                             </li>
 						<%--</shiro:hasRole>--%>
                 	</ul>

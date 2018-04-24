@@ -108,11 +108,6 @@
 					return createTime.format('yyyy-MM-dd');
 				},
 				align:'center'
-			},
-			{
-				field: 'createUserName',
-				title: '添加人',
-				align:'center'
 			}]
             initTable();
 

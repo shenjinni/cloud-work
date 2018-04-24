@@ -27,7 +27,8 @@ function loadBottomAdv(){
 				var bottomDiv = document.getElementById("qhc-bottombanner");
 				for(var i=0;i<bottomList.length;i++){
 					var img = document.createElement("img");
-					img.src="${fileCtx}/"+bottomList[i].adImage;
+					//img.src="${fileCtx}/"+bottomList[i].adImage;
+                    img.src=bottomList[i].adImage;
 					img.title=bottomList[i].adTitle;
 					img.style.height="128px";
 					img.style.width="100%";

@@ -73,4 +73,5 @@
 		</ul>
 	</div>
 </body>
+<%@ include file="/common/bottomAdv.jsp"%>
 </html>

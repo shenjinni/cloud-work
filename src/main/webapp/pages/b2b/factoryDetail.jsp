@@ -58,5 +58,6 @@
 			</li>
 		</ul>
 	</div>
+	<%@ include file="/common/bottomAdv.jsp"%>
 </body>
 </html>
