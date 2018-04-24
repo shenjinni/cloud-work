@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -143,7 +144,7 @@ public class CommonController {
 
 	@RequestMapping("uploadFile.json")
 	@ResponseBody
-	public Map<String, Object> uploadFile(MultipartFile myfile)
+	public Map<String, Object> uploadFile(@RequestBody  MultipartFile myfile)
 			throws IllegalStateException, IOException {
 		// 原始名称
 		String oldFileName = myfile.getOriginalFilename(); // 获取上传文件的原名
