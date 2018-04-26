@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="${ctx}/common/image/favicon.ico" type="image/x-icon" />
-<title>全汇测</title>
+<title>织里童装设计网</title>
 </head>
 <body>
 抱歉，出现异常！

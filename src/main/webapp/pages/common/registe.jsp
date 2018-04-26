@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>全汇测 - 注册</title>
+<title>织里童装设计网 - 注册</title>
 <link rel="shortcut icon" href="${ctx}/common/image/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="${ctx}/common/css/reset.css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/common/css/qhcheaderfooter.css?v=1" />

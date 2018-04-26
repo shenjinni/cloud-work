@@ -62,8 +62,8 @@
             value="SELECT u.`password` FROM qhc_local_user u WHERE u.user_login_name = ?"></property>  
      	<property name="userRolesQuery"  
             value="SELECT ifnull(role_short_name, 'normal') AS role_short_name FROM qhc_local_user u LEFT JOIN qhc_user_role ur ON u.user_id = ur.user_id LEFT JOIN qhc_role r ON r.role_id = ur.role_id WHERE u.user_login_name = ?"></property>  
-        <!--<property name="permissionsQuery"  -->
-            <!--value="SELECT privilege_url from qhc_privilege p left join qhc_role_privilege rp on rp.privilege_id = p.privilege_id left join qhc_role r on r.role_id = rp.role_id WHERE role_name = ?"></property>-->
+        <property name="permissionsQuery"
+            value="SELECT privilege_url from qhc_privilege p left join qhc_role_privilege rp on rp.privilege_id = p.privilege_id left join qhc_role r on r.role_id = rp.role_id WHERE role_name = ?"></property>
     </bean>
     
     <!--   
@@ -116,7 +116,7 @@
                /admin/recruitment/** = authc
                /admin/turnover/** = authc
                /admin/user/** = authc
-               <!--/b2b/** = authc-->
+               /b2b/** = authc
             </value>  
         </property>  
     </bean>  

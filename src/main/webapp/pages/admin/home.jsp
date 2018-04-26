@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
  
 <%@ include file="left.jsp" %>       
-<c:set var="fileCtx" value="http://p2or9pg0j.bkt.clouddn.com/"></c:set>
 <script src="${ctx}/common/js/jquery-1.10.1.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=hB0gDuQFvlegcFgiqwiX3kf9"></script>
 <link rel="stylesheet" type="text/css" href="${ctx}/common/css/reset.css"/>
@@ -23,7 +22,7 @@
                 </div>
             </div>
             <div class="page-content">
-            	欢迎来到后台管理
+                欢迎来到后台管理
             </div>
         </div>
 	</div>

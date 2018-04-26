@@ -28,6 +28,11 @@
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="${ctx}/jquery/jquery-1.10.1.min.js"></script>
+
+    <script type="text/javascript" src="${ctx}/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <!-- 这个是汉化-->
+    <script type="text/javascript" src="${ctx}/bootstrap-fileinput/js/locales/zh.js"></script>
+
     <script type="text/javascript" src="${ctx}/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${ctx}/bootstrap-table/bootstrap-table.min.js"></script>
 	<script type="text/javascript" src="${ctx}/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
@@ -36,9 +41,7 @@
     <script type="text/javascript" src="${ctx}/common/js/dateFormat.js"></script>
     <script type="text/javascript" src="${ctx}/common/js/json2.js"></script>
 
-    <script type="text/javascript" src="${ctx}/bootstrap-fileinput/js/fileinput.min.js"></script>
-    <!-- 这个是汉化-->
-    <script type="text/javascript" src="${ctx}/bootstrap-fileinput/js/locales/zh.js"></script>
+
 	<script type="text/javascript" src="${ctx}/common/js/casicT_validate.js"></script>
     <style>
     	.hh {
@@ -87,7 +90,7 @@
                 	<ul id="side-menu" class="nav">
 					
 						<%--拥有管理员权限才能看到后台列表 --%>
-						<%--<shiro:hasRole name="admin">--%>
+						<shiro:hasRole name="admin">
 							<div class="clearfix"></div>
 							<li class="">
 								<div style="padding: 15px; border-bottom: 1px solid #37B3E8; cursor: pointer;">
@@ -141,13 +144,21 @@
                                         <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">平台收支</span>
                                     </a>
                                 </div>
-                                <div style="display: none;" class="hh l-list3">
+                            </li>
+                            <div class="clearfix"></div>
+                            <li class="">
+                                <div style="padding: 15px; border-bottom: 1px solid #37B3E8; cursor: pointer;">
+                                    <a style="padding: 0px;" href="#">
+                                        <span class="menu-title">运营管理</span><i style="float: right;" class="fa fa-angle-double-down fa-fw"><div class="icon-bg bg-orange"></div></i>
+                                    </a>
+                                </div>
+                                <div style="display: none;" class="hh l-list4">
                                     <a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/advertisement/advertisementList.do">
                                         <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">广告管理</span>
                                     </a>
                                 </div>
                             </li>
-						<%--</shiro:hasRole>--%>
+						</shiro:hasRole>
                 	</ul>
             	</div>
             </nav>

@@ -18,6 +18,22 @@
 			</list>
 		</property>
 	</bean>
+    <bean class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="true" />
+        <property name="favorParameter" value="true" />
+        <property name="ignoreAcceptHeader" value="true"></property>
+        <property name="defaultContentType" value="text/html" />
+        <property name="mediaTypes">
+            <map>
+                <!-- 告诉视图解析器，返回的类型为json格式 -->
+                <entry key="json" value="application/json" />
+                <entry key="xml" value="application/xml" />
+                <entry key="htm" value="text/htm" />
+                <entry key="file" value="application/octet-stream" />
+                <entry key="image" value="image/*" />
+            </map>
+        </property>
+    </bean>
 
     <bean id="resourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/webapp/" />
@@ -30,6 +46,12 @@
     </context:component-scan>
 
     <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8" />
+        <!-- 指定所上传文件的总大小,单位字节。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+        <property name="maxUploadSize" value="209715200" />
+    </bean>
 
     <import resource="spring-mybatis.xml"/>
     <import resource="spring-redis.xml"/>

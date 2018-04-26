@@ -74,7 +74,7 @@
 		</div>
 		
 		<script type="text/javascript">
-			$(".l-list7").show();
+			$(".l-list4").show();
 			$(document).ready(function(){
 				cloumn=[
 						{
