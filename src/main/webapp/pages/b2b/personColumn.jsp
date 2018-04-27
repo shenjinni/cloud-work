@@ -15,7 +15,7 @@ function goPage(pageIndex){
 	if(text==null || text==undefined){
 		text="";
 	}
-	location.href="${ctx}/common/personColumn.do?pageIndex="+pageIndex+"&text="+text;
+	location.href="${ctx}/b2b/personColumn.do?pageIndex="+pageIndex+"&text="+text;
 }
 function navActive(){
 	$("#navLi_2").addClass("active");

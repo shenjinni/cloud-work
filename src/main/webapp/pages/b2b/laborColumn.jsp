@@ -16,7 +16,7 @@
             if(text==null || text==undefined){
                 text="";
             }
-            location.href="${ctx}/common/laborColumn.do?pageIndex="+pageIndex+"&text="+text;
+            location.href="${ctx}/b2b/laborColumn.do?pageIndex="+pageIndex+"&text="+text;
         }
         function navActive(){
             $("#navLi_2").addClass("active");

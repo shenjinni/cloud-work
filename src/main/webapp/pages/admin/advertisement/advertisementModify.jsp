@@ -132,6 +132,20 @@
 															<div class="form-group">
 																<adel for="itemImagers" class="control-adel">广告图片：</adel>
 																<input id="itemImagers" name="itemImagers" type="file" class="file">
+																<div class="input-icon right">
+																	<c:choose>
+																		<c:when test="${not empty advertisement.adImage}">
+																			<img id="ico_image_0" src="${fileCtx}${advertisement.adImage }" style="width: 200px;height: 140px;" />
+																		</c:when>
+																		<c:otherwise>
+																			<img id="ico_image_0" src="${ctx}/common/image/defaultLeagueCarousel.png" style="width: 200px;height: 140px;" />
+																		</c:otherwise>
+																	</c:choose>
+																	<div class="input-icon right" style="margin: 5px auto;">
+																		<input type="file"  id="ico_input_0"  name="icoInput0" onchange="uploadImage(0, 'ico');"/>
+																	</div>
+																	<input type="hidden" id="ico_hid_0" name="adImage" value="${advertisement.adImage }"/>
+																</div>
 															</div>
 														</div>
 													</div>
@@ -218,7 +232,7 @@
 			var fileName = getFileName(file);
 			if(isPicture(fileName)==true){
 				$.ajaxFileUpload({
-					url : '${ctx}/common/uploadFileByDS.json', //用于文件上传的服务器端请求地址
+					url : 'uploadFileByDS.json', //用于文件上传的服务器端请求地址
 					fileElementId : idStr +"_input_"+index, //文件上传域的ID
 					dataType : 'text',
 					data : {name: 'uploadFile'},

@@ -5,18 +5,23 @@ import cn.testin.bean.Advertisement;
 import cn.testin.constant.Constants;
 import cn.testin.service.AdvertisementService;
 import cn.testin.util.RandomUtils;
+import cn.testin.util.StringUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -214,5 +219,57 @@ public class AdminAdvertisementController {
 //		log.info("上传成功！path=" + path);
 
 		return result;
+	}
+
+	/**
+	 *
+	 * @Description: 上传文件
+	 * @author tianpengw
+	 * @return void
+	 */
+	@RequestMapping("/uploadFileByDS.json")
+	public void uploadFileByDS(HttpServletRequest reuqest, HttpServletResponse reponse) {
+		PrintWriter out = null;
+		try {
+			String name = reuqest.getParameter("name");
+			if(StringUtil.isEmpty(name)){
+				name = "uploadFile";
+			}
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) reuqest;
+			CommonsMultipartFile file1 = (CommonsMultipartFile)multipartRequest.getFile(name);
+			String mulFileName= file1.getOriginalFilename();
+			int numLast=mulFileName.lastIndexOf(".");
+			String str = mulFileName.substring(0, numLast);
+			String fileType="";
+			int index=0;
+			if((index=mulFileName.lastIndexOf("."))>=0){
+				fileType=mulFileName.substring(index);
+			}
+
+			String key = StringUtil.getFileType(fileType) + "/casic_t/" + System.currentTimeMillis() + "_" + mulFileName;
+			File s=new File(str);
+			file1.transferTo(s);
+//			UploadFile uf=new UploadFile();
+//			String token=uf.getUpToken0();
+//			uf.upload(s.getPath(), key, token);
+//			reponse.setContentType("text/html;charset=UTF-8");
+//			out = reponse.getWriter();
+//			JSONObject json = new JSONObject();
+//			String url =  key;
+//			json.put("url", url);
+//			out.print(json);
+			s.delete();
+			log.info("七牛云上传操作成功：" + key);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			log.error("七牛云上传操作失败："+ StringUtil.getStackTrace(e));
+		} catch (IOException e) {
+			e.printStackTrace();
+			log.error("七牛云上传操作失败："+ StringUtil.getStackTrace(e));
+		} finally {
+			if (out != null) {
+				out.close();
+			}
+		}
 	}
 }
