@@ -7,6 +7,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
+	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/admin/font-awesome.min.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>工人信息详情页</title>
 <script type="text/javascript">
@@ -15,7 +16,11 @@
 </head>
 <body>
 	<!-- 头部 -->
-	<%@ include file="/common/headnew.jsp"%>
+	<div class="wap-item-header">
+		<a href="${ctx}/b2b/personColumn.do"><i class="fa fa-angle-left"></i></a>
+		<span>工人信息详情</span>
+		<i class="logout"><a href="${ctx}/b2b/personColumn.do">返回</a></i>
+	</div>
 	<div class="m-title"><strong>工人信息详情</strong></div>
 	<div id="view-content">
 		<ul>

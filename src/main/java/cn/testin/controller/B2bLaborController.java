@@ -1,6 +1,7 @@
 package cn.testin.controller;
 
 import cn.testin.bean.CloudWorkLabor;
+import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkLaborService;
 import cn.testin.util.RandomUtils;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
@@ -155,17 +157,28 @@ public class B2bLaborController {
 	 */
 	@RequestMapping(value = "laborPublish.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> laborPublish(@RequestBody CloudWorkLabor labor){
+	public Map<String, Object> laborPublish(@RequestBody CloudWorkLabor labor, HttpSession session){
 		Map<String, Object> result = new HashMap<>();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", "发布加工活信息失败，请稍后再试！");
 
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
+
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
+
 		labor.setId(RandomUtils.g());
 		labor.setStatus(1);
 		labor.setCreateTime(new Date());
-		labor.setCreateUser(1L);
+		labor.setCreateUser(user.getUserId());
 		labor.setUpdateTime(new Date());
-		labor.setUpdateUser(1L);
+		labor.setUpdateUser(user.getUserId());
 		int i = cloudWorkLaborService.insert(labor);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);

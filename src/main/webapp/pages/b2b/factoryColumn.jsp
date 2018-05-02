@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
-<c:set var="fileCtx" value="http://p2or9pg0j.bkt.clouddn.com/"></c:set>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,6 +14,12 @@
             if(text==null || text==undefined){
                 text="";
             }
+			var userrole = '${sessionScope.user.roleShortName}';
+
+			if (userrole == 'normal' && pageIndex > 1) {
+				alert("未登录/普通用户只能查看三条");
+				return;
+			}
             location.href="${ctx}/b2b/factoryColumn.do?pageIndex="+pageIndex+"&text="+text;
         }
         function navActive(){
@@ -60,14 +66,14 @@
 				<span class="date">日期</span>
 			</li>
 		</ul>
-
 		<c:if test="${empty sessionScope.user}">
 			<c:forEach var="item" begin="0" end="2" items="${pageBean.pageList}">
+				<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
 				<ul>
 					<li>
 						<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
 						<span class="wh">${item.address}</span>
-						<span class="tel">${item.mobile}.substr(0, 3) + '****' + ${item.mobile}.substr(7);</span>
+						<span class="tel">${mobile}</span>
 						<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
 					</li>
 				</ul>
@@ -77,6 +83,19 @@
 			<c:choose>
 				<c:when test="${sessionScope.user.roleShortName == 'normal'}">
 					<c:forEach var="item" begin="0" end="2" items="${pageBean.pageList}">
+						<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
+						<ul>
+							<li>
+								<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
+								<span class="wh">${item.address}</span>
+								<span class="tel">${mobile}</span>
+								<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
+							</li>
+						</ul>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="item" items="${pageBean.pageList}">
 						<ul>
 							<li>
 								<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
@@ -86,16 +105,6 @@
 							</li>
 						</ul>
 					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<ul>
-						<li>
-							<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
-							<span class="wh">${item.address}</span>
-							<span class="tel">${item.mobile}</span>
-							<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
-						</li>
-					</ul>
 				</c:otherwise>
 			</c:choose>
 		</c:if>

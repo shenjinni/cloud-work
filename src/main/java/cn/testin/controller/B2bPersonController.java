@@ -1,6 +1,7 @@
 package cn.testin.controller;
 
 import cn.testin.bean.CloudWorkPerson;
+import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkPersonService;
 import cn.testin.util.RandomUtils;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
@@ -153,17 +155,28 @@ public class B2bPersonController {
 	 */
 	@RequestMapping("personPublish.json")
 	@ResponseBody
-	public Map<String,Object> personPublish(@RequestBody CloudWorkPerson person) {
+	public Map<String,Object> personPublish(@RequestBody CloudWorkPerson person, HttpSession session) {
 		Map<String,Object> result = new HashMap<>();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", "发布工人信息失败，请稍后再试！");
 
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
+
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
+
         person.setId(RandomUtils.g());
         person.setStatus(1);
         person.setCreateTime(new Date());
-        person.setCreateUser(1L);
+        person.setCreateUser(user.getUserId());
         person.setUpdateTime(new Date());
-        person.setUpdateUser(1L);
+        person.setUpdateUser(user.getUserId());
         int i = cloudWorkPersonService.insert(person);
         if (i == 1) {
             result.put("errCode", Constants.result_success);

@@ -46,7 +46,13 @@
 		<c:if test="${not empty sessionScope.user}">
 			<em class="emName" title="<c:if test="${empty sessionScope.user.realName}">您好！${sessionScope.user.userLoginName}</c:if><c:if test="${not empty sessionScope.user.realName}">您好！${sessionScope.user.realName}</c:if>" >
 			<c:if test="${empty sessionScope.user.realName}">您好！${sessionScope.user.userLoginName}</c:if>
-			<c:if test="${not empty sessionScope.user.realName}">您好！${sessionScope.user.realName}</c:if></em>
+			<c:if test="${not empty sessionScope.user.realName}">您好！${sessionScope.user.realName}</c:if>
+
+				<c:if test="${sessionScope.user.roleShortName == 'admin'}">管理员</c:if>
+				<c:if test="${sessionScope.user.roleShortName == 'vip'}">付费用户</c:if>
+				<c:if test="${sessionScope.user.roleShortName == 'normal'}">普通用户</c:if>
+
+			</em>
 			<a href="${ctx}/common/logout.do">退出</a>
 			<c:choose>
 				<c:when test="${sessionScope.user.roleShortName == 'admin'}">

@@ -23,7 +23,6 @@
                 var obj = $('#form1').toObject({mode : 'first'});
 
                 cfg.data = JSON.stringify(obj);
-				alert(cfg.data);
 
                 cfg.success = function ret(data) {
                     alert(data.errMsg);
@@ -42,14 +41,12 @@
                 rules: {
                     contactsName: "required",
                     mobile: "required",
-                    workIntent: "required",
-                    flagcode: "required"
+                    workIntent: "required"
                 },
                 messages: {
                     contactsName: "请输入姓名",
                     mobile: "请输入电话号码",
-                    workIntent: "请输入工种",
-                    flagcode: "请输入验证码"
+                    workIntent: "请输入工种"
                 }
             });
         })
@@ -108,13 +105,13 @@
 				<label>补充说明</label>
 				<textarea type="text" maxlength="200" name="note" class="text" cols="18" rows="3"></textarea>
 			</div>
-			<div class="group">
-				<label>验证码</label>
-				<input type="text" class="input-2" id="flagcode" name="flagcode" value="" />
-				<div style="float: right;padding-right: 0px;padding-top: 6px;height: 30px;">
-					<img id="flagcodeImg" src="${ctx}/common/checkCode.do" onclick="changeFlagcode();" style="width: 100%;height: 100%; cursor: pointer;">
-				</div>
-			</div>
+			<%--<div class="group">--%>
+				<%--<label>验证码</label>--%>
+				<%--<input type="text" class="input-2" id="flagcode" name="flagcode" value="" />--%>
+				<%--<div style="float: right;padding-right: 0px;padding-top: 6px;height: 30px;">--%>
+					<%--<img id="flagcodeImg" src="${ctx}/common/checkCode.do" onclick="changeFlagcode();" style="width: 100%;height: 100%; cursor: pointer;">--%>
+				<%--</div>--%>
+			<%--</div>--%>
 			<div class="group">
 				<input type="submit" name="btnSave" value="免费发布" id="submit" class="input-button blue-button" />
 			</div>

@@ -1,6 +1,7 @@
 package cn.testin.controller;
 
 import cn.testin.bean.CloudWorkRecruitment;
+import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkRecruitmentService;
 import cn.testin.util.RandomUtils;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
@@ -155,17 +157,28 @@ public class B2bRecruitmentController {
 	 */
 	@RequestMapping(value = "recruitmentPublish.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> recruitmentPublish(@RequestBody CloudWorkRecruitment recruitment){
+	public Map<String, Object> recruitmentPublish(@RequestBody CloudWorkRecruitment recruitment, HttpSession session){
 		Map<String, Object> result = new HashMap<>();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", "发布招工信息信息失败，请稍后再试！");
 
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
+
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
+
 		recruitment.setId(RandomUtils.g());
 		recruitment.setStatus(1);
 		recruitment.setCreateTime(new Date());
-		recruitment.setCreateUser(1L);
+		recruitment.setCreateUser(user.getUserId());
 		recruitment.setUpdateTime(new Date());
-		recruitment.setUpdateUser(1L);
+		recruitment.setUpdateUser(user.getUserId());
 		int i = cloudWorkRecruitmentService.insert(recruitment);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);

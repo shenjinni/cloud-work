@@ -1,9 +1,11 @@
 package cn.testin.controller;
 
 import cn.testin.bean.CloudWorkFactory;
+import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkFactoryService;
 import cn.testin.util.RandomUtils;
+import cn.testin.util.SessionUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
@@ -155,17 +158,30 @@ public class B2bFactoryController {
 	 */
 	@RequestMapping(value = "factoryPublish.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> factoryPublish(@RequestBody CloudWorkFactory factory){
+	public Map<String, Object> factoryPublish(@RequestBody CloudWorkFactory factory
+			, HttpSession session){
 		Map<String, Object> result = new HashMap<>();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", "发布加工厂信息失败，请稍后再试！");
 
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
+
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
+
+
 		factory.setId(RandomUtils.g());
 		factory.setStatus(1);
 		factory.setCreateTime(new Date());
-		factory.setCreateUser(1L);
+		factory.setCreateUser(user.getUserId());
 		factory.setUpdateTime(new Date());
-		factory.setUpdateUser(1L);
+		factory.setUpdateUser(user.getUserId());
 		int i = cloudWorkFactoryService.insert(factory);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);
