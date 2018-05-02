@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.testin.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="cn.testin.bean.Article" >
+    <id column="article_id" property="articleId" jdbcType="BIGINT" />
+    <result column="article_title" property="articleTitle" jdbcType="VARCHAR" />
+    <result column="article_source" property="articleSource" jdbcType="VARCHAR" />
+    <result column="article_type" property="articleType" jdbcType="VARCHAR" />
+    <result column="article_image" property="articleImage" jdbcType="VARCHAR" />
+    <result column="article_brief" property="articleBrief" jdbcType="VARCHAR" />
+    <result column="article_sort" property="articleSort" jdbcType="VARCHAR" />
+    <result column="article_url" property="articleUrl" jdbcType="VARCHAR" />
+    <result column="article_content" property="articleContent" jdbcType="LONGVARCHAR" />
+    <result column="article_code" property="articleCode" jdbcType="VARCHAR" />
+    <result column="exhibition_date" property="exhibitionDate" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    article_id, article_title, article_source, article_type, article_image, article_brief, article_sort, 
+    article_url, article_code, exhibition_date, create_time,article_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from qhc_article
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from qhc_article
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.testin.bean.Article" >
+    insert into qhc_article (article_id, article_title, article_source, article_type, 
+      article_image, article_brief, article_sort, 
+      article_url, article_code, exhibition_date, 
+      create_time, article_content)
+    values (#{articleId,jdbcType=BIGINT}, #{articleTitle,jdbcType=VARCHAR}, #{articleSource,jdbcType=VARCHAR},#{articleType,jdbcType=VARCHAR}, 
+      #{articleImage,jdbcType=VARCHAR}, #{articleBrief,jdbcType=VARCHAR}, #{articleSort,jdbcType=VARCHAR}, 
+      #{articleUrl,jdbcType=VARCHAR}, #{articleCode,jdbcType=VARCHAR}, #{exhibitionDate,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{articleContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.testin.bean.Article" >
+    insert into qhc_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleId != null" >
+        article_id,
+      </if>
+      <if test="articleTitle != null" >
+        article_title,
+      </if>
+      <if test="articleSource != null" >
+        article_source,
+      </if>
+      <if test="articleType != null" >
+        article_type,
+      </if>
+      <if test="articleImage != null" >
+        article_image,
+      </if>
+      <if test="articleBrief != null" >
+        article_brief,
+      </if>
+      <if test="articleSort != null" >
+        article_sort,
+      </if>
+      <if test="articleUrl != null" >
+        article_url,
+      </if>
+      <if test="articleCode != null" >
+        article_code,
+      </if>
+      <if test="exhibitionDate != null" >
+        exhibition_date,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="articleContent != null" >
+        article_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleId != null" >
+        #{articleId,jdbcType=BIGINT},
+      </if>
+      <if test="articleTitle != null" >
+        #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleSource != null" >
+        #{articleSource,jdbcType=VARCHAR},
+      </if>
+      <if test="articleType != null" >
+        #{articleType,jdbcType=VARCHAR},
+      </if>
+      <if test="articleImage != null" >
+        #{articleImage,jdbcType=VARCHAR},
+      </if>
+      <if test="articleBrief != null" >
+        #{articleBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="articleSort != null" >
+        #{articleSort,jdbcType=VARCHAR},
+      </if>
+      <if test="articleUrl != null" >
+        #{articleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="articleCode != null" >
+        #{articleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="exhibitionDate != null" >
+        #{exhibitionDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleContent != null" >
+        #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.testin.bean.Article" >
+    update qhc_article
+    <set >
+      <if test="articleTitle != null" >
+        article_title = #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleSource != null" >
+        article_source = #{articleSource,jdbcType=VARCHAR},
+      </if>
+      <if test="articleType != null" >
+        article_type = #{articleType,jdbcType=VARCHAR},
+      </if>
+      <if test="articleImage != null" >
+        article_image = #{articleImage,jdbcType=VARCHAR},
+      </if>
+      <if test="articleBrief != null" >
+        article_brief = #{articleBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="articleSort != null" >
+        article_sort = #{articleSort,jdbcType=VARCHAR},
+      </if>
+      <if test="articleUrl != null" >
+        article_url = #{articleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="articleCode != null" >
+        article_code = #{articleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="exhibitionDate != null" >
+        exhibition_date = #{exhibitionDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleContent != null" >
+        article_content = #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.testin.bean.Article" >
+    update qhc_article
+    set article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_source = #{articleSource,jdbcType=VARCHAR},
+      article_type = #{articleType,jdbcType=VARCHAR},
+      article_image = #{articleImage,jdbcType=VARCHAR},
+      article_brief = #{articleBrief,jdbcType=VARCHAR},
+      article_sort = #{articleSort,jdbcType=VARCHAR},
+      article_url = #{articleUrl,jdbcType=VARCHAR},
+      article_code = #{articleCode,jdbcType=VARCHAR},
+      exhibition_date = #{exhibitionDate,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      article_content = #{articleContent,jdbcType=LONGVARCHAR}
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+  <!--获取count个最新新闻-->
+  <select id="getTopList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from qhc_article
+    order by create_time DESC
+    limit 0,#{count,jdbcType=NUMERIC}
+  </select>
+  <select id="selectList" resultMap="BaseResultMap" parameterType="cn.testin.bean.Article" >
+  	select 
+    <include refid="Base_Column_List" />
+    from qhc_article
+    where 1=1
+    <if test="articleType != null  and articleType != ''" >
+      and article_type = #{articleType,jdbcType=VARCHAR}
+    </if>
+    <if test="articleTitle != null  and articleTitle != ''" >
+      and article_title like concat('%',#{articleTitle,jdbcType=VARCHAR},'%')
+    </if>
+    order by create_time DESC
+    <if test="offset != null and limit != null ">
+		limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+	</if>
+  </select>
+
+   <!--定时同步Lucene数据-->
+	<select id="getLuceneAll" resultMap="BaseResultMap">select
+		article_id,article_title,article_type,article_brief,create_time
+		from qhc_article
+	</select>
+
+  <select id="getNewsApp" parameterType="cn.testin.bean.PageBean" resultType="java.util.Map">
+	  select
+	  	CAST(article_id AS CHAR) as articleId,
+	  	article_title as articleTitle,
+	  	article_brief as articleBrief,
+	  	article_image as articleImage
+	  from qhc_article 
+	  where 1=1
+	  <if test="articleType != null" >
+	    and article_type = #{articleType,jdbcType=VARCHAR}
+	  </if>
+	  <if test="searchText != null" >
+	    and article_title like '%${searchText}%'
+	  </if>
+	  order by create_time desc
+	  <if test="offset != null and limit != null ">
+	  	limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+	  </if>
+  </select>
+  
+  <select id="getNewsDetailApp" parameterType="java.lang.Long" resultType="java.util.Map">
+  	select
+	  	CAST(article_id AS CHAR) as articleId,
+	  	article_title as articleTitle,
+	  	article_content as articleContent,
+	  	DATE_FORMAT(create_time,'%Y-%m-%d') as createTime
+	  from qhc_article
+	  where article_id = #{newsId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectCount" parameterType="cn.testin.bean.Article" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			qhc_article 
+		where 1=1 
+		<if test="articleType != null  and articleType != ''" >
+	      and article_type = #{articleType,jdbcType=VARCHAR}
+	    </if>
+	    <if test="articleTitle != null  and articleTitle != ''" >
+	      and article_title like concat('%',#{articleTitle,jdbcType=VARCHAR},'%')
+	    </if>
+	</select>
+	<!--根据分类和数量获取最新新闻列表-->
+	<select id="getListByTypeAndCount" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from qhc_article
+		where article_type=#{type,jdbcType=VARCHAR} order by create_time DESC limit 0,#{count,jdbcType=NUMERIC}
+	</select>
+</mapper>
