@@ -52,6 +52,8 @@
 				<c:if test="${sessionScope.user.roleShortName == 'vip'}">付费用户</c:if>
 				<c:if test="${sessionScope.user.roleShortName == 'normal'}">普通用户</c:if>
 
+				我发布的信息
+
 			</em>
 			<a href="${ctx}/common/logout.do">退出</a>
 			<c:choose>
