@@ -69,27 +69,27 @@
 		<div class="login">
 			<div class="group">
 				<label>承接加工种类</label>
-				<input type="text" name="workNeed" class="text" />
+				<input type="text" name="workNeed" maxlength="100" class="text" />
 			</div>
 			<div class="group">
 				<label>联系人</label>
-				<input type="text" id="realname" name="contactsName" class="text" value="" />
+				<input type="text" id="realname" maxlength="30" name="contactsName" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>电话</label>
-				<input type="text" name="mobile" class="text" value="" />
+				<input type="text" name="mobile" maxlength="11" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>地址</label>
-				<input type="text" name="address" class="text" value="" />
+				<input type="text" name="address" maxlength="100" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>规模人数</label>
-				<input type="text" name="scale" class="text" value="" />
+				<input type="text" name="scale" maxlength="20" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>补充说明</label>
-				<textarea type="text" name="note" class="text" cols="18" rows="3"></textarea>
+				<textarea type="text" name="note" maxlength="200" class="text" cols="18" rows="3"></textarea>
 			</div>
 			<div class="group">
 				<label>验证码</label>

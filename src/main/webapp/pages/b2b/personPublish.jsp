@@ -70,40 +70,43 @@
 		<div class="login">
 			<div class="group">
 				<label>工种</label>
-				<input type="text" name="workIntent" class="text" />
+				<input type="text" maxlength="100" name="workIntent" class="text" />
 			</div>
 			<div class="group">
 				<label>工资要求</label>
-				<input type="text" name="salary" class="text" />
+				<input type="text" maxlength="100" name="salary" class="text" />
 			</div>
 			<div class="group">
 				<label>姓名</label>
-				<input type="text" id="realname" name="contactsName" class="text" value="" />
+				<input type="text" maxlength="30" id="realname" name="contactsName" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>电话</label>
-				<input type="text" name="mobile" class="text" value="" />
+				<input type="text" maxlength="11" name="mobile" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>年龄</label>
-				<input type="text" name="age" class="text" value="" />
+				<input type="text" maxlength="20" name="age" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>生肖</label>
-				<input type="text" name="zodiac" class="text" value="" />
+				<input type="text" maxlength="10" name="zodiac" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>性别</label>
-				<input type="text" name="sex" class="text" value="" />
+				<select class="form-control" name="sex">
+					<option value="1">男</option>
+					<option value="2">女</option>
+				</select>
 			</div>
 			<div class="group">
 				<label>哪里人</label>
-				<input type="text" name="address" class="text" value="" />
+				<input maxlength="100" type="text" name="address" class="text" value="" />
 			</div>
 
 			<div class="group">
 				<label>补充说明</label>
-				<textarea type="text" name="note" class="text" cols="18" rows="3"></textarea>
+				<textarea type="text" maxlength="200" name="note" class="text" cols="18" rows="3"></textarea>
 			</div>
 			<div class="group">
 				<label>验证码</label>

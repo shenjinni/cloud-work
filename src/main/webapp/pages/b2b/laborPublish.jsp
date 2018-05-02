@@ -69,31 +69,31 @@
 		<div class="login">
 			<div class="group">
 				<label>需要加工种类</label>
-				<input type="text" name="workNeed" class="text" />
+				<input type="text" maxlength="100" name="workNeed" class="text" />
 			</div>
 			<div class="group">
 				<label>联系人</label>
-				<input type="text" id="realname" name="contactsName" class="text" value="" />
+				<input type="text" maxlength="30" id="realname" name="contactsName" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>电话</label>
-				<input type="text" name="mobile" class="text" value="" />
+				<input type="text" maxlength="11" name="mobile" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>地址</label>
-				<input type="text" name="address" class="text" value="" />
+				<input type="text" maxlength="20" name="address" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>工厂名</label>
-				<input type="text" name="factoryName" class="text" value="" />
+				<input type="text" maxlength="20" name="factoryName" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>加工数量</label>
-				<input type="text" name="number" class="text" value="" />
+				<input type="text" maxlength="20" name="number" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>补充说明</label>
-				<textarea type="text" name="note" class="text" cols="18" rows="3"></textarea>
+				<textarea type="text" maxlength="20"  name="note" class="text" cols="18" rows="3"></textarea>
 			</div>
 			<div class="group">
 				<label>验证码</label>

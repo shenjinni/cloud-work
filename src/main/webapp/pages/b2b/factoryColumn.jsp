@@ -60,16 +60,47 @@
 				<span class="date">日期</span>
 			</li>
 		</ul>
-		<c:forEach var="item" items="${pageBean.pageList}">
-			<ul>
-				<li>
-					<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
-					<span class="wh">${item.address}</span>
-					<span class="tel">${item.mobile}</span>
-					<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
-				</li>
-			</ul>
-		</c:forEach>
+
+		<c:if test="${empty sessionScope.user}">
+			<c:forEach var="item" begin="0" end="2" items="${pageBean.pageList}">
+				<ul>
+					<li>
+						<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
+						<span class="wh">${item.address}</span>
+						<span class="tel">${item.mobile}.substr(0, 3) + '****' + ${item.mobile}.substr(7);</span>
+						<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
+					</li>
+				</ul>
+			</c:forEach>
+		</c:if>
+		<c:if test="${not empty sessionScope.user}">
+			<c:choose>
+				<c:when test="${sessionScope.user.roleShortName == 'normal'}">
+					<c:forEach var="item" begin="0" end="2" items="${pageBean.pageList}">
+						<ul>
+							<li>
+								<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
+								<span class="wh">${item.address}</span>
+								<span class="tel">${item.mobile}</span>
+								<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
+							</li>
+						</ul>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<ul>
+						<li>
+							<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
+							<span class="wh">${item.address}</span>
+							<span class="tel">${item.mobile}</span>
+							<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
+						</li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
+		</c:if>
+
+
 	</c:if>
 </div>
 <br />

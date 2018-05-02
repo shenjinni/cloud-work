@@ -69,31 +69,31 @@
 		<div class="login">
 			<div class="group">
 				<label>招工工种</label>
-				<input type="text" name="workType" class="text" />
+				<input type="text" maxlength="100" name="workType" class="text" />
 			</div>
 			<div class="group">
 				<label>工资待遇</label>
-				<input type="text" name="salary" class="text" />
+				<input type="text" maxlength="100" name="salary" class="text" />
 			</div>
 			<div class="group">
 				<label>招工单位</label>
-				<input type="text" name="company" class="text" value="" />
+				<input type="text" maxlength="100" name="company" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>地址</label>
-				<input type="text" name="address" class="text" value="" />
+				<input type="text" maxlength="100" name="address" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>联系人</label>
-				<input type="text" id="realname" name="contactsName" class="text" value="" />
+				<input type="text" maxlength="30" id="realname" name="contactsName" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>电话</label>
-				<input type="text" name="mobile" class="text" value="" />
+				<input type="text" maxlength="11" name="mobile" class="text" value="" />
 			</div>
 			<div class="group">
 				<label>补充说明</label>
-				<textarea type="text" name="note" class="text" cols="18" rows="3"></textarea>
+				<textarea type="text" maxlength="200" name="note" class="text" cols="18" rows="3"></textarea>
 			</div>
 			<div class="group">
 				<label>验证码</label>

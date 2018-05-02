@@ -2,7 +2,7 @@
 
 <%--<link rel="stylesheet" type="text/css" href="${ctx}/common/css/qhcheaderfooter.css" />--%>
 <%--<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />--%>
-
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
