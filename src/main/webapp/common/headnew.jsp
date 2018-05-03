@@ -56,7 +56,7 @@
 				<c:when test="${sessionScope.user.roleShortName == 'admin'}">
 					<a href="${ctx}/admin/home.do" class="qhc-admin">进入后台</a>
 				</c:when>
-				<c:otherwise><a href="${ctx}/b2b/myInfo/personColumn.do" class="qhc-admin">我发布的信息</a></c:otherwise>
+				<c:otherwise><a href="${ctx}/b2b/myInfo/infoColumn.do" class="qhc-admin">我发布的信息</a></c:otherwise>
 			</c:choose>
 		</c:if>
 	</h2>

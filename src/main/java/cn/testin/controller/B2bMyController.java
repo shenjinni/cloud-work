@@ -3,7 +3,10 @@ package cn.testin.controller;
 import cn.testin.bean.CloudWorkPerson;
 import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
+import cn.testin.service.CloudWorkFactoryService;
+import cn.testin.service.CloudWorkLaborService;
 import cn.testin.service.CloudWorkPersonService;
+import cn.testin.service.CloudWorkRecruitmentService;
 import cn.testin.util.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -23,10 +26,10 @@ import java.util.Map;
 
 /**
  *<pre>
- * 对象功能:前台工人信息页面controller
+ * 对象功能:我发布的信息页面controller
  * 开发公司:sjn
  * 开发人员:shenjinni
- * 创建时间:2018-04-12 14:03:17
+ * 创建时间:2018-05-03 14:03:17
  *</pre>
  */
 @Controller
@@ -38,17 +41,27 @@ public class B2bMyController {
 	@Resource
 	private CloudWorkPersonService cloudWorkPersonService;
 
+	@Resource
+	private CloudWorkRecruitmentService cloudWorkRecruitmentService;
+
+	@Resource
+	private CloudWorkFactoryService cloudWorkFactoryService;
+
+	@Resource
+	private CloudWorkLaborService cloudWorkLaborService;
+
 
 	/**
 	 *
-	 * @Description: 工人信息栏目页
+	 * @Description: 我发布的信息栏目页
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
 	@RequestMapping("infoColumn.do")
-	public ModelAndView personColumn(HttpServletRequest req) throws Exception {
+	public ModelAndView infoColumn(HttpServletRequest req) throws Exception {
 		try {
 			String pageIndexStr = req.getParameter("pageIndex");
+			String type = req.getParameter("type");
 			String text = req.getParameter("text");
 			String textsearch = "";
 			if (StringUtils.isNotBlank(text)) {
@@ -61,19 +74,39 @@ public class B2bMyController {
 				}
 			}
 
+			if (StringUtils.isBlank(type)) {
+				type="1";
+			}
+
 			// pageIndex不是数字或为null时，重置为1
 			if (!StringUtils.isNumeric(pageIndexStr)) {
 				pageIndexStr = "1";
 			}
 			int pageIndex = Integer.parseInt(pageIndexStr);
-
-			// 工人信息分页
 			pageIndex = pageIndex == 0 ? 1 : pageIndex;// 默认设置为1
-			Map<String, Object> result = cloudWorkPersonService.getPage(pageIndex, textsearch);
+
+			Map<String, Object> result = null;
+
+			if (type.equals("1")) {
+				// 工人信息分页
+				result = cloudWorkPersonService.getPage(pageIndex, textsearch);
+			}
+
+			if (type.equals("2")) {
+				result = cloudWorkRecruitmentService.getPage(pageIndex, textsearch);
+			}
+
+			if (type.equals("3")) {
+				result = cloudWorkLaborService.getPage(pageIndex, textsearch);
+			}
+
+			if (type.equals("4")) {
+				result = cloudWorkFactoryService.getPage(pageIndex, textsearch);
+			}
 			result.put("pageIndex", pageIndex);
 			req.setAttribute("pageBean", result);
 		} catch (Exception e) {
-			String msg = "工人信息栏目页异常！";
+			String msg = "我发布的信息栏目页异常！";
 			log.warn(msg);
 			e.printStackTrace();
 			throw new Exception(msg);
