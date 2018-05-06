@@ -3,7 +3,7 @@ package cn.testin.basic;
 /** 
  * @ClassName: BasicPage 
  * @Description: 
- * @author tianpengw 
+ * @author shenjinni
  * @date 2017年4月1日 上午11:03:29 
  *  
  */

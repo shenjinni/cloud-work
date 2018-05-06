@@ -8,6 +8,7 @@ import cn.testin.bean.CloudWorkRecruitment;
 import cn.testin.dao.CloudWorkRecruitmentMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,7 @@ public class CloudWorkRecruitmentService
 		rec.setOffset((pageIndex - 1) * 10);
 		rec.setLimit(10);
 		rec.setStatus(1);
+		rec.setValidityTime(new Date());
 		List<CloudWorkRecruitment> pageList = findList(rec);
 		// 总页数
 		int dataCount = findListCount(rec);
@@ -93,6 +95,7 @@ public class CloudWorkRecruitmentService
 		rec.setCreateUser(userId);
 		rec.setOffset((pageIndex - 1) * 10);
 		rec.setLimit(10);
+		rec.setValidityTime(new Date());
 		List<CloudWorkRecruitment> pageList = findList(rec);
 		// 总页数
 		int dataCount = findListCount(rec);

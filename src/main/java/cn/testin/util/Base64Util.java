@@ -29,7 +29,7 @@ public class Base64Util {
 	 /**
 	  * 
 	  * @Description: 编码字符串
-	  * @author: tianpengw
+	  * @author: shenjinni
 	  * @param data
 	  * @return
 	 */
@@ -40,7 +40,7 @@ public class Base64Util {
 	 /**
 	  * 
 	  * @Description:解码 
-	  * @author: tianpengw
+	  * @author: shenjinni
 	  * @param data
 	  * @return
 	 */

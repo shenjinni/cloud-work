@@ -7,6 +7,7 @@ import cn.testin.bean.CloudWorkPerson;
 import cn.testin.dao.CloudWorkPersonMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,7 @@ public class CloudWorkPersonService
 		person.setOffset((pageIndex - 1) * 10);
 		person.setLimit(10);
 		person.setStatus(1);
+		person.setValidityTime(new Date());
 		List<CloudWorkPerson> pageList = findList(person);
 		// 总页数
 		int dataCount = findListCount(person);
@@ -93,6 +95,7 @@ public class CloudWorkPersonService
 		person.setCreateUser(userId);
 		person.setOffset((pageIndex - 1) * 10);
 		person.setLimit(10);
+		person.setValidityTime(new Date());
 		List<CloudWorkPerson> pageList = findList(person);
 		// 总页数
 		int dataCount = findListCount(person);

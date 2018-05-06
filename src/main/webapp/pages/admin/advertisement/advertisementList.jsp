@@ -48,16 +48,16 @@
 												  <option value="0">隐藏</option>
 												</select>
 											  </div>
-											  <div class="form-group">
-											    <label for="adLocation">广告位置</label>
-											    <select class="form-control" id="adLocation" name="adLocation">
-											      <option value="">--</option>
-												  <option value="L">左侧</option>
-												  <option value="R">右侧</option>
-												  <option value="T">顶部</option>
-												  <option value="B">底部</option>
-												</select>
-											  </div>
+											  <%--<div class="form-group">--%>
+											    <%--<label for="adLocation">广告位置</label>--%>
+											    <%--<select class="form-control" id="adLocation" name="adLocation">--%>
+											      <%--<option value="">--</option>--%>
+												  <%--<option value="L">左侧</option>--%>
+												  <%--<option value="R">右侧</option>--%>
+												  <%--<option value="T">顶部</option>--%>
+												  <%--<option value="B">底部</option>--%>
+												<%--</select>--%>
+											  <%--</div>--%>
 											  <button type="button" class="btn btn-primary" id="button">搜索</button>
 											</form>
 										  </div>
@@ -82,24 +82,24 @@
 						    title: '广告名称',
 						    align:'center'
 						},
-						{
-							field: 'adLocation',
-						    title: '广告位置',
-						    formatter : function(value, row, index) {
-						    	if (row.adLocation == 'L') {
-						    		return "左侧";
-						    	} else if (row.adLocation == 'R') {
-						    		return "右侧";
-						    	} else if (row.adLocation == 'T') {
-						    		return "顶部";
-						    	} else if (row.adLocation == 'B') {
-						    		return "底部";
-						    	} {
-						    		return "--";
-						    	}
-							},
-						    align:'center'
-						},
+//						{
+//							field: 'adLocation',
+//						    title: '广告位置',
+//						    formatter : function(value, row, index) {
+//						    	if (row.adLocation == 'L') {
+//						    		return "左侧";
+//						    	} else if (row.adLocation == 'R') {
+//						    		return "右侧";
+//						    	} else if (row.adLocation == 'T') {
+//						    		return "顶部";
+//						    	} else if (row.adLocation == 'B') {
+//						    		return "底部";
+//						    	} {
+//						    		return "--";
+//						    	}
+//							},
+//						    align:'center'
+//						},
 						{
 							field: 'endTime',
 						    title: '到期时间',
@@ -237,8 +237,8 @@
 					contentType : 'application/json;charset=UTF-8',
 					data : JSON.stringify({"adId":id, "adStatus":sta}),
 					success : function(res){
-						alert(res.model.errMsg);
-						if("success" == res.model.errCode){
+						alert(res.errMsg);
+						if("success" == res.errCode){
 							$("#advertisementTable").bootstrapTable("destroy");
 							initTable();
 						}

@@ -64,6 +64,9 @@
 		cloud_work_recruitment.*,cloud_work_vip.weights weights,cloud_work_vip.validity_time validity_time
 		from cloud_work_recruitment
 		left join cloud_work_vip on cloud_work_vip.work_id = cloud_work_recruitment.id and cloud_work_vip.work_type=2
+		<if test="validityTime != null" >
+			AND cloud_work_vip.validity_time &gt;= #{validityTime,jdbcType=DATE}
+		</if>
 		where
 		<choose>
 			<when test="searchText != null  and searchText != ''">
@@ -104,6 +107,9 @@
 		count(*)
 		from cloud_work_recruitment
 		left join cloud_work_vip on cloud_work_vip.work_id = cloud_work_recruitment.id and cloud_work_vip.work_type=2
+		<if test="validityTime != null" >
+			AND cloud_work_vip.validity_time &gt;= #{validityTime,jdbcType=DATE}
+		</if>
 		where
 		<choose>
 			<when test="searchText != null  and searchText != ''">

@@ -8,6 +8,7 @@ import cn.testin.bean.CloudWorkLabor;
 import cn.testin.dao.CloudWorkLaborMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,7 @@ public class CloudWorkLaborService
 		labor.setOffset((pageIndex - 1) * 10);
 		labor.setLimit(10);
 		labor.setStatus(1);
+		labor.setValidityTime(new Date());
 		List<CloudWorkLabor> pageList = findList(labor);
 		// 总页数
 		int dataCount = findListCount(labor);
@@ -94,6 +96,7 @@ public class CloudWorkLaborService
 		labor.setCreateUser(userId);
 		labor.setOffset((pageIndex - 1) * 10);
 		labor.setLimit(10);
+		labor.setValidityTime(new Date());
 		List<CloudWorkLabor> pageList = findList(labor);
 		// 总页数
 		int dataCount = findListCount(labor);

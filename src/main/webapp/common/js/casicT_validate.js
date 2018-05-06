@@ -3,7 +3,7 @@
  * 项目中常用的验证方法和验证正则表达式，以及自定义alert和confirm框
  * 【注意：此js需要放在jquery-confirm.js之下，引用了confirm的弹出框】
  *  
- * @author tianpengw
+ * @author shenjinni
  * Date: 2017.04.10
  * Time: 17:06:30
  * 

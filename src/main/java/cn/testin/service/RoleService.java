@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 /** 
  * @ClassName: RoleServiceImpl 
  * @Description: 
- * @author tianpengw 
+ * @author shenjinni
  * @date 2017年4月9日 上午11:49:39 
  *  
  */

@@ -8,6 +8,7 @@ import cn.testin.bean.CloudWorkFactory;
 import cn.testin.dao.CloudWorkFactoryMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +66,7 @@ public class CloudWorkFactoryService
 		factory.setOffset((pageIndex - 1) * 10);
 		factory.setLimit(10);
 		factory.setStatus(1);
+		factory.setValidityTime(new Date());
 		List<CloudWorkFactory> pageList = findList(factory);
 		// 总页数
 		int dataCount = findListCount(factory);
@@ -96,6 +98,7 @@ public class CloudWorkFactoryService
 		factory.setCreateUser(userId);
 		factory.setOffset((pageIndex - 1) * 10);
 		factory.setLimit(10);
+		factory.setValidityTime(new Date());
 		List<CloudWorkFactory> pageList = findList(factory);
 		// 总页数
 		int dataCount = findListCount(factory);

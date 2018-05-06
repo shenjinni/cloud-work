@@ -32,13 +32,31 @@
 			location.href="${ctx}/b2b/factoryColumn.do?pageIndex=1&text="+text;
 		}
 	}
+
+	function toPublish(url){
+		var user = "${sessionScope.user}";
+		if (user == "") {
+			alert("未登录用户不能发布信息");
+			return;
+		}
+
+		var sf = "${sessionScope.user.roleShortName}";
+
+		if (sf == "normal") {
+			alert("付费用户才能发布信息，充值会员，请查看收费标准～");
+			return;
+		}
+
+		location.href=url;
+
+	}
 </script>
 
 
 <div class="mylist">
 	<h2>
-		<a href="${pageContext.request.contextPath}/common/help.jsp">使用帮助</a>
-		<a href="${pageContext.request.contextPath}/common/pay.jsp">收费标准</a>
+		<a href="${ctx}/common/article.do?id=1">使用帮助</a>
+		<a href="${ctx}/common/article.do?id=2">收费标准</a>
 		<c:if test="${empty sessionScope.user}">
 			<a href="${ctx}/common/localLogin.do?fromUrl=index.jsp">会员登录</a>
 			<a href="${ctx}/common/registe.do">免费注册</a>

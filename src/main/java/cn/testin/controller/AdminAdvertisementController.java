@@ -5,23 +5,14 @@ import cn.testin.bean.Advertisement;
 import cn.testin.constant.Constants;
 import cn.testin.service.AdvertisementService;
 import cn.testin.util.RandomUtils;
-import cn.testin.util.StringUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -158,118 +149,5 @@ public class AdminAdvertisementController {
 		}
 
 		return result;
-	}
-
-	@RequestMapping("uploadFile.json")
-	@ResponseBody
-	public Map<String, Object> uploadFile(@RequestBody MultipartFile myfile)
-			throws IllegalStateException, IOException {
-		// 原始名称
-		String oldFileName = myfile.getOriginalFilename(); // 获取上传文件的原名
-//      System.out.println(oldFileName);
-		// 存储图片的虚拟本地路径（这里需要配置tomcat的web模块路径，双击猫进行配置）
-		String saveFilePath = "E://picture";
-		// 上传图片
-		if (myfile != null && oldFileName != null && oldFileName.length() > 0) {
-			// 新的图片名称
-			String newFileName = UUID.randomUUID() + oldFileName.substring(oldFileName.lastIndexOf("."));
-			// 新图片
-			File newFile = new File(saveFilePath + "\\" + newFileName);
-			// 将内存中的数据写入磁盘
-			myfile.transferTo(newFile);
-			// 将新图片名称返回到前端
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("success", "成功啦");
-			map.put("url", newFileName);
-			return map;
-		} else {
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("error", "图片不合法");
-			return map;
-		}
-	}
-
-	@RequestMapping(value="uploadImg.json",method=RequestMethod.POST)
-	@ResponseBody
-	private Map<String, Object> uploadImg(
-							  HttpServletRequest request)throws Exception{
-		Map<String, Object> result = new HashMap<>();
-		result.put("errCode", Constants.result_fail);
-		result.put("errMsg", "上传失败，请稍后再试！");
-
-		//获得物理路径webapp所在路径
-//		String pathRoot = request.getSession().getServletContext().getRealPath("");
-//		String path = "";
-//		if (!file.isEmpty()) {
-//			//生成uuid作为文件名称
-//			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-//			//获得文件类型（可以判断如果不是图片，禁止上传）
-//			String contentType = file.getContentType();
-//			//获得文件后缀名称
-//			String imageName = contentType.substring(contentType.indexOf("/") + 1);
-//			//地址
-//			path = "/static/images/" + uuid + "." + imageName;
-//			file.transferTo(new File(pathRoot+path));
-//		} else {
-//			return result;
-//		}
-//		result.put("errCode", Constants.result_success);
-//		result.put("errMsg", "操作成功！");
-//		result.put("imagesPath", path);
-//		log.info("上传成功！path=" + path);
-
-		return result;
-	}
-
-	/**
-	 *
-	 * @Description: 上传文件
-	 * @author tianpengw
-	 * @return void
-	 */
-	@RequestMapping("/uploadFileByDS.json")
-	public void uploadFileByDS(HttpServletRequest reuqest, HttpServletResponse reponse) {
-		PrintWriter out = null;
-		try {
-			String name = reuqest.getParameter("name");
-			if(StringUtil.isEmpty(name)){
-				name = "uploadFile";
-			}
-			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) reuqest;
-			CommonsMultipartFile file1 = (CommonsMultipartFile)multipartRequest.getFile(name);
-			String mulFileName= file1.getOriginalFilename();
-			int numLast=mulFileName.lastIndexOf(".");
-			String str = mulFileName.substring(0, numLast);
-			String fileType="";
-			int index=0;
-			if((index=mulFileName.lastIndexOf("."))>=0){
-				fileType=mulFileName.substring(index);
-			}
-
-			String key = StringUtil.getFileType(fileType) + "/casic_t/" + System.currentTimeMillis() + "_" + mulFileName;
-			File s=new File(str);
-			file1.transferTo(s);
-//			UploadFile uf=new UploadFile();
-//			String token=uf.getUpToken0();
-//			uf.upload(s.getPath(), key, token);
-//			reponse.setContentType("text/html;charset=UTF-8");
-//			out = reponse.getWriter();
-//			JSONObject json = new JSONObject();
-//			String url =  key;
-//			json.put("url", url);
-//			out.print(json);
-			s.delete();
-			log.info("七牛云上传操作成功：" + key);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-			log.error("七牛云上传操作失败："+ StringUtil.getStackTrace(e));
-		} catch (IOException e) {
-			e.printStackTrace();
-			log.error("七牛云上传操作失败："+ StringUtil.getStackTrace(e));
-		} finally {
-			if (out != null) {
-				out.close();
-			}
-		}
 	}
 }

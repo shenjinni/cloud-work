@@ -17,7 +17,7 @@ import java.util.Set;
 /** 
  * @ClassName: CustomRolesAuthorizationFilter 
  * @Description: 实现AuthorizationFilter抽象类，配置角色校验
- * @author tianpengw 
+ * @author shenjinni
  * @date 2017年3月12日 下午12:32:12 
  *  
  */

@@ -4,6 +4,8 @@
 	<script type="text/javascript" charset="utf-8" src="${ctx}/common/ueditor/ueditor.config.js"></script>
 	<script type="text/javascript" charset="utf-8" src="${ctx}/common/ueditor/ueditor.all.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="${ctx}/common/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+
 	<div>
 		<div id="page-wrapper">
 			<!--BEGIN TITLE & BREADCRUMB PAGE-->
@@ -36,7 +38,8 @@
 										<div class="panel panel-azure">
 											<div class="panel-heading">
 												修改文章
-												
+												<c:if test="${article.articleId == 1}">-使用帮助</c:if>
+												<c:if test="${article.articleId == 2}">-收费标准</c:if>
 												<a href="${ctx}/admin/article/articleList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
 											</div>
 											<div class="panel-body pan">
@@ -75,14 +78,12 @@
 		
 		UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
 		UE.Editor.prototype.getActionUrl = function(action) {
-			if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
-				return '${ctx}/common/qiniu/qnUploadImage.json';
-			}else if(action=='uploadfile'){
-				return '${ctx}/common/qiniu/qnUploadFile.json';
-			} else if (action == 'listimage') {
-				return '/imgupload/listimage';
-			}else if (action == 'imageup') {
-				return '${ctx}/common/qiniu/qnUploadImage.json';
+			if (action == 'uploadimage' || action == 'uploadscrawl') {
+				return '${ctx}/admin/qnUploadImage.json';
+			} else if(action=='uploadfile'){
+				return '${ctx}/admin/qnUploadFile.json';
+			} else if (action == 'imageup') {
+				return '${ctx}/admin/qnUploadImage.json';
 			} else {
 				return this._bkGetActionUrl.call(this, action);
 			}

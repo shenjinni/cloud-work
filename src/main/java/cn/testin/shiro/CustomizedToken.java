@@ -5,7 +5,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
  * 
  * @ClassName: CustomizedToken 
  * @Description: 通用token
- * @author: tianpengw
+ * @author: shenjinni
  * @date 2018年3月3日 下午6:43:16 
  *
  */

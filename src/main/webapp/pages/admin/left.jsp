@@ -22,18 +22,16 @@
     <link type="text/css" rel="stylesheet" href="${ctx}/common/css/admin/jquery.news-ticker.css">
     <link type="text/css" rel="stylesheet" href="${ctx}/jquery/jquery-confirm/css/jquery-confirm.css" />
     <!-- 图片上传即使预览插件 -->
-    <link type="text/css" rel="stylesheet" href="${ctx}/bootstrap-fileinput/css/fileinput.min.css">
+
     <!--[if lt IE 9]>
       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="${ctx}/jquery/jquery-1.10.1.min.js"></script>
-
-    <script type="text/javascript" src="${ctx}/bootstrap-fileinput/js/fileinput.min.js"></script>
-    <!-- 这个是汉化-->
-    <script type="text/javascript" src="${ctx}/bootstrap-fileinput/js/locales/zh.js"></script>
-
     <script type="text/javascript" src="${ctx}/bootstrap/js/bootstrap.min.js"></script>
+
+
+
 	<script type="text/javascript" src="${ctx}/bootstrap-table/bootstrap-table.min.js"></script>
 	<script type="text/javascript" src="${ctx}/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
     <script type="text/javascript" src="${ctx}/jquery/jquery.toObject.js"></script>

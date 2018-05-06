@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 /** 
  * @ClassName: PageBean 
  * @Description: 
- * @author tianpengw 
+ * @author shenjinni
  * @date 2017年4月1日 下午2:10:36 
  *  
  */

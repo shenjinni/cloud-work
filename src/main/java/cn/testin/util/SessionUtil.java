@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
  * 
   * @ClassName: SessionUtil 
   * @Description: 
-  * @author: tianpengw
+  * @author: shenjinni
   * @date 2018年1月8日 上午10:44:33 
   *
  */
@@ -18,7 +18,7 @@ public class SessionUtil {
 	/**
 	 * 
 	  * @Description: 获得session对象
-	  * @author: tianpengw
+	  * @author: shenjinni
 	  *
 	  * @param req
 	  * @return
@@ -32,7 +32,7 @@ public class SessionUtil {
 	/**
 	 * 
 	  * @Description: 从session 获得user对象
-	  * @author: tianpengw
+	  * @author: shenjinni
 	  * @param req
 	  * @return
 	 */
@@ -46,7 +46,7 @@ public class SessionUtil {
 	/**
 	 * 
 	  * @Description: 将user对象加入到session中
-	  * @author: tianpengw
+	  * @author: shenjinni
 	  * @param req
 	  * @param u
 	 */

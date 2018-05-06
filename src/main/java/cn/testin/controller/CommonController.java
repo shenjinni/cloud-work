@@ -1,7 +1,9 @@
 package cn.testin.controller;
 
 import cn.testin.bean.Advertisement;
+import cn.testin.bean.Article;
 import cn.testin.service.AdvertisementService;
+import cn.testin.service.ArticleService;
 import cn.testin.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.logging.log4j.LogManager;
@@ -9,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -30,10 +33,13 @@ public class CommonController {
 	@Resource
 	private AdvertisementService advertisementService;
 
+	@Resource
+	private ArticleService articleService;
+
 	/**
 	 * 
 	 * @Description: 首页
-	 * @author: tianpengw
+	 * @author: shenjinni
 	 * @param req
 	 * @param res
 	 * @return
@@ -94,6 +100,22 @@ public class CommonController {
 		}
 
 		return result;
+	}
+
+	/**
+	 *
+	 * @Description: 文章
+	 * @author: shenjinni
+	 * @return
+	 */
+	@RequestMapping("article.do")
+	public ModelAndView help(@RequestParam(name="id", required = false) Long id){
+		ModelAndView mv = new ModelAndView("/common/article");
+		if(null != id){
+			Article article = articleService.getById(id);
+			mv.addObject("article", article);
+		}
+		return mv;
 	}
 
 

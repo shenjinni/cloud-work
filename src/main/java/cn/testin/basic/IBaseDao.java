@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
  * 
  * @ClassName: IBaseDao 
  * @Description: Mapper接口基础类
- * @author tianpengw 
+ * @author shenjinni
  * @date 2017年4月1日 上午11:07:09 
  * 
  * @param <T>

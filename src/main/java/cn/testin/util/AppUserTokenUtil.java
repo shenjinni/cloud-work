@@ -7,7 +7,7 @@ public class AppUserTokenUtil {
 	 /**
 	  * 
 	  * @Description: 根据请求参数获得用户token
-	  * @author: tianpengw
+	  * @author: shenjinni
 	  * @param params
 	  * @return
 	 */
@@ -20,7 +20,7 @@ public class AppUserTokenUtil {
 	 /**
 	  * 
 	  * @Description: 生成用户token=3个随机码+uuid+3个随机码，共38位
-	  * @author: tianpengw
+	  * @author: shenjinni
 	  * @return
 	 */
 	public static String createUserToken(){

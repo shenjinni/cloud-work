@@ -55,8 +55,8 @@ function navActive(){
 					<%--<a title="免费工厂招工登记" href="${ctx}/b2b/recruitmentPublish.do">招工登记</a>--%>
 				<%--</c:if>--%>
 			<%--</c:if>--%>
-			<a title="免费工人求职登记" href="${ctx}/b2b/personPublish.do">工人登记</a>
-			<a title="免费工厂招工登记" href="${ctx}/b2b/recruitmentPublish.do">招工登记</a>
+				<a title="免费工人求职登记" onclick="toPublish('${ctx}/b2b/personPublish.do');">工人登记</a>
+				<a title="免费工厂招工登记" onclick="toPublish('${ctx}/b2b/recruitmentPublish.do');">招工登记</a>
 			<a title="工人信息" href="${ctx}/b2b/personColumn.do">工人信息</a>
 			<a title="招工信息" href="${ctx}/b2b/recruitmentColumn.do">招工信息</a>
 		</div>
@@ -82,6 +82,7 @@ function navActive(){
 							<span class="cate"><a href="${ctx}/b2b/personDetail.do?id=${item.id}">${item.workIntent}</a></span>
 							<span class="wh">${item.address}</span>
 							<span class="tel">${mobile}</span>
+							<span style="display: none;">${item.weights}</span>
 							<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
 						</li>
 					</ul>
@@ -97,6 +98,7 @@ function navActive(){
 									<span class="cate"><a href="${ctx}/b2b/personDetail.do?id=${item.id}">${item.workIntent}</a></span>
 									<span class="wh">${item.address}</span>
 									<span class="tel">${mobile}</span>
+									<span style="display: none;">${item.weights}</span>
 									<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
 								</li>
 							</ul>
@@ -109,6 +111,7 @@ function navActive(){
 									<span class="cate"><a href="${ctx}/b2b/personDetail.do?id=${item.id}">${item.workIntent}</a></span>
 									<span class="wh">${item.address}</span>
 									<span class="tel">${item.mobile}</span>
+									<span style="display: none;">${item.weights}</span>
 									<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
 								</li>
 							</ul>

@@ -14,7 +14,7 @@ import org.apache.shiro.realm.Realm;
  * @Description: 自定义Authenticator
  * 			注意，当需要分别定义处理普通用户和管理员验证的Realm时，对应Realm的全类名应该包含字符串“User”，或者“Admin”。
  * 			并且，他们不能相互包含，例如，处理普通用户验证的Realm的全类名中不应该包含字符串"Admin"。
- * @author: tianpengw
+ * @author: shenjinni
  * @date 2018年3月3日 下午6:45:15 
  *
  */

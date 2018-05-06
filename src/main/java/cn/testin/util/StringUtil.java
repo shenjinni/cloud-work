@@ -59,7 +59,7 @@ public class StringUtil {
 	/**
 	  * 
 	  * @Description: 字符串为null时转换为"",不为null时不作处理
-	  * @author tianpengw 
+	  * @author shenjinni
 	  * @return String
 	  */
 	public static String filterStr(String obj){
@@ -72,7 +72,7 @@ public class StringUtil {
 	/**
 	  * 
 	  * @Description: 判断字符串或者对象是否为null，或者字符串是否为""
-	  * @author tianpengw 
+	  * @author shenjinni
 	  * @return String
 	  */
 	public static boolean isEmpty(Object obj){
@@ -85,7 +85,7 @@ public class StringUtil {
 	/**
 	  * 
 	  * @Description: 或则指定长度的字符串，如果为空不处理,如果小于定长也不处理
-	  * @author tianpengw 
+	  * @author shenjinni
 	  * @return String
 	  */
 	public static String getSpecifyLengthStr(String str,int length){
@@ -99,7 +99,7 @@ public class StringUtil {
 	/**
 	 * 
 	 * @Description: 处理异常栈信息为字符串
-	 * @author tianpengw 
+	 * @author shenjinni
 	 * @return String
 	 */
 	public static String getStackTrace(Throwable t){
@@ -135,7 +135,7 @@ public class StringUtil {
 	/**
 	 * 
 	 * @Description: 去掉所有html标签
-	 * @author tianpengw 
+	 * @author shenjinni
 	 * @return String
 	 */
 	public static String removeHtml(String content) {
@@ -155,7 +155,7 @@ public class StringUtil {
 	/**
 	 * 
 	 * @Description: 根据传送的扩展名判断文件类型，上传文件归档目录使用
-	 * @author tianpengw 
+	 * @author shenjinni
 	 * @return String
 	 */
 	public static String getFileType(String type){
@@ -172,7 +172,7 @@ public class StringUtil {
 	/**
 	 * 
 	 * @Description: 验证字符串是否符合对应的正则规则，如果是返回true 反之false
-	 * @author: tianpengw
+	 * @author: shenjinni
 	 * @param str
 	 * @param regex
 	 * @return

@@ -109,13 +109,13 @@
         </property>  
         <property name="filterChainDefinitions">  
             <value>
-               /admin/factory/** = authc
-               /admin/home.do = authc
-               /admin/labor/** = authc
-               /admin/person/** = authc
-               /admin/recruitment/** = authc
-               /admin/turnover/** = authc
-               /admin/user/** = authc
+               /admin/** = authc,roleOrFilter["admin"]
+               <!--/admin/home.do = authc-->
+               <!--/admin/labor/** = authc-->
+               <!--/admin/person/** = authc-->
+               <!--/admin/recruitment/** = authc-->
+               <!--/admin/turnover/** = authc-->
+               <!--/admin/user/** = authc-->
                /b2b/*Publish.* = authc
                /b2b/*Update.* = authc
                 /b2b/myInfo/** = authc

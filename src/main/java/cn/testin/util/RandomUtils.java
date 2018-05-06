@@ -12,7 +12,7 @@ import java.util.UUID;
  * 
  * @ClassName: RandomUtils 
  * @Description: 随机数生成工具，生成数据库的唯一主键
- * @author tianpengw 
+ * @author shenjinni
  * @date 2017年5月4日 下午5:58:27 
  *
  */
@@ -63,7 +63,7 @@ public class RandomUtils {
     /**
      * 
       * @Description: TODO 生成固定长度为16位的包含时间的序列  YYMMDDHHmmss+四位随机数 -数值
-      * @author: tianpengw
+      * @author: shenjinni
       *
       * @return
      */
@@ -74,7 +74,7 @@ public class RandomUtils {
     /**
      *   
      * @Description: 获得一个UUID
-     * @author tianpengw 
+     * @author shenjinni
      * @return String
      */
     public static String getUUID(){  
@@ -84,7 +84,7 @@ public class RandomUtils {
     /**
      * 
      * @Description: 获取指定位数的数字验证码（去掉4）
-     * @author tianpengw 
+     * @author shenjinni
      * @return String
      */
     public static String getValidCode(int digit){
@@ -100,7 +100,7 @@ public class RandomUtils {
      /**
       * 
       * @Description: 从大小写字母和数字中取指定位数的随机码
-      * @author: tianpengw
+      * @author: shenjinni
       * @param digit
       * @return
      */

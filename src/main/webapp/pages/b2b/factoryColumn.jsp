@@ -53,8 +53,8 @@
 				<%--<a title="加工厂登记" href="${ctx}/b2b/factoryPublish.do">加工厂登记</a>--%>
 			<%--</c:if>--%>
 		<%--</c:if>--%>
-		<a title="加工活登记" href="${ctx}/b2b/laborPublish.do">加工活登记</a>
-		<a title="加工厂登记" href="${ctx}/b2b/factoryPublish.do">加工厂登记</a>
+		<a title="加工活登记" onclick="toPublish('${ctx}/b2b/laborPublish.do');">加工活登记</a>
+		<a title="加工厂登记" onclick="toPublish('${ctx}/b2b/laborPublish.do');">加工厂登记</a>
 		<a title="加工活信息" href="${ctx}/b2b/laborColumn.do">加工活信息</a>
 		<a title="加工厂信息" href="${ctx}/b2b/factoryColumn.do">加工厂信息</a>
 	</div>
@@ -80,6 +80,7 @@
 						<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
 						<span class="wh">${item.address}</span>
 						<span class="tel">${mobile}</span>
+						<span style="display: none;">${item.weights}</span>
 						<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
 					</li>
 				</ul>
@@ -95,6 +96,7 @@
 								<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
 								<span class="wh">${item.address}</span>
 								<span class="tel">${mobile}</span>
+								<span style="display: none;">${item.weights}</span>
 								<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
 							</li>
 						</ul>
@@ -107,6 +109,7 @@
 								<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
 								<span class="wh">${item.address}</span>
 								<span class="tel">${item.mobile}</span>
+								<span style="display: none;">${item.weights}</span>
 								<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
 							</li>
 						</ul>
