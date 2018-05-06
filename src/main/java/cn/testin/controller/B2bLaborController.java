@@ -174,7 +174,7 @@ public class B2bLaborController {
 		}
 
 		labor.setId(RandomUtils.g());
-		labor.setStatus(1);
+		labor.setStatus(-1);
 		labor.setCreateTime(new Date());
 		labor.setCreateUser(user.getUserId());
 		labor.setUpdateTime(new Date());

@@ -172,7 +172,7 @@ public class B2bPersonController {
 		}
 
         person.setId(RandomUtils.g());
-        person.setStatus(1);
+        person.setStatus(-1);
         person.setCreateTime(new Date());
         person.setCreateUser(user.getUserId());
         person.setUpdateTime(new Date());

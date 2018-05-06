@@ -63,7 +63,6 @@
 	<div class="wap-item-header">
 		<a href="${ctx}/b2b/personColumn.do"><i class="fa fa-angle-left"></i></a>
 		<span>免费加工厂登记</span>
-		<i class="logout"><a href="${ctx}/b2b/personColumn.do">返回</a></i>
 	</div>
 	<div class="login-register">
 		<div class="login">

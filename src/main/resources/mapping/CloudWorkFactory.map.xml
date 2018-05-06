@@ -87,6 +87,9 @@
 				<if test="status != null  and status != ''" >
 					and cloud_work_factory.status = #{status,jdbcType=NUMERIC}
 				</if>
+				<if test="createUser != null  and createUser != ''" >
+					and cloud_work_factory.create_user = #{createUser,jdbcType=NUMERIC}
+				</if>
 			</otherwise>
 		</choose>
 		order by cloud_work_vip.weights desc, cloud_work_factory.update_time desc
@@ -120,6 +123,9 @@
 				</if>
 				<if test="status != null  and status != ''" >
 					and cloud_work_factory.status = #{status,jdbcType=NUMERIC}
+				</if>
+				<if test="createUser != null  and createUser != ''" >
+					and cloud_work_factory.create_user = #{createUser,jdbcType=NUMERIC}
 				</if>
 			</otherwise>
 		</choose>

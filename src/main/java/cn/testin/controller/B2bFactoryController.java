@@ -177,7 +177,7 @@ public class B2bFactoryController {
 
 
 		factory.setId(RandomUtils.g());
-		factory.setStatus(1);
+		factory.setStatus(-1);
 		factory.setCreateTime(new Date());
 		factory.setCreateUser(user.getUserId());
 		factory.setUpdateTime(new Date());

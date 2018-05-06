@@ -31,7 +31,7 @@
                     }
                 };
 
-                cfg.url = '${ctx}/b2b/personPublish.json';
+                cfg.url = '${ctx}/b2b/myInfo/personPublish.json';
                 $.ajax(cfg);
             }
         });
@@ -59,50 +59,50 @@
 <body>
 <form method="post" id="form1">
 	<div class="wap-item-header">
-		<a href="${ctx}/b2b/personColumn.do"><i class="fa fa-angle-left"></i></a>
+		<a href="${ctx}/b2b/myInfo/infoColumn.do?type=1"><i class="fa fa-angle-left"></i></a>
 		<span>免费工人登记</span>
 	</div>
 	<div class="login-register">
 		<div class="login">
 			<div class="group">
 				<label>工种</label>
-				<input type="text" maxlength="100" name="workIntent" class="text" />
+				<input type="text" maxlength="100" value="${person.workIntent}" name="workIntent" class="text" />
 			</div>
 			<div class="group">
 				<label>工资要求</label>
-				<input type="text" maxlength="100" name="salary" class="text" />
+				<input type="text" maxlength="100" name="salary" class="text" value="${person.workIntent}"/>
 			</div>
 			<div class="group">
 				<label>姓名</label>
-				<input type="text" maxlength="30" id="realname" name="contactsName" class="text" value="" />
+				<input type="text" maxlength="30" id="realname" name="contactsName" class="text" value="${person.contactsName}"/>
 			</div>
 			<div class="group">
 				<label>电话</label>
-				<input type="text" maxlength="11" name="mobile" class="text" value="" />
+				<input type="text" maxlength="11" name="mobile" class="text" value="${person.mobile}"/>
 			</div>
 			<div class="group">
 				<label>年龄</label>
-				<input type="text" maxlength="20" name="age" class="text" value="" />
+				<input type="text" maxlength="20" name="age" class="text" value="${person.age}"/>
 			</div>
 			<div class="group">
 				<label>生肖</label>
-				<input type="text" maxlength="10" name="zodiac" class="text" value="" />
+				<input type="text" maxlength="10" name="zodiac" class="text" value="${person.zodiac}"/>
 			</div>
 			<div class="group">
 				<label>性别</label>
 				<select class="form-control" name="sex">
-					<option value="1">男</option>
-					<option value="2">女</option>
+					<option value="1" <c:if test="${person.sex == 1}">selected</c:if>>男</option>
+					<option value="2" <c:if test="${person.sex == 2}">selected</c:if>>女</option>
 				</select>
 			</div>
 			<div class="group">
 				<label>哪里人</label>
-				<input maxlength="100" type="text" name="address" class="text" value="" />
+				<input maxlength="100" type="text" name="address" class="text" value="${person.address}"/>
 			</div>
 
 			<div class="group">
 				<label>补充说明</label>
-				<textarea type="text" maxlength="200" name="note" class="text" cols="18" rows="3"></textarea>
+				<textarea type="text" maxlength="200" name="note" class="text" cols="18" rows="3">value="${person.note}"</textarea>
 			</div>
 			<%--<div class="group">--%>
 				<%--<label>验证码</label>--%>
@@ -116,6 +116,7 @@
 			</div>
 		</div>
 	</div>
+	<input type="hidden" name="id" value="${person.id}" />
 </form>
 <%@ include file="/common/bottomAdv.jsp"%>
 </body>

@@ -19,7 +19,6 @@
 	<div class="wap-item-header">
 		<a href="${ctx}/b2b/personColumn.do"><i class="fa fa-angle-left"></i></a>
 		<span>加工厂信息详情</span>
-		<i class="logout"><a href="${ctx}/b2b/personColumn.do">返回</a></i>
 	</div>
 	<div class="m-title"><strong>加工厂信息详情</strong></div>
 	<div id="view-content">

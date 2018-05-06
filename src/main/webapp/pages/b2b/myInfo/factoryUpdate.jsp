@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>免费工人登记</title>
+	<title>免费加工厂登记</title>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhiliaccount.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/admin/font-awesome.min.css" />
@@ -18,37 +18,39 @@
 			dataType : 'json',
 			contentType : 'application/json;charset=UTF-8',
 		};
-        $.validator.setDefaults({
-            submitHandler: function () {
-                var obj = $('#form1').toObject({mode : 'first'});
+		$.validator.setDefaults({
+			submitHandler: function () {
+				var obj = $('#form1').toObject({mode : 'first'});
 
-                cfg.data = JSON.stringify(obj);
+				cfg.data = JSON.stringify(obj);
+				alert(cfg.data);
 
-                cfg.success = function ret(data) {
-                    alert(data.errMsg);
-                    if (data.errCode == 'success') {
-                        window.location.href = "${ctx}/b2b/personColumn.do";
-                    }
-                };
+				cfg.success = function ret(data) {
+					alert(data.errMsg);
+					if (data.errCode == 'success') {
+						window.location.href = "${ctx}/b2b/factoryColumn.do";
+					}
+				};
 
-                cfg.url = '${ctx}/b2b/personPublish.json';
-                $.ajax(cfg);
-            }
-        });
+				cfg.url = '${ctx}/b2b/myInfo/factoryPublish.json';
+				$.ajax(cfg);
+			}
+		});
 
         $(function () {
             $("#form1").validate({
                 rules: {
                     contactsName: "required",
                     mobile: "required",
-                    workIntent: "required"
+                    workNeed: "required"
                 },
                 messages: {
-                    contactsName: "请输入姓名",
-                    mobile: "请输入电话号码",
-                    workIntent: "请输入工种"
+                    contactsName: "请输入联系人",
+                    mobile: "请输入电话",
+                    workNeed: "请输入承接加工种类"
                 }
             });
+
         })
 
         function changeFlagcode(){
@@ -59,50 +61,34 @@
 <body>
 <form method="post" id="form1">
 	<div class="wap-item-header">
-		<a href="${ctx}/b2b/personColumn.do"><i class="fa fa-angle-left"></i></a>
-		<span>免费工人登记</span>
+		<a href="${ctx}/b2b/myInfo/infoColumn.do?type=4"><i class="fa fa-angle-left"></i></a>
+		<span>免费加工厂登记</span>
 	</div>
 	<div class="login-register">
 		<div class="login">
 			<div class="group">
-				<label>工种</label>
-				<input type="text" maxlength="100" name="workIntent" class="text" />
+				<label>承接加工种类</label>
+				<input type="text" name="workNeed" value="${factory.workNeed}" maxlength="100" class="text" />
 			</div>
 			<div class="group">
-				<label>工资要求</label>
-				<input type="text" maxlength="100" name="salary" class="text" />
-			</div>
-			<div class="group">
-				<label>姓名</label>
-				<input type="text" maxlength="30" id="realname" name="contactsName" class="text" value="" />
+				<label>联系人</label>
+				<input type="text" id="realname" value="${factory.contactsName}" maxlength="30" name="contactsName" class="text"/>
 			</div>
 			<div class="group">
 				<label>电话</label>
-				<input type="text" maxlength="11" name="mobile" class="text" value="" />
+				<input type="text" name="mobile" value="${factory.mobile}" maxlength="11" class="text"/>
 			</div>
 			<div class="group">
-				<label>年龄</label>
-				<input type="text" maxlength="20" name="age" class="text" value="" />
+				<label>地址</label>
+				<input type="text" name="address" value="${factory.address}" maxlength="100" class="text"/>
 			</div>
 			<div class="group">
-				<label>生肖</label>
-				<input type="text" maxlength="10" name="zodiac" class="text" value="" />
+				<label>规模人数</label>
+				<input type="text" name="scale" value="${factory.scale}" maxlength="20" class="text"/>
 			</div>
-			<div class="group">
-				<label>性别</label>
-				<select class="form-control" name="sex">
-					<option value="1">男</option>
-					<option value="2">女</option>
-				</select>
-			</div>
-			<div class="group">
-				<label>哪里人</label>
-				<input maxlength="100" type="text" name="address" class="text" value="" />
-			</div>
-
 			<div class="group">
 				<label>补充说明</label>
-				<textarea type="text" maxlength="200" name="note" class="text" cols="18" rows="3"></textarea>
+				<textarea type="text" name="note"  maxlength="200" class="text" cols="18" rows="3">${factory.note}</textarea>
 			</div>
 			<%--<div class="group">--%>
 				<%--<label>验证码</label>--%>
@@ -112,10 +98,11 @@
 				<%--</div>--%>
 			<%--</div>--%>
 			<div class="group">
-				<input type="submit" name="btnSave" value="免费发布" id="submit" class="input-button blue-button" />
+				<input type="submit" name="btnSave" value="免费发布" id="btnSave" class="input-button blue-button" />
 			</div>
 		</div>
 	</div>
+	<input type="hidden" name="id" value="${factory.id}" />
 </form>
 <%@ include file="/common/bottomAdv.jsp"%>
 </body>

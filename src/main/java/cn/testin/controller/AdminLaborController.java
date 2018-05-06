@@ -1,6 +1,7 @@
 package cn.testin.controller;
 
 import cn.testin.bean.CloudWorkLabor;
+import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkLaborService;
 import cn.testin.util.RandomUtils;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -87,19 +89,28 @@ public class AdminLaborController {
 	 */
 	@RequestMapping(value = "updateLabor.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateCloudWorkLabor(@RequestBody CloudWorkLabor labor){
+	public Map<String, Object> updateCloudWorkLabor(@RequestBody CloudWorkLabor labor, HttpSession session){
 		Map<String, Object> result = new HashMap<String, Object>();
 		Long laborId = labor.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", (laborId == null ? "新增" : "修改" ) + "加工活信息失败，请稍后再试！");
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
 
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
 		if (laborId == null) {
 			labor.setId(RandomUtils.g());
 			labor.setStatus(1);
 			labor.setCreateTime(new Date());
-			labor.setCreateUser(1L);
+			labor.setCreateUser(user.getUserId());
 			labor.setUpdateTime(new Date());
-			labor.setUpdateUser(1L);
+			labor.setUpdateUser(user.getUserId());
 			int i = cloudWorkLaborService.insert(labor);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -109,7 +120,7 @@ public class AdminLaborController {
 			}
 		} else {
 			labor.setUpdateTime(new Date());
-			labor.setUpdateUser(1L);
+			labor.setUpdateUser(user.getUserId());
 			int i = cloudWorkLaborService.update(labor);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -146,12 +157,21 @@ public class AdminLaborController {
 	 */
 	@RequestMapping(value = "changeStatus.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> changeStatus(@RequestBody CloudWorkLabor labor){
+	public Map<String, Object> changeStatus(@RequestBody CloudWorkLabor labor, HttpSession session){
 		Map<String, Object> result = new HashMap<>();
 		Long laborId = labor.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", "操作失败，请稍后再试！");
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
 
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
 		Integer status = labor.getStatus();
 		if (status == null) {
 			log.info("修改加工活信息状态，获取状态值失败！ laborId" + laborId);
@@ -166,7 +186,7 @@ public class AdminLaborController {
 
 		labor.setStatus(status);
 		labor.setUpdateTime(new Date());
-		labor.setUpdateUser(1L);
+		labor.setUpdateUser(user.getUserId());
 		int i = cloudWorkLaborService.update(labor);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);

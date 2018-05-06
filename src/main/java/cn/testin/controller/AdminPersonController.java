@@ -2,8 +2,10 @@ package cn.testin.controller;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import cn.testin.bean.CloudWorkPerson;
+import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkPersonService;
 import cn.testin.util.RandomUtils;
@@ -89,19 +91,28 @@ public class AdminPersonController {
 	 */
 	@RequestMapping(value = "updatePerson.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateCloudWorkPerson(@RequestBody CloudWorkPerson person){
+	public Map<String, Object> updateCloudWorkPerson(@RequestBody CloudWorkPerson person, HttpSession session){
 		Map<String, Object> result = new HashMap<String, Object>();
 		Long personId = person.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", (personId == null ? "新增" : "修改" ) + "工人信息失败，请稍后再试！");
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
 
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
 		if (personId == null) {
 			person.setId(RandomUtils.g());
 			person.setStatus(1);
 			person.setCreateTime(new Date());
-			person.setCreateUser(1L);
+			person.setCreateUser(user.getUserId());
 			person.setUpdateTime(new Date());
-			person.setUpdateUser(1L);
+			person.setUpdateUser(user.getUserId());
 			int i = cloudWorkPersonService.insert(person);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -111,7 +122,7 @@ public class AdminPersonController {
 			}
 		} else {
 			person.setUpdateTime(new Date());
-			person.setUpdateUser(1L);
+			person.setUpdateUser(user.getUserId());
 			int i = cloudWorkPersonService.update(person);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -148,12 +159,21 @@ public class AdminPersonController {
 	 */
 	@RequestMapping(value = "changeStatus.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> changeStatus(@RequestBody CloudWorkPerson person){
+	public Map<String, Object> changeStatus(@RequestBody CloudWorkPerson person, HttpSession session){
 		Map<String, Object> result = new HashMap<>();
 		Long personId = person.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", "操作失败，请稍后再试！");
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
 
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
 		Integer status = person.getStatus();
 		if (status == null) {
 			log.info("修改工人信息状态，获取状态值失败！ personId" + personId);
@@ -168,7 +188,7 @@ public class AdminPersonController {
 
 		person.setStatus(status);
 		person.setUpdateTime(new Date());
-		person.setUpdateUser(1L);
+		person.setUpdateUser(user.getUserId());
 		int i = cloudWorkPersonService.update(person);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);

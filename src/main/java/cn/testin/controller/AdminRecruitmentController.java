@@ -2,7 +2,10 @@ package cn.testin.controller;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import cn.testin.bean.CloudWorkRecruitment;
+import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkRecruitmentService;
 import cn.testin.util.RandomUtils;
@@ -87,19 +90,28 @@ public class AdminRecruitmentController {
 	 */
 	@RequestMapping(value = "updateRecruitment.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateCloudWorkRecruitment(@RequestBody CloudWorkRecruitment recruitment){
+	public Map<String, Object> updateCloudWorkRecruitment(@RequestBody CloudWorkRecruitment recruitment, HttpSession session){
 		Map<String, Object> result = new HashMap<String, Object>();
 		Long recruitmentId = recruitment.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", (recruitmentId == null ? "新增" : "修改" ) + "招工信息信息失败，请稍后再试！");
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
 
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
 		if (recruitmentId == null) {
 			recruitment.setId(RandomUtils.g());
 			recruitment.setStatus(1);
 			recruitment.setCreateTime(new Date());
-			recruitment.setCreateUser(1L);
+			recruitment.setCreateUser(user.getUserId());
 			recruitment.setUpdateTime(new Date());
-			recruitment.setUpdateUser(1L);
+			recruitment.setUpdateUser(user.getUserId());
 			int i = cloudWorkRecruitmentService.insert(recruitment);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -109,7 +121,7 @@ public class AdminRecruitmentController {
 			}
 		} else {
 			recruitment.setUpdateTime(new Date());
-			recruitment.setUpdateUser(1L);
+			recruitment.setUpdateUser(user.getUserId());
 			int i = cloudWorkRecruitmentService.update(recruitment);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -146,12 +158,21 @@ public class AdminRecruitmentController {
 	 */
 	@RequestMapping(value = "changeStatus.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> changeStatus(@RequestBody CloudWorkRecruitment recruitment){
+	public Map<String, Object> changeStatus(@RequestBody CloudWorkRecruitment recruitment, HttpSession session){
 		Map<String, Object> result = new HashMap<>();
 		Long recruitmentId = recruitment.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", "操作失败，请稍后再试！");
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
 
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
 		Integer status = recruitment.getStatus();
 		if (status == null) {
 			log.info("修改招工信息状态，获取状态值失败！ recruitmentId" + recruitmentId);
@@ -166,7 +187,7 @@ public class AdminRecruitmentController {
 
 		recruitment.setStatus(status);
 		recruitment.setUpdateTime(new Date());
-		recruitment.setUpdateUser(1L);
+		recruitment.setUpdateUser(user.getUserId());
 		int i = cloudWorkRecruitmentService.update(recruitment);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);

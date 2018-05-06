@@ -9,24 +9,47 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>织里童装设计网</title>
 <script type="text/javascript">
-
-
-function goPage(pageIndex){
-	var text = $("#TextSearch").val();
-	if(text==null || text==undefined){
-		text="";
+	function goPage(pageIndex){
+		var text = $("#TextSearch").val();
+		if(text==null || text==undefined){
+			text="";
+		}
+		var type = $("#info_type").val();
+		location.href="${ctx}/b2b/myInfo/infoColumn.do?pageIndex="+pageIndex+"&text="+text+"&type="+type;
 	}
-	var userrole = '${sessionScope.user.roleShortName}';
 
-	if (userrole == 'normal' && pageIndex > 1) {
-		alert("未登录/普通用户只能查看三条");
-		return;
+	function subSearch1(info){
+		var text = $("#TextSearch").val();
+		if(text==null || text==undefined){
+			text="";
+		}
+
+		var type = $(info).val();
+
+		location.href="${ctx}/b2b/myInfo/infoColumn.do?pageIndex=1&text="+text+"&type="+type;
 	}
-	location.href="${ctx}/b2b/personColumn.do?pageIndex="+pageIndex+"&text="+text;
-}
-function navActive(){
-	$("#navLi_2").addClass("active");
-}
+
+	function refresh(id, type) {
+		$.ajax({
+			type : "POST",
+			url : "refreshInfo.json",
+			dataType : "json",
+			contentType : 'application/json;charset=UTF-8',
+			data : JSON.stringify({"needId":id,"queryType":type}),
+			success : function(res){
+				if("success" == res.errCode){
+					alert(res.errMsg);
+					location.reload();
+				}
+			},
+			error : function(XMLHttpRequest, textStatus,
+							 errorThrown) {
+				alert("刷新失败！请联系管理员");
+			},
+			complete : function(XMLHttpRequest, textStatus) {
+			}
+		});
+	}
 </script>
 
 </head>
@@ -39,21 +62,20 @@ function navActive(){
 
 		<div id="SearchPanel">
 			<input name="TextSearch" type="text" id="TextSearch" value="${text}" />
-			<input type="button" onclick="subSearch(1);" name="btnSearch" value="工作" class="so-btn" />
-			<input type="button" onclick="subSearch(2);" name="btnSearch2" value="工人"  class="so-btn" />
-			<input type="submit" name="btnSearch" onclick="subSearch(4);" value="加工厂" class="so-btn" />
-			<input type="submit" name="btnSearch2" onclick="subSearch(3);" value="加工活" class="so-btn" />
+			<select name="type" id="info_type" onchange="subSearch1(this);" >
+				<option <c:if test="${type == 1}">selected</c:if> value="1">工人信息</option>
+				<option <c:if test="${type == 2}">selected</c:if> value="2">招工信息</option>
+				<option <c:if test="${type == 3}">selected</c:if> value="3">加工活信息</option>
+				<option <c:if test="${type == 4}">selected</c:if> value="4">加工厂信息</option>
+			</select>
 		</div>
-		<br/>
-		<div class="quickbtn">
-			<a title="工人信息" href="${ctx}/b2b/personColumn.do">工人信息</a>
-			<a title="招工信息" href="${ctx}/b2b/recruitmentColumn.do">招工信息</a>
-			<a title="加工活信息" href="${ctx}/b2b/laborColumn.do">加工活信息</a>
-			<a title="加工厂信息" href="${ctx}/b2b/factoryColumn.do">加工厂信息</a>
-		</div>
-		<br/>
 	</div>
-	<h3 class="infotitle">工人信息</h3>
+	<h3 class="infotitle">
+		<c:if test="${type == 1}">工人信息</c:if>
+		<c:if test="${type == 2}">招工信息</c:if>
+		<c:if test="${type == 3}">加工活信息</c:if>
+		<c:if test="${type == 4}">加工厂信息</c:if>
+	</h3>
 	<div class="section-cols clearfix">
 		<c:if test="${not empty pageBean.pageList}">
 			<ul>
@@ -61,58 +83,88 @@ function navActive(){
 					<span class="cate">承接加工</span>
 					<span class="wh">联系人</span>
 					<span class="tel">电话</span>
-					<span class="date">日期</span>
-					<span class="date">状态</span>
-					<span class="date">操作</span>
+					<span class="tel">状态</span>
+					<span class="tel">更新日期</span>
+					<span class="tel">操作</span>
 				</li>
 			</ul>
-			<c:if test="${empty sessionScope.user}">
-				<c:forEach var="item" begin="0" end="2" items="${pageBean.pageList}">
-					<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
+			<c:if test="${type == 1}">
+				<c:forEach var="item" items="${pageBean.pageList}">
 					<ul>
 						<li>
 							<span class="cate"><a href="${ctx}/b2b/personDetail.do?id=${item.id}">${item.workIntent}</a></span>
 							<span class="wh">${item.address}</span>
-							<span class="tel">${mobile}</span>
-							<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
-							<span class="tel">待审核</span>
-							<span class="tel">编辑 刷新</span>
+							<span class="tel">${item.mobile}</span>
+							<span class="tel">
+								<c:if test="${item.status == -1}">待审核</c:if>
+								<c:if test="${item.status == 1}">审核通过 ${item.weights}</c:if>
+							</span>
+							<span class="tel"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updateTime}" /></span>
+							<span class="tel">
+								<a href="infoUpdate.do?id=${item.id}&type=1">编辑</a>
+								<a href="javascript:void(0);" onclick="refresh('${item.id}', 1);">刷新</a>
+							</span>
+						</li>
+
+					</ul>
+				</c:forEach>
+			</c:if>
+
+			<c:if test="${type == 2}">
+				<c:forEach var="item" items="${pageBean.pageList}">
+					<ul>
+						<li>
+							<span class="cate"><a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}">${item.workType}</a></span>
+							<span class="wh">${item.address}</span>
+							<span class="tel">${item.mobile}</span>
+							<span class="tel"><c:if test="${item.status == -1}">待审核</c:if>
+								<c:if test="${item.status == 1}">审核通过 ${item.weights}</c:if></span>
+							<span class="tel"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updateTime}" /></span>
+							<span class="tel">
+								<a href="infoUpdate.do?id=${item.id}&type=2">编辑</a>
+								<a href="javascript:void(0);" onclick="refresh('${item.id}', 2);">刷新</a>
+							</span>
 						</li>
 					</ul>
 				</c:forEach>
 			</c:if>
-			<c:if test="${not empty sessionScope.user}">
-				<c:choose>
-					<c:when test="${sessionScope.user.roleShortName == 'normal'}">
-						<c:forEach var="item" begin="0" end="2" items="${pageBean.pageList}">
-							<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
-							<ul>
-								<li>
-									<span class="cate"><a href="${ctx}/b2b/personDetail.do?id=${item.id}">${item.workIntent}</a></span>
-									<span class="wh">${item.address}</span>
-									<span class="tel">${mobile}</span>
-									<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
-									<span class="tel">待审核</span>
-									<span class="tel">编辑 刷新</span>
-								</li>
-							</ul>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<c:forEach var="item" items="${pageBean.pageList}">
-							<ul>
-								<li>
-									<span class="cate"><a href="${ctx}/b2b/personDetail.do?id=${item.id}">${item.workIntent}</a></span>
-									<span class="wh">${item.address}</span>
-									<span class="tel">${item.mobile}</span>
-									<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
-									<span class="tel">待审核</span>
-									<span class="tel">编辑 刷新</span>
-								</li>
-							</ul>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
+
+			<c:if test="${type == 3}">
+				<c:forEach var="item" items="${pageBean.pageList}">
+					<ul>
+						<li>
+							<span class="cate"><a href="${ctx}/b2b/laborDetail.do?id=${item.id}">${item.workNeed}</a></span>
+							<span class="wh">${item.address}</span>
+							<span class="tel">${item.mobile}</span>
+							<span class="tel"><c:if test="${item.status == -1}">待审核</c:if>
+								<c:if test="${item.status == 1}">审核通过 ${item.weights}</c:if></span>
+							<span class="tel"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updateTime}" /></span>
+							<span class="tel">
+								<a href="infoUpdate.do?id=${item.id}&type=3">编辑</a>
+								<a href="javascript:void(0);" onclick="refresh('${item.id}', 3);">刷新</a>
+							</span>
+						</li>
+					</ul>
+				</c:forEach>
+			</c:if>
+
+			<c:if test="${type == 4}">
+				<c:forEach var="item" items="${pageBean.pageList}">
+					<ul>
+						<li>
+							<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
+							<span class="wh">${item.address}</span>
+							<span class="tel">${item.mobile}</span>
+							<span class="tel"><c:if test="${item.status == -1}">待审核</c:if>
+								<c:if test="${item.status == 1}">审核通过 ${item.weights}</c:if></span>
+							<span class="tel"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updateTime}" /></span>
+							<span class="tel">
+								<a href="infoUpdate.do?id=${item.id}&type=4">编辑</a>
+								<a href="javascript:void(0);" onclick="refresh('${item.id}', 4);">刷新</a>
+							</span>
+						</li>
+					</ul>
+				</c:forEach>
 			</c:if>
 		</c:if>
 	</div>

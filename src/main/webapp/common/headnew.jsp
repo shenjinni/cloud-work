@@ -51,7 +51,9 @@
 				<c:if test="${sessionScope.user.roleShortName == 'vip'}">付费用户</c:if>
 				<c:if test="${sessionScope.user.roleShortName == 'normal'}">普通用户</c:if>
 			</em>
+
 			<a href="${ctx}/common/logout.do">退出</a>
+			<a href="${ctx}/index.jsp">首页</a>
 			<c:choose>
 				<c:when test="${sessionScope.user.roleShortName == 'admin'}">
 					<a href="${ctx}/admin/home.do" class="qhc-admin">进入后台</a>

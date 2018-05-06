@@ -174,7 +174,7 @@ public class B2bRecruitmentController {
 		}
 
 		recruitment.setId(RandomUtils.g());
-		recruitment.setStatus(1);
+		recruitment.setStatus(-1);
 		recruitment.setCreateTime(new Date());
 		recruitment.setCreateUser(user.getUserId());
 		recruitment.setUpdateTime(new Date());

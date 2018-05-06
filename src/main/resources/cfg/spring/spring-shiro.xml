@@ -118,6 +118,7 @@
                /admin/user/** = authc
                /b2b/*Publish.* = authc
                /b2b/*Update.* = authc
+                /b2b/myInfo/** = authc
             </value>  
         </property>  
     </bean>  

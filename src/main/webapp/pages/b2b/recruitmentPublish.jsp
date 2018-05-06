@@ -23,7 +23,6 @@
 				var obj = $('#form1').toObject({mode : 'first'});
 
 				cfg.data = JSON.stringify(obj);
-				alert(cfg.data);
 
 				cfg.success = function ret(data) {
 					alert(data.errMsg);
@@ -63,7 +62,6 @@
 	<div class="wap-item-header">
 		<a href="${ctx}/b2b/recruitmentColumn.do"><i class="fa fa-angle-left"></i></a>
 		<span>免费招工登记</span>
-		<i class="logout"><a href="${ctx}/b2b/recruitmentColumn.do">返回</a></i>
 	</div>
 	<div class="login-register">
 		<div class="login">

@@ -3,6 +3,7 @@ package cn.testin.controller;
 
 import cn.testin.bean.CloudWorkTurnover;
 import cn.testin.bean.CloudWorkVip;
+import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkTurnoverService;
 import cn.testin.service.CloudWorkVipService;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
@@ -106,14 +108,23 @@ public class AdminTurnoverController {
 	 */
 	@RequestMapping(value = "addVip.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> addVip(@RequestBody CloudWorkTurnover turnover){
+	public Map<String, Object> addVip(@RequestBody CloudWorkTurnover turnover, HttpSession session){
 		Map<String, Object> result = new HashMap<>();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", "新增turnover充值信息失败，请稍后再试！");
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
 
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
 		turnover.setId(RandomUtils.g());
 		turnover.setCreateTime(new Date());
-		turnover.setCreateUser(1L);
+		turnover.setCreateUser(user.getUserId());
 		int i = cloudWorkTurnoverService.insert(turnover);
 		if (i != 1) {
 			return result;
@@ -130,15 +141,15 @@ public class AdminTurnoverController {
 			vip.setWeights(turnover.getWeights());
 			vip.setValidityTime(turnover.getValidityTime());
 			vip.setCreateTime(new Date());
-			vip.setCreateUser(1L);
+			vip.setCreateUser(user.getUserId());
 			vip.setUpdateTime(new Date());
-			vip.setUpdateUser(1L);
+			vip.setUpdateUser(user.getUserId());
 			j = cloudWorkVipService.insert(vip);
 		} else {
 			vipOld.setWeights(turnover.getWeights());
 			vipOld.setValidityTime(turnover.getValidityTime());
 			vipOld.setUpdateTime(new Date());
-			vipOld.setUpdateUser(1L);
+			vipOld.setUpdateUser(user.getUserId());
 			j = cloudWorkVipService.update(vipOld);
 		}
 

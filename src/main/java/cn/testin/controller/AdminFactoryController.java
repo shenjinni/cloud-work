@@ -2,7 +2,10 @@ package cn.testin.controller;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import cn.testin.bean.CloudWorkFactory;
+import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkFactoryService;
 import cn.testin.util.RandomUtils;
@@ -88,19 +91,28 @@ public class AdminFactoryController {
 	 */
 	@RequestMapping(value = "updateFactory.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateCloudWorkFactory(@RequestBody CloudWorkFactory factory){
+	public Map<String, Object> updateCloudWorkFactory(@RequestBody CloudWorkFactory factory, HttpSession session){
 		Map<String, Object> result = new HashMap<String, Object>();
 		Long factoryId = factory.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", (factoryId == null ? "新增" : "修改" ) + "加工厂信息失败，请稍后再试！");
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
 
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
 		if (factoryId == null) {
 			factory.setId(RandomUtils.g());
 			factory.setStatus(1);
 			factory.setCreateTime(new Date());
-			factory.setCreateUser(1L);
+			factory.setCreateUser(user.getUserId());
 			factory.setUpdateTime(new Date());
-			factory.setUpdateUser(1L);
+			factory.setUpdateUser(user.getUserId());
 			int i = cloudWorkFactoryService.insert(factory);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -110,7 +122,7 @@ public class AdminFactoryController {
 			}
 		} else {
 			factory.setUpdateTime(new Date());
-			factory.setUpdateUser(1L);
+			factory.setUpdateUser(user.getUserId());
 			int i = cloudWorkFactoryService.update(factory);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
@@ -147,12 +159,21 @@ public class AdminFactoryController {
 	 */
 	@RequestMapping(value = "changeStatus.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> changeStatus(@RequestBody CloudWorkFactory factory){
+	public Map<String, Object> changeStatus(@RequestBody CloudWorkFactory factory, HttpSession session){
 		Map<String, Object> result = new HashMap<>();
 		Long factoryId = factory.getId();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", "操作失败，请稍后再试！");
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
 
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
 		Integer status = factory.getStatus();
 		if (status == null) {
 			log.info("修改加工厂信息状态，获取状态值失败！ factoryId" + factoryId);
@@ -167,7 +188,7 @@ public class AdminFactoryController {
 
 		factory.setStatus(status);
 		factory.setUpdateTime(new Date());
-		factory.setUpdateUser(1L);
+		factory.setUpdateUser(user.getUserId());
 		int i = cloudWorkFactoryService.update(factory);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);

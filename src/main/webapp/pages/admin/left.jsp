@@ -74,7 +74,7 @@
                 <a id="logo" href="${ctx }/" class="navbar-brand" ><span class="fa fa-rocket"></span>织里童装管理后台</a></div>
             <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"> </a>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
-                    <li class="dropdown topbar-user"><a data-hover="dropdown" href="${ctx }/admin/logout.do" class="dropdown-toggle" ><span class="hidden-xs">退出</span>&nbsp;</a>
+                    <li class="dropdown topbar-user"><a data-hover="dropdown" href="${ctx }/common/logout.do" class="dropdown-toggle" ><span class="hidden-xs">退出</span>&nbsp;</a>
                     </li>
                 </ul>
             </div>

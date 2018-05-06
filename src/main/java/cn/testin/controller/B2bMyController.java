@@ -1,7 +1,6 @@
 package cn.testin.controller;
 
-import cn.testin.bean.CloudWorkPerson;
-import cn.testin.bean.LocalUser;
+import cn.testin.bean.*;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkFactoryService;
 import cn.testin.service.CloudWorkLaborService;
@@ -13,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -58,7 +58,8 @@ public class B2bMyController {
 	 * @return ModelAndView
 	 */
 	@RequestMapping("infoColumn.do")
-	public ModelAndView infoColumn(HttpServletRequest req) throws Exception {
+	public ModelAndView infoColumn(HttpServletRequest req, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/b2b/myInfo/infoColumn");
 		try {
 			String pageIndexStr = req.getParameter("pageIndex");
 			String type = req.getParameter("type");
@@ -78,6 +79,8 @@ public class B2bMyController {
 				type="1";
 			}
 
+			req.setAttribute("type", type);
+
 			// pageIndex不是数字或为null时，重置为1
 			if (!StringUtils.isNumeric(pageIndexStr)) {
 				pageIndexStr = "1";
@@ -85,23 +88,33 @@ public class B2bMyController {
 			int pageIndex = Integer.parseInt(pageIndexStr);
 			pageIndex = pageIndex == 0 ? 1 : pageIndex;// 默认设置为1
 
-			Map<String, Object> result = null;
+			LocalUser user = null;
+			Object userObj = session.getAttribute("user");
+			if (userObj != null) {
+				user = (LocalUser) userObj;
+			}
+
+			if (user == null){
+				return mv;
+			}
+
+			Map<String, Object> result = new HashMap<>();
 
 			if (type.equals("1")) {
 				// 工人信息分页
-				result = cloudWorkPersonService.getPage(pageIndex, textsearch);
+				result = cloudWorkPersonService.getMyPage(pageIndex, textsearch, user.getUserId());
 			}
 
 			if (type.equals("2")) {
-				result = cloudWorkRecruitmentService.getPage(pageIndex, textsearch);
+				result = cloudWorkRecruitmentService.getMyPage(pageIndex, textsearch, user.getUserId());
 			}
 
 			if (type.equals("3")) {
-				result = cloudWorkLaborService.getPage(pageIndex, textsearch);
+				result = cloudWorkLaborService.getMyPage(pageIndex, textsearch, user.getUserId());
 			}
 
 			if (type.equals("4")) {
-				result = cloudWorkFactoryService.getPage(pageIndex, textsearch);
+				result = cloudWorkFactoryService.getMyPage(pageIndex, textsearch, user.getUserId());
 			}
 			result.put("pageIndex", pageIndex);
 			req.setAttribute("pageBean", result);
@@ -111,7 +124,7 @@ public class B2bMyController {
 			e.printStackTrace();
 			throw new Exception(msg);
 		}
-		ModelAndView mv = new ModelAndView("/b2b/myInfo/infoColumn");
+
 		return mv;
 	}
 
@@ -177,9 +190,31 @@ public class B2bMyController {
 	 * @author guwei
 	 * @return ModelAndView
 	 */
-	@RequestMapping("personPublish.do")
-	public ModelAndView personPublish() {
-		return new ModelAndView("/b2b/personPublish");
+	@RequestMapping("infoUpdate.do")
+	public ModelAndView personPublish(HttpServletRequest req) {
+		ModelAndView mv = null;
+
+		Long id = Long.valueOf(req.getParameter("id"));
+		Integer type = Integer.valueOf(req.getParameter("type"));
+
+		if (type == 1) {
+			CloudWorkPerson person = cloudWorkPersonService.findBeanById(id);
+			req.setAttribute("person", person);
+			mv = new ModelAndView("/b2b/myInfo/personUpdate");
+		} else if (type == 2) {
+			CloudWorkRecruitment recruitment = cloudWorkRecruitmentService.findBeanById(id);
+			req.setAttribute("recruitment", recruitment);
+			mv = new ModelAndView("/b2b/myInfo/recruitmentUpdate");
+		} else  if (type == 3) {
+			CloudWorkLabor labor = cloudWorkLaborService.findBeanById(id);
+			req.setAttribute("labor", labor);
+			mv = new ModelAndView("/b2b/myInfo/laborUpdate");
+		} else  if (type == 4) {
+			CloudWorkFactory factory = cloudWorkFactoryService.findBeanById(id);
+			req.setAttribute("factory", factory);
+			mv = new ModelAndView("/b2b/myInfo/factoryUpdate");
+		}
+		return mv;
 	}
 
 	/**
@@ -222,5 +257,63 @@ public class B2bMyController {
         return result;
 	}
 
+
+	/**
+	 *
+	 * @Description: 刷新信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping("refreshInfo.json")
+	@ResponseBody
+	public Map<String,Object> refreshInfo(@RequestBody PageBean bean, HttpSession session){
+		Map<String,Object> result = new HashMap<>();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", "刷新失败，请稍后再试！");
+
+		Long id = bean.getNeedId();
+		Integer type = Integer.valueOf(bean.getQueryType());
+
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
+
+		if (user == null){
+			result.put("errMsg", "未登录");
+			return result;
+		}
+
+		int i = 0;
+
+		if (type == 1) {
+			CloudWorkPerson person = cloudWorkPersonService.findBeanById(id);
+			person.setUpdateTime(new Date());
+			person.setUpdateUser(user.getUserId());
+			i = cloudWorkPersonService.update(person);
+		} else if (type == 2) {
+			CloudWorkRecruitment recruitment = cloudWorkRecruitmentService.findBeanById(id);
+			recruitment.setUpdateTime(new Date());
+			recruitment.setUpdateUser(user.getUserId());
+			i = cloudWorkRecruitmentService.update(recruitment);
+		} else  if (type == 3) {
+			CloudWorkLabor labor = cloudWorkLaborService.findBeanById(id);
+			labor.setUpdateTime(new Date());
+			labor.setUpdateUser(user.getUserId());
+			i = cloudWorkLaborService.update(labor);
+		} else  if (type == 4) {
+			CloudWorkFactory factory = cloudWorkFactoryService.findBeanById(id);
+			factory.setUpdateTime(new Date());
+			factory.setUpdateUser(user.getUserId());
+			i = cloudWorkFactoryService.update(factory);
+		}
+
+		if (i == 1) {
+			result.put("errCode", Constants.result_success);
+			result.put("errMsg", "刷新成功！");
+		}
+		return result;
+	}
 
 }

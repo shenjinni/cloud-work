@@ -78,4 +78,35 @@ public class CloudWorkFactoryService
 		result.put("pageIndex", pageIndex);
 		return result;
 	}
+
+
+
+	/**
+	 * 前台分页
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> getMyPage(int pageIndex, String text, Long userId) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		// 每页数据
+		CloudWorkFactory factory = new CloudWorkFactory();
+		factory.setSearchText(text);
+		factory.setCreateUser(userId);
+		factory.setOffset((pageIndex - 1) * 10);
+		factory.setLimit(10);
+		List<CloudWorkFactory> pageList = findList(factory);
+		// 总页数
+		int dataCount = findListCount(factory);
+		int pageSum;
+		if (dataCount % 10 == 0) {
+			pageSum = dataCount / 10;
+		} else {
+			pageSum = dataCount / 10 + 1;
+		}
+		result.put("pageList", pageList);
+		result.put("pageSum", pageSum);
+		result.put("pageIndex", pageIndex);
+		return result;
+	}
 }
