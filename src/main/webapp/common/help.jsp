@@ -28,7 +28,7 @@
 
 		<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="35E64900" />
 	</div>
-	<div class="wap-item-header"><a href="${ctx}/b2b/personColumn.do"><i class="fa fa-angle-left"></i></a><span>使用帮助</span><i class="logout"></i></div>
+	<div class="wap-item-header"><a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a><span>使用帮助</span><i class="logout"></i></div>
 	<div class="login-register">
 		<div class="login">
 			<div class="group f16 help">

@@ -52,7 +52,7 @@
 				<c:if test="${sessionScope.user.roleShortName == 'normal'}">普通用户</c:if>
 			</em>
 
-			<a href="${ctx}/common/logout.do">退出</a>
+
 			<a href="${ctx}/index.jsp">首页</a>
 			<c:choose>
 				<c:when test="${sessionScope.user.roleShortName == 'admin'}">
@@ -60,6 +60,7 @@
 				</c:when>
 				<c:otherwise><a href="${ctx}/b2b/myInfo/infoColumn.do" class="qhc-admin">我发布的信息</a></c:otherwise>
 			</c:choose>
+			<a href="${ctx}/common/logout.do">退出</a>
 		</c:if>
 	</h2>
 </div>

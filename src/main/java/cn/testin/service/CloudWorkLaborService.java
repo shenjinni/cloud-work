@@ -63,6 +63,7 @@ public class CloudWorkLaborService
 		labor.setSearchText(text);
 		labor.setOffset((pageIndex - 1) * 10);
 		labor.setLimit(10);
+		labor.setStatus(1);
 		List<CloudWorkLabor> pageList = findList(labor);
 		// 总页数
 		int dataCount = findListCount(labor);

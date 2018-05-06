@@ -60,7 +60,7 @@
 <body>
 <form method="post" id="form1">
 	<div class="wap-item-header">
-		<a href="${ctx}/b2b/recruitmentColumn.do"><i class="fa fa-angle-left"></i></a>
+		<a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a>
 		<span>免费招工登记</span>
 	</div>
 	<div class="login-register">

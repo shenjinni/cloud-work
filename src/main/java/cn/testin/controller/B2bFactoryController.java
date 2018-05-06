@@ -185,9 +185,9 @@ public class B2bFactoryController {
 		int i = cloudWorkFactoryService.insert(factory);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);
-			result.put("errMsg", "新增加工厂信息成功！");
+			result.put("errMsg", "发布加工厂信息成功！");
 
-			log.info("新增加工厂信息成功！factoryId= " + factory.getId());
+			log.info("发布加工厂信息成功！factoryId= " + factory.getId());
 		}
 
 		return result;

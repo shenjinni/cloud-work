@@ -47,6 +47,12 @@
 		<a title="无忧加工市场" href="${ctx}/b2b/factoryColumn.do" class="yellow">加工市场</a>
 	</div>
 	<div class="quickbtn">
+		<%--<c:if test="${not empty sessionScope.user}">--%>
+			<%--<c:if test="${sessionScope.user.roleShortName != 'normal'}">--%>
+				<%--<a title="加工活登记" href="${ctx}/b2b/laborPublish.do">加工活登记</a>--%>
+				<%--<a title="加工厂登记" href="${ctx}/b2b/factoryPublish.do">加工厂登记</a>--%>
+			<%--</c:if>--%>
+		<%--</c:if>--%>
 		<a title="加工活登记" href="${ctx}/b2b/laborPublish.do">加工活登记</a>
 		<a title="加工厂登记" href="${ctx}/b2b/factoryPublish.do">加工厂登记</a>
 		<a title="加工活信息" href="${ctx}/b2b/laborColumn.do">加工活信息</a>

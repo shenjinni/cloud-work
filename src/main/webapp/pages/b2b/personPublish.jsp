@@ -59,7 +59,7 @@
 <body>
 <form method="post" id="form1">
 	<div class="wap-item-header">
-		<a href="${ctx}/b2b/personColumn.do"><i class="fa fa-angle-left"></i></a>
+		<a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a>
 		<span>免费工人登记</span>
 	</div>
 	<div class="login-register">

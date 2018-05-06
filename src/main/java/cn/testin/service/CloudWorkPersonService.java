@@ -63,6 +63,7 @@ public class CloudWorkPersonService
 		person.setSearchText(text);
 		person.setOffset((pageIndex - 1) * 10);
 		person.setLimit(10);
+		person.setStatus(1);
 		List<CloudWorkPerson> pageList = findList(person);
 		// 总页数
 		int dataCount = findListCount(person);

@@ -17,7 +17,7 @@
 <body>
 	<!-- 头部 -->
 	<div class="wap-item-header">
-		<a href="${ctx}/b2b/personColumn.do"><i class="fa fa-angle-left"></i></a>
+		<a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a>
 		<span>招工信息详情</span>
 	</div>
 	<div class="m-title"><strong>招工信息详情</strong></div>
@@ -35,15 +35,28 @@
 							<p>收费会员才能发布信息、查看电话，请联系织里童装设计管理员办理会员。</p>
 							<p>收费会员可无限发布信息、无限查看工人电话，会员期内代理招工免费，店内广告半价。</p>
 							<p>会员办理热线：0572-3183669、3211091 手机/微信：15805720573</p>
-							<p>如果您已经是VIP会员请登录再查看。</p>
-							<p>收费标准 会员登陆</p>
+							<p>如果您已经是VIP会员,请登录再查看。</p>
+							<p>
+								<a href="${pageContext.request.contextPath}/common/pay.jsp">收费标准</a>
+								<a href="${ctx}/common/localLogin.do?fromUrl=index.jsp">会员登录</a>
+							</p>
 						</div>
 					</c:if>
 					<c:if test="${not empty sessionScope.user}">
 						<c:choose>
-							<c:when test="${sessionScope.user.roleShortName == 'admin'}">
-								<a href="tel://${person.mobile}" style="position:relative">${person.mobile} </a>
+							<c:when test="${sessionScope.user.roleShortName == 'normal'}">
+								<div class="contact link_lan">
+									<p>收费会员才能发布信息、查看电话，请联系织里童装设计管理员办理会员。</p>
+									<p>收费会员可无限发布信息、无限查看工人电话，会员期内代理招工免费，店内广告半价。</p>
+									<p>会员办理热线：0572-3183669、3211091 手机/微信：15805720573</p>
+									<p>
+										<a href="${pageContext.request.contextPath}/common/pay.jsp">收费标准</a>
+									</p>
+								</div>
 							</c:when>
+							<c:otherwise>
+								<a href="tel://${recruitment.mobile}" style="position:relative">${recruitment.mobile} </a>
+							</c:otherwise>
 						</c:choose>
 					</c:if>
 				</i>

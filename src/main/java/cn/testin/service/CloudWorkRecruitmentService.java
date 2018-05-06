@@ -63,6 +63,7 @@ public class CloudWorkRecruitmentService
 		rec.setSearchText(text);
 		rec.setOffset((pageIndex - 1) * 10);
 		rec.setLimit(10);
+		rec.setStatus(1);
 		List<CloudWorkRecruitment> pageList = findList(rec);
 		// 总页数
 		int dataCount = findListCount(rec);

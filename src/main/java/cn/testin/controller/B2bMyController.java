@@ -10,10 +10,7 @@ import cn.testin.util.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -151,38 +148,6 @@ public class B2bMyController {
 
 	}
 
-	/**
-	 *
-	 * @Description: 工人信息编辑页
-	 * @author guwei
-	 * @return ModelAndView
-	 */
-	@RequestMapping("personUpdate.do")
-	public ModelAndView personUpdate(HttpServletRequest req) throws Exception {
-		String idStr = req.getParameter("id");
-
-		CloudWorkPerson person = null;
-		try {
-			person = cloudWorkPersonService.findBeanById(Long.parseLong(idStr));
-
-			if (person == null) {
-				return new ModelAndView("redirect:/common/404.jsp");
-			} else {
-				req.setAttribute("person", person);
-				return new ModelAndView("/b2b/personUpdate");
-			}
-		} catch (NumberFormatException e) {
-			String msg = "工人信息明细页异常：id参数格式异常！";
-			log.warn(msg);
-			e.printStackTrace();
-			throw new Exception(msg);
-		} catch (Exception e) {
-			String msg = "工人信息明细页异常！";
-			log.warn(msg);
-			e.printStackTrace();
-			throw new Exception(msg);
-		}
-	}
 
 	/**
 	 *
@@ -191,7 +156,7 @@ public class B2bMyController {
 	 * @return ModelAndView
 	 */
 	@RequestMapping("infoUpdate.do")
-	public ModelAndView personPublish(HttpServletRequest req) {
+	public ModelAndView infoUpdate(HttpServletRequest req) {
 		ModelAndView mv = null;
 
 		Long id = Long.valueOf(req.getParameter("id"));
@@ -215,46 +180,6 @@ public class B2bMyController {
 			mv = new ModelAndView("/b2b/myInfo/factoryUpdate");
 		}
 		return mv;
-	}
-
-	/**
-	 *
-	 * @Description: 工人信息发布
-	 * @author guwei
-	 * @return ModelAndView
-	 */
-	@RequestMapping("personPublish.json")
-	@ResponseBody
-	public Map<String,Object> personPublish(@RequestBody CloudWorkPerson person, HttpSession session) {
-		Map<String,Object> result = new HashMap<>();
-		result.put("errCode", Constants.result_fail);
-		result.put("errMsg", "发布工人信息失败，请稍后再试！");
-
-		LocalUser user = null;
-		Object userObj = session.getAttribute("user");
-		if (userObj != null) {
-			user = (LocalUser) userObj;
-		}
-
-		if (user == null){
-			result.put("errMsg", "未登录");
-			return result;
-		}
-
-        person.setId(RandomUtils.g());
-        person.setStatus(1);
-        person.setCreateTime(new Date());
-        person.setCreateUser(user.getUserId());
-        person.setUpdateTime(new Date());
-        person.setUpdateUser(user.getUserId());
-        int i = cloudWorkPersonService.insert(person);
-        if (i == 1) {
-            result.put("errCode", Constants.result_success);
-            result.put("errMsg", "发布工人信息成功！");
-
-            log.info("发布工人信息成功！personId= " + person.getId());
-        }
-        return result;
 	}
 
 
@@ -315,5 +240,143 @@ public class B2bMyController {
 		}
 		return result;
 	}
+
+	/**
+	 *
+	 * @Description: 工人信息发布
+	 * @author guwei
+	 * @return ModelAndView
+	 */
+	@RequestMapping("personPublish.json")
+	@ResponseBody
+	public Map<String,Object> personPublish(@RequestBody CloudWorkPerson person) {
+		Map<String,Object> result = new HashMap<>();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", "发布工人信息失败，请稍后再试！");
+
+		CloudWorkPerson personOld = cloudWorkPersonService.findBeanById(person.getId());
+		personOld.setWorkIntent(person.getWorkIntent());
+		personOld.setSalary(person.getSalary());
+		personOld.setContactsName(person.getContactsName());
+		personOld.setMobile(person.getMobile());
+		personOld.setAge(person.getAge());
+		personOld.setZodiac(person.getZodiac());
+		personOld.setSex(person.getSex());
+		personOld.setAddress(person.getAddress());
+		personOld.setNote(person.getNote());
+		personOld.setStatus(-1);
+		personOld.setUpdateTime(new Date());
+		int i = cloudWorkPersonService.update(personOld);
+		if (i == 1) {
+			result.put("errCode", Constants.result_success);
+			result.put("errMsg", "修改工人信息成功！");
+
+			log.info("修改工人信息成功！personId= " + person.getId());
+		}
+		return result;
+	}
+
+	/**
+	 *
+	 * @Description: 发布招工信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "recruitmentPublish.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> recruitmentPublish(@RequestBody CloudWorkRecruitment recruitment){
+		Map<String, Object> result = new HashMap<>();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", "发布招工信息信息失败，请稍后再试！");
+		CloudWorkRecruitment recruitmentOld = cloudWorkRecruitmentService.findBeanById(recruitment.getId());
+
+		recruitmentOld.setWorkType(recruitment.getWorkType());
+		recruitmentOld.setSalary(recruitment.getSalary());
+		recruitmentOld.setCompany(recruitment.getCompany());
+		recruitmentOld.setAddress(recruitment.getAddress());
+		recruitmentOld.setContactsName(recruitment.getContactsName());
+		recruitmentOld.setMobile(recruitment.getMobile());
+		recruitmentOld.setNote(recruitment.getNote());
+		recruitmentOld.setStatus(-1);
+		recruitmentOld.setUpdateTime(new Date());
+		int i = cloudWorkRecruitmentService.update(recruitmentOld);
+		if (i == 1) {
+			result.put("errCode", Constants.result_success);
+			result.put("errMsg", "修改招工信息信息成功！");
+
+			log.info("修改招工信息信息成功！recruitmentId= " + recruitment.getId());
+		}
+
+		return result;
+	}
+
+	/**
+	 *
+	 * @Description: 发布加工活信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "laborPublish.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> laborPublish(@RequestBody CloudWorkLabor labor){
+		Map<String, Object> result = new HashMap<>();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", "发布加工活信息失败，请稍后再试！");
+
+		CloudWorkLabor laborOld = cloudWorkLaborService.findBeanById(labor.getId());
+		laborOld.setWorkNeed(labor.getWorkNeed());
+		laborOld.setContactsName(labor.getContactsName());
+		laborOld.setMobile(labor.getMobile());
+		laborOld.setAddress(labor.getAddress());
+		laborOld.setFactoryName(labor.getFactoryName());
+		laborOld.setNumber(labor.getNumber());
+		laborOld.setNote(labor.getNote());
+		laborOld.setStatus(-1);
+		laborOld.setUpdateTime(new Date());
+		int i = cloudWorkLaborService.update(laborOld);
+		if (i == 1) {
+			result.put("errCode", Constants.result_success);
+			result.put("errMsg", "修改加工活信息成功！");
+
+			log.info("修改加工活信息成功！laborId= " + labor.getId());
+		}
+
+		return result;
+	}
+
+	/**
+	 *
+	 * @Description: 发布加工厂信息
+	 * @author Jinni Shen
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "factoryPublish.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> factoryPublish(@RequestBody CloudWorkFactory factory){
+		Map<String, Object> result = new HashMap<>();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", "发布加工厂信息失败，请稍后再试！");
+
+		CloudWorkFactory factoryOld = cloudWorkFactoryService.findBeanById(factory.getId());
+
+		factoryOld.setWorkNeed(factory.getWorkNeed());
+		factoryOld.setContactsName(factory.getContactsName());
+		factoryOld.setMobile(factory.getMobile());
+		factoryOld.setAddress(factory.getAddress());
+		factoryOld.setScale(factory.getScale());
+		factoryOld.setNote(factory.getNote());
+		factoryOld.setStatus(-1);
+		factoryOld.setUpdateTime(new Date());
+		int i = cloudWorkFactoryService.update(factoryOld);
+		if (i == 1) {
+			result.put("errCode", Constants.result_success);
+			result.put("errMsg", "修改加工厂信息成功！");
+
+			log.info("修改加工厂信息成功！factoryId= " + factory.getId());
+		}
+
+		return result;
+	}
+
 
 }

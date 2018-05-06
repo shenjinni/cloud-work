@@ -182,9 +182,9 @@ public class B2bLaborController {
 		int i = cloudWorkLaborService.insert(labor);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);
-			result.put("errMsg", "新增加工活信息成功！");
+			result.put("errMsg", "发布加工活信息成功！");
 
-			log.info("新增加工活信息成功！laborId= " + labor.getId());
+			log.info("发布加工活信息成功！laborId= " + labor.getId());
 		}
 
 		return result;

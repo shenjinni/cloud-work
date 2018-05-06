@@ -60,7 +60,7 @@
 <body>
 <form method="post" id="form1">
 	<div class="wap-item-header">
-		<a href="${ctx}/b2b/myInfo/infoColumn.do?type=2"><i class="fa fa-angle-left"></i></a>
+		<a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a>
 		<span>免费招工登记</span>
 	</div>
 	<div class="login-register">
@@ -91,7 +91,7 @@
 			</div>
 			<div class="group">
 				<label>补充说明</label>
-				<textarea type="text" maxlength="200" name="note" class="text" cols="18" rows="3">value="${recruitment.note}" </textarea>
+				<textarea type="text" maxlength="200" name="note" class="text" cols="18" rows="3">${recruitment.note}</textarea>
 			</div>
 			<%--<div class="group">--%>
 				<%--<label>验证码</label>--%>
@@ -105,7 +105,7 @@
 			</div>
 		</div>
 	</div>
-	<input type="hidden" name="id" value="${factory.id}" />
+	<input type="hidden" name="id" value="${recruitment.id}" />
 </form>
 <%@ include file="/common/bottomAdv.jsp"%>
 </body>

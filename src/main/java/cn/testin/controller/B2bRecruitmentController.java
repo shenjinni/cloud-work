@@ -182,9 +182,9 @@ public class B2bRecruitmentController {
 		int i = cloudWorkRecruitmentService.insert(recruitment);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);
-			result.put("errMsg", "新增招工信息信息成功！");
+			result.put("errMsg", "发布招工信息信息成功！");
 
-			log.info("新增招工信息信息成功！recruitmentId= " + recruitment.getId());
+			log.info("发布招工信息信息成功！recruitmentId= " + recruitment.getId());
 		}
 
 		return result;

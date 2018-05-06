@@ -64,6 +64,7 @@ public class CloudWorkFactoryService
 		factory.setSearchText(text);
 		factory.setOffset((pageIndex - 1) * 10);
 		factory.setLimit(10);
+		factory.setStatus(1);
 		List<CloudWorkFactory> pageList = findList(factory);
 		// 总页数
 		int dataCount = findListCount(factory);
