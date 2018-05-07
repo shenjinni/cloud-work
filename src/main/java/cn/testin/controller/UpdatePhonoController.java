@@ -18,10 +18,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * 上传图片公共Controller
@@ -51,15 +48,22 @@ public class UpdatePhonoController {
 			//
 			String ext = FilenameUtils.getExtension(myFile.getOriginalFilename());
 			//保存图片       File位置 （全路径）   /upload/fileName.jpg
-			String url = request.getSession().getServletContext().getRealPath("/static/img/upload/phono/");
+			String filePath = "";
+			Properties props = System.getProperties();
+			String osName = props.getProperty("os.name");
+			if (osName.contains("Windows")) {
+				filePath = Constants.WINDOWS_ORDER_DIC;
+			} else if (osName.contains("Linux")) {
+				filePath = Constants.LINUX_ORDER_DIC;
+			}
 			//相对路径
 			String path = "/"+name + "." + ext;
-			File file = new File(url);
+			File file = new File(filePath);
 			if(!file.exists()){
 				file.mkdirs();
 			}
-			myFile.transferTo(new File(url+path));
-			json.put("success", "/static/img/upload/phono/"+path);
+			myFile.transferTo(new File(filePath+path));
+			json.put("success", Constants.NGINX_URL+path);
 			json.put("errCode", Constants.result_success);
 			json.put("errMsg", "上传成功！");
 		} catch (Exception e) {
@@ -137,22 +141,29 @@ public class UpdatePhonoController {
 			//
 			String ext = FilenameUtils.getExtension(myFile.getOriginalFilename());
 			//保存图片       File位置 （全路径）   /upload/fileName.jpg
-			String url = reuqest.getSession().getServletContext().getRealPath("/static/img/upload/phono/");
+			String filePath = "";
+			Properties props = System.getProperties();
+			String osName = props.getProperty("os.name");
+			if (osName.contains("Windows")) {
+				filePath = Constants.WINDOWS_ORDER_DIC;
+			} else if (osName.contains("Linux")) {
+				filePath = Constants.LINUX_ORDER_DIC;
+			}
 			//相对路径
 			String path = "/"+name + "." + ext;
-			File file = new File(url);
+			File file = new File(filePath);
 			if(!file.exists()){
 				file.mkdirs();
 			}
-			myFile.transferTo(new File(url+path));
+			myFile.transferTo(new File(filePath+path));
 
 			/*UploadFile uf=new UploadFile();
 			String token=uf.getUpToken0();
 			uf.upload(s.getPath(), key, token);*/
 			out = reponse.getWriter();
 			JSONObject json = new JSONObject();
-			json.put("original", "/static/img/upload/phono/"+path);
-			json.put("url", "/static/img/upload/phono/"+path);
+			json.put("original", Constants.NGINX_URL+path);
+			json.put("url", Constants.NGINX_URL+path);
 			json.put("state", "SUCCESS");
 			out.print(json.toString());
 		} catch (IllegalStateException e) {

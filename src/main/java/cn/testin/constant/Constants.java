@@ -266,9 +266,11 @@ public class Constants {
 	
 	/** ------------------------------------------- 导出委托单路径 ------------------------------- **/
 	
-	public static final String WINDOWS_ORDER_DIC = "D://qhc/orderWord";
+	public static final String WINDOWS_ORDER_DIC = "D://cloudwork/imgTemp";
 	
-	public static final String LINUX_ORDER_DIC = "/data/tomcat_11589/ordersTemp";
+	public static final String LINUX_ORDER_DIC = "/usr/local/images";
+
+	public static final String NGINX_URL = "http://47.106.130.125:8090";
 	
 	/** ------------------------------------------- 导出委托单路径------------------------------- **/
 	
