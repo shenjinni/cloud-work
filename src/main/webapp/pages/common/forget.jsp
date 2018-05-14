@@ -196,9 +196,6 @@ function openForget(){
 <body>
 	<!--   main    -->
 	<div style="overflow: hidden;" class="qhc-main">
-		<div class="login-img">
-			<img src="${ctx}/common/images/u0.png" onclick="location.href='${ctx}/index.jsp'" style="cursor: pointer;"/>
-		</div>
 		<div class="login-forget">
 			<span class="login-tit">忘记密码</span>
 			<div style="padding-left: 380px;" class="login-item">
@@ -243,9 +240,9 @@ function openForget(){
 	</div>
 	<!-- 下广告 -->
 	<%@ include file="/common/bottomAdv.jsp"%>
-	<!-- 工具条 -->
+	<%--<!-- 工具条 -->
 	<%@ include file="/common/tools.jsp"%>
 	<!-- 底部 -->
-	<%@ include file="/common/foot.jsp"%>
+	<%@ include file="/common/foot.jsp"%>--%>
 </body>
 </html>

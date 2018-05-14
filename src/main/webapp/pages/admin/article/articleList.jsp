@@ -63,7 +63,9 @@
 						    		return "使用帮助";
 						    	} else if (row.articleType == 2) {
 						    		return "收费标准";
-						    	} else {
+						    	} else if (row.articleType == 3) {
+                                    return "学习视频";
+                                } else {
 						    		return "--";
 						    	}
 							},

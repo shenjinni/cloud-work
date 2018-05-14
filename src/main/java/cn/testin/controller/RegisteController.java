@@ -157,6 +157,7 @@ public class RegisteController {
 				// 设置您要发送的内容(内容必须和某个模板匹配。以下例子匹配的是系统提供的1号模板）
 				String text = Constants.msg_template + random;
 				// 发短信调用示例
+				log.info("使用通用接口发短信！text= " + text + ", mobile = " + mobile);
 				JavaSmsApi.sendSms(text, mobile);
 				result.put("flag", true);
 			} else {

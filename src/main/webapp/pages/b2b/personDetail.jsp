@@ -34,7 +34,7 @@
 							<p>会员办理热线：0572-3183669、3211091 手机/微信：15805720573</p>
 							<p>如果您已经是VIP会员,请登录再查看。</p>
 							<p>
-								<a href="${pageContext.request.contextPath}/common/pay.jsp">收费标准</a>
+								<a href="${ctx}/common/article.do?id=2">收费标准</a>
 								<a href="${ctx}/common/localLogin.do?fromUrl=index.jsp">会员登录</a>
 							</p>
 						</div>
@@ -47,7 +47,7 @@
 									<p>收费会员可无限发布信息、无限查看工人电话，会员期内代理招工免费，店内广告半价。</p>
 									<p>会员办理热线：0572-3183669、3211091 手机/微信：15805720573</p>
 									<p>
-										<a href="${pageContext.request.contextPath}/common/pay.jsp">收费标准</a>
+										<a href="${ctx}/common/article.do?id=2">收费标准</a>
 									</p>
 								</div>
 							</c:when>

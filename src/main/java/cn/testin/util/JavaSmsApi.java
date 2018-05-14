@@ -42,20 +42,20 @@ public class JavaSmsApi {
     private static String ENCODING = "UTF-8";
     
     // appkey
-    private static String APP_KEY = "4477786ce6e3922c71294e025e58189d";
+    private static String APP_KEY = "36f5d0b89c3d443864bc93995f4849df";
 
     public static void main(String[] args) throws IOException, URISyntaxException {
     	//修改为您的apikey.apikey可在官网（http://www.yuanpian.com)登录后用户中心首页看到
-        String apikey = "4477786ce6e3922c71294e025e58189d";
+        String apikey = "36f5d0b89c3d443864bc93995f4849df";
         //修改为您要发送的手机号
-        String mobile = "18611471518";
+        String mobile = "15801006527";
 
         /**************** 查账户信息调用示例 *****************/
         System.out.println(JavaSmsApi.getUserInfo(apikey));
 
         /**************** 使用通用接口发短信(推荐) *****************/
         //设置您要发送的内容(内容必须和某个模板匹配。以下例子匹配的是系统提供的1号模板）
-        String text = "【航天云网】您的验证码是1234";
+        String text = "【织里童装设计网】您的验证码是1234";
         //发短信调用示例
         System.out.println(JavaSmsApi.sendSms(text, mobile));
     }
