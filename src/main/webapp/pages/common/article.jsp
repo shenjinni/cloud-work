@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%--<link rel="stylesheet" type="text/css" href="${ctx}/common/css/qhcheaderfooter.css" />--%>
 <%--<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />--%>
 
@@ -28,18 +28,17 @@
 
 		<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="35E64900" />
 	</div>
-	<div class="wap-item-header"><a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a><span>使用帮助</span><i class="logout"></i></div>
+	<div class="wap-item-header"><a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a><span>
+		<c:if test="${article.articleId == 1}">使用帮助</c:if>
+												<c:if test="${article.articleId == 2}">收费标准</c:if>
+												<c:if test="${article.articleId == 3}">老板找工人视频</c:if>
+												<c:if test="${article.articleId == 4}">工人找工作视频</c:if>
+	</span><i class="logout"></i></div>
 	<div class="login-register">
 		<div class="login">
-			<div class="group f16 help">
-				${article.articleContent}
-			</div>
-
-			<br />
-			<br />
+			${article.articleContent}
 		</div>
 	</div>
-	<input id="url" type="hidden" name="url" value="/jiagong/help.aspx" />
 </form>
 
 </body>

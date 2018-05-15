@@ -64,7 +64,9 @@
 						    	} else if (row.articleType == 2) {
 						    		return "收费标准";
 						    	} else if (row.articleType == 3) {
-                                    return "学习视频";
+                                    return "老板找工人视频";
+                                } else if (row.articleType == 4) {
+                                    return "工人找工作视频";
                                 } else {
 						    		return "--";
 						    	}

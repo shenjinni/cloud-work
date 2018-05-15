@@ -83,11 +83,7 @@
 				</span>
 			</li>
 		</ul>
-		<ul>
-			<li>温馨提示：不会用的先点击下面的视频教程先学习下</li>
-			<li><a href="https://v.qq.com/iframe/player.html?vid=a03792nry8z&tiny=0&auto=0" target="_blank" class="m-title"><font color="blue">老板招工人视频教程  点击查看</font></a></li>
-			<li><a href="https://v.qq.com/iframe/player.html?vid=r0379vygwwx&tiny=0&auto=0" target="_blank" class="m-title"><font color="blue">工人找工作视频教程  点击查看</font></a></li>
-		</ul>
+		<%@ include file="/common/foot.jsp"%>
 	</div>
 </body>
 <%@ include file="/common/bottomAdv.jsp"%>

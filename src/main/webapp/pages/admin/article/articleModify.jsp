@@ -40,6 +40,8 @@
 												修改文章
 												<c:if test="${article.articleId == 1}">-使用帮助</c:if>
 												<c:if test="${article.articleId == 2}">-收费标准</c:if>
+												<c:if test="${article.articleId == 3}">-老板找工人视频</c:if>
+												<c:if test="${article.articleId == 4}">-工人找工作视频</c:if>
 												<a href="${ctx}/admin/article/articleList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
 											</div>
 											<div class="panel-body pan">

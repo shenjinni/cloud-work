@@ -46,26 +46,8 @@
 		</div>
 	</div>
 </div>--%>
-<div class="qhcfooter">
-	<div class="qhcfoot">
-		<div class="qhc-content">
-			<dl class="dl">
-				<dt>温馨提示</dt>
-				<dd>不会用的先点击下面的视频教程先学习下</dd>
-				<dd>老板招工人视频教程 点击查看</dd>
-				<dd>工人找工作视频教程 点击查看</dd>
-				<dd>会员办理热线： </br>0572-3183669、3211091</dd>
-				<dd>手机/微信：15805720573 </dd>
-			</dl>
-		</div>
-	</div>
-</div>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?c18e9c32b0e90b5869ace0fd6a12bb5c";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+<ul>
+	<li>温馨提示：不会用的先点击下面的视频教程先学习下</li>
+	<li><a href="${ctx}/common/article.do?id=3" class="m-title"><font color="blue">老板招工人视频教程  点击查看</font></a></li>
+	<li><a href="${ctx}/common/article.do?id=4" class="m-title"><font color="blue">工人找工作视频教程  点击查看</font></a></li>
+</ul>

@@ -75,6 +75,7 @@
 				</span>
 			</li>
 		</ul>
+		<%@ include file="/common/foot.jsp"%>
 	</div>
 	<%@ include file="/common/bottomAdv.jsp"%>
 </body>
