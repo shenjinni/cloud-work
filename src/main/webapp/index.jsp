@@ -9,9 +9,9 @@
     <link rel="shortcut icon" href="${ctx}/common/image/favicon.ico" type="image/x-icon" />
     <script src="${ctx}/common/js/jquery-1.10.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        location.href = "${ctx}/b2b/personColumn.do";
+        location.href = "${ctx}/common/home.do";
         if (window != top)
-            top.location.href = "${ctx}/b2b/personColumn.do";
+            top.location.href = "${ctx}/common/home.do";
     </script>
     <title>织里童装设计网</title>
 </head>

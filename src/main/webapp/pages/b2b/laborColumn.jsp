@@ -35,35 +35,7 @@
 <body>
 <!-- 头部 -->
 <%@ include file="/common/headnew.jsp"%>
-<div class="search">
-	<h3>
-		<a>织里童装设计网</a></h3>
 
-	<div id="SearchPanel" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;btnSearch&#39;)">
-		<input name="TextSearch" type="text" id="TextSearch" value="${text}" />
-		<input type="submit" name="btnSearch" onclick="subSearch(4);" value="找加工厂" id="btnSearch" class="so-btn" />
-		<input type="submit" name="btnSearch2" onclick="subSearch(3);" value="找加工活" id="btnSearch2" class="so-btn" />
-	</div>
-	<br/>
-	<div class="quickbtn">
-		<a title="无忧人才市场" href="${ctx}/b2b/personColumn.do" class="yellow">人才市场</a>
-		<a title="无忧加工市场" href="${ctx}/b2b/factoryColumn.do" class="yellow">加工市场</a>
-	</div>
-	<div class="quickbtn">
-		<%--<c:if test="${not empty sessionScope.user}">--%>
-			<%--<c:if test="${sessionScope.user.roleShortName != 'normal'}">--%>
-				<%--<a title="加工活登记" href="${ctx}/b2b/laborPublish.do">加工活登记</a>--%>
-				<%--<a title="加工厂登记" href="${ctx}/b2b/factoryPublish.do">加工厂登记</a>--%>
-			<%--</c:if>--%>
-		<%--</c:if>--%>
-			<a title="加工活登记" onclick="toPublish('${ctx}/b2b/laborPublish.do');">加工活登记</a>
-			<a title="加工厂登记" onclick="toPublish('${ctx}/b2b/laborPublish.do');">加工厂登记</a>
-		<a title="加工活信息" href="${ctx}/b2b/laborColumn.do">加工活信息</a>
-		<a title="加工厂信息" href="${ctx}/b2b/factoryColumn.do">加工厂信息</a>
-	</div>
-	<br/>
-	加工市场电话：0572-3183669、3211091、15805720573
-</div>
 <h3 class="infotitle">加工活信息</h3>
 <div class="section-cols clearfix">
 	<c:if test="${not empty pageBean.pageList}">

@@ -82,7 +82,9 @@
 		</c:if>
 	</h2>
 </div>
+<div class="search">
 
+</div>
 
 
 </body>

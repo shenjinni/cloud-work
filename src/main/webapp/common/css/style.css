@@ -1,0 +1,55 @@
+body{background: #f5f5f5;padding-bottom: 20px;}
+/*登录*/
+.login-box{background: #00a0e8;padding:15px 10px;}
+.login-box a{font-size: 14px;color: #fff;padding: 0px 6px;border-right: 1px solid #fff;display: inline-block;height: 14px;line-height: 14px;}
+.login-box a:nth-child(2n){border-right: none;}
+.login-box .left{float: left;}
+.login-box .right{float: right;}
+/**/
+.search-list{width: 94%;margin: 15px 3%;}
+.search-list ul{margin-left: -2%;}
+.search-list ul li:nth-child(1){background: #6dc76d}
+.search-list ul li:nth-child(2){background: #6ac3fd}
+.search-list ul li:nth-child(3){background: #feaf62}
+.search-list ul li:nth-child(4){background: #fe5f37}
+.search-list ul li{float: left;width: 23%;height:100px;margin-left: 2%;text-align: center}
+.search-list ul li a,.post-list ul li a{display: block;width: 100%;height: 100%;}
+.search-list ul li span{display: block;}
+.search-list ul li .span2{font-size: 14px;color: #fff;margin-top: 10px;}
+.search-list ul li img{height: 40px;width: auto;margin-top: 15px;}
+/*通知*/
+.notice{height: 50px;line-height: 50px;color: #fff;font-size: 14px;border-top: 1px solid #c6c5c1;background: -moz-linear-gradient( top,#108cd5,#5ab4e9);background: -webkit-linear-gradient( top,#108cd5,#5ab4e9);background: linear-gradient( top,#108cd5,#5ab4e9);width: 100%;
+    overflow: hidden;}
+.notice-title{color:#fff;font-weight: 500;margin-left: 10px;float: left;width: 10%;}
+.notice-title i{font-size: 18px;vertical-align: inherit;margin-right: 5px;}
+.notice-content {position: relative;width: 86%;white-space: nowrap;float: left;height: 50px;margin-left: 13%;margin-top: -50px;overflow: hidden;}
+.notice-text {position: absolute;}
+
+.input-box{margin: 15px 3% 0px 3%;}
+.input-box .left{float: left;width: 78%;height: 39px;line-height: 39px;background: #fff;border: 1px solid #e5e5e5;border-radius: 6px;position: relative;}
+.input-box .left input{width: 78%;padding: 0px 10px;line-height: 38px;position: absolute; border-radius: 6px;font-size: 14px;outline: none}
+.input-box .left button{position: absolute;right: 5px;top: 2px;border-style: none;background: rgba(0,0,0,0);}
+.input-box .left button img{width: 20px;height: 20px;}
+.input-box .right{float: right;width: 20%;}
+.input-box .right button{width: 100%;height: 40px;line-height: 36px;background: #00a0e8;color: #fff;text-align: center;border-radius: 6px;border-style: none;}
+
+.post-list{width: 94%;margin: 0px 3%;}
+.post-list ul li{background: #fff;margin-bottom: 10px;height: 50px}
+.post-list ul li a{color:#00a0e8}
+.post-time,.post-name,.post-phone,.post-go{float: left;font-size: 12px;}
+.post-phone,.post-go{float: right;}
+.post-phone{padding: 5px 0px;width: 30%;text-align: center;line-height: 20px;}
+.post-phone span{display: block;color: #646464;}
+.post-name span{display: block;}
+.post-time{border:1px solid #00a0e8;height: 50px;line-height: 50px;padding: 0px 5px;}
+.post-name{padding: 5px 0px;margin-left: 10px;}
+.post-name span{line-height: 20px;}
+.post-list ul li .post-name .span2{color: #646464}
+.post-list ul li i{font-style: normal;}
+.post-go{margin: 18px 5px 0px 0px}
+.post-go img{width: 8px;}
+
+.footer p{text-align: center;font-size: 12px;}
+.footer .p1{font-size: 12px;color:#00a0e8; }
+.footer .p2{color: #282828;line-height: 20px;}
+.footer .p3 a{color:#00a0e8;}

@@ -42,6 +42,8 @@
 												<c:if test="${article.articleId == 2}">-收费标准</c:if>
 												<c:if test="${article.articleId == 3}">-老板找工人视频</c:if>
 												<c:if test="${article.articleId == 4}">-工人找工作视频</c:if>
+												<c:if test="${article.articleId == 5}">-用户服务协议</c:if>
+												<c:if test="${article.articleId == 6}">-通知</c:if>
 												<a href="${ctx}/admin/article/articleList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
 											</div>
 											<div class="panel-body pan">

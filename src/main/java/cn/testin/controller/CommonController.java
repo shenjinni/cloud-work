@@ -4,8 +4,11 @@ import cn.testin.bean.Advertisement;
 import cn.testin.bean.Article;
 import cn.testin.service.AdvertisementService;
 import cn.testin.service.ArticleService;
+import cn.testin.service.CloudWorkPersonService;
+import cn.testin.service.CloudWorkRecruitmentService;
 import cn.testin.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 @Controller
@@ -36,6 +40,9 @@ public class CommonController {
 	@Resource
 	private ArticleService articleService;
 
+	@Resource
+	private CloudWorkRecruitmentService cloudWorkRecruitmentService;
+
 	/**
 	 * 
 	 * @Description: 首页
@@ -46,7 +53,16 @@ public class CommonController {
 	 */
 	@RequestMapping("home.do")
 	public ModelAndView home(HttpServletRequest req,HttpServletResponse res){
-		ModelAndView mv = new ModelAndView("/index");
+		try {
+			// 招工信息
+			Map<String, Object> result = cloudWorkRecruitmentService.getPage(1, "");
+			req.setAttribute("pageBean", result);
+		} catch (Exception e) {
+			String msg = "招工信息栏目页异常！";
+			log.warn(msg);
+			e.printStackTrace();
+		}
+		ModelAndView mv = new ModelAndView("/common/index");
 		return mv;
 	}
 

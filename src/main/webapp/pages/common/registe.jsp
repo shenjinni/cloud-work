@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 
@@ -298,10 +300,10 @@ function registe(){
 
 <body>
 	<!--   main    -->
-	<div style="overflow: hidden;" class="qhc-main">
-		<%--<div class="login-img">
+	<%--<div style="overflow: hidden;" class="qhc-main">
+		&lt;%&ndash;<div class="login-img">
 			<img src="${ctx}/common/images/u0.png" onclick="location.href='${ctx}/index.jsp'" style="cursor: pointer;"/>
-		</div>--%>
+		</div>&ndash;%&gt;
 		<div class="login-forget">
 			<span class="login-tit">注册</span>
 			<div style="padding-left: 380px;" class="login-item">
@@ -333,7 +335,7 @@ function registe(){
 						<div class="imassage1" id="password2_Info" style="color: #CCCCCC">请再次输入密码</div>
 						<div class="imassage1" id="password2_Success" style="color: green;display: none;">√</div>
 					</li>
-					<%--<li>
+					&lt;%&ndash;<li>
 						<div class="login-itemL">电子邮箱 ：</div>
 						<div class="login-itemR">
 							<input type="text" id="email" class="input-1" value="" onblur="blurEmail();" onfocus="focusEmail();" />
@@ -341,7 +343,7 @@ function registe(){
 						<div class="imassage1" id="email_Error"></div>
 						<div class="imassage1" id="email_Info" style="color: #CCCCCC">填写真实有效的电子邮箱，不错过任何推送消息</div>
 						<div class="imassage1" id="email_Success" style="color: green;display: none;">√</div>
-					</li>--%>
+					</li>&ndash;%&gt;
 					<li>
 						<div class="login-itemL">手&nbsp;&nbsp;&nbsp;机 ：</div>
 						<div class="login-itemR">
@@ -371,6 +373,72 @@ function registe(){
 					<input type="checkbox" name="" id="agree" value="" onclick="openRegiste();" />我已阅读并同意</label> 
 					<a class="login-deal" href="${ctx}/common/checkDetails.do?id=1803142326590017" target="_blank">用户服务协议</a></br> 
 					<a class="login-submit" id="registeA" href="javascript:void(0);" style="background-color: #CCCCCC;">注册</a>
+			</div>
+		</div>
+	</div>--%>
+	<div style="overflow: hidden;" class="qhc-main">
+
+		<div class="login-forget">
+			<span class="login-tit">注册</span>
+			<div class="login-item">
+				<ul>
+					<li>
+						<div class="login-itemL">用户名 ：</div>
+						<div class="login-itemR">
+							<input type="text" class="input-1" id="username" value="" onblur="blurUsername();" onfocus="focusUsername();">
+						</div>
+						<div class="imassage1" id="username_Error"></div>
+						<div class="imassage1  zhushi" id="username_Info" style="color: #CCCCCC">支持字母、数字、"-"、"_"的组合，4-16个字符</div>
+						<div class="imassage1 register_sure" id="username_Success" style="color: green;display: none;">√</div>
+					</li>
+					<li>
+						<div class="login-itemL">密&nbsp;&nbsp;&nbsp;码 ：</div>
+						<div class="login-itemR">
+							<input type="password" id="password" class="input-1" value="" onblur="blurPassword();" onfocus="focusPassword();">
+						</div>
+						<div class="imassage1" id="password_Error"></div>
+						<div class="imassage1 zhushi" id="password_Info" style="color: #CCCCCC">支持字母、数字、"-"、"_"的组合，6-20个字符</div>
+						<div class="imassage1 register_sure" id="password_Success" style="color: green;display: none;">√</div>
+					</li>
+					<li>
+						<div class="login-itemL">确认密码 ：</div>
+						<div class="login-itemR">
+							<input type="password" id="password2" class="input-1" value="" onblur="blurPassword2();" onfocus="focusPassword2();">
+						</div>
+						<div class="imassage1" id="password2_Error"></div>
+						<div class="imassage1  zhushi" id="password2_Info" style="color: #CCCCCC">请再次输入密码</div>
+						<div class="imassage1 register_sure" id="password2_Success" style="color: green;display: none;">√</div>
+					</li>
+
+					<li>
+						<div class="login-itemL">手&nbsp;&nbsp;&nbsp;机 ：</div>
+						<div class="login-itemR">
+							<input type="text" id="mobile" class="input-1" value="" onblur="blurMobile();" onfocus="focusMobile();">
+						</div>
+						<div class="imassage1" id="mobile_Error"></div>
+						<div class="imassage1  zhushi" id="mobile_Info" style="color: #CCCCCC">完成验证后，您可用该手机找回密码</div>
+						<div class="imassage1 register_sure" id="mobile_Success" style="color: green;display: none;">√</div>
+					</li>
+					<li>
+						<div class="login-itemL">验证码 ：</div>
+						<div class="login-itemR">
+							<input type="text" id="flagcode" class="input-2" value="" style="width: 135px;" disabled="disabled" readonly="readonly" onblur="blurFlagcode();" onfocus="focusFlagcode();">
+							<div class="login-password" id="hqyzm">
+								<a class="login-submit" id="getFlagCodeA" href="javascript:void(0);" onclick="getFlagCode();">获取验证码</a>
+							</div>
+						</div>
+						<div class="imassage1" id="flagcode_Error"></div>
+						<div class="imassage1  zhushi" id="flagcode_Info" style="color: #CCCCCC">请输入手机验证码</div>
+						<div class="imassage1 register_sure" id="flagcode_Success" style="color: green;display: none;">√</div>
+					</li>
+					<div style="clear:both;"></div>
+				</ul>
+			</div>
+			<div class="register">
+				<label>
+					<input type="checkbox" name="" id="agree" value="" onclick="openRegiste();">我已阅读并同意</label>
+				<a class="login-deal" href=""${ctx}/common/checkDetails.do?id=1803142326590017" target="_blank">用户服务协议</a><br>
+				<a class="login-submit" id="registeA" href="javascript:void(0);" style="background-color: #CCCCCC;">注册</a>
 			</div>
 		</div>
 	</div>

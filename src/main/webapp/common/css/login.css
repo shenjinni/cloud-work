@@ -1,147 +1,291 @@
-.login-img{
-	overflow: hidden;
-	margin-bottom: 20px;
-}
-.login-img img{
-    width: 253px;
-    height: 116px;
-    float: left;
-}
-.login-Left{
-	overflow: hidden;
-	width: 600px;
-	height: 400px;
-}
-.login-Left img{
-	float: left;
-	width: 600px;
-	height:400px;
-}
-.login-Right{
-	height: 398px;
-	width: 560px;
-    border: 1px solid #d1d1d3;
-}
-.login-item{
-	padding-left: 80px;
-}
-.login-item li{ 
-    height: 38px;
-    line-height: 38px;
-    margin-top: 27px;
-    position: relative;
-}
-.login-item input{
-    border: 1px solid #d1d1d3;
-    border-radius: 5px;
-    height: 36px;
-    padding: 0 10px;
-}
-.input-1{
-    width: 250px;
-}
-.login-itemL{
-    float: left;
-    font-size: 16px;
-    font-weight: bold;
-    margin-right: 10px;
-    width: 100px;
-    text-align: right;
-}
-.login-itemR{
-	float: left;	
-    width: 272px;
-}
-.login-password{
-	float: right;
-	width: 82px;
-	height: 38px;
-}
-.login-password img{
-	vertical-align:middle ;
-}
-.login-a1:hover{
-	color: #3a82d4;
-}
-.login-a1,.login-a3{
-    margin-left: 30px;
-    margin-right: 10px;
-}
 .login-a2,.login-a3{
     color: #3a82d4;
 }
-.login-sub{
-    display: block;
-    width: 352px;
-    line-height: 38px;
-    margin-bottom: 25px;
-    background: #3eaf0e;
-    margin-left: 30px;
-    border-radius: 5px;
-    text-align: center;
-    color: white;
-    font-size: 16px;
-    margin-top: 40px;
+@media only screen and (min-width:800px){
+    .login-img{
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+    .login-img img{
+        width: 253px;
+        height: 116px;
+        float: left;
+    }
+    .login-Left{
+        overflow: hidden;
+        width: 600px;
+        height: 400px;
+    }
+    .login-Left img{
+        float: left;
+        width: 600px;
+        height:400px;
+    }
+    .login-Right{
+        height: 398px;
+        width: 560px;
+        border: 1px solid #d1d1d3;
+    }
+    .login-item{
+        padding-left: 80px;
+        width:800px;
+        margin:0 auto;
+    }
+    .login-item li{
+        height: 38px;
+        line-height: 38px;
+        margin-top: 27px;
+        position: relative;
+    }
+    .login-item input{
+        border: 1px solid #d1d1d3;
+        border-radius: 5px;
+        height: 36px;
+        padding: 0 10px;
+    }
+    .input-1{
+        width: 250px;
+    }
+    .login-itemL{
+        float: left;
+        font-size: 16px;
+        font-weight: bold;
+        margin-right: 10px;
+        width: 100px;
+    }
+    .login-itemR{
+        float: left;
+        width: 272px;
+    }
+    .login-password{
+        float: right;
+        width: 82px;
+        height: 38px;
+    }
+    .login-password img{
+        vertical-align:middle ;
+    }
+    .login-a1:hover{
+        color: #3a82d4;
+    }
+    .login-a1,.login-a3{
+        margin-right: 10px;
+    }
+    .login-sub{
+        display: block;
+        width: 352px;
+        line-height: 38px;
+        margin-bottom: 25px;
+        background: #3eaf0e;
+        border-radius: 5px;
+        text-align: center;
+        color: white;
+        font-size: 16px;
+        margin-top: 40px;
+    }
+    .login-team{
+        margin-left: 35px;
+        line-height: 30px;
+    }
+    .login-team ul{
+        text-align:left;
+    }
+    .login-forget{
+        border: 1px solid #d1d1d3;
+    }
+    .login-tit{
+        font-weight: bold;
+        font-size: 20px;
+        display: block;
+        text-align: center;
+        margin: 20px 0 15px 20px;
+    }
+    .register{
+        width:800px;
+        margin:0 auto;
+        text-align:left;
+        margin-top: 20px;
+        padding-left:80px;
+    }
+    .register label{
+        cursor: pointer;
+    }
+    .register input[type='checkbox']{
+        margin-right: 2px ;
+    }
+    .login-deal{
+        color: #3a82d4;
+        margin-left: 7px;
+        text-decoration:underline;
+    }
+    .login-deal:hover{
+        text-decoration:underline;
+    }
+    .login-submit{
+        display: block;
+        width: 352px;
+        background: #1F63B1;
+        border-radius: 5px;
+        text-align: center;
+        color: white;
+        font-size: 16px;
+        line-height: 38px;
+        margin: 15px 0;
+    }
+    .imassage{
+        float: left;
+        padding-left: 110px;
+        line-height: 22px;
+        position: absolute;
+        top: 40px;
+        z-index: 1000;
+        color: red;
+    }
+    .imassage1{
+        float: left;
+        line-height: 22px;
+        padding-left: 110px;
+        position: absolute;
+        top: 10px;
+        left: 289px;
+        z-index: 1000;
+        color: red;
+    }
+    #getFlagCodeA{
+        width: 100px;
+        height: 35px;
+        margin-top: 0px;
+        font-size: 14px;
+        background-color: #CCCCCC;
+    }
+    #hqyzm{
+        margin-right:40px;
+    }
+    #header{
+        font-size: 24px;
+        font-weight: bold;
+        color: #8a8a8a;
+        margin: 40px 200px;
+        display:inline-block;
+        text-align:center;
+        width:950px;
+    }
+    #header a{
+        color:#333;
+    }
+    #flagcodeImg{
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
 }
-.login-team{
-	margin-left: 35px;
-    line-height: 30px;
-}
-.login-forget{
-	border: 1px solid #d1d1d3;
-}
-.login-tit{
-    font-weight: bold;
-    font-size: 20px;
-    display: block;
-    text-align: center;
-    margin: 20px 0 15px 20px;
-}
-.register{
-    margin-left: 410px;
-    margin-top: 20px;
-}
-.register label{
-	cursor: pointer;
-}
-.register input[type='checkbox']{
-	margin-right: 2px ;
-}
-.login-deal{
-	color: #3a82d4;
-	margin-left: 7px;
-	text-decoration:underline;
-}
-.login-deal:hover{
-	text-decoration:underline;
-}
-.login-submit{
-    display: block;
-    width: 352px;
-    background: #1F63B1;
-    border-radius: 5px;
-    text-align: center;
-    color: white;
-    font-size: 16px;
-    line-height: 38px;
-    margin: 15px 0;
-}
-.imassage{
-    float: left;
-    padding-left: 110px;
-    line-height: 22px;
-    position: absolute;
-    top: 40px;
-    z-index: 1000;
-    color: red;
-}
-.imassage1{
-    float: left;
-    line-height: 22px;
-    padding-left: 110px;
-    position: absolute;
-	top: 10px;
-    left: 289px;
-    z-index: 1000;
-    color: red;
+@media only screen and (max-width:767px){
+    .login-forget{
+        width:100%;
+    }
+    .login-tit{
+        font-size:16px;
+        height:20px;
+        margin:10px auto;
+        font-weight:bold;
+        display:block;
+        text-align:center;
+    }
+    .login-itemL{
+        float:left;
+        display:inline-block;
+        height:28px;
+        margin-left:3%;
+        width:24%;
+    }
+    .login-itemR input{
+        float:left;
+        height:28px;
+        line-height:28px;
+        padding-left:5px;
+        display:inline-block;
+        border:1px solid #ccc;
+        width:55%;
+        margin-right:8%;
+    }
+    .zhushi,.imassage1{
+        float:left;
+        width:94%;
+        margin:0 3%;
+        line-height:32px;
+        display:block;
+    }
+    .qhc-main{
+        padding:22px 0;
+    }
+    .register{
+        width:100%;
+        padding:0 3%;
+    }
+    #flagcode{
+        margin-right:0;
+    }
+    #getFlagCodeA{
+        width:25%;
+        height:28px;
+        line-height:28px;
+        text-align:center;
+        display:inline-block;
+        border-radius:5px;
+        margin-left:10px;
+        background-color:#ccc;
+        float:left;
+    }
+    #registeA{
+        width:60%;
+        height:30px;
+        line-height:30px;
+        border-radius:10px;
+        background-color:#ccc;
+        color:#fff;
+        font-size:16px;
+        display:inline-block;
+        text-align:center;
+        margin:15px 20%;
+    }
+    #header{
+        color:#333;
+        font-size:18px;
+        width:100%;
+        text-align:center;
+        font-weight:bold;
+        margin-bottom:20px;
+    }
+    .login-item ul li{
+        margin-bottom:20px;
+        height:28px;
+    }
+    #flagcode{
+        width:38%;
+    }
+    #flagcodeImg{
+        width:80px;
+        margin-left:10px;
+    }
+    #login-a1{
+        margin-left:3%;
+    }
+    .login-sub{
+        width:80%;
+        height:30px;
+        line-height:30px;
+        color:#fff;
+        font-size:18px;
+        margin:0 10%;
+        border-radius:5px;
+        text-align:center;
+        display:inline-block;
+        background-color:#3eaf0e;
+    }
+    .register_sure{
+        width:auto;
+        line-height:28px;
+    }
+
 }

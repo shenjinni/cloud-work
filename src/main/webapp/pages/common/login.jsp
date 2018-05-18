@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 
@@ -69,8 +71,49 @@
 
 </head>
 <body>
+
+<div style="overflow: hidden;min-height: 650px;" class="qhc-main">
+	<h3 id="header">
+		<a>织里童装设计网</a></h3>
+	<div class="">
+		<div class="login-item">
+			<ul>
+				<li>
+					<div class="login-itemL">登录名 ：</div>
+					<div class="login-itemR">
+						<input type="text" class="input-1" id="username" value="" placeholder="登陆用户名/手机号码">
+					</div>
+					<div class="imassage" id="usernameError"></div>
+				</li>
+				<li>
+					<div class="login-itemL">密&nbsp;&nbsp;&nbsp;码 ：</div>
+					<div class="login-itemR">
+						<input type="password" class="input-1" id="password" value="" placeholder="登陆密码">
+					</div>
+					<div class="imassage" id="passwordError"></div>
+				</li>
+				<li>
+					<div class="login-itemL">验证码 ：</div>
+					<div class="login-itemR">
+						<input type="text" class="input-2" id="flagcode" value="">
+						<div class="login-password">
+							<img id="flagcodeImg" src="${ctx}/common/checkCode.do" onclick="changeFlagcode();">
+						</div>
+					</div>
+					<div class="imassage" id="flagcodeError"></div>
+				</li>
+				<li>
+					<a href="${ctx}/common/goForget.do" class="login-a1" id="login-a1">忘记登录密码？</a>
+					<a href="${ctx}/common/registe.do" class="login-a2" id="login-a2">免费注册</a>
+				</li>
+				<a class="login-sub" href="javascript:void(0);" onclick="submits();">登录</a>
+
+			</ul>
+		</div>
+	</div>
+</div>
 	<!--   main    -->
-	<div style="overflow: hidden;min-height: 650px;" class="qhc-main">
+	<%--<div style="overflow: hidden;min-height: 650px;" class="qhc-main">
 		<h3 style="font-size: 24px;font-weight: bold;color: #8a8a8a;margin: 40px 200px;">
 			<a>织里童装设计网</a></h3>
 		<div class="">
@@ -105,22 +148,23 @@
 						<a href="${ctx}/common/registe.do" class="login-a2">免费注册</a>
 					</li>
 					<a class="login-sub" href="javascript:void(0);" onclick="submits();">登录</a>
-					<%--<div class="login-team">
-						合作伙伴登录：</br> 
+					&lt;%&ndash;<div class="login-team">
+						合作伙伴登录：</br>
 						<a href="javascript:void(0);" onclick="loginCas();">
 							<img class="login-img1" src="${ctx}/common/images/login-yw.png"/>
-						</a> 
+						</a>
 						&lt;%&ndash; <a href="javascript:void(0);">
 							<img src="${ctx}/common/images/login-qq.png" />
-						</a> 
+						</a>
 						<a href="javascript:void(0);">
 							<img src="${ctx}/common/images/login-wx.png" />
 						</a> &ndash;%&gt;
-					</div>--%>
+					</div>&ndash;%&gt;
 				</ul>
 			</div>
 		</div>
-	</div>
+	</div>--%>
+
 	<!-- 下广告 -->
 	<%@ include file="/common/bottomAdv.jsp"%>
 	<!-- 工具条 -->

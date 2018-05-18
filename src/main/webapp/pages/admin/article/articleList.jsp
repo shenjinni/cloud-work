@@ -67,6 +67,10 @@
                                     return "老板找工人视频";
                                 } else if (row.articleType == 4) {
                                     return "工人找工作视频";
+                                } else if (row.articleType == 5) {
+                                    return "用户服务协议";
+                                } else if (row.articleType == 6) {
+                                    return "通知";
                                 } else {
 						    		return "--";
 						    	}
