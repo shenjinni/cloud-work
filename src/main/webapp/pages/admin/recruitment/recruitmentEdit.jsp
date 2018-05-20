@@ -6,7 +6,7 @@
 		<!--BEGIN TITLE & BREADCRUMB PAGE-->
 		<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 			<div class="page-header pull-left">
-				<div class="page-title">招工管理</div>
+				<div class="page-title">设计岗位管理</div>
 			</div>
 			<ol class="breadcrumb page-breadcrumb pull-right">
 				<li>
@@ -14,7 +14,7 @@
 					<a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;
 					<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
 				</li>
-				<li class="active">招工管理</li>
+				<li class="active">设计岗位管理</li>
 			</ol>
 			<div class="clearfix"></div>
 		</div>
@@ -36,8 +36,8 @@
 									<div class="panel panel-azure">
 										<div class="panel-heading">
 											<c:choose>
-												<c:when test="${not empty recruitment}">修改招工信息</c:when>
-												<c:otherwise>新增招工信息</c:otherwise>
+												<c:when test="${not empty recruitment}">修改设计岗位信息</c:when>
+												<c:otherwise>新增设计岗位信息</c:otherwise>
 											</c:choose>
 
 											<a href="${ctx}/admin/recruitment/recruitmentList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
@@ -47,9 +47,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">招工工种</label>
+															<label class="control-label">设计岗位工种</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="100" name="workType" value="${recruitment.workType }" placeholder="请输入招工工种"/>
+																<input type="text" class="form-control" maxlength="100" name="workType" value="${recruitment.workType }" placeholder="请输入设计岗位工种"/>
 															</div>
 														</div>
 													</div>
@@ -67,9 +67,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">招工单位</label>
+															<label class="control-label">设计岗位单位</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="100" name="company" value="${recruitment.company }" placeholder="请输入招工单位"/>
+																<input type="text" class="form-control" maxlength="100" name="company" value="${recruitment.company }" placeholder="请输入设计岗位单位"/>
 															</div>
 														</div>
 													</div>
@@ -141,7 +141,7 @@
             var obj = $('#form').toObject({mode : 'first'});
 
             var workType = obj.workType;
-            if(v_alert_isNull(workType, '招工工种')){
+            if(v_alert_isNull(workType, '设计岗位工种')){
                 return;
             }
 

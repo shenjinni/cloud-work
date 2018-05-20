@@ -98,22 +98,22 @@
 								</div>
 								<div style="display: none;" class="hh l-list1">
 									<a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/person/personList.do">
-										<i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">工人管理</span>
+										<i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">设计师管理</span>
 									</a>
 								</div>
                                 <div style="display: none;" class="hh l-list1">
                                     <a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/recruitment/recruitmentList.do">
-                                        <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">招工管理</span>
+                                        <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">设计岗位管理</span>
                                     </a>
                                 </div>
                                 <div style="display: none;" class="hh l-list1">
                                     <a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/labor/laborList.do">
-                                        <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">加工活管理</span>
+                                        <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">设计项目管理</span>
                                     </a>
                                 </div>
                                 <div style="display: none;" class="hh l-list1">
                                     <a style="padding: 0px; padding-right: 20px;" href="${ctx}/admin/factory/factoryList.do">
-                                        <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">加工厂管理</span>
+                                        <i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">设计工作室管理</span>
                                     </a>
                                 </div>
 							</li>

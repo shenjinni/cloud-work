@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>免费加工厂登记</title>
+	<title>免费设计工作室登记</title>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhiliaccount.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/admin/font-awesome.min.css" />
@@ -28,6 +28,8 @@
 					alert(data.errMsg);
 					if (data.errCode == 'success') {
 						window.location.href = "${ctx}/b2b/factoryColumn.do";
+					}else {
+						//alert("普通用户每天只能发布三条信息，会员可无限发布～");
 					}
 				};
 
@@ -61,7 +63,7 @@
 <form method="post" id="form1">
 	<div class="wap-item-header">
 		<a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a>
-		<span>免费加工厂登记</span>
+		<span>免费设计工作室登记</span>
 	</div>
 	<div class="login-register">
 		<div class="login">

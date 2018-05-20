@@ -95,7 +95,7 @@ body { background: #fff; color: #333; font-family: "Microsoft Yahei","微软雅�
 a { color: #0066CC; }
 a:hover { color: #FF4810; }
 a:visited { color: gray; }
-a.hot { color: #FFA467; }
+a.hot { color: #00a0e8; }
 a.vip-color-2 { color: #308F2A; }
 a.vip-color-3 { color: #EB4C0F; }
 a.vip-color-5 { color: #EE1218; }
@@ -198,7 +198,7 @@ ul.tabs li.current a { color: #000; background: #eee; border-top-left-radius: 4p
 #btnSearch.mousedown, #btnSearch2.hover { background-position: 0 -76px; border: 1px solid #4BBE11; }
 .search #RadioButton1, .search #RadioButton2 { margin-top: 15px; float: left; }
 .search label { margin-top: 10px; float: left; margin-left: 5px; margin-right: 10px; }
-.section-cols { border-top-left-radius: 0px; border-top-right-radius: 0px; border-top: #FFA467 4px solid; text-align: center; margin: 10px; }
+.section-cols { border-top-left-radius: 0px; border-top-right-radius: 0px; border-top: #00a0e8 4px solid; text-align: center; margin: 10px; }
 .section-cols ul li { width: 100%; float: left; line-height: 30px; border-bottom: #eee 1px solid; text-align: left; clear: both; }
 .section-cols ul li.even { margin-left: 40px; }
 .section-cols ul li span.date { float: right; }
@@ -207,7 +207,7 @@ ul.tabs li.current a { color: #000; background: #eee; border-top-left-radius: 4p
 .section-cols ul li span.wh { float: left; width: 70px; height: 30px; overflow: hidden; }
 .section-cols ul li span.cate { float: left; width: 114px; height: 30px; overflow: hidden; }
 
-.section-list { border-top-left-radius: 0px; border-top-right-radius: 0px; border-top: #FFA467 4px solid; }
+.section-list { border-top-left-radius: 0px; border-top-right-radius: 0px; border-top: #00a0e8 4px solid; }
 .section-list ul li { /*width: 770px;*/ float: left; line-height: 30px; border-bottom: #eee 1px solid; clear: both; }
 .section-list ul li.even { margin-left: 40px; }
 .section-list ul li span.edit { float: right; }
@@ -226,7 +226,7 @@ ul.tabs li.current a { color: #000; background: #eee; border-top-left-radius: 4p
 #infos-index .menu-item { width: 234px; float: left; clear: none; }
 #infos-index .menu-item ul.last { border-right: none; }
 #infos-index .menu-item ul { border-right: #eee 1px solid; margin-left: 0px; }
-#infos-index .menu-item h3 { color: #FFA467; font-size: 21px; margin-bottom: 10px; width: 100%; text-align: center; clear: both; float: none; }
+#infos-index .menu-item h3 { color: #00a0e8; font-size: 21px; margin-bottom: 10px; width: 100%; text-align: center; clear: both; float: none; }
 .infos-list { position: relative; }
 .infos-list .img { background: #fff; color: #00896A; padding: 0px 5px; }
 .infos-list .meta .contact { font-size: 12px; color: #666; float: left; }
@@ -473,20 +473,20 @@ label.error, label.error { color: red; top: 10px; }
 
 input[type="email"], input[type="text"], input[type="password"], input[type="number"] { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; border: 1px #92969c solid; padding: 0 15px; height: 50px; font-size: 16px; cursor: pointer; }
 input[type="email"]:hover, input[type="text"]:hover, input[type="password"]:hover, input[type="number"]:hover { border-color: #ea3c51; }
-input[type="button"], input[type="submit"], button, .btn { background: #3eaf0e; color: #f8f9fa; height: 50px; font-size: 16px; border: none; -webkit-appearance: none; outline: none; -webkit-border-radius: 0; cursor: pointer; }
+input[type="button"], input[type="submit"], button, .btn { background: #00a0e8; color: #f8f9fa; height: 50px; font-size: 16px; border: none; -webkit-appearance: none; outline: none; -webkit-border-radius: 0; cursor: pointer; }
 input[type="button"]:hover, input[type="submit"]:hover, button:hover, .btn:hover { background: green; opacity: .9; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)"; filter: alpha(opacity=90); }
 .number-input { width: 160px; margin: 0 auto; }
 .number-input .add-on { display: inline-block; width: auto; height: 20px; min-width: 16px; padding: 4px 5px; font-weight: normal; line-height: 20px; text-align: center; background-color: #ddd; cursor: pointer; font-size: 20px; position: relative; top: 2px; }
 .number-input .center-input { display: inline-block; padding: 4px 6px; height: 20px; line-height: 20px; vertical-align: middle; width: 60px; margin: 0 10px; text-align: center; font-size: 1em; }
 
-.wap-item-header { background: none repeat scroll 0 0 #3eaf0e; color: #fff; display: block; height: 3.6em; position: fixed; top: 0; width: 100%; z-index: 100; }
+.wap-item-header { background: none repeat scroll 0 0 #00a0e8; color: #fff; display: block; height: 3.6em; position: fixed; top: 0; width: 100%; z-index: 100; }
 .wap-item-header a i { float: left; font-size: 1.8em; line-height: 1.5em; margin-right: 15px; }
 .wap-item-header span { display: inline-block; float: left; font-size: 1.3em; line-height: 2.7em; }
 .wap-item-header a { color: #fff; display: inline-block; float: left; font-size: 1.3em; line-height: 1.6em; margin-left: 2.5%; }
 a { color: #2c3038; cursor: pointer; text-decoration: none; }
 
 .login-register .group .login-button .btngreen { width: 40%; float: left; }
-.login-register .group .login-button a.btnreg { border-radius: 4px; width: 38%; float: right; text-align: center; background: none repeat scroll 0 0 #3eaf0e; border: medium none; color: #f8f9fa; cursor: pointer; font-size: 16px; height: 50px; line-height: 50px; outline: medium none; }
+.login-register .group .login-button a.btnreg { border-radius: 4px; width: 38%; float: right; text-align: center; background: none repeat scroll 0 0 #00a0e8; border: medium none; color: #f8f9fa; cursor: pointer; font-size: 16px; height: 50px; line-height: 50px; outline: medium none; }
 .login-register .group .login-button .btnreg:hover { background: green; }
 
 #view-content li { line-height: 20px; padding: 0 10px 10px 10px; }
@@ -508,7 +508,7 @@ input.text:focus { }
 .quickbtn a:hover { color: #e85628; }
 .quickbtn{line-height:40px;}
 
-.infotitle { margin: 0px 10px; font-size: 16px; font-weight: bold; color: #ffa467; }
+.infotitle { margin: 0px 10px; font-size: 16px; font-weight: bold; color: #00a0e8; }
 .ad { color: #007acc; border: 1px solid #007acc; padding:0px 5px;font-size:12px;/*border-radius:3px;*/}
 
 .logout{top:10px;position:absolute;right:10px;width:50px;}

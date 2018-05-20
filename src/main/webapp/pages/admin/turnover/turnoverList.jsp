@@ -82,13 +82,13 @@
 				title: '业务类型',
 				formatter : function(value, row, index) {
 					if (row.workType == 1) {
-						return "工人信息";
+						return "设计师信息";
 					} else if (row.workType == 2) {
-						return "招工信息";
+						return "设计岗位信息";
 					} else if (row.workType == 3) {
-						return "加工活信息";
+						return "设计项目信息";
 					} else if (row.workType == 4) {
-						return "加工厂信息";
+						return "设计工作室信息";
 					} else {
 						return "--";
 					}

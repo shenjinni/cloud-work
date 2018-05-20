@@ -7,13 +7,13 @@
 	<!--BEGIN TITLE & BREADCRUMB PAGE-->
 	<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 		<div class="page-header pull-left">
-			<div class="page-title">加工厂管理</div>
+			<div class="page-title">设计工作室管理</div>
 		</div>
 		<ol class="breadcrumb page-breadcrumb pull-right">
 			<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/admin/home.do">
 				主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
 
-			<li class="active">加工厂管理</li>
+			<li class="active">设计工作室管理</li>
 		</ol>
 		<div class="clearfix"></div>
 	</div>
@@ -27,7 +27,7 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="panel panel-azure">
-								<div class="panel-heading">加工厂管理列表
+								<div class="panel-heading">设计工作室管理列表
 									<a href="${ctx}/admin/factory/factoryEdit.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">新增</a>
 								</div>
 								<div class="panel-body">

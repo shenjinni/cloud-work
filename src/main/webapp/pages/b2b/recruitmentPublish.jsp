@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>免费招工登记</title>
+	<title>免费设计岗位登记</title>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhiliaccount.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/admin/font-awesome.min.css" />
@@ -28,6 +28,8 @@
 					alert(data.errMsg);
 					if (data.errCode == 'success') {
 						window.location.href = "${ctx}/b2b/recruitmentColumn.do";
+					}else {
+						//alert("普通用户每天只能发布三条信息，会员可无限发布～");
 					}
 				};
 
@@ -46,7 +48,7 @@
                 messages: {
                     contactsName: "请输入联系人",
                     mobile: "请输入电话",
-                    workType: "请输入招工工种"
+                    workType: "请输入设计岗位工种"
                 }
             });
 
@@ -61,12 +63,12 @@
 <form method="post" id="form1">
 	<div class="wap-item-header">
 		<a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a>
-		<span>免费招工登记</span>
+		<span>免费设计岗位登记</span>
 	</div>
 	<div class="login-register">
 		<div class="login">
 			<div class="group">
-				<label>招工工种</label>
+				<label>设计岗位工种</label>
 				<input type="text" maxlength="100" name="workType" class="text" />
 			</div>
 			<div class="group">
@@ -74,7 +76,7 @@
 				<input type="text" maxlength="100" name="salary" class="text" />
 			</div>
 			<div class="group">
-				<label>招工单位</label>
+				<label>设计岗位单位</label>
 				<input type="text" maxlength="100" name="company" class="text" value="" />
 			</div>
 			<div class="group">

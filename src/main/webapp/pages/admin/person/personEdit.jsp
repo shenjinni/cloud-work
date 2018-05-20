@@ -6,7 +6,7 @@
 		<!--BEGIN TITLE & BREADCRUMB PAGE-->
 		<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 			<div class="page-header pull-left">
-				<div class="page-title">工人管理</div>
+				<div class="page-title">设计师管理</div>
 			</div>
 			<ol class="breadcrumb page-breadcrumb pull-right">
 				<li>
@@ -14,7 +14,7 @@
 					<a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;
 					<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
 				</li>
-				<li class="active">工人管理</li>
+				<li class="active">设计师管理</li>
 			</ol>
 			<div class="clearfix"></div>
 		</div>
@@ -36,8 +36,8 @@
 									<div class="panel panel-azure">
 										<div class="panel-heading">
 											<c:choose>
-												<c:when test="${not empty person}">修改工人信息</c:when>
-												<c:otherwise>新增工人信息</c:otherwise>
+												<c:when test="${not empty person}">修改设计师信息</c:when>
+												<c:otherwise>新增设计师信息</c:otherwise>
 											</c:choose>
 
 											<a href="${ctx}/admin/person/personList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>

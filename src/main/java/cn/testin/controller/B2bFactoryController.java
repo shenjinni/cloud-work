@@ -5,6 +5,7 @@ import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkFactoryService;
 import cn.testin.util.RandomUtils;
+import cn.testin.util.RedisUtil;
 import cn.testin.util.SessionUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -173,6 +174,21 @@ public class B2bFactoryController {
 		if (user == null){
 			result.put("errMsg", "未登录");
 			return result;
+		}
+
+		// 查看是否是普通用户，并且发布条数超过3条
+		if (user.getRoleShortName().equals("normal")) {
+			Integer pulishtime = (Integer) RedisUtil.get("publishtime_4_" + user.getUserId());
+			if (pulishtime > 2) {
+				result.put("errMsg", "普通用户每天只能发布3条，充值为会员可无限发布～");
+				log.info("普通用户每天只能发布3条,publishtime_4_已超出！personId= " + user.getUserId() + ", pulishtime = " + pulishtime);
+				return result;
+			}
+
+			Integer vartime = RedisUtil.getRemainSecondsOneDay(new Date());
+
+			RedisUtil.save("publishtime_4_" + user.getUserId(), pulishtime + 1, vartime);
+			log.info("普通用户每天只能发布3条,publishtime_4_次数记录！personId= " + user.getUserId() + ", pulishtime = " + pulishtime + "， 有效时间 = " + vartime);
 		}
 
 

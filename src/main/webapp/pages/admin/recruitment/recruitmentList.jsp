@@ -7,7 +7,7 @@
 	<!--BEGIN TITLE & BREADCRUMB PAGE-->
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header pull-left">
-            <div class="page-title">招工管理</div>
+            <div class="page-title">设计岗位管理</div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
             <li>
@@ -15,7 +15,7 @@
                 <a href="${ctx}/admin/home.do">主页</a>&nbsp;&nbsp;
                 <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
-            <li class="active">招工管理</li>
+            <li class="active">设计岗位管理</li>
         </ol>
         <div class="clearfix"></div>
     </div>
@@ -29,7 +29,7 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="panel panel-azure">
-								<div class="panel-heading">招工管理列表
+								<div class="panel-heading">设计岗位管理列表
 									<a href="${ctx}/admin/recruitment/recruitmentEdit.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">新增</a>
 								</div>
 								<div class="panel-body">
@@ -37,11 +37,11 @@
 										<div class="col-xs-12 col-md-12">
 											<form class="form-inline" id="form_sea">
 												<div class="form-group">
-													<label>招工工种</label>
+													<label>设计岗位工种</label>
 													<input type="text" class="form-control" name="workType">
 												</div>
                                                 <div class="form-group">
-                                                    <label>招工单位</label>
+                                                    <label>设计岗位单位</label>
                                                     <input type="text" class="form-control" name="company">
                                                 </div>
 												<div class="form-group">
@@ -85,7 +85,7 @@
             },
                 {
                     field: 'workType',
-                    title: '招工工种',
+                    title: '设计岗位工种',
                     align:'center',
                     formatter : function(value, row, index) {
                         return '<a href="recruitmentGet.do?id='+row.id+'">'+row.workType+'</a>';
@@ -98,7 +98,7 @@
                 },
                 {
                     field: 'company',
-                    title: '招工单位',
+                    title: '设计岗位单位',
                     align:'center'
                 },
                 {

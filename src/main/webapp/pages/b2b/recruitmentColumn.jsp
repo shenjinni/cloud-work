@@ -38,7 +38,7 @@
 <!-- 头部 -->
 <%@ include file="/common/headnew.jsp"%>
 
-<h3 class="infotitle">招工信息</h3>
+<h3 class="infotitle">设计岗位信息</h3>
 <div class="section-cols clearfix">
 	<c:if test="${not empty pageBean.pageList}">
 		<ul>

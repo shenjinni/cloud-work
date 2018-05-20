@@ -5,6 +5,7 @@ import cn.testin.bean.LocalUser;
 import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkRecruitmentService;
 import cn.testin.util.RandomUtils;
+import cn.testin.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -171,6 +172,21 @@ public class B2bRecruitmentController {
 		if (user == null){
 			result.put("errMsg", "未登录");
 			return result;
+		}
+
+		// 查看是否是普通用户，并且发布条数超过3条
+		if (user.getRoleShortName().equals("normal")) {
+			Integer pulishtime = (Integer) RedisUtil.get("publishtime_2_" + user.getUserId());
+			if (pulishtime > 2) {
+				result.put("errMsg", "普通用户每天只能发布3条，充值为会员可无限发布～");
+				log.info("普通用户每天只能发布3条,publishtime_2_已超出！personId= " + user.getUserId() + ", pulishtime = " + pulishtime);
+				return result;
+			}
+
+			Integer vartime = RedisUtil.getRemainSecondsOneDay(new Date());
+
+			RedisUtil.save("publishtime_2_" + user.getUserId(), pulishtime + 1, vartime);
+			log.info("普通用户每天只能发布3条,publishtime_2_次数记录！personId= " + user.getUserId() + ", pulishtime = " + pulishtime + "， 有效时间 = " + vartime);
 		}
 
 		recruitment.setId(RandomUtils.g());

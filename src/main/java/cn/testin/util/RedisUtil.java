@@ -1,8 +1,6 @@
 package cn.testin.util;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import org.apache.log4j.Logger;
 
@@ -351,6 +349,18 @@ public class RedisUtil {
 		}
 	}
 
+	public static Integer getRemainSecondsOneDay(Date currentDate) {
+		Calendar midnight= Calendar.getInstance();
+		midnight.setTime(currentDate);
+		midnight.add(midnight.DAY_OF_MONTH,1);
+		midnight.set(midnight.HOUR_OF_DAY,0);
+		midnight.set(midnight.MINUTE,0);
+		midnight.set(midnight.SECOND,0);
+		midnight.set(midnight.MILLISECOND,0);
+		Integer seconds=(int)((midnight.getTime().getTime()-currentDate.getTime())/1000);
+		return seconds;
+	}
+
 	public void setjedisPool(JedisPool jedisPool) {
 		RedisUtil.jedisPool = jedisPool;
 	}
@@ -360,10 +370,6 @@ public class RedisUtil {
 	}
 	
 	public static void main(String[] args) {
-		RedisUtil.save("test", 1);
-		System.out.println(RedisUtil.get("test"));
-		System.out.println(RedisUtil.get("test"));
-		System.out.println(RedisUtil.get("test"));
-		System.out.println(RedisUtil.get("test"));
+		getRemainSecondsOneDay(new Date());
 	}
 }

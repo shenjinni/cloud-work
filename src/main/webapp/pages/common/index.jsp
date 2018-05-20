@@ -69,14 +69,67 @@
             scroll_run();
         };
 
+        function toPublish(url){
+            var user = "${sessionScope.user}";
+            if (user == "") {
+                alert("未登录用户不能发布信息");
+                return;
+            }
+
+            var sf = "${sessionScope.user.roleShortName}";
+
+            if (sf == "normal") {
+                alert("付费用户才能发布信息，充值会员，请查看收费标准～");
+                return;
+            }
+
+            location.href=url;
+
+        }
+
+        function subSearch(type){
+            var text = $("#TextSearch").val();
+            if(text==null || text==undefined){
+                text="";
+            }
+            if (type == 1) {
+                location.href="${ctx}/b2b/recruitmentColumn.do?pageIndex=1&text="+text;
+            } else if (type == 2) {
+                location.href="${ctx}/b2b/personColumn.do?pageIndex=1&text="+text;
+            } else if (type == 4) {
+                location.href="${ctx}/b2b/laborColumn.do?pageIndex=1&text="+text;
+            } else if (type == 3) {
+                location.href="${ctx}/b2b/factoryColumn.do?pageIndex=1&text="+text;
+            }
+        }
+
     </script>
 </head>
 <body>
 <div class="zltz">
     <div class="login-box clearfix">
         <div class="left">
-            <a href="${ctx}/common/localLogin.do?fromUrl=index.jsp">会员登录</a>
-            <a href="${ctx}/common/registe.do">免费注册</a>
+            <c:if test="${empty sessionScope.user}">
+                <a href="${ctx}/common/localLogin.do?fromUrl=index.jsp">登录</a>
+                <a href="${ctx}/common/registe.do">注册</a>
+            </c:if>
+            <c:if test="${not empty sessionScope.user}">
+                <a>
+                    <c:if test="${empty sessionScope.user.realName}">${sessionScope.user.userLoginName}</c:if>
+                    <c:if test="${not empty sessionScope.user.realName}">${sessionScope.user.realName}</c:if>
+                    <c:if test="${sessionScope.user.roleShortName == 'admin'}">管理员</c:if>
+                    <c:if test="${sessionScope.user.roleShortName == 'vip'}">付费用户</c:if>
+                    <c:if test="${sessionScope.user.roleShortName == 'normal'}">普通用户</c:if>
+                </a>
+                <c:choose>
+                    <c:when test="${sessionScope.user.roleShortName == 'admin'}">
+                        <a href="${ctx}/admin/home.do">进入后台</a>
+                    </c:when>
+                    <c:otherwise><a href="${ctx}/b2b/myInfo/infoColumn.do">我发布的信息</a></c:otherwise>
+                </c:choose>
+
+                <a href="${ctx}/common/logout.do">退出</a>
+            </c:if>
         </div>
         <div class="right">
             <a href="${ctx}/common/article.do?id=1">使用帮助</a>
@@ -86,25 +139,25 @@
     <div class="search-list">
         <ul class="clearfix">
             <li>
-                <a href="#">
+                <a href="javascript:void(0);" onclick="subSearch(1);">
                     <span class="span1"><img src="${ctx}/common/images/02.png" alt=""/></span>
                     <span class="span2">设计岗位</span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <span class="span1"><img src="${ctx}/common/images/03.png" alt=""/></span>
+                <a href="javascript:void(0);" onclick="subSearch(2);">
+                    <span class="span1"><img src="${ctx}/common/images/2.png" alt=""/></span>
                     <span class="span2">设计师</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="javascript:void(0);" onclick="subSearch(3);">
                     <span class="span1"><img src="${ctx}/common/images/04.png" alt=""/></span>
                     <span class="span2">设计工作室</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="javascript:void(0);" onclick="subSearch(4);">
                     <span class="span1"><img src="${ctx}/common/images/05.png" alt=""/></span>
                     <span class="span2">设计项目</span>
                 </a>
@@ -119,7 +172,7 @@
     </div>
     <div class="input-box clearfix">
         <div class="left">
-            <input type="text" placeholder="输入工作室名称或职位"/>
+            <input type="text" id="TextSearch" placeholder="输入工作室名称或职位"/>
             <button><img src="${ctx}/common/images/01.png"/></button>
         </div>
         <div class="right">
@@ -129,25 +182,25 @@
     <div class="search-list">
         <ul class="clearfix">
             <li>
-                <a href="#">
+                <a href="javascript:void(0);" onclick="toPublish('${ctx}/b2b/personPublish.do');">
                     <span class="span1"><img src="${ctx}/common/images/02.png" alt=""/></span>
                     <span class="span2">求职登记</span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <span class="span1"><img src="${ctx}/common/images/03.png" alt=""/></span>
+                <a href="javascript:void(0);" onclick="toPublish('${ctx}/b2b/recruitmentPublish.do');">
+                    <span class="span1"><img src="${ctx}/common/images/2.png" alt=""/></span>
                     <span class="span2">招聘登记</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="javascript:void(0);" onclick="toPublish('${ctx}/b2b/factoryPublish.do');">
                     <span class="span1"><img src="${ctx}/common/images/04.png" alt=""/></span>
                     <span class="span2">工作室登记</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="javascript:void(0);" onclick="toPublish('${ctx}/b2b/laborPublish.do');">
                     <span class="span1"><img src="${ctx}/common/images/05.png" alt=""/></span>
                     <span class="span2">项目登记</span>
                 </a>
@@ -223,8 +276,8 @@
     </div>
     <div class="footer">
         <p class="p1">联系方式：18244913996（叶小姐）</p>
-        <p class="p2">www.zhilitz-fashion.com</p>
-        <p class="p3"><a href="#">织里童装设计网</a></p>
+        <p class="p2">©2018 www.zhilitz-fashion.com 浙ICP备18020964号-1</p>
+        <p class="p3"><a href="www.zhilitz-fashion.com">织里童装设计网</a></p>
     </div>
 </div>
 </body>

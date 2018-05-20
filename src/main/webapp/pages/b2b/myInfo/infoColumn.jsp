@@ -63,18 +63,18 @@
 		<div id="SearchPanel">
 			<input name="TextSearch" type="text" id="TextSearch" value="${text}" />
 			<select name="type" id="info_type" onchange="subSearch1(this);" >
-				<option <c:if test="${type == 1}">selected</c:if> value="1">工人信息</option>
-				<option <c:if test="${type == 2}">selected</c:if> value="2">招工信息</option>
-				<option <c:if test="${type == 3}">selected</c:if> value="3">加工活信息</option>
-				<option <c:if test="${type == 4}">selected</c:if> value="4">加工厂信息</option>
+				<option <c:if test="${type == 1}">selected</c:if> value="1">设计师信息</option>
+				<option <c:if test="${type == 2}">selected</c:if> value="2">设计岗位信息</option>
+				<option <c:if test="${type == 3}">selected</c:if> value="3">设计项目信息</option>
+				<option <c:if test="${type == 4}">selected</c:if> value="4">设计工作室信息</option>
 			</select>
 		</div>
 	</div>
 	<h3 class="infotitle">
-		<c:if test="${type == 1}">工人信息</c:if>
-		<c:if test="${type == 2}">招工信息</c:if>
-		<c:if test="${type == 3}">加工活信息</c:if>
-		<c:if test="${type == 4}">加工厂信息</c:if>
+		<c:if test="${type == 1}">设计师信息</c:if>
+		<c:if test="${type == 2}">设计岗位信息</c:if>
+		<c:if test="${type == 3}">设计项目信息</c:if>
+		<c:if test="${type == 4}">设计工作室信息</c:if>
 	</h3>
 	<div class="section-cols clearfix">
 		<c:if test="${not empty pageBean.pageList}">

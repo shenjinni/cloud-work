@@ -6,13 +6,13 @@
 		<!--BEGIN TITLE & BREADCRUMB PAGE-->
 		<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 			<div class="page-header pull-left">
-				<div class="page-title">加工厂管理</div>
+				<div class="page-title">设计工作室管理</div>
 			</div>
 			<ol class="breadcrumb page-breadcrumb pull-right">
 				<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/admin/home.do">
 					主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
 
-				<li class="active">加工厂管理</li>
+				<li class="active">设计工作室管理</li>
 			</ol>
 			<div class="clearfix"></div>
 		</div>
@@ -34,8 +34,8 @@
 									<div class="panel panel-azure">
 										<div class="panel-heading">
 											<c:choose>
-												<c:when test="${not empty factory}">修改加工厂信息</c:when>
-												<c:otherwise>新增加工厂信息</c:otherwise>
+												<c:when test="${not empty factory}">修改设计工作室信息</c:when>
+												<c:otherwise>新增设计工作室信息</c:otherwise>
 											</c:choose>
 
 											<a href="${ctx}/admin/factory/factoryList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>

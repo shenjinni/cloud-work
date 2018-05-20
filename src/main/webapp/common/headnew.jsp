@@ -13,75 +13,49 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta http-equiv="Cache-control" content="no-cache" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
+	<link rel="stylesheet" href="${ctx}/common/css/normalize.css"/>
+	<link rel="stylesheet" href="${ctx}/common/css/style.css"/>
 	<script src="${ctx}/common/js/jquery-1.10.1.min.js" type="text/javascript" ></script>
 </head>
 
-<script type="text/javascript">
-	function subSearch(type){
-		var text = $("#TextSearch").val();
-		if(text==null || text==undefined){
-			text="";
-		}
-		if (type == 1) {
-			location.href="${ctx}/b2b/recruitmentColumn.do?pageIndex=1&text="+text;
-		} else if (type == 2) {
-			location.href="${ctx}/b2b/personColumn.do?pageIndex=1&text="+text;
-		} else if (type == 3) {
-			location.href="${ctx}/b2b/laborColumn.do?pageIndex=1&text="+text;
-		} else if (type == 4) {
-			location.href="${ctx}/b2b/factoryColumn.do?pageIndex=1&text="+text;
-		}
-	}
 
-	function toPublish(url){
-		var user = "${sessionScope.user}";
-		if (user == "") {
-			alert("未登录用户不能发布信息");
-			return;
-		}
-
-		var sf = "${sessionScope.user.roleShortName}";
-
-		if (sf == "normal") {
-			alert("付费用户才能发布信息，充值会员，请查看收费标准～");
-			return;
-		}
-
-		location.href=url;
-
-	}
-</script>
+<div class="zltz">
+	<div class="login-box clearfix">
+		<div class="left">
+			<%--<a href="${ctx}/common/localLogin.do?fromUrl=index.jsp">登录</a>
+			<a href="${ctx}/common/registe.do">注册</a>--%>
+			<c:if test="${empty sessionScope.user}">
+				<a href="${ctx}/common/localLogin.do?fromUrl=index.jsp">登录</a>
+				<a href="${ctx}/common/registe.do">注册</a>
+			</c:if>
+			<c:if test="${not empty sessionScope.user}">
+				<em class="emName" title="<c:if test="${empty sessionScope.user.realName}">您好！${sessionScope.user.userLoginName}</c:if><c:if test="${not empty sessionScope.user.realName}">您好！${sessionScope.user.realName}</c:if>" >
+					<c:if test="${empty sessionScope.user.realName}">您好！${sessionScope.user.userLoginName}</c:if>
+					<c:if test="${not empty sessionScope.user.realName}">您好！${sessionScope.user.realName}</c:if>
+					<c:if test="${sessionScope.user.roleShortName == 'admin'}">管理员</c:if>
+					<c:if test="${sessionScope.user.roleShortName == 'vip'}">付费用户</c:if>
+					<c:if test="${sessionScope.user.roleShortName == 'normal'}">普通用户</c:if>
+				</em>
 
 
-<div class="mylist">
-	<h2>
-		<a href="${ctx}/common/article.do?id=1">使用帮助</a>
-		<a href="${ctx}/common/article.do?id=2">收费标准</a>
-		<c:if test="${empty sessionScope.user}">
-			<a href="${ctx}/common/localLogin.do?fromUrl=index.jsp">会员登录</a>
-			<a href="${ctx}/common/registe.do">免费注册</a>
-		</c:if>
-		<c:if test="${not empty sessionScope.user}">
-			<em class="emName" title="<c:if test="${empty sessionScope.user.realName}">您好！${sessionScope.user.userLoginName}</c:if><c:if test="${not empty sessionScope.user.realName}">您好！${sessionScope.user.realName}</c:if>" >
-			<c:if test="${empty sessionScope.user.realName}">您好！${sessionScope.user.userLoginName}</c:if>
-			<c:if test="${not empty sessionScope.user.realName}">您好！${sessionScope.user.realName}</c:if>
-				<c:if test="${sessionScope.user.roleShortName == 'admin'}">管理员</c:if>
-				<c:if test="${sessionScope.user.roleShortName == 'vip'}">付费用户</c:if>
-				<c:if test="${sessionScope.user.roleShortName == 'normal'}">普通用户</c:if>
-			</em>
-
-
-			<a href="${ctx}/index.jsp">首页</a>
-			<c:choose>
-				<c:when test="${sessionScope.user.roleShortName == 'admin'}">
-					<a href="${ctx}/admin/home.do" class="qhc-admin">进入后台</a>
-				</c:when>
-				<c:otherwise><a href="${ctx}/b2b/myInfo/infoColumn.do" class="qhc-admin">我发布的信息</a></c:otherwise>
-			</c:choose>
-			<a href="${ctx}/common/logout.do">退出</a>
-		</c:if>
-	</h2>
+				<a href="${ctx}/index.jsp">首页</a>
+				<c:choose>
+					<c:when test="${sessionScope.user.roleShortName == 'admin'}">
+						<a href="${ctx}/admin/home.do" class="qhc-admin">进入后台</a>
+					</c:when>
+					<c:otherwise><a href="${ctx}/b2b/myInfo/infoColumn.do" class="qhc-admin">我发布的信息</a></c:otherwise>
+				</c:choose>
+				<a href="${ctx}/common/logout.do">退出</a>
+			</c:if>
+		</div>
+		<div class="right">
+			<a href="${ctx}/common/article.do?id=1">使用帮助</a>
+			<a href="${ctx}/common/article.do?id=2">收费标准</a>
+		</div>
+	</div>
 </div>
+
+
 <div class="search">
 
 </div>

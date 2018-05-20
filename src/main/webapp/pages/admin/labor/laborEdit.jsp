@@ -6,12 +6,12 @@
 		<!--BEGIN TITLE & BREADCRUMB PAGE-->
 		<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 			<div class="page-header pull-left">
-				<div class="page-title">加工活管理</div>
+				<div class="page-title">设计项目管理</div>
 			</div>
 			<ol class="breadcrumb page-breadcrumb pull-right">
 				<li><i class="fa fa-home"></i>&nbsp;<a href="${ctx}/admin/home.do">
 					主页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-				<li class="active">加工活管理</li>
+				<li class="active">设计项目管理</li>
 			</ol>
 			<div class="clearfix"></div>
 		</div>
@@ -33,8 +33,8 @@
 									<div class="panel panel-azure">
 										<div class="panel-heading">
 											<c:choose>
-												<c:when test="${not empty labor}">修改加工活信息</c:when>
-												<c:otherwise>新增加工活信息</c:otherwise>
+												<c:when test="${not empty labor}">修改设计项目信息</c:when>
+												<c:otherwise>新增设计项目信息</c:otherwise>
 											</c:choose>
 
 											<a href="${ctx}/admin/labor/laborList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>

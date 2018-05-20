@@ -34,36 +34,8 @@ function navActive(){
 <body>
 	<!-- 头部 -->
 	<%@ include file="/common/headnew.jsp"%>
-	<div class="search">
-		<h3>
-			<a>织里童装设计网</a></h3>
 
-		<div id="SearchPanel">
-			<input name="TextSearch" type="text" id="TextSearch" value="${text}" />
-			<input type="button" onclick="subSearch(1);" name="btnSearch" value="找工作" id="btnSearch" class="so-btn" />
-			<input type="button" onclick="subSearch(2);" name="btnSearch2" value="找工人" id="btnSearch2" class="so-btn" />
-		</div>
-		<br/>
-		<div class="quickbtn">
-			<a title="无忧人才市场" href="${ctx}/b2b/personColumn.do" class="yellow">人才市场</a>
-			<a title="无忧加工市场" href="${ctx}/b2b/factoryColumn.do" class="yellow">加工市场</a>
-		</div>
-		<div class="quickbtn">
-			<%--<c:if test="${not empty sessionScope.user}">--%>
-				<%--<c:if test="${sessionScope.user.roleShortName != 'normal'}">--%>
-					<%--<a title="免费工人求职登记" href="${ctx}/b2b/personPublish.do">工人登记</a>--%>
-					<%--<a title="免费工厂招工登记" href="${ctx}/b2b/recruitmentPublish.do">招工登记</a>--%>
-				<%--</c:if>--%>
-			<%--</c:if>--%>
-				<a title="免费工人求职登记" onclick="toPublish('${ctx}/b2b/personPublish.do');">工人登记</a>
-				<a title="免费工厂招工登记" onclick="toPublish('${ctx}/b2b/recruitmentPublish.do');">招工登记</a>
-			<a title="工人信息" href="${ctx}/b2b/personColumn.do">工人信息</a>
-			<a title="招工信息" href="${ctx}/b2b/recruitmentColumn.do">招工信息</a>
-		</div>
-		<br/>
-		加工市场电话：0572-3183669、3211091、15805720573
-	</div>
-	<h3 class="infotitle">工人信息</h3>
+	<h3 class="infotitle">设计师信息</h3>
 	<div class="section-cols clearfix">
 		<c:if test="${not empty pageBean.pageList}">
 			<ul>
