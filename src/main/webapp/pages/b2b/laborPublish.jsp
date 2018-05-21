@@ -84,11 +84,11 @@
 				<input type="text" maxlength="20" name="address" class="text" value="" />
 			</div>
 			<div class="group">
-				<label>工厂名</label>
+				<label>工作室名</label>
 				<input type="text" maxlength="20" name="factoryName" class="text" value="" />
 			</div>
 			<div class="group">
-				<label>加工数量</label>
+				<label>设计数量</label>
 				<input type="text" maxlength="20" name="number" class="text" value="" />
 			</div>
 			<div class="group">
@@ -108,6 +108,6 @@
 		</div>
 	</div>
 </form>
-<%@ include file="/common/bottomAdv.jsp"%>
+<%--<%@ include file="/common/bottomAdv.jsp"%>--%>
 </body>
 </html>

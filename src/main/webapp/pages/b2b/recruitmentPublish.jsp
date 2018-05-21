@@ -76,7 +76,7 @@
 				<input type="text" maxlength="100" name="salary" class="text" />
 			</div>
 			<div class="group">
-				<label>设计岗位单位</label>
+				<label>单位</label>
 				<input type="text" maxlength="100" name="company" class="text" value="" />
 			</div>
 			<div class="group">
@@ -108,6 +108,6 @@
 		</div>
 	</div>
 </form>
-<%@ include file="/common/bottomAdv.jsp"%>
+<%--<%@ include file="/common/bottomAdv.jsp"%>--%>
 </body>
 </html>

@@ -23,7 +23,7 @@
 	<div class="m-title"><strong>设计岗位信息详情</strong></div>
 	<div id="view-content">
 		<ul>
-			<span id="Label4"><li><b>设计岗位单位：</b>${recruitment.company}</li></span>
+			<span id="Label4"><li><b>单位：</b>${recruitment.company}</li></span>
 			<li>
 				<b>联系人：</b> ${recruitment.contactsName}
 			</li>
@@ -86,5 +86,5 @@
 		<%@ include file="/common/foot.jsp"%>
 	</div>
 </body>
-<%@ include file="/common/bottomAdv.jsp"%>
+<%--<%@ include file="/common/bottomAdv.jsp"%>--%>
 </html>

@@ -34,7 +34,7 @@
 										<div class="col-xs-12 col-md-12">
 											<form class="form-inline" id="form_sea">
 												<div class="form-group">
-													<label>加工种类</label>
+													<label>设计种类</label>
 													<input type="text" class="form-control" name="workNeed">
 												</div>
 												<div class="form-group">
@@ -79,7 +79,7 @@
             },
 				{
 					field: 'workNeed',
-					title: '加工种类',
+					title: '设计种类',
 					align:'center',
                     formatter : function(value, row, index) {
                         return '<a href="laborGet.do?id='+row.id+'">'+row.workNeed+'</a>';

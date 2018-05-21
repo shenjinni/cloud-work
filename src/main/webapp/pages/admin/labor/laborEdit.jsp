@@ -84,7 +84,7 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">工厂名</label>
+															<label class="control-label">工作室名</label>
 															<div class="input-icon right">
 																<input type="text" class="form-control" maxlength="20" name="factoryName" value="${labor.factoryName }" placeholder="请输入工厂名"/>
 															</div>

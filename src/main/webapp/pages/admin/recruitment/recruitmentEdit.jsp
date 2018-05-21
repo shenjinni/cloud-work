@@ -67,7 +67,7 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">设计岗位单位</label>
+															<label class="control-label">单位</label>
 															<div class="input-icon right">
 																<input type="text" class="form-control" maxlength="100" name="company" value="${recruitment.company }" placeholder="请输入设计岗位单位"/>
 															</div>

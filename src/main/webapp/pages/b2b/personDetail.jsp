@@ -61,10 +61,13 @@
 			<span id="Label1">
 				<li><b>年龄：</b> ${person.age}</li>
 				<li><b>生肖：</b>${person.zodiac}</li>
-				<li><b>性别：</b>${person.sex}</li>
+				<li><b>性别：</b>
+				<c:if test="${person.sex eq 1}">男</c:if>
+					<c:if test="${person.sex eq 2}">女</c:if>
+				</li>
 				<li><b>哪里人：</b>${person.address}</li>
 			</span>
-			<li><b>工种：</b>${person.workIntent}</li>
+			<li><b>设计种类：</b>${person.workIntent}</li>
 			<li><b>工资要求：</b>${person.salary}</li>
 			<li><b>补充说明：</b>${person.note}</li>
 			<hr />
@@ -87,7 +90,7 @@
 		</ul>--%>
 	</div>
 
-	<%@ include file="/common/bottomAdv.jsp"%>
+	<%--<%@ include file="/common/bottomAdv.jsp"%>--%>
 </body>
 
 </html>

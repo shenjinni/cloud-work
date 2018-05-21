@@ -60,7 +60,7 @@
 				</i>
 			</li>
 			<li><b>地址：</b>${labor.address}</li>
-			<li><b>工厂名：</b>${labor.factoryName}</li>
+			<li><b>工作室名：</b>${labor.factoryName}</li>
 			<li><b>加工数量：</b>${labor.number}</li>
 			<li><b>补充说明：</b>${labor.note}</li>
 			<hr />
@@ -77,6 +77,6 @@
 		</ul>
 		<%@ include file="/common/foot.jsp"%>
 	</div>
-	<%@ include file="/common/bottomAdv.jsp"%>
+	<%--<%@ include file="/common/bottomAdv.jsp"%>--%>
 </body>
 </html>

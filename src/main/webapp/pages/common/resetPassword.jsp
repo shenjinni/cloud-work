@@ -132,11 +132,11 @@ function hideAll(text){
 			</div>
 		</div>
 	</div>
-	<!-- 下广告 -->
+	<%--<!-- 下广告 -->
 	<%@ include file="/common/bottomAdv.jsp"%>
 	<!-- 工具条 -->
 	<%@ include file="/common/tools.jsp"%>
 	<!-- 底部 -->
-	<%@ include file="/common/foot.jsp"%>
+	<%@ include file="/common/foot.jsp"%>--%>
 </body>
 </html>

@@ -47,7 +47,7 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">工种</label>
+															<label class="control-label">设计种类</label>
 															<div class="input-icon right">
 																<input type="text" class="form-control" maxlength="100" name="workIntent" value="${person.workIntent }" placeholder="请输入工种"/>
 															</div>
@@ -156,7 +156,7 @@
 </div>
 
 <script type="text/javascript">
-	$(".l-list2").show();
+	$(".l-list1").show();
 
 	$(document).ready(function(){
 		// 提交操作

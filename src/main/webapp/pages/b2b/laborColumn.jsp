@@ -41,7 +41,7 @@
 	<c:if test="${not empty pageBean.pageList}">
 		<ul>
 			<li>
-				<span class="cate">承接加工</span>
+				<span class="cate">设计种类</span>
 				<span class="wh">联系人</span>
 				<span class="tel">电话</span>
 				<span class="date">日期</span>

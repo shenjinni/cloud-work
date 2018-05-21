@@ -37,7 +37,7 @@
 										<div class="col-xs-12 col-md-12">
 											<form class="form-inline" id="form_sea">
 												<div class="form-group">
-													<label>工种</label>
+													<label>设计种类</label>
 													<input type="text" class="form-control" name="workIntent">
 												</div>
 												<div class="form-group">
@@ -81,7 +81,7 @@
             },
 			{
 				field: 'workIntent',
-				title: '工种',
+				title: '设计种类',
 				align:'center',
 				formatter : function(value, row, index) {
 					return '<a href="personGet.do?id='+row.id+'">'+row.workIntent+'</a>';

@@ -39,7 +39,7 @@
 							<div class="col-lg-4" style="width: 100%">
 								<div class="panel panel-azure">
 									<div class="panel-heading">
-										设计师信息详情
+										设计岗位信息详情
 										<a href="${ctx}/admin/recruitment/recruitmentList.do" style="color: white;font-size: 14px;float: right;" class="exportBtn">返回</a>
 									</div>
 									<div class="panel-body pan">
@@ -77,7 +77,7 @@
 											<div class="row">
 												<div class="col-md-6" style="width: 50%;">
 													<div class="form-group">
-														<label class="control-label">设计岗位单位：</label>
+														<label class="control-label">单位：</label>
 														<div class="input-icon right">
 															${recruitment.company }
 														</div>

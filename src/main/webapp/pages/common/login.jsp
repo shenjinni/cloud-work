@@ -166,7 +166,7 @@
 	</div>--%>
 
 	<!-- 下广告 -->
-	<%@ include file="/common/bottomAdv.jsp"%>
+	<%--<%@ include file="/common/bottomAdv.jsp"%>--%>
 	<!-- 工具条 -->
 	<%--<%@ include file="/common/tools.jsp"%>--%>
 	<!-- 底部 -->
