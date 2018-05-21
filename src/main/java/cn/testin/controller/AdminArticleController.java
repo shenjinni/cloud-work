@@ -98,6 +98,7 @@ public class AdminArticleController {
 
 		Article articleOld = articleService.getById(articleId);
 		articleOld.setArticleType(article.getArticleType());
+		articleOld.setArticleTitle(article.getArticleTitle());
 		articleOld.setArticleContent(article.getArticleContent());
 		int i = articleService.update(articleOld);
 		if (i == 1) {

@@ -1,13 +1,16 @@
 package cn.testin.controller;
 
 
+import cn.testin.bean.CloudWorkTurnover;
 import cn.testin.bean.LocalUser;
 import cn.testin.bean.Role;
 import cn.testin.bean.UserRole;
 import cn.testin.constant.Constants;
+import cn.testin.service.CloudWorkTurnoverService;
 import cn.testin.service.LocalUserService;
 import cn.testin.service.RoleService;
 import cn.testin.service.UserRoleService;
+import cn.testin.util.RandomUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +47,9 @@ public class AdminUserController {
 
 	@Resource
 	private RoleService roleService;
+
+	@Resource
+	private CloudWorkTurnoverService cloudWorkTurnoverService;
 	
 	/**
 	 * 
@@ -103,7 +110,7 @@ public class AdminUserController {
 	 */
 	@RequestMapping(value = "updateUser.json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateUser(@RequestBody UserRole userRole, HttpServletRequest req){
+	public Map<String, Object> updateUser(@RequestBody UserRole userRole, HttpSession session){
 		Map<String, Object> result = new HashMap<>();
 		result.put("errCode", Constants.result_fail);
 		result.put("errMsg", "新增turnover充值信息失败，请稍后再试！");
@@ -115,11 +122,33 @@ public class AdminUserController {
 			return result;
 		}
 
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
+
 		Integer i = userRoleService.updateUserRoleByUserId(userRole);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);
 			result.put("errMsg", "修改用户角色成功！");
 			log.info("修改用户成功！userId=" + userRole.getUserId());
+
+			if (userRole.getMoney() != null && roleId.equals(1801031821250000L)) {
+				// 添加流水
+				CloudWorkTurnover turnover = new CloudWorkTurnover();
+				turnover.setId(RandomUtils.g());
+				turnover.setWorkId(userId);
+				turnover.setWorkType((short) 5);
+				turnover.setWorkName("充值会员");
+				turnover.setMoney(userRole.getMoney());
+				turnover.setCreateTime(new Date());
+				turnover.setCreateUser(user.getUserId());
+				int j = cloudWorkTurnoverService.insert(turnover);
+				if (j == 1) {
+					log.info("添加流水成功！userId=" + userRole.getUserId());
+				}
+			}
 		}
 		return result;
 	}

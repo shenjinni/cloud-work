@@ -47,9 +47,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">设计岗位工种</label>
+															<label class="control-label">设计种类</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="100" name="workType" value="${recruitment.workType }" placeholder="请输入设计岗位工种"/>
+																<input type="text" class="form-control" maxlength="100" name="workType" value="${recruitment.workType }" placeholder="请输入设计种类"/>
 															</div>
 														</div>
 													</div>
@@ -141,7 +141,7 @@
             var obj = $('#form').toObject({mode : 'first'});
 
             var workType = obj.workType;
-            if(v_alert_isNull(workType, '设计岗位工种')){
+            if(v_alert_isNull(workType, '设计种类')){
                 return;
             }
 

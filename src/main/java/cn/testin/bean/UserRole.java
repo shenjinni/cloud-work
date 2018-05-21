@@ -17,6 +17,17 @@ public class UserRole {
 
 	private String roleShortName;
 
+	// 开通所需金钱
+	protected String  money;
+
+	public String getMoney() {
+		return money;
+	}
+
+	public void setMoney(String money) {
+		this.money = money;
+	}
+
 	public String getRoleShortName() {
 		return roleShortName;
 	}

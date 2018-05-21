@@ -20,7 +20,7 @@ public class CloudWorkFactory extends BasicPage
 {
 	// 主键
 	protected Long  id;
-	// 需求、承接加工种类
+	// 需求、设计种类
 	protected String  workNeed;
 	// 联系人
 	protected String  contactsName;
@@ -96,7 +96,7 @@ public class CloudWorkFactory extends BasicPage
 		this.workNeed = workNeed;
 	}
 	/**
-	 * 返回 需求、承接加工种类
+	 * 返回 需求、设计种类
 	 * @return
 	 */
 	public String getWorkNeed()

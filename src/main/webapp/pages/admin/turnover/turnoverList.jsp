@@ -89,7 +89,9 @@
 						return "设计项目信息";
 					} else if (row.workType == 4) {
 						return "设计工作室信息";
-					} else {
+					}  else if (row.workType == 5) {
+                        return "充值会员";
+                    } else {
 						return "--";
 					}
 				},

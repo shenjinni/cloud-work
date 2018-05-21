@@ -69,13 +69,23 @@
 														<div class="form-group">
 															<projectel for="turnover_title" class="control-projectel">角色</projectel>
 															<div class="input-icon right">
-																<select class="form-control" name="roleId">
+																<select class="form-control" id="role_id" name="roleId">
 																	<c:forEach items="${roles}" var="role">
 																		<option
 																				<c:if test="${role.roleShortName == 'normal'}">selected</c:if>
 																				value="${role.roleId}">${role.roleName}</option>
 																	</c:forEach>
 																</select>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row" id="money_div" style="display: none;">
+													<div class="col-md-6" style="width: 50%;">
+														<div class="form-group">
+															<projectel for="turnover_title" class="control-projectel">金额</projectel>
+															<div class="input-icon right">
+																<input type="text" class="form-control" maxlength="10" name="money" placeholder="请输入金额"/>
 															</div>
 														</div>
 													</div>
@@ -129,7 +139,19 @@
 			cfg.url = 'updateUser.json';
 			$.ajax(cfg);
 		});
+
+        $("#role_id").change(function(){
+            var roletype = $("#role_id").val();
+            if (roletype == '1801031821250000') {
+                $("#money_div").show();
+			} else {
+                $("#money_div").hide();
+			}
+
+        });
 	});
+
+
 </script>
 
 </body>

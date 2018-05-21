@@ -57,7 +57,7 @@
 											<div class="row">
 												<div class="col-md-6" style="width: 50%;">
 													<div class="form-group">
-														<label class="control-label">设计岗位工种：</label>
+														<label class="control-label">设计种类：</label>
 														<div class="input-icon right">
 															${recruitment.workType }
 														</div>

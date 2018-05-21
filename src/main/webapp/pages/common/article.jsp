@@ -26,6 +26,7 @@
 												<c:if test="${article.articleId == 2}">收费标准</c:if>
 												<c:if test="${article.articleId == 3}">老板找设计师视频</c:if>
 												<c:if test="${article.articleId == 4}">设计师找工作视频</c:if>
+		<c:if test="${article.articleId == 5}">用户服务协议</c:if>
 	</span><i class="logout"></i></div>
 	<div class="login-register">
 		<div class="login">

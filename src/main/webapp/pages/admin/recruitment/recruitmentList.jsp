@@ -37,7 +37,7 @@
 										<div class="col-xs-12 col-md-12">
 											<form class="form-inline" id="form_sea">
 												<div class="form-group">
-													<label>设计岗位工种</label>
+													<label>设计种类</label>
 													<input type="text" class="form-control" name="workType">
 												</div>
                                                 <div class="form-group">
@@ -85,7 +85,7 @@
             },
                 {
                     field: 'workType',
-                    title: '设计岗位工种',
+                    title: '设计种类',
                     align:'center',
                     formatter : function(value, row, index) {
                         return '<a href="recruitmentGet.do?id='+row.id+'">'+row.workType+'</a>';

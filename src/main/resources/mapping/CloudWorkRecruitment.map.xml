@@ -70,9 +70,12 @@
 		where
 		<choose>
 			<when test="searchText != null  and searchText != ''">
-				cloud_work_recruitment.work_type like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				(cloud_work_recruitment.work_type like concat('%',#{searchText,jdbcType=VARCHAR},'%')
 				or cloud_work_recruitment.contacts_name like concat('%',#{searchText,jdbcType=VARCHAR},'%')
-				or cloud_work_recruitment.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				or cloud_work_recruitment.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%'))
+				<if test="status != null  and status != ''" >
+					and cloud_work_recruitment.status = #{status,jdbcType=NUMERIC}
+				</if>
 			</when>
 			<otherwise>
 				1=1
@@ -113,9 +116,12 @@
 		where
 		<choose>
 			<when test="searchText != null  and searchText != ''">
-				cloud_work_recruitment.work_type like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				(cloud_work_recruitment.work_type like concat('%',#{searchText,jdbcType=VARCHAR},'%')
 				or cloud_work_recruitment.contacts_name like concat('%',#{searchText,jdbcType=VARCHAR},'%')
-				or cloud_work_recruitment.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				or cloud_work_recruitment.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%'))
+				<if test="status != null  and status != ''" >
+					and cloud_work_recruitment.status = #{status,jdbcType=NUMERIC}
+				</if>
 			</when>
 			<otherwise>
 				1=1

@@ -57,7 +57,7 @@
 											<div class="row">
 												<div class="col-md-6" style="width: 50%;">
 													<div class="form-group">
-														<label class="control-label">需要加工种类：</label>
+														<label class="control-label">设计种类：</label>
 														<div class="input-icon right">
 															${labor.workNeed }
 														</div>

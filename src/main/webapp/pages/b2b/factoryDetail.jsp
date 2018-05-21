@@ -23,7 +23,7 @@
 	<div class="m-title"><strong>设计工作室信息详情</strong></div>
 	<div id="view-content">
 		<ul>
-			<li><b>承接加工种类：</b>${factory.workNeed}</li>
+			<li><b>设计种类：</b>${factory.workNeed}</li>
 			<li><b>联系人： </b>${factory.contactsName}</li>
 			<li>
 				<b>电话：</b>

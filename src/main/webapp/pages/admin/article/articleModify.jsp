@@ -48,7 +48,16 @@
 											</div>
 											<div class="panel-body pan">
 												<div class="form-body pal">
-
+													<div class="row">
+														<div class="col-md-6" style="width: 50%;">
+															<div class="form-group">
+																<projectel class="control-projectel">设计种类</projectel>
+																<div class="input-icon right">
+																	<input type="text" class="form-control" maxlength="100" name="articleTitle" value="${article.articleTitle }" placeholder="请输入设计种类"/>
+																</div>
+															</div>
+														</div>
+													</div>
 													<div class="row">
 														<div class="col-md-12" style="width: 100%;">
 															<div class="form-group">
@@ -75,7 +84,7 @@
 				<input type="hidden" id="article_content" name="articleContent" value='${article.articleContent}' />	
 			</form>
 		</div>
-	</div>
+																	</div>
 	
 	<script type="text/javascript">
 		$(".l-list4").show();
@@ -113,11 +122,6 @@
 				var d = UE.getEditor('article_c').getContent();
 				$("#article_content").val(d);
 				var obj = $('#form').toObject({mode : 'first'});
-				
-				var articleContent = obj.articleContent;
-				if(v_alert_isNull(articleContent, '文章正文')){
-					return;
-				}
 
 				cfg.data = JSON.stringify(obj);
 				

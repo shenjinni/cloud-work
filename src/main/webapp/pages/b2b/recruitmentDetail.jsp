@@ -63,7 +63,7 @@
 			</li>
 			<span id="Label2"><li><b>地址：</b>${recruitment.address}</li></span>
 			<li>
-				<b>设计岗位工种：</b>${recruitment.workType}
+				<b>设计种类：</b>${recruitment.workType}
 			</li>
 			<li>
 				<b>工资待遇：</b>${recruitment.salary}

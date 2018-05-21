@@ -46,7 +46,7 @@
                 messages: {
                     contactsName: "请输入联系人",
                     mobile: "请输入电话",
-                    workNeed: "请输入需要加工种类"
+                    workNeed: "请输入设计种类"
                 }
             });
 
@@ -66,7 +66,7 @@
 	<div class="login-register">
 		<div class="login">
 			<div class="group">
-				<label>需要加工种类</label>
+				<label>设计种类</label>
 				<input type="text" maxlength="100" value="${labor.workNeed}" name="workNeed" class="text" />
 			</div>
 			<div class="group">

@@ -57,6 +57,9 @@ public class CommonController {
 			// 招工信息
 			Map<String, Object> result = cloudWorkRecruitmentService.getPage(1, "");
 			req.setAttribute("pageBean", result);
+
+			Article article = articleService.getById(6);
+			req.setAttribute("article", article);
 		} catch (Exception e) {
 			String msg = "招工信息栏目页异常！";
 			log.warn(msg);

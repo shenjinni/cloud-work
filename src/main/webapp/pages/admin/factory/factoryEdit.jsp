@@ -45,9 +45,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<projectel for="factory_title" class="control-projectel">承接加工种类</projectel>
+															<projectel for="factory_title" class="control-projectel">设计种类</projectel>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="100" name="workNeed" value="${factory.workNeed }" placeholder="请输入承接加工种类"/>
+																<input type="text" class="form-control" maxlength="100" name="workNeed" value="${factory.workNeed }" placeholder="请输入设计种类"/>
 															</div>
 														</div>
 													</div>
@@ -130,7 +130,7 @@
             var obj = $('#form').toObject({mode : 'first'});
 
             var workNeed = obj.workNeed;
-            if(v_alert_isNull(workNeed, '承接加工种类')){
+            if(v_alert_isNull(workNeed, '设计种类')){
                 return;
             }
 

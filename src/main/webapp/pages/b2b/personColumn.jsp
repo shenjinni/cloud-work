@@ -17,12 +17,12 @@ function goPage(pageIndex){
 		text="";
 	}
 
-	var userrole = '${sessionScope.user.roleShortName}';
+	/*var userrole = '${sessionScope.user.roleShortName}';
 
 	if (userrole == 'normal' && pageIndex > 1) {
 		alert("未登录/普通用户只能查看三条");
 		return;
-	}
+	}*/
 	location.href="${ctx}/b2b/personColumn.do?pageIndex="+pageIndex+"&text="+text;
 }
 function navActive(){
@@ -47,7 +47,7 @@ function navActive(){
 				</li>
 			</ul>
 			<c:if test="${empty sessionScope.user}">
-				<c:forEach var="item" begin="0" end="2" items="${pageBean.pageList}">
+				<c:forEach var="item" items="${pageBean.pageList}">
 					<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
 					<ul>
 						<li>
@@ -63,7 +63,7 @@ function navActive(){
 			<c:if test="${not empty sessionScope.user}">
 				<c:choose>
 					<c:when test="${sessionScope.user.roleShortName == 'normal'}">
-						<c:forEach var="item" begin="0" end="2" items="${pageBean.pageList}">
+						<c:forEach var="item" items="${pageBean.pageList}">
 							<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
 							<ul>
 								<li>

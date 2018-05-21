@@ -23,7 +23,7 @@
 	<div class="m-title"><strong>设计项目信息详情</strong></div>
 	<div id="view-content">
 		<ul>
-			<li><b>需要加工种类：</b>${labor.workNeed}</li>
+			<li><b>设计种类：</b>${labor.workNeed}</li>
 			<li><b>姓名：</b>${labor.contactsName}</li>
 			<li>
 				<b>电话：</b>：

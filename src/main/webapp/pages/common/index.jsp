@@ -88,17 +88,31 @@
         }
 
         function subSearch(type){
+
+            if (type == 1) {
+                location.href="${ctx}/b2b/recruitmentColumn.do?pageIndex=1";
+            } else if (type == 2) {
+                location.href="${ctx}/b2b/personColumn.do?pageIndex=1";
+            } else if (type == 4) {
+                location.href="${ctx}/b2b/laborColumn.do?pageIndex=1";
+            } else if (type == 3) {
+                location.href="${ctx}/b2b/factoryColumn.do?pageIndex=1";
+            }
+        }
+
+        function subSearch1(){
             var text = $("#TextSearch").val();
             if(text==null || text==undefined){
                 text="";
             }
+
+            var type = $("#select_type").val();
+            if(type==null || type==undefined){
+                type=1;
+            }
             if (type == 1) {
                 location.href="${ctx}/b2b/recruitmentColumn.do?pageIndex=1&text="+text;
             } else if (type == 2) {
-                location.href="${ctx}/b2b/personColumn.do?pageIndex=1&text="+text;
-            } else if (type == 4) {
-                location.href="${ctx}/b2b/laborColumn.do?pageIndex=1&text="+text;
-            } else if (type == 3) {
                 location.href="${ctx}/b2b/factoryColumn.do?pageIndex=1&text="+text;
             }
         }
@@ -167,16 +181,20 @@
     <div class="notice clearfix">
         <div class="notice-title"><span class="span1">通知:</span></div>
         <div class="notice-content">
-            <div class="notice-text"><span>请注意:如果无法打开，请直接在Safari访问huizhuan.com, 进入慧赚</span></div>
+            <div class="notice-text"><span>${article.articleTitle}</span></div>
         </div>
     </div>
     <div class="input-box clearfix">
         <div class="left">
             <input type="text" id="TextSearch" placeholder="输入工作室名称或职位"/>
-            <button><img src="${ctx}/common/images/01.png"/></button>
+            <select id="select_type">
+                <option value="1">岗位</option>
+                <option value="2">工作室</option>
+            </select>
+            <%--<button><img src="${ctx}/common/images/01.png"/></button>--%>
         </div>
         <div class="right">
-            <button>搜索</button>
+            <button onclick="subSearch1();">搜索</button>
         </div>
     </div>
     <div class="search-list">
@@ -220,7 +238,7 @@
                                     <fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" />
                                 </div>
                                 <div class="post-name">
-                                    <span class="span1">工种:<i>${item.workType}</i></span>
+                                    <span class="span1">岗位:<i>${item.workType}</i></span>
                                     <span class="span2">${item.address}</span>
                                 </div>
                                 <div class="post-go"><img src="${ctx}/common/images/07.png" alt=""/></div>
@@ -241,7 +259,7 @@
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" />
                                         </div>
                                         <div class="post-name">
-                                            <span class="span1">工种:<i>${item.workType}</i></span>
+                                            <span class="span1">岗位:<i>${item.workType}</i></span>
                                             <span class="span2">${item.address}</span>
                                         </div>
                                         <div class="post-go"><img src="${ctx}/common/images/07.png" alt=""/></div>
@@ -259,7 +277,7 @@
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" />
                                         </div>
                                         <div class="post-name">
-                                            <span class="span1">工种:<i>${item.workType}</i></span>
+                                            <span class="span1">岗位:<i>${item.workType}</i></span>
                                             <span class="span2">${item.address}</span>
                                         </div>
                                         <div class="post-go"><img src="${ctx}/common/images/07.png" alt=""/></div>

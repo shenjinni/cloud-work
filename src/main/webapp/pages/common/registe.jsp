@@ -437,7 +437,7 @@ function registe(){
 			<div class="register">
 				<label>
 					<input type="checkbox" name="" id="agree" value="" onclick="openRegiste();">我已阅读并同意</label>
-				<a class="login-deal" href=""${ctx}/common/checkDetails.do?id=1803142326590017" target="_blank">用户服务协议</a><br>
+				<a class="login-deal" href="${ctx}/common/article.do?id=5">用户服务协议</a><br>
 				<a class="login-submit" id="registeA" href="javascript:void(0);" style="background-color: #CCCCCC;">注册</a>
 			</div>
 		</div>

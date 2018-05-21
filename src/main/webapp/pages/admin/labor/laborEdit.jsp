@@ -44,9 +44,9 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">需要加工种类</label>
+															<label class="control-label">设计种类</label>
 															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="100" name="workNeed" value="${labor.workNeed }" placeholder="请输入需要加工种类"/>
+																<input type="text" class="form-control" maxlength="100" name="workNeed" value="${labor.workNeed }" placeholder="请输入设计种类"/>
 															</div>
 														</div>
 													</div>
@@ -138,7 +138,7 @@
             var obj = $('#form').toObject({mode : 'first'});
 
             var workNeed = obj.workNeed;
-            if(v_alert_isNull(workNeed, '需要加工种类')){
+            if(v_alert_isNull(workNeed, '设计种类')){
                 return;
             }
 
