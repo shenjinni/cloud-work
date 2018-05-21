@@ -57,8 +57,6 @@
 	<!-- 头部 -->
 	<%@ include file="/common/headnew.jsp"%>
 	<div class="search">
-		<h3>
-			<a>织里童装设计网</a></h3>
 
 		<div id="SearchPanel">
 			<input name="TextSearch" type="text" id="TextSearch" value="${text}" />

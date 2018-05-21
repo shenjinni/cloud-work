@@ -295,7 +295,7 @@
     <div class="footer">
         <p class="p1">联系方式：18244913996（叶小姐）</p>
         <p class="p2">©2018 www.zhilitz-fashion.com 浙ICP备18020964号-1</p>
-        <p class="p3"><a href="www.zhilitz-fashion.com">织里童装设计网</a></p>
+        <p class="p3"><a href="${ctx}">织里童装设计网</a></p>
     </div>
 </div>
 </body>
