@@ -37,7 +37,7 @@ public class AdminLaborController {
 
 	/**
 	 *
-	 * @Description: 查询加工活列表
+	 * @Description: 查询设计项目列表
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -48,7 +48,7 @@ public class AdminLaborController {
 
 	/**
 	 *
-	 * @Description: 加工活列表json
+	 * @Description: 设计项目列表json
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -67,7 +67,7 @@ public class AdminLaborController {
 
 	/**
 	 *
-	 * @Description: 新增/修改加工活信息
+	 * @Description: 新增/修改设计项目信息
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -83,7 +83,7 @@ public class AdminLaborController {
 
 	/**
 	 *
-	 * @Description: 新增/修改加工活信息
+	 * @Description: 新增/修改设计项目信息
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -93,7 +93,7 @@ public class AdminLaborController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		Long laborId = labor.getId();
 		result.put("errCode", Constants.result_fail);
-		result.put("errMsg", (laborId == null ? "新增" : "修改" ) + "加工活信息失败，请稍后再试！");
+		result.put("errMsg", (laborId == null ? "新增" : "修改" ) + "设计项目信息失败，请稍后再试！");
 		LocalUser user = null;
 		Object userObj = session.getAttribute("user");
 		if (userObj != null) {
@@ -114,9 +114,9 @@ public class AdminLaborController {
 			int i = cloudWorkLaborService.insert(labor);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
-				result.put("errMsg", "新增加工活信息成功！");
+				result.put("errMsg", "新增设计项目信息成功！");
 
-				log.info("新增加工活信息成功！laborId= " + labor.getId());
+				log.info("新增设计项目信息成功！laborId= " + labor.getId());
 			}
 		} else {
 			labor.setUpdateTime(new Date());
@@ -124,9 +124,9 @@ public class AdminLaborController {
 			int i = cloudWorkLaborService.update(labor);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
-				result.put("errMsg", "修改加工活信息成功！");
+				result.put("errMsg", "修改设计项目信息成功！");
 
-				log.info("修改加工活信息成功！laborId= " + labor.getId());
+				log.info("修改设计项目信息成功！laborId= " + labor.getId());
 			}
 		}
 
@@ -135,7 +135,7 @@ public class AdminLaborController {
 
 	/**
 	 *
-	 * @Description: 加工活信息详情
+	 * @Description: 设计项目信息详情
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -151,7 +151,7 @@ public class AdminLaborController {
 
 	/**
 	 *
-	 * @Description: 修改加工活信息状态
+	 * @Description: 修改设计项目信息状态
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -174,13 +174,13 @@ public class AdminLaborController {
 		}
 		Integer status = labor.getStatus();
 		if (status == null) {
-			log.info("修改加工活信息状态，获取状态值失败！ laborId" + laborId);
+			log.info("修改设计项目信息状态，获取状态值失败！ laborId" + laborId);
 			return result;
 		}
 
 		labor = cloudWorkLaborService.findBeanById(laborId);
 		if (labor == null) {
-			log.info("修改加工活信息状态！获取信息失败！laborId=" + laborId);
+			log.info("修改设计项目信息状态！获取信息失败！laborId=" + laborId);
 			return result;
 		}
 
@@ -191,14 +191,14 @@ public class AdminLaborController {
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);
 			result.put("errMsg", "操作成功！");
-			log.info("修改加工活信息状态成功！laborId=" + laborId + ", status = " + status);
+			log.info("修改设计项目信息状态成功！laborId=" + laborId + ", status = " + status);
 		}
 		return result;
 	}
 
 	/**
 	 *
-	 * @Description: 删除加工活信息
+	 * @Description: 删除设计项目信息
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -207,12 +207,12 @@ public class AdminLaborController {
 	public ModelAndView deleteCloudWorkLabor(@RequestBody CloudWorkLabor labor){
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("errCode", Constants.result_fail);
-		mv.addObject("errMsg", "删除加工活信息失败，请稍后再试！");
+		mv.addObject("errMsg", "删除设计项目信息失败，请稍后再试！");
 		int i = cloudWorkLaborService.delete(labor.getId());
 		if (i == 1) {
 			mv.addObject("errCode", Constants.result_success);
-			mv.addObject("errMsg", "删除加工活信息成功！");
-			log.info("删除加工活信息成功！laborId=" + labor.getId());
+			mv.addObject("errMsg", "删除设计项目信息成功！");
+			log.info("删除设计项目信息成功！laborId=" + labor.getId());
 		}
 		return mv;
 	}

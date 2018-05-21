@@ -43,10 +43,10 @@
 	<c:if test="${not empty pageBean.pageList}">
 		<ul>
 			<li>
-				<span class="cate">设计种类</span>
-				<span class="wh">联系人</span>
-				<span class="tel">电话</span>
-				<span class="date">日期</span>
+				<span class="tel0">设计种类</span>
+				<span class="tel0">联系人</span>
+				<span class="tel1">电话</span>
+				<span class="tel1">日期</span>
 			</li>
 		</ul>
 		<c:if test="${empty sessionScope.user}">
@@ -54,11 +54,11 @@
 				<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
 				<ul>
 					<li>
-						<span class="cate"><a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}">${item.workType}</a></span>
-						<span class="wh">${item.address}</span>
-						<span class="tel">${mobile}</span>
+						<span class="tel0"><a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}">${item.workType}</a></span>
+						<span class="tel0">${item.contactsName}</span>
+						<span class="tel1">${mobile}</span>
 						<span style="display: none;">${item.weights}</span>
-						<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
+						<span class="tel1"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
 					</li>
 				</ul>
 			</c:forEach>
@@ -70,11 +70,11 @@
 						<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
 						<ul>
 							<li>
-								<span class="cate"><a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}">${item.workType}</a></span>
-								<span class="wh">${item.address}</span>
-								<span class="tel">${mobile}</span>
+								<span class="tel0"><a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}">${item.workType}</a></span>
+								<span class="tel0">${item.contactsName}</span>
+								<span class="tel1">${mobile}</span>
 								<span style="display: none;">${item.weights}</span>
-								<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
+								<span class="tel1"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
 							</li>
 						</ul>
 					</c:forEach>
@@ -83,11 +83,11 @@
 					<c:forEach var="item" items="${pageBean.pageList}">
 						<ul>
 							<li>
-								<span class="cate"><a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}">${item.workType}</a></span>
-								<span class="wh">${item.address}</span>
-								<span class="tel">${item.mobile}</span>
+								<span class="tel0"><a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}">${item.workType}</a></span>
+								<span class="tel0">${item.contactsName}</span>
+								<span class="tel1">${item.mobile}</span>
 								<span style="display: none;">${item.weights}</span>
-								<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
+								<span class="tel1"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
 							</li>
 						</ul>
 					</c:forEach>

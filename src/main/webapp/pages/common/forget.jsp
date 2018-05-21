@@ -1,25 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 
 <html>
 <head>
-<meta charset="UTF-8">
-<title>织里童装设计网 - 忘记密码</title>
-<link rel="shortcut icon" href="${ctx}/common/image/favicon.ico" type="image/x-icon" />
-<link rel="stylesheet" type="text/css" href="${ctx}/common/css/reset.css" />
-<link rel="stylesheet" type="text/css" href="${ctx}/common/css/qhcheaderfooter.css?v=1" />
-<link rel="stylesheet" type="text/css" href="${ctx}/common/css/flexslider.css"/>
-<link rel="stylesheet" type="text/css" href="${ctx}/common/css/qhc_main.css"/>
-<link rel="stylesheet" type="text/css" href="${ctx}/common/css/capacity.css"/>
-<link rel="stylesheet" type="text/css" href="${ctx}/common/css/login.css" />
-<script src="${ctx}/common/js/jquery-1.10.1.min.js" type="text/javascript" ></script>
-<script src="${ctx}/common/js/jquery.flexslider.js" type="text/javascript" ></script>
-<script src="${ctx}/common/js/carousel.js" type="text/javascript" charset="utf-8"></script>
-<script src="${ctx}/common/js/jq_scroll.js" type="text/javascript" charset="utf-8"></script>
-<script src="${ctx}/common/js/Union.slimscroll.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="${ctx}/common/js/layer.js" type="text/javascript" charset="utf-8"></script>
+	<meta charset="UTF-8">
+	<title>织里童装设计网 - 注册</title>
+	<link rel="shortcut icon" href="${ctx}/common/image/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/qhcheaderfooter.css?v=1" />
+	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/flexslider.css"/>
+	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/qhc_main.css"/>
+	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/capacity.css"/>
+	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/login.css" />
+	<script src="${ctx}/common/js/jquery-1.10.1.min.js" type="text/javascript" ></script>
+	<script src="${ctx}/common/js/jquery.flexslider.js" type="text/javascript" ></script>
+	<script src="${ctx}/common/js/carousel.js" type="text/javascript" charset="utf-8"></script>
+	<script src="${ctx}/common/js/jq_scroll.js" type="text/javascript" charset="utf-8"></script>
+	<script src="${ctx}/common/js/Union.slimscroll.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="${ctx}/common/js/layer.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 //全局变量
 var usernameFlag = false;
@@ -199,7 +200,7 @@ function openForget(){
 	<div style="overflow: hidden;" class="qhc-main">
 		<div class="login-forget">
 			<span class="login-tit">忘记密码</span>
-			<div style="padding-left: 380px;" class="login-item">
+			<div class="login-item">
 				<ul>
 					<li>
 						<div class="login-itemL">用户名 ：</div>
@@ -224,8 +225,7 @@ function openForget(){
 						<div class="login-itemR">
 							<input type="text" id="flagcode" class="input-2" value="" style="width: 135px;" disabled="disabled" readonly="readonly" onblur="blurFlagcode();" onfocus="focusFlagcode();"/>
 							<div class="login-password" style="margin-right: 40px;">
-								<a class="login-submit" id="getFlagCodeA" href="javascript:void(0);" onclick="getFlagCode();"
-								 style="width: 100px; height: 35px; margin-top: 0px; font-size: 14px; background-color: #CCCCCC;">获取验证码</a>
+								<a class="login-submit" id="getFlagCodeA" href="javascript:void(0);" onclick="getFlagCode();">获取验证码</a>
 							</div>
 						</div>
 						<div class="imassage1" id="flagcode_Error"></div>

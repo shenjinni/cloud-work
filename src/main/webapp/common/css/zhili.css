@@ -202,11 +202,13 @@ ul.tabs li.current a { color: #000; background: #eee; border-top-left-radius: 4p
 .section-cols ul li { width: 100%; float: left; line-height: 30px; border-bottom: #eee 1px solid; text-align: left; clear: both; }
 .section-cols ul li.even { margin-left: 40px; }
 .section-cols ul li span.date { float: right; }
-.section-cols ul li span.tel { float: left; width: 100px; height: 30px; overflow: hidden; }
-.section-cols ul li span.wage { float: left; width: 80px; height: 30px; overflow: hidden; }
-.section-cols ul li span.wh { float: left; width: 70px; height: 30px; overflow: hidden; }
-.section-cols ul li span.cate { float: left; width: 114px; height: 30px; overflow: hidden; }
-
+.section-cols ul li span.tel0 { float: left; width: 21%; height: 30px; overflow: hidden; text-align: left;}
+.section-cols ul li span.tel { float: left; width: 24%; height: 30px; overflow: hidden; text-align: left;}
+.section-cols ul li span.tel1 { float: left; width: 29%; height: 30px; overflow: hidden;text-align: left; }
+.section-cols ul li span.wage { float: left; width: 25%; height: 30px; overflow: hidden; }
+.section-cols ul li span.wh { float: left; width: 23%; height: 30px; overflow: hidden; }
+.section-cols ul li span.cate { float: left; width: 25%; height: 30px; overflow: hidden; }
+.section-cols ul li span .col_span{ float: left; width: 25%; height: 30px; overflow: hidden; }
 .section-list { border-top-left-radius: 0px; border-top-right-radius: 0px; border-top: #00a0e8 4px solid; }
 .section-list ul li { /*width: 770px;*/ float: left; line-height: 30px; border-bottom: #eee 1px solid; clear: both; }
 .section-list ul li.even { margin-left: 40px; }

@@ -21,7 +21,7 @@ import java.util.Map;
 
 /**
  *<pre>
- * 对象功能:cloud_work_person 工人信息管理 控制器类
+ * 对象功能:cloud_work_person 设计师信息管理 控制器类
  * 开发公司:sjn
  * 开发人员:shenjinni
  * 创建时间:2018-04-09 14:02:52
@@ -39,7 +39,7 @@ public class AdminPersonController {
 
 	/**
 	 *
-	 * @Description: 查询工人列表
+	 * @Description: 查询设计师列表
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -50,7 +50,7 @@ public class AdminPersonController {
 
 	/**
 	 *
-	 * @Description: 工人列表json
+	 * @Description: 设计师列表json
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -69,7 +69,7 @@ public class AdminPersonController {
 
 	/**
 	 *
-	 * @Description: 新增/修改工人信息
+	 * @Description: 新增/修改设计师信息
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -85,7 +85,7 @@ public class AdminPersonController {
 
 	/**
 	 *
-	 * @Description: 新增/修改工人信息
+	 * @Description: 新增/修改设计师信息
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -95,7 +95,7 @@ public class AdminPersonController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		Long personId = person.getId();
 		result.put("errCode", Constants.result_fail);
-		result.put("errMsg", (personId == null ? "新增" : "修改" ) + "工人信息失败，请稍后再试！");
+		result.put("errMsg", (personId == null ? "新增" : "修改" ) + "设计师信息失败，请稍后再试！");
 		LocalUser user = null;
 		Object userObj = session.getAttribute("user");
 		if (userObj != null) {
@@ -116,9 +116,9 @@ public class AdminPersonController {
 			int i = cloudWorkPersonService.insert(person);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
-				result.put("errMsg", "新增工人信息成功！");
+				result.put("errMsg", "新增设计师信息成功！");
 
-				log.info("新增工人信息成功！personId= " + person.getId());
+				log.info("新增设计师信息成功！personId= " + person.getId());
 			}
 		} else {
 			person.setUpdateTime(new Date());
@@ -126,9 +126,9 @@ public class AdminPersonController {
 			int i = cloudWorkPersonService.update(person);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
-				result.put("errMsg", "修改工人信息成功！");
+				result.put("errMsg", "修改设计师信息成功！");
 
-				log.info("修改工人信息成功！personId= " + person.getId());
+				log.info("修改设计师信息成功！personId= " + person.getId());
 			}
 		}
 
@@ -137,7 +137,7 @@ public class AdminPersonController {
 
 	/**
 	 *
-	 * @Description: 工人信息详情
+	 * @Description: 设计师信息详情
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -153,7 +153,7 @@ public class AdminPersonController {
 
 	/**
 	 *
-	 * @Description: 修改工人信息状态
+	 * @Description: 修改设计师信息状态
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -176,13 +176,13 @@ public class AdminPersonController {
 		}
 		Integer status = person.getStatus();
 		if (status == null) {
-			log.info("修改工人信息状态，获取状态值失败！ personId" + personId);
+			log.info("修改设计师信息状态，获取状态值失败！ personId" + personId);
 			return result;
 		}
 
 		person = cloudWorkPersonService.findBeanById(personId);
 		if (person == null) {
-			log.info("修改工人信息状态！获取信息失败！personId=" + personId);
+			log.info("修改设计师信息状态！获取信息失败！personId=" + personId);
 			return result;
 		}
 
@@ -193,14 +193,14 @@ public class AdminPersonController {
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);
 			result.put("errMsg", "操作成功！");
-			log.info("修改工人信息状态成功！personId=" + personId + ", status = " + status);
+			log.info("修改设计师信息状态成功！personId=" + personId + ", status = " + status);
 		}
 		return result;
 	}
 
 	/**
 	 *
-	 * @Description: 删除工人信息
+	 * @Description: 删除设计师信息
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -209,12 +209,12 @@ public class AdminPersonController {
 	public ModelAndView deleteCloudWorkPerson(@RequestBody CloudWorkPerson person){
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("errCode", Constants.result_fail);
-		mv.addObject("errMsg", "删除工人信息失败，请稍后再试！");
+		mv.addObject("errMsg", "删除设计师信息失败，请稍后再试！");
 		int i = cloudWorkPersonService.delete(person.getId());
 		if (i == 1) {
 			mv.addObject("errCode", Constants.result_success);
-			mv.addObject("errMsg", "删除工人信息成功！");
-			log.info("删除工人信息成功！personId=" + person.getId());
+			mv.addObject("errMsg", "删除设计师信息成功！");
+			log.info("删除设计师信息成功！personId=" + person.getId());
 		}
 		return mv;
 	}

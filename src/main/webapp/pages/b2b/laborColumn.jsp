@@ -54,7 +54,7 @@
 				<ul>
 					<li>
 						<span class="cate"><a href="${ctx}/b2b/laborDetail.do?id=${item.id}">${item.workNeed}</a></span>
-						<span class="wh">${item.address}</span>
+						<span class="wh">${item.contactsName}</span>
 						<span class="tel">${mobile}</span>
 						<span style="display: none;">${item.weights}</span>
 						<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
@@ -70,7 +70,7 @@
 						<ul>
 							<li>
 								<span class="cate"><a href="${ctx}/b2b/laborDetail.do?id=${item.id}">${item.workNeed}</a></span>
-								<span class="wh">${item.address}</span>
+								<span class="wh">${item.contactsName}</span>
 								<span class="tel">${mobile}</span>
 								<span style="display: none;">${item.weights}</span>
 								<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>
@@ -83,7 +83,7 @@
 						<ul>
 							<li>
 								<span class="cate"><a href="${ctx}/b2b/laborDetail.do?id=${item.id}">${item.workNeed}</a></span>
-								<span class="wh">${item.address}</span>
+								<span class="wh">${item.contactsName}</span>
 								<span class="tel">${item.mobile}</span>
 								<span style="display: none;">${item.weights}</span>
 								<span class="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" /></span>

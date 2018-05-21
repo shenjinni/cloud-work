@@ -7,10 +7,16 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
+	<link rel="stylesheet" href="${ctx}/common/css/normalize.css"/>
+	<link rel="stylesheet" href="${ctx}/common/css/style.css"/>
+	<script src="${ctx}/common/js/jquery-1.10.1.min.js" type="text/javascript" ></script>
 	<title>织里童装设计网</title>
-<script type="text/javascript">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script type="text/javascript">
 	function goPage(pageIndex){
-		var text = $("#TextSearch").val();
+		var text = $("#TextSearch1").val();
 		if(text==null || text==undefined){
 			text="";
 		}
@@ -19,7 +25,7 @@
 	}
 
 	function subSearch1(info){
-		var text = $("#TextSearch").val();
+		var text = $("#TextSearch1").val();
 		if(text==null || text==undefined){
 			text="";
 		}
@@ -55,19 +61,19 @@
 </head>
 <body>
 	<!-- 头部 -->
-	<%@ include file="/common/headnew.jsp"%>
-	<div class="search">
 
-		<div id="SearchPanel">
-			<input name="TextSearch" type="text" id="TextSearch" value="${text}" />
-			<select name="type" id="info_type" onchange="subSearch1(this);" >
-				<option <c:if test="${type == 1}">selected</c:if> value="1">设计师信息</option>
-				<option <c:if test="${type == 2}">selected</c:if> value="2">设计岗位信息</option>
-				<option <c:if test="${type == 3}">selected</c:if> value="3">设计项目信息</option>
-				<option <c:if test="${type == 4}">selected</c:if> value="4">设计工作室信息</option>
+	<div class="input-box clearfix">
+		<div class="left">
+			<input type="text" style="height: 39px;" id="TextSearch1" placeholder="" value="${text}" />
+			<select name="type"  id="info_type" onchange="subSearch1(this);" >
+				<option <c:if test="${type == 1}">selected</c:if> value="1">设计师</option>
+				<option <c:if test="${type == 2}">selected</c:if> value="2">设计岗位</option>
+				<option <c:if test="${type == 3}">selected</c:if> value="3">设计项目</option>
+				<option <c:if test="${type == 4}">selected</c:if> value="4">工作室</option>
 			</select>
 		</div>
 	</div>
+	<br/>
 	<h3 class="infotitle">
 		<c:if test="${type == 1}">设计师信息</c:if>
 		<c:if test="${type == 2}">设计岗位信息</c:if>
@@ -79,8 +85,7 @@
 			<ul>
 				<li>
 					<span class="cate">承接加工</span>
-					<span class="wh">联系人</span>
-					<span class="tel">电话</span>
+
 					<span class="tel">状态</span>
 					<span class="tel">更新日期</span>
 					<span class="tel">操作</span>
@@ -91,8 +96,7 @@
 					<ul>
 						<li>
 							<span class="cate"><a href="${ctx}/b2b/personDetail.do?id=${item.id}">${item.workIntent}</a></span>
-							<span class="wh">${item.address}</span>
-							<span class="tel">${item.mobile}</span>
+
 							<span class="tel">
 								<c:if test="${item.status == -1}">待审核</c:if>
 								<c:if test="${item.status == 1}">审核通过 ${item.weights}</c:if>
@@ -113,8 +117,7 @@
 					<ul>
 						<li>
 							<span class="cate"><a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}">${item.workType}</a></span>
-							<span class="wh">${item.address}</span>
-							<span class="tel">${item.mobile}</span>
+
 							<span class="tel"><c:if test="${item.status == -1}">待审核</c:if>
 								<c:if test="${item.status == 1}">审核通过 ${item.weights}</c:if></span>
 							<span class="tel"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updateTime}" /></span>
@@ -132,8 +135,7 @@
 					<ul>
 						<li>
 							<span class="cate"><a href="${ctx}/b2b/laborDetail.do?id=${item.id}">${item.workNeed}</a></span>
-							<span class="wh">${item.address}</span>
-							<span class="tel">${item.mobile}</span>
+
 							<span class="tel"><c:if test="${item.status == -1}">待审核</c:if>
 								<c:if test="${item.status == 1}">审核通过 ${item.weights}</c:if></span>
 							<span class="tel"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updateTime}" /></span>
@@ -151,8 +153,7 @@
 					<ul>
 						<li>
 							<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
-							<span class="wh">${item.address}</span>
-							<span class="tel">${item.mobile}</span>
+
 							<span class="tel"><c:if test="${item.status == -1}">待审核</c:if>
 								<c:if test="${item.status == 1}">审核通过 ${item.weights}</c:if></span>
 							<span class="tel"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updateTime}" /></span>

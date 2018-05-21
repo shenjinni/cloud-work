@@ -38,7 +38,7 @@ public class AdminRecruitmentController {
 
 	/**
 	 *
-	 * @Description: 查询招工信息列表
+	 * @Description: 查询设计岗位信息列表
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -49,7 +49,7 @@ public class AdminRecruitmentController {
 
 	/**
 	 *
-	 * @Description: 招工信息列表json
+	 * @Description: 设计岗位信息列表json
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -68,7 +68,7 @@ public class AdminRecruitmentController {
 
 	/**
 	 *
-	 * @Description: 新增/修改招工信息信息
+	 * @Description: 新增/修改设计岗位信息信息
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -84,7 +84,7 @@ public class AdminRecruitmentController {
 
 	/**
 	 *
-	 * @Description: 新增/修改招工信息信息
+	 * @Description: 新增/修改设计岗位信息信息
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -94,7 +94,7 @@ public class AdminRecruitmentController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		Long recruitmentId = recruitment.getId();
 		result.put("errCode", Constants.result_fail);
-		result.put("errMsg", (recruitmentId == null ? "新增" : "修改" ) + "招工信息信息失败，请稍后再试！");
+		result.put("errMsg", (recruitmentId == null ? "新增" : "修改" ) + "设计岗位信息信息失败，请稍后再试！");
 		LocalUser user = null;
 		Object userObj = session.getAttribute("user");
 		if (userObj != null) {
@@ -115,9 +115,9 @@ public class AdminRecruitmentController {
 			int i = cloudWorkRecruitmentService.insert(recruitment);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
-				result.put("errMsg", "新增招工信息信息成功！");
+				result.put("errMsg", "新增设计岗位信息信息成功！");
 
-				log.info("新增招工信息信息成功！recruitmentId= " + recruitment.getId());
+				log.info("新增设计岗位信息信息成功！recruitmentId= " + recruitment.getId());
 			}
 		} else {
 			recruitment.setUpdateTime(new Date());
@@ -125,9 +125,9 @@ public class AdminRecruitmentController {
 			int i = cloudWorkRecruitmentService.update(recruitment);
 			if (i == 1) {
 				result.put("errCode", Constants.result_success);
-				result.put("errMsg", "修改招工信息信息成功！");
+				result.put("errMsg", "修改设计岗位信息信息成功！");
 
-				log.info("修改招工信息信息成功！recruitmentId= " + recruitment.getId());
+				log.info("修改设计岗位信息信息成功！recruitmentId= " + recruitment.getId());
 			}
 		}
 
@@ -136,7 +136,7 @@ public class AdminRecruitmentController {
 
 	/**
 	 *
-	 * @Description: 招工信息详情
+	 * @Description: 设计岗位信息详情
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -152,7 +152,7 @@ public class AdminRecruitmentController {
 
 	/**
 	 *
-	 * @Description: 修改招工信息状态
+	 * @Description: 修改设计岗位信息状态
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -175,13 +175,13 @@ public class AdminRecruitmentController {
 		}
 		Integer status = recruitment.getStatus();
 		if (status == null) {
-			log.info("修改招工信息状态，获取状态值失败！ recruitmentId" + recruitmentId);
+			log.info("修改设计岗位信息状态，获取状态值失败！ recruitmentId" + recruitmentId);
 			return result;
 		}
 
 		recruitment = cloudWorkRecruitmentService.findBeanById(recruitmentId);
 		if (recruitment == null) {
-			log.info("修改招工信息状态！获取信息失败！recruitmentId=" + recruitmentId);
+			log.info("修改设计岗位信息状态！获取信息失败！recruitmentId=" + recruitmentId);
 			return result;
 		}
 
@@ -192,14 +192,14 @@ public class AdminRecruitmentController {
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);
 			result.put("errMsg", "操作成功！");
-			log.info("修改招工信息状态成功！recruitmentId=" + recruitmentId + ", status = " + status);
+			log.info("修改设计岗位信息状态成功！recruitmentId=" + recruitmentId + ", status = " + status);
 		}
 		return result;
 	}
 
 	/**
 	 *
-	 * @Description: 删除招工信息信息
+	 * @Description: 删除设计岗位信息信息
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -208,12 +208,12 @@ public class AdminRecruitmentController {
 	public ModelAndView deleteCloudWorkRecruitment(@RequestBody CloudWorkRecruitment recruitment){
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("errCode", Constants.result_fail);
-		mv.addObject("errMsg", "删除招工信息信息失败，请稍后再试！");
+		mv.addObject("errMsg", "删除设计岗位信息信息失败，请稍后再试！");
 		int i = cloudWorkRecruitmentService.delete(recruitment.getId());
 		if (i == 1) {
 			mv.addObject("errCode", Constants.result_success);
-			mv.addObject("errMsg", "删除招工信息信息成功！");
-			log.info("删除招工信息信息成功！recruitmentId=" + recruitment.getId());
+			mv.addObject("errMsg", "删除设计岗位信息信息成功！");
+			log.info("删除设计岗位信息信息成功！recruitmentId=" + recruitment.getId());
 		}
 		return mv;
 	}

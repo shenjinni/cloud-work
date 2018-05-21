@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  *<pre>
- * 对象功能:前台工人信息页面controller
+ * 对象功能:前台设计师信息页面controller
  * 开发公司:sjn
  * 开发人员:shenjinni
  * 创建时间:2018-04-12 14:03:17
@@ -40,7 +40,7 @@ public class B2bPersonController {
 
 	/**
 	 *
-	 * @Description: 工人信息栏目页
+	 * @Description: 设计师信息栏目页
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -66,13 +66,13 @@ public class B2bPersonController {
 			}
 			int pageIndex = Integer.parseInt(pageIndexStr);
 
-			// 工人信息分页
+			// 设计师信息分页
 			pageIndex = pageIndex == 0 ? 1 : pageIndex;// 默认设置为1
 			Map<String, Object> result = cloudWorkPersonService.getPage(pageIndex, textsearch);
 			result.put("pageIndex", pageIndex);
 			req.setAttribute("pageBean", result);
 		} catch (Exception e) {
-			String msg = "工人信息栏目页异常！";
+			String msg = "设计师信息栏目页异常！";
 			log.warn(msg);
 			e.printStackTrace();
 			throw new Exception(msg);
@@ -83,7 +83,7 @@ public class B2bPersonController {
 
 	/**
 	 *
-	 * @Description: 工人信息详细页
+	 * @Description: 设计师信息详细页
 	 * @author guwei
 	 * @return ModelAndView
 	 */
@@ -106,7 +106,7 @@ public class B2bPersonController {
 
 	/**
 	 *
-	 * @Description: 工人信息编辑页
+	 * @Description: 设计师信息编辑页
 	 * @author guwei
 	 * @return ModelAndView
 	 */
@@ -125,12 +125,12 @@ public class B2bPersonController {
 				return new ModelAndView("/b2b/personUpdate");
 			}
 		} catch (NumberFormatException e) {
-			String msg = "工人信息明细页异常：id参数格式异常！";
+			String msg = "设计师信息明细页异常：id参数格式异常！";
 			log.warn(msg);
 			e.printStackTrace();
 			throw new Exception(msg);
 		} catch (Exception e) {
-			String msg = "工人信息明细页异常！";
+			String msg = "设计师信息明细页异常！";
 			log.warn(msg);
 			e.printStackTrace();
 			throw new Exception(msg);
@@ -139,7 +139,7 @@ public class B2bPersonController {
 
 	/**
 	 *
-	 * @Description: 工人信息发布页
+	 * @Description: 设计师信息发布页
 	 * @author guwei
 	 * @return ModelAndView
 	 */
@@ -150,7 +150,7 @@ public class B2bPersonController {
 
 	/**
 	 *
-	 * @Description: 工人信息发布
+	 * @Description: 设计师信息发布
 	 * @author guwei
 	 * @return ModelAndView
 	 */
@@ -159,7 +159,7 @@ public class B2bPersonController {
 	public Map<String,Object> personPublish(@RequestBody CloudWorkPerson person, HttpSession session) {
 		Map<String,Object> result = new HashMap<>();
 		result.put("errCode", Constants.result_fail);
-		result.put("errMsg", "发布工人信息失败，请稍后再试！");
+		result.put("errMsg", "发布设计师信息失败，请稍后再试！");
 
 		LocalUser user = null;
 		Object userObj = session.getAttribute("user");
@@ -196,9 +196,9 @@ public class B2bPersonController {
         int i = cloudWorkPersonService.insert(person);
         if (i == 1) {
             result.put("errCode", Constants.result_success);
-            result.put("errMsg", "发布工人信息成功！");
+            result.put("errMsg", "发布设计师信息成功！");
 
-            log.info("发布工人信息成功！personId= " + person.getId());
+            log.info("发布设计师信息成功！personId= " + person.getId());
         }
         return result;
 	}
