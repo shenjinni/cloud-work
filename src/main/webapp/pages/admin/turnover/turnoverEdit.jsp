@@ -60,7 +60,10 @@
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
 															<projectel for="turnover_title" class="control-projectel">业务类型：</projectel>
-															${workType }
+															<c:if test="${workType eq 1 }">设计师信息</c:if>
+															<c:if test="${workType eq 2 }">设计岗位信息</c:if>
+															<c:if test="${workType eq 3 }">设计项目信息</c:if>
+															<c:if test="${workType eq 4 }">设计工作室信息</c:if>
 														</div>
 													</div>
 												</div>
