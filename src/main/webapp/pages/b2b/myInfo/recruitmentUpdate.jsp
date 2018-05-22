@@ -39,18 +39,23 @@
 		});
 
         $(function () {
-            $("#form1").validate({
-                rules: {
-                    contactsName: "required",
-                    mobile: "required",
-                    workType: "required"
-                },
-                messages: {
-                    contactsName: "请输入联系人",
-                    mobile: "请输入电话",
-                    workType: "请输入设计种类"
-                }
-            });
+			$("#form1").validate({
+				rules: {
+					contactsName: "required",
+					mobile: {required:true, phone:true},
+					salary:"number",
+					workType: "required"
+				},
+				messages: {
+					contactsName: "请输入联系人",
+					mobile: {
+						required:"请输入电话号码",
+						phone:"电话号码格式错误，请重新输入11位有效手机号"
+					},
+					salary:"工资格式错误，请输入合法的数字",
+					workType: "请输入设计种类"
+				}
+			});
 
         })
 

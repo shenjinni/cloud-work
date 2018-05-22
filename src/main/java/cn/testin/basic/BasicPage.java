@@ -9,23 +9,30 @@ package cn.testin.basic;
  */
 public class BasicPage {
 
-	private String order; //排序方式
+	private String orderName; //排序方式
+	private String sortName; //排序方式
 	private Integer limit;//每页记录数
 	private Integer offset;//记录起始数
 	private int pageSize;//每页记录数
 	private int pageNumber;//页码
-	/**
-	 * @return the order
-	 */
-	public String getOrder() {
-		return order;
+
+
+	public String getSortName() {
+		return sortName;
 	}
-	/**
-	 * @param order the order to set
-	 */
-	public void setOrder(String order) {
-		this.order = order;
+
+	public void setSortName(String sortName) {
+		this.sortName = sortName;
 	}
+
+	public String getOrderName() {
+		return orderName;
+	}
+
+	public void setOrderName(String orderName) {
+		this.orderName = orderName;
+	}
+
 	/**
 	 * @return the limit
 	 */

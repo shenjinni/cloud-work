@@ -88,18 +88,19 @@
 							title: '失效时间',
 							formatter : function(value, row, index) {
 								var validityTime = new Date(row.validityTime);
-								return validityTime.format('yyyy-MM-dd hh:mm:ss');
+								return validityTime.format('yyyy-MM-dd');
 							},
 							align:'center'
 						},
 						{
-							field: 'createTime',
+							field: 'create_time',
 							title: '创建时间',
 							formatter : function(value, row, index) {
 								var createTime = new Date(row.createTime);
-								return createTime.format('yyyy-MM-dd hh:mm:ss');
+								return createTime.format('yyyy-MM-dd');
 							},
-							align:'center'
+							align:'center',
+							sortable: true
 						},
 						{
 							field: 'action',
@@ -127,7 +128,7 @@
 					striped: true,
 					cache: false,
 					pagination: true, 
-					sortable: false,
+					sortable: true,
 					sortOrder: "asc",
 					dataType: "json",
 					sidePagination: "server",
@@ -142,6 +143,8 @@
 	                    var temp = $("#form_sea").serializeJsonObject();
 	                    temp["limit"] = params.limit;                        //页面大小
 	                    temp["offset"] = params.offset;  //页码
+						temp["sortName"] = params.sort;
+						temp["orderName"] = params.order;
 	                    return temp;
 	                },
 					responseHandler:function(res) {

@@ -44,12 +44,17 @@
             $("#form1").validate({
                 rules: {
                     contactsName: "required",
-                    mobile: "required",
+					mobile: {required:true, phone:true},
+					number:{digits:true,min:1},
                     workNeed: "required"
                 },
                 messages: {
                     contactsName: "请输入联系人",
-                    mobile: "请输入电话",
+					mobile: {
+						required:"请输入电话号码",
+						phone:"电话号码格式错误，请重新输入11位有效手机号"
+					},
+					number:"设计数量错误，请输入正整数",
                     workNeed: "请输入设计种类"
                 }
             });

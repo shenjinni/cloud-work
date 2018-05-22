@@ -114,6 +114,10 @@
                 location.href="${ctx}/b2b/recruitmentColumn.do?pageIndex=1&text="+text;
             } else if (type == 2) {
                 location.href="${ctx}/b2b/factoryColumn.do?pageIndex=1&text="+text;
+            } else if (type == 3) {
+                location.href="${ctx}/b2b/personColumn.do?pageIndex=1&text="+text;
+            } else if (type == 4) {
+                location.href="${ctx}/b2b/laborColumn.do?pageIndex=1&text="+text;
             }
         }
 
@@ -221,7 +225,9 @@
             <input type="text" id="TextSearch" placeholder="输入工作室名称或职位"/>
             <select id="select_type">
                 <option value="1">岗位</option>
+                <option value="3">设计师</option>
                 <option value="2">工作室</option>
+                <option value="4">项目</option>
             </select>
             <%--<button><img src="${ctx}/common/images/01.png"/></button>--%>
         </div>
@@ -325,7 +331,7 @@
         </ul>
     </div>
     <div class="footer">
-        <p class="p1">联系方式：18244913996（叶小姐）</p>
+        <p class="p1">联系方式：<a href="tel://18244913996" style="position:relative">18244913996 </a>（叶小姐）</p>
         <p class="p2">©2018 www.zhilitz-fashion.com 浙ICP备18020964号-1</p>
         <p class="p3"><a href="${ctx}">织里童装设计网</a></p>
     </div>

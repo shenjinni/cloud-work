@@ -72,7 +72,30 @@ public class LocalUserService {
 
 	// 通过id查找用户
 	public LocalUser findUserById(Long id) {
-		return dao.selectByPrimaryKey(id);
+		LocalUser user = dao.selectByPrimaryKey(id);
+		UserRole userRole = userRoleDao.getUserRoleByUserId(user.getUserId());
+		// 过期角色一律改回普通用户
+		Date now = new Date();
+		if (now.compareTo(userRole.getValidityTime()) == 1) {
+			Role role = roleDao.findRoleByShortName(Constants.role_normal);
+			userRole.setRoleId(role.getRoleId());
+
+			Calendar calendar= Calendar.getInstance();
+			calendar.set(2999, 12, 31);  //年月日  也可以具体到时分秒如calendar.set(2015, 10, 12,11,32,52);
+			Date date = calendar.getTime();//date就是你需要的时间
+			userRole.setValidityTime(date);
+			userRoleDao.updateUserRoleByUserId(userRole);
+
+			user.setRoleName(role.getRoleName());
+			user.setRoleShortName(role.getRoleShortName());
+		} else {
+			user.setRoleName(userRole.getRoleName());
+			user.setRoleShortName(userRole.getRoleShortName());
+		}
+
+		user.setRoleId(userRole.getRoleId());
+		user.setValidityTime(userRole.getValidityTime());
+		return user;
 	}
 	
 	//创建用户

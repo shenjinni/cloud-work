@@ -72,7 +72,7 @@
 																<select class="form-control" id="role_id" name="roleId">
 																	<c:forEach items="${roles}" var="role">
 																		<option
-																				<c:if test="${role.roleShortName == 'normal'}">selected</c:if>
+																				<c:if test="${role.roleId == user.roleId}">selected</c:if>
 																				value="${role.roleId}">${role.roleName}</option>
 																	</c:forEach>
 																</select>
@@ -93,10 +93,10 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<adel for="validityTime" class="control-adel">失效日期：${user.validityTime}</adel>
+															<adel for="validityTime" class="control-adel">失效时间：</adel>
 															<div class="input-icon right">
-																<input id="validityTime" class="Wdate form-control" name="validityTime" placeholder="选择失效日期"
-																	   style="border: 1px solid #ccc;width:50%;height: 37px;" type="text" onClick="WdatePicker({minDate:currentDate()})"
+																<input id="validityTime" class="Wdate form-control" name="validityTime" placeholder="选择失效时间"
+																	   style="border: 1px solid #ccc;width:50%;height: 37px;" type="text" onClick="WdatePicker({minDate:currentDate(),qsEnabled:true,quickSel:['2000-10-01','%y-%M-01','%y-%M-%ld']})"
 																	   pattern="yyyy-MM-dd"
 																	   value="<fmt:formatDate value='${user.validityTime}' pattern="yyyy-MM-dd"/>"/>
 															</div>

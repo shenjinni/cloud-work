@@ -103,7 +103,8 @@
                 {
                     field: 'scale',
                     title: '规模人数',
-                    align:'center'
+                    align:'center',
+                    sortable: true
                 },
                 {
                     field: 'status',
@@ -122,34 +123,38 @@
                 {
                     field: 'weights',
                     title: '置顶等级',
-                    align:'center'
+                    align:'center',
+                    sortable: true
                 },
                 {
-                    field: 'validityTime',
+                    field: 'validity_time',
                     title: '置顶失效时间',
                     formatter : function(value, row, index) {
                         var validityTime = new Date(row.validityTime);
                         return validityTime.format('yyyy-MM-dd');
                     },
-                    align:'center'
+                    align:'center',
+                    sortable: true
                 },
                 {
-                    field: 'createTime',
+                    field: 'create_time',
                     title: '添加时间',
                     formatter : function(value, row, index) {
                         var createTime = new Date(row.createTime);
                         return createTime.format('yyyy-MM-dd');
                     },
-                    align:'center'
+                    align:'center',
+                    sortable: true
                 },
                 {
-                    field: 'updateTime',
+                    field: 'update_time',
                     title: '更新时间',
                     formatter : function(value, row, index) {
                         var updateTime = new Date(row.updateTime);
                         return updateTime.format('yyyy-MM-dd');
                     },
-                    align:'center'
+                    align:'center',
+                    sortable: true
                 },
                 {
                     field: 'action',
@@ -185,7 +190,7 @@
                 striped: true,
                 cache: false,
                 pagination: true,
-                sortable: false,
+                sortable: true,
                 sortOrder: "asc",
                 dataType: "json",
                 sidePagination: "server",
@@ -200,6 +205,8 @@
                     var temp = $("#form_sea").serializeJsonObject();
                     temp["limit"] = params.limit;                        //页面大小
                     temp["offset"] = params.offset;  //页码
+                    temp["sortName"] = params.sort;
+                    temp["orderName"] = params.order;
                     return temp;
                 },
                 responseHandler:function(res) {

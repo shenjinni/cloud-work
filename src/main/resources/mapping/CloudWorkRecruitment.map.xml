@@ -76,6 +76,9 @@
 				<if test="status != null  and status != ''" >
 					and cloud_work_recruitment.status = #{status,jdbcType=NUMERIC}
 				</if>
+				<if test="createUser != null  and createUser != ''" >
+					and cloud_work_recruitment.create_user = #{createUser,jdbcType=NUMERIC}
+				</if>
 			</when>
 			<otherwise>
 				1=1
@@ -99,7 +102,21 @@
 				</if>
 			</otherwise>
 		</choose>
-		order by cloud_work_vip.weights desc, cloud_work_recruitment.update_time desc
+		<choose>
+			<when test="sortName != null and orderName != null " >
+				<choose>
+					<when test="sortName == 'weights' or sortName == 'validity_time'" >
+						order by cloud_work_vip.${sortName} ${orderName}
+					</when>
+					<otherwise>
+						order by cloud_work_recruitment.${sortName} ${orderName}
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				order by cloud_work_recruitment.update_time desc
+			</otherwise>
+		</choose>
 		<if test="offset != null and limit != null ">
 			limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
 		</if>
@@ -121,6 +138,9 @@
 				or cloud_work_recruitment.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%'))
 				<if test="status != null  and status != ''" >
 					and cloud_work_recruitment.status = #{status,jdbcType=NUMERIC}
+				</if>
+				<if test="createUser != null  and createUser != ''" >
+					and cloud_work_recruitment.create_user = #{createUser,jdbcType=NUMERIC}
 				</if>
 			</when>
 			<otherwise>

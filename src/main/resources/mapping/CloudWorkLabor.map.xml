@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.testin.dao.CloudWorkLaborMapper">
 	<resultMap id="CloudWorkLabor" type="cn.testin.bean.CloudWorkLabor">
 		<id property="id" column="id" jdbcType="NUMERIC"/>
@@ -72,9 +72,15 @@
 		where
 		<choose>
 			<when test="searchText != null  and searchText != ''">
-				cloud_work_labor.work_need like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				(cloud_work_labor.work_need like concat('%',#{searchText,jdbcType=VARCHAR},'%')
 				or cloud_work_labor.contacts_name like concat('%',#{searchText,jdbcType=VARCHAR},'%')
-				or cloud_work_labor.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				or cloud_work_labor.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%'))
+				<if test="status != null  and status != ''" >
+					and cloud_work_labor.status = #{status,jdbcType=NUMERIC}
+				</if>
+				<if test="createUser != null  and createUser != ''" >
+					and cloud_work_labor.create_user = #{createUser,jdbcType=NUMERIC}
+				</if>
 			</when>
 			<otherwise>
 				1=1
@@ -95,7 +101,24 @@
 				</if>
 			</otherwise>
 		</choose>
-		order by cloud_work_vip.weights desc, cloud_work_labor.update_time desc
+
+		<choose>
+			<when test="sortName != null and orderName != null " >
+				<choose>
+					<when test="sortName == 'weights' or sortName == 'validity_time'" >
+						order by cloud_work_vip.${sortName} ${orderName}
+					</when>
+					<otherwise>
+						order by cloud_work_labor.${sortName} ${orderName}
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				order by cloud_work_labor.update_time desc
+			</otherwise>
+		</choose>
+
+
 		<if test="offset != null and limit != null ">
 			limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
 		</if>
@@ -111,9 +134,15 @@
 		where
 		<choose>
 			<when test="searchText != null  and searchText != ''">
-				cloud_work_labor.work_need like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				(cloud_work_labor.work_need like concat('%',#{searchText,jdbcType=VARCHAR},'%')
 				or cloud_work_labor.contacts_name like concat('%',#{searchText,jdbcType=VARCHAR},'%')
-				or cloud_work_labor.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%')
+				or cloud_work_labor.mobile like concat('%',#{searchText,jdbcType=VARCHAR},'%'))
+				<if test="status != null  and status != ''" >
+					and cloud_work_labor.status = #{status,jdbcType=NUMERIC}
+				</if>
+				<if test="createUser != null  and createUser != ''" >
+					and cloud_work_labor.create_user = #{createUser,jdbcType=NUMERIC}
+				</if>
 			</when>
 			<otherwise>
 				1=1

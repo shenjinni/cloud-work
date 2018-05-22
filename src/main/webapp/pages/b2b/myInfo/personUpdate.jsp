@@ -39,18 +39,25 @@
         });
 
         $(function () {
-            $("#form1").validate({
-                rules: {
-                    contactsName: "required",
-                    mobile: "required",
-                    workIntent: "required"
-                },
-                messages: {
-                    contactsName: "请输入姓名",
-                    mobile: "请输入电话号码",
-                    workIntent: "请输入工种"
-                }
-            });
+			$("#form1").validate({
+				rules: {
+					contactsName: "required",
+					mobile: {required:true, phone:true},
+					workIntent: "required",
+					age:{digits:true,range:[18,100]},
+					salary:"number"
+				},
+				messages: {
+					contactsName: "请输入姓名",
+					mobile: {
+						required:"请输入电话号码",
+						phone:"电话号码格式错误，请重新输入11位有效手机号"
+					},
+					workIntent: "请输入设计种类",
+					age:"年龄格式错误，请输入18-100之间整数",
+					salary:"工资格式错误，请输入合法的数字"
+				}
+			});
         })
 
         function changeFlagcode(){

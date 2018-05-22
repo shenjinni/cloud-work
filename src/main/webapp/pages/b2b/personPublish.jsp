@@ -24,15 +24,14 @@
             submitHandler: function () {
                 var obj = $('#form1').toObject({mode : 'first'});
 
+
                 cfg.data = JSON.stringify(obj);
 
                 cfg.success = function ret(data) {
                     alert(data.errMsg);
                     if (data.errCode == 'success') {
                         window.location.href = "${ctx}/b2b/personColumn.do";
-                    } else {
-						//alert("普通用户每天只能发布三条信息，会员可无限发布～");
-					}
+                    }
                 };
 
                 cfg.url = '${ctx}/b2b/personPublish.json';
@@ -44,13 +43,20 @@
             $("#form1").validate({
                 rules: {
                     contactsName: "required",
-                    mobile: "required",
-                    workIntent: "required"
+                    mobile: {required:true, phone:true},
+                    workIntent: "required",
+					age:{digits:true,range:[18,100]},
+					salary:"number"
                 },
                 messages: {
                     contactsName: "请输入姓名",
-                    mobile: "请输入电话号码",
-                    workIntent: "请输入设计种类"
+                    mobile: {
+						required:"请输入电话号码",
+						phone:"电话号码格式错误，请重新输入11位有效手机号"
+					},
+                    workIntent: "请输入设计种类",
+					age:"年龄格式错误，请输入18-100之间整数",
+					salary:"工资格式错误，请输入合法的数字"
                 }
             });
         })

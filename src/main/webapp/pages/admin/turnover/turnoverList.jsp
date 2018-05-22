@@ -103,13 +103,14 @@
 				align:'center'
 			},
 			{
-				field: 'createTime',
+				field: 'create_time',
 				title: '添加时间',
 				formatter : function(value, row, index) {
 					var createTime = new Date(row.createTime);
 					return createTime.format('yyyy-MM-dd');
 				},
-				align:'center'
+				align:'center',
+				sortable: true
 			}]
             initTable();
 
@@ -125,7 +126,7 @@
                 striped: true,
                 cache: false,
                 pagination: true,
-                sortable: false,
+                sortable: true,
                 sortOrder: "asc",
                 dataType: "json",
                 sidePagination: "server",
@@ -140,6 +141,8 @@
                     var temp = $("#form_sea").serializeJsonObject();
                     temp["limit"] = params.limit;                        //页面大小
                     temp["offset"] = params.offset;  //页码
+					temp["sortName"] = params.sort;
+					temp["orderName"] = params.order;
                     return temp;
                 },
                 responseHandler:function(res) {

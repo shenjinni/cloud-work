@@ -57,7 +57,14 @@
 		<if test="workType != null  and workType != ''" >
 			and work_type = #{workType,jdbcType=NUMERIC}
 		</if>
-		order by create_time DESC
+		<choose>
+			<when test="sortName != null and orderName != null " >
+				order by ${sortName} ${orderName}
+			</when>
+			<otherwise>
+				order by create_time desc
+			</otherwise>
+		</choose>
 		<if test="offset != null and limit != null ">
 			limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
 		</if>

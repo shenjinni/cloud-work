@@ -35,6 +35,17 @@
 		location.href="${ctx}/b2b/myInfo/infoColumn.do?pageIndex=1&text="+text+"&type="+type;
 	}
 
+	function subSearch2(){
+		var text = $("#TextSearch1").val();
+		if(text==null || text==undefined){
+			text="";
+		}
+
+		var type = $("#info_type").val();
+
+		location.href="${ctx}/b2b/myInfo/infoColumn.do?pageIndex=1&text="+text+"&type="+type;
+	}
+
 	function refresh(id, type) {
 		$.ajax({
 			type : "POST",
@@ -64,7 +75,7 @@
 
 	<div class="input-box clearfix">
 		<div class="left">
-			<input type="text" style="height: 39px;" id="TextSearch1" placeholder="" value="${text}" />
+			<input type="text" style="height: 39px;" onblur="subSearch2();" id="TextSearch1" placeholder="" value="${text}" />
 			<select name="type"  id="info_type" onchange="subSearch1(this);" >
 				<option <c:if test="${type == 1}">selected</c:if> value="1">设计师</option>
 				<option <c:if test="${type == 2}">selected</c:if> value="2">设计岗位</option>
