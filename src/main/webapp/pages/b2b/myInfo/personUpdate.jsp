@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-	<title>免费设计师登记</title>
+	<title>设计师登记</title>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhiliaccount.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/admin/font-awesome.min.css" />
@@ -29,7 +29,7 @@
                 cfg.success = function ret(data) {
                     alert(data.errMsg);
                     if (data.errCode == 'success') {
-                        window.location.href = "${ctx}/b2b/personColumn.do";
+                        window.location.href = "${ctx}/b2b/myInfo/infoColumn.do?type=1";
                     }
                 };
 
@@ -62,12 +62,12 @@
 <form method="post" id="form1">
 	<div class="wap-item-header">
 		<a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a>
-		<span>免费设计师登记</span>
+		<span>设计师登记</span>
 	</div>
 	<div class="login-register">
 		<div class="login">
 			<div class="group">
-				<label>工种</label>
+				<label>设计种类</label>
 				<input type="text" maxlength="100" value="${person.workIntent}" name="workIntent" class="text" />
 			</div>
 			<div class="group">
@@ -92,7 +92,7 @@
 			</div>
 			<div class="group">
 				<label>性别</label>
-				<select class="form-control" name="sex">
+				<select class="form-control" style="margin-left: 17px;margin-top: -25px;" name="sex">
 					<option value="1" <c:if test="${person.sex == 1}">selected</c:if>>男</option>
 					<option value="2" <c:if test="${person.sex == 2}">selected</c:if>>女</option>
 				</select>
@@ -114,7 +114,7 @@
 				<%--</div>--%>
 			<%--</div>--%>
 			<div class="group">
-				<input type="submit" name="btnSave" value="免费发布" id="submit" class="input-button blue-button" />
+				<input type="submit" name="btnSave" value="重新发布" id="submit" class="input-button blue-button" />
 			</div>
 		</div>
 	</div>

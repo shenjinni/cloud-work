@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-	<title>免费设计项目登记</title>
+	<title>设计项目登记</title>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhiliaccount.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/admin/font-awesome.min.css" />
@@ -29,7 +29,7 @@
 				cfg.success = function ret(data) {
 					alert(data.errMsg);
 					if (data.errCode == 'success') {
-						window.location.href = "${ctx}/b2b/laborColumn.do";
+                        window.location.href = "${ctx}/b2b/myInfo/infoColumn.do?type=3";
 					}
 				};
 
@@ -63,7 +63,7 @@
 <form method="post" id="form1">
 	<div class="wap-item-header">
 		<a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a>
-		<span>免费设计项目登记</span>
+		<span>设计项目登记</span>
 	</div>
 	<div class="login-register">
 		<div class="login">
@@ -103,7 +103,7 @@
 				<%--</div>--%>
 			<%--</div>--%>
 			<div class="group">
-				<input type="submit" name="btnSave" value="免费发布" id="btnSave" class="input-button blue-button" />
+				<input type="submit" name="btnSave" value="重新发布" id="btnSave" class="input-button blue-button" />
 			</div>
 
 		</div>

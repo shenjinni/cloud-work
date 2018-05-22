@@ -102,12 +102,9 @@ function hideAll(text){
 <body>
 	<!--   main    -->
 	<div style="overflow: hidden;" class="qhc-main">
-		<div class="login-img">
-			<img src="${ctx}/common/images/u0.png" onclick="location.href='${ctx}/index.jsp'" style="cursor: pointer;"/>
-		</div>
 		<div class="login-forget">
 			<span class="login-tit">重置密码</span>
-			<div style="padding-left: 380px;" class="login-item">
+			<div class="login-item">
 				<ul>
 					<li>
 						<div class="login-itemL">新密码 ：</div>
@@ -116,7 +113,7 @@ function hideAll(text){
 						</div>
 						<div class="imassage1" id="password_Error"></div>
 						<div class="imassage1" id="password_Info" style="color: #CCCCCC">建议使用字母、数字、"-"、"_"两种及以上的组合，6-20个字符</div>
-						<div class="imassage1" id="password_Success" style="color: green;display: none;">√</div>
+						<div class="imassage1 register_sure" id="password_Success" style="color: green;display: none;">√</div>
 					</li>
 					<li>
 						<div class="login-itemL">确认密码 ：</div>
@@ -125,7 +122,7 @@ function hideAll(text){
 						</div>
 						<div class="imassage1" id="password2_Error"></div>
 						<div class="imassage1" id="password2_Info" style="color: #CCCCCC">请再次输入密码</div>
-						<div class="imassage1" id="password2_Success" style="color: green;display: none;">√</div>
+						<div class="imassage1 register_sure" id="password2_Success" style="color: green;display: none;">√</div>
 					</li>
 				</ul>
 			</div>

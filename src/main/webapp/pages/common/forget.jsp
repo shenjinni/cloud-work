@@ -209,7 +209,7 @@ function openForget(){
 						</div>
 						<div class="imassage1" id="username_Error"></div>
 						<div class="imassage1" id="username_Info" style="color: #CCCCCC">请输入您的用户名</div>
-						<div class="imassage1" id="username_Success" style="color: green;display: none;">√</div>
+						<div class="imassage1 register_sure" id="username_Success" style="color: green;display: none;">√</div>
 					</li>
 					<li>
 						<div class="login-itemL">手&nbsp;&nbsp;&nbsp;机 ：</div>
@@ -218,19 +218,19 @@ function openForget(){
 						</div>
 						<div class="imassage1" id="mobile_Error"></div>
 						<div class="imassage1" id="mobile_Info" style="color: #CCCCCC">请输入注册时使用的手机号</div>
-						<div class="imassage1" id="mobile_Success" style="color: green;display: none;">√</div>
+						<div class="imassage1 register_sure" id="mobile_Success" style="color: green;display: none;">√</div>
 					</li>
 					<li>
 						<div class="login-itemL">验证码 ：</div>
 						<div class="login-itemR">
 							<input type="text" id="flagcode" class="input-2" value="" style="width: 135px;" disabled="disabled" readonly="readonly" onblur="blurFlagcode();" onfocus="focusFlagcode();"/>
-							<div class="login-password" style="margin-right: 40px;">
+							<div class="login-password">
 								<a class="login-submit" id="getFlagCodeA" href="javascript:void(0);" onclick="getFlagCode();">获取验证码</a>
 							</div>
 						</div>
 						<div class="imassage1" id="flagcode_Error"></div>
 						<div class="imassage1" id="flagcode_Info" style="color: #CCCCCC">请输入手机验证码</div>
-						<div class="imassage1" id="flagcode_Success" style="color: green;display: none;">√</div>
+						<div class="imassage1 register_sure" id="flagcode_Success" style="color: green;display: none;">√</div>
 					</li>
 				</ul>
 			</div>

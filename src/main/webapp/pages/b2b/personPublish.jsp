@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-	<title>免费设计师登记</title>
+	<title>设计师登记</title>
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhili.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/zhiliaccount.css" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/common/css/admin/font-awesome.min.css" />
@@ -64,7 +64,7 @@
 <form method="post" id="form1">
 	<div class="wap-item-header">
 		<a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a>
-		<span>免费设计师登记</span>
+		<span>设计师登记</span>
 	</div>
 	<div class="login-register">
 		<div class="login">
@@ -94,7 +94,7 @@
 			</div>
 			<div class="group">
 				<label>性别</label>
-				<select class="form-control" name="sex">
+				<select class="form-control" style="margin-left: 17px;margin-top: -25px;" name="sex">
 					<option value="1">男</option>
 					<option value="2">女</option>
 				</select>
@@ -116,7 +116,7 @@
 				<%--</div>--%>
 			<%--</div>--%>
 			<div class="group">
-				<input type="submit" name="btnSave" value="免费发布" id="submit" class="input-button blue-button" />
+				<input type="submit" name="btnSave" value="发布" id="submit" class="input-button blue-button" />
 			</div>
 		</div>
 	</div>

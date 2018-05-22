@@ -98,7 +98,7 @@ public class B2bMyController {
 			Map<String, Object> result = new HashMap<>();
 
 			if (type.equals("1")) {
-				// 工人信息分页
+				// 设计师信息分页
 				result = cloudWorkPersonService.getMyPage(pageIndex, textsearch, user.getUserId());
 			}
 
@@ -127,7 +127,7 @@ public class B2bMyController {
 
 	/**
 	 *
-	 * @Description: 工人信息详细页
+	 * @Description: 设计师信息详细页
 	 * @author guwei
 	 * @return ModelAndView
 	 */
@@ -151,7 +151,7 @@ public class B2bMyController {
 
 	/**
 	 *
-	 * @Description: 工人信息发布页
+	 * @Description: 设计师信息发布页
 	 * @author guwei
 	 * @return ModelAndView
 	 */
@@ -243,7 +243,7 @@ public class B2bMyController {
 
 	/**
 	 *
-	 * @Description: 工人信息发布
+	 * @Description: 设计师信息发布
 	 * @author guwei
 	 * @return ModelAndView
 	 */
@@ -252,7 +252,7 @@ public class B2bMyController {
 	public Map<String,Object> personPublish(@RequestBody CloudWorkPerson person) {
 		Map<String,Object> result = new HashMap<>();
 		result.put("errCode", Constants.result_fail);
-		result.put("errMsg", "发布工人信息失败，请稍后再试！");
+		result.put("errMsg", "发布设计师信息失败，请稍后再试！");
 
 		CloudWorkPerson personOld = cloudWorkPersonService.findBeanById(person.getId());
 		personOld.setWorkIntent(person.getWorkIntent());
@@ -269,16 +269,16 @@ public class B2bMyController {
 		int i = cloudWorkPersonService.update(personOld);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);
-			result.put("errMsg", "修改工人信息成功！");
+			result.put("errMsg", "修改设计师信息成功！");
 
-			log.info("修改工人信息成功！personId= " + person.getId());
+			log.info("修改设计师信息成功！personId= " + person.getId());
 		}
 		return result;
 	}
 
 	/**
 	 *
-	 * @Description: 发布招工信息
+	 * @Description: 发布设计岗位信息
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -287,7 +287,7 @@ public class B2bMyController {
 	public Map<String, Object> recruitmentPublish(@RequestBody CloudWorkRecruitment recruitment){
 		Map<String, Object> result = new HashMap<>();
 		result.put("errCode", Constants.result_fail);
-		result.put("errMsg", "发布招工信息信息失败，请稍后再试！");
+		result.put("errMsg", "发布设计岗位信息信息失败，请稍后再试！");
 		CloudWorkRecruitment recruitmentOld = cloudWorkRecruitmentService.findBeanById(recruitment.getId());
 
 		recruitmentOld.setWorkType(recruitment.getWorkType());
@@ -302,9 +302,9 @@ public class B2bMyController {
 		int i = cloudWorkRecruitmentService.update(recruitmentOld);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);
-			result.put("errMsg", "修改招工信息信息成功！");
+			result.put("errMsg", "修改设计岗位信息信息成功！");
 
-			log.info("修改招工信息信息成功！recruitmentId= " + recruitment.getId());
+			log.info("修改设计岗位信息信息成功！recruitmentId= " + recruitment.getId());
 		}
 
 		return result;
@@ -312,7 +312,7 @@ public class B2bMyController {
 
 	/**
 	 *
-	 * @Description: 发布加工活信息
+	 * @Description: 发布设计项目信息
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -321,7 +321,7 @@ public class B2bMyController {
 	public Map<String, Object> laborPublish(@RequestBody CloudWorkLabor labor){
 		Map<String, Object> result = new HashMap<>();
 		result.put("errCode", Constants.result_fail);
-		result.put("errMsg", "发布加工活信息失败，请稍后再试！");
+		result.put("errMsg", "发布设计项目信息失败，请稍后再试！");
 
 		CloudWorkLabor laborOld = cloudWorkLaborService.findBeanById(labor.getId());
 		laborOld.setWorkNeed(labor.getWorkNeed());
@@ -336,9 +336,9 @@ public class B2bMyController {
 		int i = cloudWorkLaborService.update(laborOld);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);
-			result.put("errMsg", "修改加工活信息成功！");
+			result.put("errMsg", "修改设计项目信息成功！");
 
-			log.info("修改加工活信息成功！laborId= " + labor.getId());
+			log.info("修改设计项目信息成功！laborId= " + labor.getId());
 		}
 
 		return result;
@@ -346,7 +346,7 @@ public class B2bMyController {
 
 	/**
 	 *
-	 * @Description: 发布加工厂信息
+	 * @Description: 发布设计工作室信息
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -355,7 +355,7 @@ public class B2bMyController {
 	public Map<String, Object> factoryPublish(@RequestBody CloudWorkFactory factory){
 		Map<String, Object> result = new HashMap<>();
 		result.put("errCode", Constants.result_fail);
-		result.put("errMsg", "发布加工厂信息失败，请稍后再试！");
+		result.put("errMsg", "发布设计工作室信息失败，请稍后再试！");
 
 		CloudWorkFactory factoryOld = cloudWorkFactoryService.findBeanById(factory.getId());
 
@@ -370,9 +370,9 @@ public class B2bMyController {
 		int i = cloudWorkFactoryService.update(factoryOld);
 		if (i == 1) {
 			result.put("errCode", Constants.result_success);
-			result.put("errMsg", "修改加工厂信息成功！");
+			result.put("errMsg", "修改设计工作室信息成功！");
 
-			log.info("修改加工厂信息成功！factoryId= " + factory.getId());
+			log.info("修改设计工作室信息成功！factoryId= " + factory.getId());
 		}
 
 		return result;

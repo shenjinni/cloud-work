@@ -10,7 +10,39 @@
 	<title>织里童装设计网</title>
 	<script type="text/javascript">
 
+        function getDetail(id) {
+            var userrole = '${sessionScope.user.roleShortName}';
 
+            if (userrole == 'normal') {
+                $.ajax({
+                    type : "POST",
+                    url : "checkLook2.json",
+                    dataType : "json",
+                    contentType : 'application/json;charset=UTF-8',
+                    success : function(res){
+                        if("success" == res.errCode){
+                            location.href="${ctx}/b2b/recruitmentDetail.do?id="+id;
+                        } else {
+                            var code = res.errMsg;
+                            if (code == 1) {
+                                alert("普通用户只能看3条");
+                            } else if (code == 2) {
+                                alert("未登录不能查看");
+                            }
+                        }
+                    },
+                    error : function(XMLHttpRequest, textStatus,
+                                     errorThrown) {
+                        alert("查看失败！");
+                    },
+                    complete : function(XMLHttpRequest, textStatus) {
+                    }
+                });
+            } else {
+                location.href="${ctx}/b2b/recruitmentDetail.do?id="+id;
+            }
+
+        }
 
         function goPage(pageIndex){
             var text = $("#TextSearch").val();
@@ -18,17 +50,14 @@
                 text="";
             }
 
-			/*var userrole = '${sessionScope.user.roleShortName}';
-
-			if (userrole == 'normal' && pageIndex > 1) {
-				alert("未登录/普通用户只能查看三条");
-				return;
-			}*/
 
             location.href="${ctx}/b2b/recruitmentColumn.do?pageIndex="+pageIndex+"&text="+text;
         }
         function navActive(){
             $("#navLi_2").addClass("active");
+        }
+        function alertLogin() {
+            alert("未登录用户不能查看详情~");
         }
 
 	</script>
@@ -54,7 +83,7 @@
 				<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
 				<ul>
 					<li>
-						<span class="tel0"><a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}">${item.workType}</a></span>
+						<span class="tel0"><a onclick="alertLogin();" href="javascript:void(0);">${item.workType}</a></span>
 						<span class="tel0">${item.contactsName}</span>
 						<span class="tel1">${mobile}</span>
 						<span style="display: none;">${item.weights}</span>
@@ -70,7 +99,7 @@
 						<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
 						<ul>
 							<li>
-								<span class="tel0"><a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}">${item.workType}</a></span>
+								<span class="tel0"><a onclick="getDetail(${item.id});" href="javascript:void(0);">${item.workType}</a></span>
 								<span class="tel0">${item.contactsName}</span>
 								<span class="tel1">${mobile}</span>
 								<span style="display: none;">${item.weights}</span>
@@ -83,7 +112,7 @@
 					<c:forEach var="item" items="${pageBean.pageList}">
 						<ul>
 							<li>
-								<span class="tel0"><a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}">${item.workType}</a></span>
+								<span class="tel0"><a onclick="getDetail(${item.id});" href="javascript:void(0);">${item.workType}</a></span>
 								<span class="tel0">${item.contactsName}</span>
 								<span class="tel1">${item.mobile}</span>
 								<span style="display: none;">${item.weights}</span>

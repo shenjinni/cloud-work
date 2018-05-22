@@ -117,6 +117,38 @@
             }
         }
 
+        function alertLogin() {
+            alert("未登录用户不能查看详情~");
+        }
+
+        function getDetail(id) {
+            $.ajax({
+                type : "POST",
+                url : "${ctx}/b2b/checkLook2.json",
+                dataType : "json",
+                contentType : 'application/json;charset=UTF-8',
+                success : function(res){
+                    if("success" == res.errCode){
+                        location.href="${ctx}/b2b/recruitmentDetail.do?id="+id;
+                    } else {
+                        var code = res.errMsg;
+                        if (code == 1) {
+                            alert("普通用户只能看3条");
+                        } else if (code == 2) {
+                            alert("未登录不能查看");
+                        }
+                    }
+                },
+                error : function(XMLHttpRequest, textStatus,
+                                 errorThrown) {
+                    alert("查看失败！");
+                },
+                complete : function(XMLHttpRequest, textStatus) {
+                }
+            });
+
+        }
+
     </script>
 </head>
 <body>
@@ -233,7 +265,7 @@
                     <c:forEach var="item" begin="0" end="3" items="${pageBean.pageList}">
                         <c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
                         <li>
-                            <a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}" class="clearfix">
+                            <a onclick="alertLogin();" href="javascript:void(0);" class="clearfix">
                                 <div class="post-time">
                                     <fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" />
                                 </div>
@@ -254,7 +286,7 @@
                             <c:forEach var="item" begin="0" end="3" items="${pageBean.pageList}">
                                 <c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
                                 <li>
-                                    <a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}" class="clearfix">
+                                    <a onclick="getDetail(${item.id});" href="javascript:void(0);" class="clearfix">
                                         <div class="post-time">
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${item.createTime}" />
                                         </div>

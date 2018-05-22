@@ -184,6 +184,11 @@
     .login-forget{
         width:100%;
     }
+    .imassage{
+        float: left;
+        line-height: 50px;
+        margin-left: 100px;
+    }
     .login-tit{
         font-size:16px;
         height:20px;
@@ -237,7 +242,7 @@
         background-color:#ccc;
         float:left;
     }
-    #registeA{
+    #registeA,#submitsA{
         width:60%;
         height:30px;
         line-height:30px;
@@ -271,7 +276,7 @@
     }
     .login-item ul li{
         margin-bottom:20px;
-        height:28px;
+        height:60px;
     }
     #flagcode{
         width:38%;

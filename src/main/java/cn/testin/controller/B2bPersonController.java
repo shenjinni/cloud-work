@@ -172,21 +172,6 @@ public class B2bPersonController {
 			return result;
 		}
 
-		// 查看是否是普通用户，并且发布条数超过3条
-		if (user.getRoleShortName().equals("normal")) {
-			Integer pulishtime = (Integer) RedisUtil.get("publishtime_1_" + user.getUserId());
-			if (pulishtime > 2) {
-				result.put("errMsg", "普通用户每天只能发布3条，充值为会员可无限发布～");
-				log.info("普通用户每天只能发布3条,publishtime_1_已超出！personId= " + user.getUserId() + ", pulishtime = " + pulishtime);
-				return result;
-			}
-
-			Integer vartime = RedisUtil.getRemainSecondsOneDay(new Date());
-
-			RedisUtil.save("publishtime_1_" + user.getUserId(), pulishtime + 1, vartime);
-			log.info("普通用户每天只能发布3条,publishtime_1_次数记录！personId= " + user.getUserId() + ", pulishtime = " + pulishtime + "， 有效时间 = " + vartime);
-		}
-
         person.setId(RandomUtils.g());
         person.setStatus(-1);
         person.setCreateTime(new Date());
@@ -201,6 +186,53 @@ public class B2bPersonController {
             log.info("发布设计师信息成功！personId= " + person.getId());
         }
         return result;
+	}
+
+	/**
+	 *
+	 * @Description: 设计师信息查看次数
+	 * @author guwei
+	 * @return ModelAndView
+	 */
+	@RequestMapping("checkLook1.json")
+	@ResponseBody
+	public Map<String,Object> checkLook1(HttpSession session) {
+		Map<String,Object> result = new HashMap<>();
+		result.put("errCode", Constants.result_fail);
+		result.put("errMsg", 1);
+
+		LocalUser user = null;
+		Object userObj = session.getAttribute("user");
+		if (userObj != null) {
+			user = (LocalUser) userObj;
+		}
+
+		if (user == null){
+			result.put("errMsg", 2);
+			return result;
+		}
+
+		// 查看是否是普通用户，并且发布条数超过3条
+		if (user.getRoleShortName().equals("normal")) {
+			Integer pulishtime = (Integer) RedisUtil.get("publishtime_1_" + user.getUserId());
+			if (pulishtime == null) {
+				pulishtime = 0;
+			}
+			if (pulishtime > 2) {
+				result.put("errMsg", 1);
+				log.info("普通用户每天只能查看3条,publishtime_1_已超出！personId= " + user.getUserId() + ", pulishtime = " + pulishtime);
+				return result;
+			}
+
+			Integer vartime = RedisUtil.getRemainSecondsOneDay(new Date());
+
+			RedisUtil.save("publishtime_1_" + user.getUserId(), pulishtime + 1, vartime);
+			log.info("普通用户每天只能查看3条,publishtime_1_次数记录！personId= " + user.getUserId() + ", pulishtime = " + pulishtime + "， 有效时间 = " + vartime);
+		}
+
+		result.put("errCode", Constants.result_success);
+		result.put("errMsg", 0);
+		return result;
 	}
 
 
