@@ -171,7 +171,7 @@
                     <c:when test="${sessionScope.user.roleShortName == 'admin'}">
                         <a href="${ctx}/admin/home.do">进入后台</a>
                     </c:when>
-                    <c:otherwise><a href="${ctx}/b2b/myInfo/infoColumn.do">我发布的信息</a></c:otherwise>
+                    <c:otherwise><a href="${ctx}/b2b/myInfo/infoColumn.do">我的发布信息</a></c:otherwise>
                 </c:choose>
 
                 <a href="${ctx}/common/logout.do">退出</a>

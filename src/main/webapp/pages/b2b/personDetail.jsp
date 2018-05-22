@@ -62,7 +62,6 @@
 			</li>
 			<span id="Label1">
 				<li><b>年龄：</b> ${person.age}</li>
-				<li><b>生肖：</b>${person.zodiac}</li>
 				<li><b>性别：</b>
 				<c:if test="${person.sex eq 1}">男</c:if>
 					<c:if test="${person.sex eq 2}">女</c:if>

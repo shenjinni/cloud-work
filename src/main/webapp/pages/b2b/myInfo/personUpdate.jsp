@@ -87,15 +87,11 @@
 				<input type="text" maxlength="20" name="age" class="text" value="${person.age}"/>
 			</div>
 			<div class="group">
-				<label>生肖</label>
-				<input type="text" maxlength="10" name="zodiac" class="text" value="${person.zodiac}"/>
-			</div>
-			<div class="group">
 				<label>性别</label>
-				<select class="form-control" style="margin-left: 17px;margin-top: -25px;" name="sex">
-					<option value="1" <c:if test="${person.sex == 1}">selected</c:if>>男</option>
-					<option value="2" <c:if test="${person.sex == 2}">selected</c:if>>女</option>
-				</select>
+				<div>
+					<input type="radio" <c:if test="${person.sex == 1}">checked</c:if> style="width:10%; margin-left: 18px;display: inline-block;" name="sex" value="1"/><span>男</span>
+					<input type="radio" <c:if test="${person.sex == 2}">checked</c:if> style="width:10%; margin-left: 18px;display: inline-block;" name="sex" value="2"/><span>女</span>
+				</div>
 			</div>
 			<div class="group">
 				<label>哪里人</label>

@@ -81,8 +81,8 @@ function navActive(){
 				<c:forEach var="item" items="${pageBean.pageList}">
 					<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
 					<ul>
-						<li>
-							<span class="cate"><a onclick="alertLogin(${item.id});" href="javascript:void(0);">${item.workIntent}</a></span>
+						<li onclick="alertLogin(${item.id});">
+							<span class="cate">${item.workIntent}</span>
 							<span class="wh">${item.contactsName}</span>
 							<span class="tel">${mobile}</span>
 							<span style="display: none;">${item.weights}</span>
@@ -97,8 +97,8 @@ function navActive(){
 						<c:forEach var="item" items="${pageBean.pageList}">
 							<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
 							<ul>
-								<li>
-									<span class="cate"><a onclick="getDetail(${item.id});" href="javascript:void(0);">${item.workIntent}</a></span>
+								<li onclick="getDetail(${item.id});">
+									<span class="cate">${item.workIntent}</span>
 									<span class="wh">${item.contactsName}</span>
 									<span class="tel">${mobile}</span>
 									<span style="display: none;">${item.weights}</span>
@@ -110,8 +110,8 @@ function navActive(){
 					<c:otherwise>
 						<c:forEach var="item" items="${pageBean.pageList}">
 							<ul>
-								<li>
-									<span class="cate"><a onclick="getDetail(${item.id});" href="javascript:void(0);">${item.workIntent}</a></span>
+								<li onclick="getDetail(${item.id});">
+									<span class="cate">${item.workIntent}</span>
 									<span class="wh">${item.contactsName}</span>
 									<span class="tel">${item.mobile}</span>
 									<span style="display: none;">${item.weights}</span>

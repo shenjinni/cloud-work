@@ -85,7 +85,7 @@
 						},
 						{
 							field: 'validityTime',
-							title: '到期时间',
+							title: '失效时间',
 							formatter : function(value, row, index) {
 								var validityTime = new Date(row.validityTime);
 								return validityTime.format('yyyy-MM-dd hh:mm:ss');

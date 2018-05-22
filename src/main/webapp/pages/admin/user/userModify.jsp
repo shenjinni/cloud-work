@@ -93,11 +93,12 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<adel for="validityTime" class="control-adel">失效日期：</adel>
+															<adel for="validityTime" class="control-adel">失效日期：${user.validityTime}</adel>
 															<div class="input-icon right">
 																<input id="validityTime" class="Wdate form-control" name="validityTime" placeholder="选择失效日期"
 																	   style="border: 1px solid #ccc;width:50%;height: 37px;" type="text" onClick="WdatePicker({minDate:currentDate()})"
-																	   pattern="yyyy-MM-dd"/>
+																	   pattern="yyyy-MM-dd"
+																	   value="<fmt:formatDate value='${user.validityTime}' pattern="yyyy-MM-dd"/>"/>
 															</div>
 														</div>
 													</div>

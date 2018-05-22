@@ -97,22 +97,14 @@
 												<div class="row">
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
-															<label class="control-label">生肖</label>
-															<div class="input-icon right">
-																<input type="text" class="form-control" maxlength="10" name="zodiac" value="${person.zodiac}" placeholder="请输入生肖"/>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-6" style="width: 50%;">
-														<div class="form-group">
 															<label class="control-label">性别</label>
 															<div class="input-icon right">
-																<select class="form-control" name="sex">
+																<input type="radio" name="sex" <c:if test="${person.sex == 1}">checked</c:if> value="1">男
+																<input type="radio" name="sex" <c:if test="${person.sex == 2}">checked</c:if> value="2">女
+																<%--<select class="form-control" name="sex">
 																	<option value="1" <c:if test="${person.sex == 1}">selected</c:if>>男</option>
 																	<option value="2" <c:if test="${person.sex == 2}">selected</c:if>>女</option>
-																</select>
+																</select>--%>
 															</div>
 														</div>
 													</div>

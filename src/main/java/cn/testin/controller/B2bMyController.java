@@ -23,7 +23,7 @@ import java.util.Map;
 
 /**
  *<pre>
- * 对象功能:我发布的信息页面controller
+ * 对象功能:我的发布信息页面controller
  * 开发公司:sjn
  * 开发人员:shenjinni
  * 创建时间:2018-05-03 14:03:17
@@ -50,7 +50,7 @@ public class B2bMyController {
 
 	/**
 	 *
-	 * @Description: 我发布的信息栏目页
+	 * @Description: 我的发布信息栏目页
 	 * @author Jinni Shen
 	 * @return ModelAndView
 	 */
@@ -116,7 +116,7 @@ public class B2bMyController {
 			result.put("pageIndex", pageIndex);
 			req.setAttribute("pageBean", result);
 		} catch (Exception e) {
-			String msg = "我发布的信息栏目页异常！";
+			String msg = "我的发布信息栏目页异常！";
 			log.warn(msg);
 			e.printStackTrace();
 			throw new Exception(msg);

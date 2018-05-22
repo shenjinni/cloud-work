@@ -107,16 +107,6 @@
 											<div class="row">
 												<div class="col-md-6" style="width: 50%;">
 													<div class="form-group">
-														<label class="control-label">生肖：</label>
-														<div class="input-icon right">
-															${person.zodiac}
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6" style="width: 50%;">
-													<div class="form-group">
 														<label class="control-label">性别：</label>
 														<div class="input-icon right">
 															<c:if test="${person.sex == 1}">男</c:if>

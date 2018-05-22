@@ -199,7 +199,7 @@ ul.tabs li.current a { color: #000; background: #eee; border-top-left-radius: 4p
 .search #RadioButton1, .search #RadioButton2 { margin-top: 15px; float: left; }
 .search label { margin-top: 10px; float: left; margin-left: 5px; margin-right: 10px; }
 .section-cols { border-top-left-radius: 0px; border-top-right-radius: 0px; border-top: #00a0e8 4px solid; text-align: center; margin: 10px; }
-.section-cols ul li { width: 100%; float: left; line-height: 30px; border-bottom: #eee 1px solid; text-align: left; clear: both; }
+.section-cols ul li { width: 100%; float: left; line-height: 30px; border-bottom: #eee 1px solid; text-align: left; clear: both; cursor: pointer;}
 .section-cols ul li.even { margin-left: 40px; }
 .section-cols ul li span.date { float: right; }
 .section-cols ul li span.tel0 { float: left; width: 21%; height: 30px; overflow: hidden; text-align: left;}

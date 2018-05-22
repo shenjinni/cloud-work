@@ -99,7 +99,7 @@
 
 							<span class="tel">
 								<c:if test="${item.status == -1}">待审核</c:if>
-								<c:if test="${item.status == 1}">审核通过 ${item.weights}</c:if>
+								<c:if test="${item.status == 1}">审核通过</c:if>
 							</span>
 							<span class="tel"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updateTime}" /></span>
 							<span class="tel">
@@ -119,7 +119,7 @@
 							<span class="cate"><a href="${ctx}/b2b/recruitmentDetail.do?id=${item.id}">${item.workType}</a></span>
 
 							<span class="tel"><c:if test="${item.status == -1}">待审核</c:if>
-								<c:if test="${item.status == 1}">审核通过 ${item.weights}</c:if></span>
+								<c:if test="${item.status == 1}">审核通过</c:if></span>
 							<span class="tel"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updateTime}" /></span>
 							<span class="tel">
 								<a href="infoUpdate.do?id=${item.id}&type=2">编辑</a>
@@ -137,7 +137,7 @@
 							<span class="cate"><a href="${ctx}/b2b/laborDetail.do?id=${item.id}">${item.workNeed}</a></span>
 
 							<span class="tel"><c:if test="${item.status == -1}">待审核</c:if>
-								<c:if test="${item.status == 1}">审核通过 ${item.weights}</c:if></span>
+								<c:if test="${item.status == 1}">审核通过</c:if></span>
 							<span class="tel"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updateTime}" /></span>
 							<span class="tel">
 								<a href="infoUpdate.do?id=${item.id}&type=3">编辑</a>
@@ -155,7 +155,7 @@
 							<span class="cate"><a href="${ctx}/b2b/factoryDetail.do?id=${item.id}">${item.workNeed}</a></span>
 
 							<span class="tel"><c:if test="${item.status == -1}">待审核</c:if>
-								<c:if test="${item.status == 1}">审核通过 ${item.weights}</c:if></span>
+								<c:if test="${item.status == 1}">审核通过</c:if></span>
 							<span class="tel"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updateTime}" /></span>
 							<span class="tel">
 								<a href="infoUpdate.do?id=${item.id}&type=4">编辑</a>

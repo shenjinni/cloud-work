@@ -79,8 +79,8 @@
 			<c:forEach var="item" items="${pageBean.pageList}">
 				<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
 				<ul>
-					<li>
-						<span class="cate"><a onclick="alertLogin();" href="javascript:void(0);">${item.workNeed}</a></span>
+					<li onclick="alertLogin();">
+						<span class="cate">${item.workNeed}</span>
 						<span class="wh">${item.contactsName}</span>
 						<span class="tel">${mobile}</span>
 						<span style="display: none;">${item.weights}</span>
@@ -95,8 +95,8 @@
 					<c:forEach var="item" items="${pageBean.pageList}">
 						<c:set var="mobile" value="${fn:substring(item.mobile,0,3)}****${fn:substring(item.mobile,7,11)}"></c:set>
 						<ul>
-							<li>
-								<span class="cate"><a onclick="getDetail(${item.id});" href="javascript:void(0);">${item.workNeed}</a></span>
+							<li onclick="getDetail(${item.id});">
+								<span class="cate">${item.workNeed}</span>
 								<span class="wh">${item.contactsName}</span>
 								<span class="tel">${mobile}</span>
 								<span style="display: none;">${item.weights}</span>
@@ -108,8 +108,8 @@
 				<c:otherwise>
 					<c:forEach var="item" items="${pageBean.pageList}">
 						<ul>
-							<li>
-								<span class="cate"><a onclick="getDetail(${item.id});" href="javascript:void(0);">${item.workNeed}</a></span>
+							<li onclick="getDetail(${item.id});">
+								<span class="cate">${item.workNeed}</span>
 								<span class="wh">${item.contactsName}</span>
 								<span class="tel">${item.mobile}</span>
 								<span style="display: none;">${item.weights}</span>

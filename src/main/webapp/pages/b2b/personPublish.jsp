@@ -89,15 +89,16 @@
 				<input type="text" maxlength="20" name="age" class="text" value="" />
 			</div>
 			<div class="group">
-				<label>生肖</label>
-				<input type="text" maxlength="10" name="zodiac" class="text" value="" />
-			</div>
-			<div class="group">
 				<label>性别</label>
-				<select class="form-control" style="margin-left: 17px;margin-top: -25px;" name="sex">
+				<div>
+					<input type="radio" style="width:10%; margin-left: 18px;display: inline-block;" name="sex" value="1"/><span>男</span>
+					<input type="radio" style="width:10%; margin-left: 18px;display: inline-block;" name="sex" value="2"/><span>女</span>
+				</div>
+
+				<%--<radio class="form-control" style="margin-left: 17px;margin-top: -25px;" name="sex">
 					<option value="1">男</option>
 					<option value="2">女</option>
-				</select>
+				</radio>--%>
 			</div>
 			<div class="group">
 				<label>哪里人</label>
