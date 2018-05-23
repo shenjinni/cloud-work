@@ -41,6 +41,8 @@
 
 
 	<script type="text/javascript" src="${ctx}/common/js/casicT_validate.js"></script>
+    <script src="${ctx}/common/js/jquery.validate.js" type="text/javascript" ></script>
+
     <style>
     	.hh {
 		    line-height: 36px;

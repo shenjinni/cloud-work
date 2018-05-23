@@ -105,7 +105,7 @@
 
 											</div>
 											<div class="form-actions text-center pal">
-												<button type="button" class="btn btn-primary" id="submit">保存</button>
+												<button type="submit" class="btn btn-primary" id="submit">保存</button>
 											</div>
 										</div>
 									</div>
@@ -124,25 +124,11 @@
 <script type="text/javascript">
     $(".l-list1").show();
 
-    $(document).ready(function(){
-        // 提交操作
-        $("#submit").click(function() {
+
+
+    $.validator.setDefaults({
+        submitHandler: function () {
             var obj = $('#form').toObject({mode : 'first'});
-
-            var workNeed = obj.workNeed;
-            if(v_alert_isNull(workNeed, '设计种类')){
-                return;
-            }
-
-            var contactsName = obj.contactsName;
-            if(v_alert_isNull(contactsName, '联系人')){
-                return;
-            }
-
-            var address = obj.address;
-            if(v_alert_isNull(address, '地址')){
-                return;
-            }
 
             cfg.data = JSON.stringify(obj);
 
@@ -155,8 +141,29 @@
 
             cfg.url = 'updateFactory.json';
             $.ajax(cfg);
-        });
+        }
     });
+
+    $(function () {
+        $("#form").validate({
+            rules: {
+                contactsName: "required",
+                mobile: {required:true, phone:true},
+                scale:{digits:true,min:1},
+                workNeed: "required"
+            },
+            messages: {
+                contactsName: "请输入联系人",
+                mobile: {
+                    required:"请输入电话号码",
+                    phone:"电话号码格式错误，请重新输入11位有效手机号"
+                },
+                scale:"规模人数错误，请输入正整数",
+                workNeed: "请输入设计种类"
+            }
+        });
+
+    })
 </script>
 
 </body>

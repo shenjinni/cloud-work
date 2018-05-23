@@ -2,9 +2,8 @@ package cn.testin.util;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class StringUtil {
@@ -182,6 +181,21 @@ public class StringUtil {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * 获取过去第几天的日期(- 操作) 或者 未来 第几天的日期( + 操作)
+	 *
+	 * @return
+	 */
+	public static String getDateAdd(int addDay) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + addDay);
+		Date today = calendar.getTime();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String result = format.format(today);
+		return result;
+
 	}
 	public static void main(String[] args) {
 

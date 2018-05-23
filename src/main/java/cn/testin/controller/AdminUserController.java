@@ -11,6 +11,7 @@ import cn.testin.service.LocalUserService;
 import cn.testin.service.RoleService;
 import cn.testin.service.UserRoleService;
 import cn.testin.util.RandomUtils;
+import cn.testin.util.StringUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -98,6 +99,15 @@ public class AdminUserController {
 			List<Role> roles = roleService.selectRoles();
 			mv.addObject("user", User);
 			mv.addObject("roles", roles);
+
+			// 获取后七天，后一个月时间
+			String day7 = StringUtil.getDateAdd(7);
+			String day30 = StringUtil.getDateAdd(30);
+			String day60 = StringUtil.getDateAdd(60);
+			String day90 = StringUtil.getDateAdd(90);
+			String dayBn = StringUtil.getDateAdd(180);
+			mv.addObject("day7", day7).addObject("day30", day30).addObject("day60", day60)
+					.addObject("day90", day90).addObject("dayBn", dayBn);
 		}
 		return mv;
 	}

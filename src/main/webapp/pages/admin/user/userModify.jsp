@@ -80,7 +80,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row" id="money_div" style="display: none;">
+												<div class="row" id="money_div" <c:if test="${user.roleId != '1801031821250000'}">style="display: none;"</c:if>>
 													<div class="col-md-6" style="width: 50%;">
 														<div class="form-group">
 															<projectel for="turnover_title" class="control-projectel">金额</projectel>
@@ -96,7 +96,7 @@
 															<adel for="validityTime" class="control-adel">失效时间：</adel>
 															<div class="input-icon right">
 																<input id="validityTime" class="Wdate form-control" name="validityTime" placeholder="选择失效时间"
-																	   style="border: 1px solid #ccc;width:50%;height: 37px;" type="text" onClick="WdatePicker({minDate:currentDate(),qsEnabled:true,quickSel:['2000-10-01','%y-%M-01','%y-%M-%ld']})"
+																	   style="border: 1px solid #ccc;width:50%;height: 37px;" type="text" onClick="WdatePicker({minDate:currentDate(),qsEnabled:true,quickSel:['${day7}','${day30}','${day60}','${day90}','${dayBn}']})"
 																	   pattern="yyyy-MM-dd"
 																	   value="<fmt:formatDate value='${user.validityTime}' pattern="yyyy-MM-dd"/>"/>
 															</div>
@@ -105,7 +105,7 @@
 												</div>
 											</div>
 											<div class="form-actions text-center pal">
-												<button type="button" class="btn btn-primary" id="submit">保存</button>
+												<button type="submit" class="btn btn-primary" id="submit">保存</button>
 											</div>
 										</div>
 									</div>
@@ -123,34 +123,57 @@
 <script type="text/javascript">
 	$(".l-list2").show();
 
-	$(document).ready(function(){
-		// 提交操作
-		$("#submit").click(function() {
-			var obj = $('#form').toObject({mode : 'first'});
 
-			cfg.data = JSON.stringify(obj);
+    $.validator.setDefaults({
+        submitHandler: function () {
+            var obj = $('#form').toObject({mode : 'first'});
 
-			cfg.success = function ret(data) {
-				alert(data.errMsg);
-				if (data.errCode == 'success') {
-					window.location.href = "userList.do";
-				}
-			};
+            var money = obj.money;
+            if (!$("#money_div").is(":hidden")) {
+                if(v_alert_isNull(money, '金额')){
+                    return;
+                }
+			}
 
-			cfg.url = 'updateUser.json';
-			$.ajax(cfg);
-		});
+            cfg.data = JSON.stringify(obj);
+
+            cfg.success = function ret(data) {
+                alert(data.errMsg);
+                if (data.errCode == 'success') {
+                    window.location.href = "userList.do";
+                }
+            };
+
+            cfg.url = 'updateUser.json';
+            $.ajax(cfg);
+        }
+    });
+
+    $(function () {
+        $("#form").validate({
+            rules: {
+                money:{ number:true}
+            },
+            messages: {
+
+                money:{
+                    number:"金额格式错误，请输入合法的数字"
+
+                }
+            }
+        });
 
         $("#role_id").change(function(){
             var roletype = $("#role_id").val();
             if (roletype == '1801031821250000') {
                 $("#money_div").show();
-			} else {
+            } else {
                 $("#money_div").hide();
-			}
+            }
 
         });
-	});
+
+    })
 
 
 </script>

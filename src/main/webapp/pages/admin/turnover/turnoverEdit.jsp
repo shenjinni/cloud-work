@@ -93,7 +93,7 @@
 															<adel for="validityTime" class="control-adel">失效日期：</adel>
 															<div class="input-icon right">
 																<input id="validityTime" class="Wdate form-control" name="validityTime" placeholder="选择失效日期"
-																	   style="border: 1px solid #ccc;width:50%;height: 37px;" type="text" onClick="WdatePicker({minDate:currentDate()})"
+																	   style="border: 1px solid #ccc;width:50%;height: 37px;" type="text" onClick="WdatePicker({minDate:currentDate(),qsEnabled:true,quickSel:['${day7}','${day30}','${day60}','${day90}','${dayBn}']})"
 																	  pattern="yyyy-MM-dd"/>
 															</div>
 														</div>
@@ -101,7 +101,7 @@
 												</div>
 											</div>
 											<div class="form-actions text-center pal">
-												<button type="button" class="btn btn-primary" id="submit">保存</button>
+												<button type="submit" class="btn btn-primary" id="submit">保存</button>
 											</div>
 										</div>
 									</div>
@@ -121,25 +121,9 @@
 <script type="text/javascript">
     $(".l-list3").show();
 
-    $(document).ready(function(){
-        // 提交操作
-        $("#submit").click(function() {
+    $.validator.setDefaults({
+        submitHandler: function () {
             var obj = $('#form').toObject({mode : 'first'});
-
-            var money = obj.money;
-            if(v_alert_isNull(money, '金额')){
-                return;
-            }
-
-            var weights = obj.weights;
-            if(v_alert_isNull(weights, 'vip等级')){
-                return;
-            }
-
-            var validityTime = obj.validityTime;
-            if(v_alert_isNull(validityTime, '失效日期')){
-                return;
-            }
 
             cfg.data = JSON.stringify(obj);
 
@@ -152,8 +136,32 @@
 
             cfg.url = 'addVip.json';
             $.ajax(cfg);
-        });
+        }
     });
+
+    $(function () {
+        $("#form").validate({
+            rules: {
+                validityTime: "required",
+                money:{required:true, number:true},
+                weights: {required:true, number:true}
+            },
+            messages: {
+                validityTime: "请选择失效时间",
+                money:{
+                    required:"请输入金额",
+                    number:"金额格式错误，请输入合法的数字"
+
+				},
+                weights: {
+                    required:"请输入金额",
+                    number:"权重格式错误，请输入合法的数字"
+
+                }
+            }
+        });
+
+    })
 </script>
 
 </body>

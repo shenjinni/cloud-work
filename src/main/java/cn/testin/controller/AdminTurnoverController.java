@@ -8,6 +8,7 @@ import cn.testin.constant.Constants;
 import cn.testin.service.CloudWorkTurnoverService;
 import cn.testin.service.CloudWorkVipService;
 import cn.testin.util.RandomUtils;
+import cn.testin.util.StringUtil;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -91,6 +92,15 @@ public class AdminTurnoverController {
 			byte[] bytes= str.getBytes("ISO-8859-1");
 			String name = new String(bytes,"utf-8");
 			mv.addObject("workName", name);
+
+			// 获取后七天，后一个月时间
+			String day7 = StringUtil.getDateAdd(7);
+			String day30 = StringUtil.getDateAdd(30);
+			String day60 = StringUtil.getDateAdd(60);
+			String day90 = StringUtil.getDateAdd(90);
+			String dayBn = StringUtil.getDateAdd(180);
+			mv.addObject("day7", day7).addObject("day30", day30).addObject("day60", day60)
+					.addObject("day90", day90).addObject("dayBn", dayBn);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
