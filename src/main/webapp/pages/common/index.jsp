@@ -331,7 +331,7 @@
         </ul>
     </div>
     <div class="footer">
-        <p class="p1">联系方式：<a href="tel://18244913996" style="position:relative">18244913996 </a>（叶小姐）</p>
+        <p class="p1">联系方式：<a href="tel://18268268773" style="position:relative">18268268773 </a>，<a href="tel://18967272878" style="position:relative">18967272878 </a>（叶小姐）</p>
         <p class="p2">©2018 www.zhilitz-fashion.com 浙ICP备18020964号-1</p>
         <p class="p3"><a href="${ctx}">织里童装设计网</a></p>
     </div>
